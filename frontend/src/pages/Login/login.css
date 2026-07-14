@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f9f7ef;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#f7eeb0, #fff7dd);
+  padding: 40px;
+}
+
+.login-card {
+  width: 500px;
+  background: white;
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #0d5c4d;
+  font-size: 38px;
+}
+
+.login-card p {
+  text-align: center;
+  color: #666;
+  margin-top: 8px;
+  margin-bottom: 35px;
+}
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.input-box svg {
+  color: gray;
+}
+
+.input-box input {
+  border: none;
+  outline: none;
+  flex: 1;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.eye-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.forgot {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.forgot a {
+  color: #0d5c4d;
+  text-decoration: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background: #005b4f;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.login-btn:hover {
+  background: #00463d;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.divider span {
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider p {
+  margin: 0 15px;
+  color: gray;
+}
+
+.social-btn {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: .3s;
+}
+
+.social-btn:hover {
+  background: #f7f7f7;
+}
+
+.google {
+  color: #db4437;
+}
+
+.facebook {
+  color: #1877f2;
+}
+
+.register {
+  text-align: center;
+  margin-top: 25px;
+  color: #555;
+}
+
+.register a {
+  color: #0d5c4d;
+  text-decoration: none;
+  font-weight: 600;
+}
