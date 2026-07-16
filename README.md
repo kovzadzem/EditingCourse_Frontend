@@ -1,5 +1,4 @@
 # EditingCourse_Frontend
-# EditingCourse_Frontend
 
 # მონაცემთა ბაზის არქიტექტურის დაგეგმვა
 
