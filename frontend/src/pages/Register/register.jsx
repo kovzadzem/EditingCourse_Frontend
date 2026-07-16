@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import api from "../../api/api";
 
@@ -16,6 +17,8 @@ import {
 } from "react-icons/fa";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
@@ -30,6 +33,7 @@ function Register() {
     phone: "",
     password: "",
     confirmPassword: "",
+    avatar: null,
   });
 
   useEffect(() => {
@@ -49,41 +53,52 @@ function Register() {
     });
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (formData.password !== formData.confirmPassword) {
-    alert("პაროლები არ ემთხვევა!");
-    return;
-  }
+    if (formData.password !== formData.confirmPassword) {
+      alert("პაროლები არ ემთხვევა!");
+      return;
+    }
 
-  try {
-    const response = await api.post("/auth/register", {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone: formData.phone,
-      password: formData.password,
-    });
+    try {
+      const response = await api.post("/auth/register", {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        avatar: formData.avatar,
+      });
 
-    alert("რეგისტრაცია წარმატებით დასრულდა!");
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
 
-    console.log(response.data);
+      alert("რეგისტრაცია წარმატებით დასრულდა!");
 
-  } catch (error) {
-  console.log(error);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
 
-  if (error.response) {
-    alert(
-      `Status: ${error.response.status}\n\n${JSON.stringify(error.response.data, null, 2)}`
-    );
-  } else if (error.request) {
-    alert("Backend არ პასუხობს.");
-  } else {
-    alert(error.message);
-  }
-}
-};
+      if (error.response) {
+        alert(
+          `Status: ${error.response.status}\n\n${JSON.stringify(
+            error.response.data,
+            null,
+            2
+          )}`
+        );
+      } else if (error.request) {
+        alert("Backend არ პასუხობს.");
+      } else {
+        alert(error.message);
+      }
+    }
+  };
+
   return (
     <div className="register-page">
       <div className="register-card">
