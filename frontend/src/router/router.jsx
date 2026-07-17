@@ -2,12 +2,14 @@ import { createBrowserRouter } from "react-router-dom";
 
 import MainLayout from "../layouts/MainLayout";
 
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import Gallery from "../pages/Gallery/Gallery";
-import Contact from "../pages/Contact/Contact";
+import Home from "../pages/Home/home";
+import Login from "../pages/Login/login";
+import Register from "../pages/Register/register";
+import Gallery from "../pages/Gallery/gallery";
+import Contact from "../pages/Contact/contact";
+
 import Dashboard from "../pages/Dashboard/dashboard";
+import Courses from "../pages/Dashboard/courses";
 
 export const router = createBrowserRouter([
   {
@@ -35,8 +37,12 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "Dashboard",
-        element: <Dashboard/>,
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "courses",
+        element: <Courses />,
       },
     ],
   },
