@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./Dashboard.css";
-import { useTranslation } from "react-i18next";
 
 import {
   FaMoon,
@@ -24,15 +24,13 @@ import {
 } from "react-icons/fa";
 
 function Dashboard() {
-  const { i18n } = useTranslation();
-
+  
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  const [showLanguages, setShowLanguages] = useState(false);
 
   const [search, setSearch] = useState("");
 
@@ -46,11 +44,7 @@ function Dashboard() {
     }
   }, [darkMode]);
 
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
-    localStorage.setItem("language", lang);
-    setShowLanguages(false);
-  };
+ 
 
   return (
     <div className="dashboard">
@@ -60,69 +54,75 @@ function Dashboard() {
       <aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
 
         <div className="logo">
-          <h2>Recepto CMS</h2>
+          <h2>ედიტოლოგია</h2>
         </div>
 
         <ul>
 
           <li className="active">
             <FaTachometerAlt />
-            Dashboard
+            მართვის პანელი
           </li>
 
-          <li>
-            <FaBook />
-            Courses
-          </li>
+         <li>
+  <NavLink to="/courses"
+    className={({ isActive }) =>
+      isActive ? "sidebar-link active-link" : "sidebar-link"
+    }
+  >
+    <FaBook />
+    <span>კურსები</span>
+  </NavLink>
+</li>
 
           <li>
             <FaLayerGroup />
-            Sections & Lessons
+            გაკვეთილები
           </li>
 
           <li>
             <FaVideo />
-            Live Groups
+            დამსწრე ჯგუფები?
           </li>
 
           <li>
             <FaPlayCircle />
-            Live Recordings
+            ჩანაწერები
           </li>
 
           <li>
             <FaUserGraduate />
-            Students
+            სტუდენტები
           </li>
 
           <li>
             <FaCreditCard />
-            Payments
+            გადახდები
           </li>
 
           <li>
             <FaImages />
-            Gallery
+            გალერეა
           </li>
 
           <li>
             <FaFileAlt />
-            Syllabus
+            სილაბუსი
           </li>
 
           <li>
             <FaEnvelope />
-            Contact Messages
+            კონტაქტი
           </li>
 
           <li>
             <FaCog />
-            Website Settings
+            პარამეტრები
           </li>
 
           <li className="logout">
             <FaSignOutAlt />
-            Logout
+            გასვლა
           </li>
 
         </ul>
@@ -172,41 +172,6 @@ function Dashboard() {
               {darkMode ? <FaSun /> : <FaMoon />}
             </button>
 
-            {/* Language */}
-
-            <div className="language-container">
-
-              <button
-                className="lang-btn"
-                onClick={() =>
-                  setShowLanguages(!showLanguages)
-                }
-              >
-                {i18n.language === "ka" ? "🇬🇪" : "🇬🇧"}
-              </button>
-
-              {showLanguages && (
-
-                <div className="language-menu">
-
-                  <button
-                    onClick={() => changeLanguage("ka")}
-                  >
-                    🇬🇪 ქართული
-                  </button>
-
-                  <button
-                    onClick={() => changeLanguage("en")}
-                  >
-                    🇬🇧 English
-                  </button>
-
-                </div>
-
-              )}
-
-            </div>
-
             <button className="notification-btn">
               <FaBell />
             </button>
@@ -224,27 +189,27 @@ function Dashboard() {
         <section className="stats-grid">
 
           <div className="stat-card">
-            <h4>Total Students</h4>
+            <h4>სტუდენტების რაოდენობა</h4>
             <h2>1,254</h2>
-            <p>+12% this month</p>
+            <p>+12% მიმდინარე თვეში</p>
           </div>
 
           <div className="stat-card">
-            <h4>Courses</h4>
+            <h4>კურსები</h4>
             <h2>18</h2>
-            <p>4 Active</p>
+            <p>4 აქტიური</p>
           </div>
 
           <div className="stat-card">
-            <h4>Live Groups</h4>
+            <h4>მიმდინარე ჯგუფები</h4>
             <h2>12</h2>
-            <p>2 Running Now</p>
+            <p>2 მიმდინარეობს ახლა</p>
           </div>
 
           <div className="stat-card">
-            <h4>Revenue</h4>
+            <h4>შემოსავალი</h4>
             <h2>$24,580</h2>
-            <p>This Month</p>
+            <p>თვის</p>
           </div>
 
         </section>
@@ -255,10 +220,10 @@ function Dashboard() {
 
           <div className="table-header">
 
-            <h2>Recent Students</h2>
+            <h2>დამატებული სტუდენტები</h2>
 
             <button className="primary-btn">
-              + Add Student
+              + სტუდენტის დამატება
             </button>
 
           </div>
@@ -269,15 +234,15 @@ function Dashboard() {
 
               <tr>
 
-                <th>Name</th>
+                <th>სახელი</th>
 
-                <th>Email</th>
+                <th>ელფოსტა</th>
 
-                <th>Course</th>
+                <th>კურსი</th>
 
-                <th>Status</th>
+                <th>სტატუსი</th>
 
-                <th>Actions</th>
+                <th>სტატისტიკა</th>
 
               </tr>
 
@@ -287,26 +252,26 @@ function Dashboard() {
 
               <tr>
 
-                <td>Mariam Kovzadze</td>
+                <td>ნიკა მაისურაძე</td>
 
-                <td>mariam@email.com</td>
+                <td>nika@gmail.com</td>
 
                 <td>React</td>
 
                 <td>
                   <span className="status active">
-                    Active
+                    აქტიური
                   </span>
                 </td>
 
                 <td>
 
                   <button className="edit-btn">
-                    Edit
+                    რედაქტირება
                   </button>
 
                   <button className="delete-btn">
-                    Delete
+                    წაშლა
                   </button>
 
                 </td>
@@ -315,26 +280,26 @@ function Dashboard() {
 
               <tr>
 
-                <td>John Smith</td>
+                <td>ლუკა</td>
 
-                <td>john@email.com</td>
+                <td>john@gmail.com</td>
 
                 <td>JavaScript</td>
 
                 <td>
                   <span className="status pending">
-                    Pending
+                    მოლოდინში
                   </span>
                 </td>
 
                 <td>
 
                   <button className="edit-btn">
-                    Edit
+                    რედაქტირება
                   </button>
 
                   <button className="delete-btn">
-                    Delete
+                    წაშლა
                   </button>
 
                 </td>
@@ -343,26 +308,26 @@ function Dashboard() {
 
               <tr>
 
-                <td>Ana Brown</td>
+                <td>ანა თოდუა</td>
 
-                <td>ana@email.com</td>
+                <td>ana@gmail.com</td>
 
                 <td>UI/UX</td>
 
                 <td>
                   <span className="status active">
-                    Active
+                    აქტიური
                   </span>
                 </td>
 
                 <td>
 
                   <button className="edit-btn">
-                    Edit
+                    რედაქტირება
                   </button>
 
                   <button className="delete-btn">
-                    Delete
+                    წაშლა
                   </button>
 
                 </td>
