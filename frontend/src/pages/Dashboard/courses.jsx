@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import "./Courses.css";
-
 
 import {
   FaMoon,
@@ -9,20 +9,32 @@ import {
   FaPlus,
   FaBell,
   FaUserCircle,
+  FaBars,
+  FaTachometerAlt,
+  FaBook,
+  FaLayerGroup,
+  FaVideo,
+  FaPlayCircle,
+  FaUserGraduate,
+  FaCreditCard,
+  FaImages,
+  FaFileAlt,
+  FaEnvelope,
+  FaCog,
+  FaSignOutAlt,
 } from "react-icons/fa";
 
 function Courses() {
- 
 
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [search, setSearch] = useState("");
 
-  const [category, setCategory] = useState("All");
+  const [category, setCategory] = useState("ყველა");
 
   useEffect(() => {
     if (darkMode) {
@@ -34,283 +46,396 @@ function Courses() {
     }
   }, [darkMode]);
 
- 
- 
-
   return (
-    <div className="courses-page">
+    <div className="dashboard">
 
-      {/* Header */}
+      {sidebarOpen && (
+        <div
+          className="overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-      <header className="courses-header">
+      {/* Sidebar */}
 
-        <div className="header-left">
+      <aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
 
-          <h1>კურსების მართვა</h1>
+  <div className="logo">
+    <h2>ედიტოლოგია</h2>
+  </div>
 
-        </div>
+  <ul>
 
-        <div className="header-right">
+    <li>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
+        <span>მართვის პანელი</span>
+      </NavLink>
+    </li>
 
-          {/* Theme */}
+    <li>
+      <NavLink
+        to="/courses"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaBook />
+        <span>კურსები</span>
+      </NavLink>
+    </li>
 
-          <button
-            className="theme-btn"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
+    <li>
+      <NavLink to="/lessons" className="sidebar-link">
+        <FaLayerGroup />
+        <span>გაკვეთილები</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/live-groups" className="sidebar-link">
+        <FaVideo />
+        <span>დამსწრე ჯგუფები</span>
+      </NavLink>
+    </li>
 
-          {/* Notifications */}
+    <li>
+      <NavLink to="/recordings" className="sidebar-link">
+        <FaPlayCircle />
+        <span>ჩანაწერები</span>
+      </NavLink>
+    </li>
 
-          <button className="notification-btn">
-            <FaBell />
-          </button>
+    <li>
+      <NavLink to="/students" className="sidebar-link">
+        <FaUserGraduate />
+        <span>სტუდენტები</span>
+      </NavLink>
+    </li>
 
-          {/* Profile */}
+    <li>
+      <NavLink to="/payments" className="sidebar-link">
+        <FaCreditCard />
+        <span>გადახდები</span>
+      </NavLink>
+    </li>
 
-          <div className="admin-profile">
-            <FaUserCircle />
-            <span>Admin</span>
+    <li>
+      <NavLink to="/gallery" className="sidebar-link">
+        <FaImages />
+        <span>გალერეა</span>
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/syllabus" className="sidebar-link">
+        <FaFileAlt />
+        <span>სილაბუსი</span>
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/contact" className="sidebar-link">
+        <FaEnvelope />
+        <span>კონტაქტი</span>
+      </NavLink>
+    </li>
+
+    <li>
+      <NavLink to="/settings" className="sidebar-link">
+        <FaCog />
+        <span>პარამეტრები</span>
+      </NavLink>
+    </li>
+
+    <li className="logout">
+      <NavLink to="/login" className="sidebar-link">
+        <FaSignOutAlt />
+        <span>გასვლა</span>
+      </NavLink>
+    </li>
+
+  </ul>
+
+</aside>
+
+      {/* Main */}
+
+      <main className="main-content">
+
+        {/* Header */}
+
+        <header className="header">
+
+          <div className="left-header">
+
+            <button
+              className="menu-btn"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+              <FaBars />
+            </button>
+
+            <div className="search-box">
+
+              <FaSearch />
+
+              <input
+                type="text"
+                placeholder="კურსის ძებნა..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+
+            </div>
+
           </div>
 
-        </div>
+          <div className="right-header">
 
-      </header>
+            <button
+              className="theme-btn"
+              onClick={() => setDarkMode(!darkMode)}
+            >
+              {darkMode ? <FaSun /> : <FaMoon />}
+            </button>
 
-      {/* Top Controls */}
+            <button className="notification-btn">
+              <FaBell />
+            </button>
 
-      <section className="courses-toolbar">
+            <div className="admin-profile">
 
-        <div className="search-box">
+              <FaUserCircle />
 
-          <FaSearch />
+              <div className="admin-info">
+                <h4>Admin</h4>
+                <span>Administrator</span>
+              </div>
 
-          <input
-            type="text"
-            placeholder="Search course..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+            </div>
 
-        </div>
+          </div>
 
-        <select
-          className="category-filter"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option>ყველა</option>
-          <option>პროგრამირება</option>
-          <option>დიზაინი</option>
-          <option>მარკეტინგი</option>
-          <option>ბიზნესი</option>
-        </select>
+        </header>
+                {/* Toolbar */}
 
-        <button className="add-course-btn">
-          <FaPlus />
-          კურსის დამატება
-        </button>
+        <section className="courses-toolbar">
 
-      </section>
-            {/* Statistics Cards */}
+          <select
+            className="category-filter"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option>ყველა</option>
+            <option>პროგრამირება</option>
+            <option>დიზაინი</option>
+            <option>მარკეტინგი</option>
+            <option>ბიზნესი</option>
+          </select>
 
-      <section className="course-stats">
+          <button className="primary-btn">
+            <FaPlus />
+            <span>კურსის დამატება</span>
+          </button>
 
-        <div className="course-card">
-          <h4>კურსების რაოდენობა</h4>
-          <h2>18</h2>
-          <p>ჯამი</p>
-        </div>
+        </section>
 
-        <div className="course-card">
-          <h4>აქტიური</h4>
-          <h2>12</h2>
-          <p>გამოქვეყნებული</p>
-        </div>
+        {/* Cards */}
 
-        <div className="course-card">
-          <h4>სამომავლო კურსები</h4>
-          <h2>6</h2>
-          <p>მომლოდინე</p>
-        </div>
+        <section className="stats-grid">
 
-        <div className="course-card">
-          <h4>სტუდენტების ჯამი</h4>
-          <h2>1,254</h2>
-          <p>ჩარიცხული სტუდენტები</p>
-        </div>
+          <div className="stat-card">
+            <h4>კურსების რაოდენობა</h4>
+            <h2>18</h2>
+            <p>სულ სისტემაში</p>
+          </div>
 
-      </section>
+          <div className="stat-card">
+            <h4>აქტიური კურსები</h4>
+            <h2>12</h2>
+            <p>გამოქვეყნებული</p>
+          </div>
 
-      {/* Courses Table */}
+          <div className="stat-card">
+            <h4>მოლოდინში</h4>
+            <h2>6</h2>
+            <p>ჯერ არ გამოქვეყნებულა</p>
+          </div>
 
-      <section className="courses-table-section">
+          <div className="stat-card">
+            <h4>სტუდენტები</h4>
+            <h2>1254</h2>
+            <p>ჩარიცხული სტუდენტები</p>
+          </div>
 
-        <div className="table-header">
+        </section>
 
-          <h2>ყველა კურსი </h2>
+        {/* Table */}
 
-        </div>
+        <section className="table-section">
 
-        <table>
+          <div className="table-header">
 
-          <thead>
+            <h2>ყველა კურსი</h2>
 
-            <tr>
+            <button className="primary-btn">
+              <FaPlus />
+              <span>ახალი კურსი</span>
+            </button>
 
-              <th>გალერეა</th>
+          </div>
 
-              <th>კურსი</th>
+          <table>
 
-              <th>კატეგორია</th>
+            <thead>
 
-              <th>ლექტორი</th>
+              <tr>
+                <th>სურათი</th>
+                <th>კურსი</th>
+                <th>კატეგორია</th>
+                <th>ლექტორი</th>
+                <th>სტუდენტები</th>
+                <th>ფასი</th>
+                <th>სტატუსი</th>
+                <th>მოქმედება</th>
+              </tr>
 
-              <th>სტუდენტი</th>
+            </thead>
 
-              <th>ფასი</th>
+            <tbody>
 
-              <th>სტატუსი</th>
+              <tr>
 
-              <th>აქტიურობა</th>
+                <td>
+                  <img
+                    src="https://placehold.co/60x60"
+                    alt="Course"
+                    className="course-image"
+                  />
+                </td>
 
-            </tr>
+                <td>React Masterclass</td>
 
-          </thead>
+                <td>პროგრამირება</td>
 
-          <tbody>
+                <td>ლუკა ჩიჩუა</td>
 
-            <tr>
+                <td>320</td>
 
-              <td>
-                <img
-                  src="https://placehold.co/60x60"
-                  alt="Course"
-                  className="course-image"
-                />
-              </td>
+                <td>$89</td>
 
-              <td>მასტერკლასები</td>
+                <td>
+                  <span className="status active">
+                    აქტიური
+                  </span>
+                </td>
 
-              <td>პროგრამირება</td>
+                <td>
 
-              <td>ლუკა ჩიჩუა</td>
+                  <button className="edit-btn">
+                    ნახვა
+                  </button>
 
-              <td>320</td>
+                  <button className="delete-btn">
+                    წაშლა
+                  </button>
 
-              <td>$89</td>
+                </td>
 
-              <td>
-                <span className="status active">
-                  აქტიური
-                </span>
-              </td>
+              </tr>
 
-              <td>
+              <tr>
 
-                <button className="view-btn">
-                 ნახვა
-                </button>
+                <td>
+                  <img
+                    src="https://placehold.co/60x60"
+                    alt="Course"
+                    className="course-image"
+                  />
+                </td>
 
-                <button className="delete-btn">
-                  წაშლა
-                </button>
+                <td>UI / UX დიზაინი</td>
 
-              </td>
+                <td>დიზაინი</td>
 
-            </tr>
+                <td>ანა თოდუა</td>
 
-            <tr>
+                <td>185</td>
 
-              <td>
-                <img
-                  src="https://placehold.co/60x60"
-                  alt="Course"
-                  className="course-image"
-                />
-              </td>
+                <td>$75</td>
 
-              <td>UI/UX დიზაინი</td>
+                <td>
+                  <span className="status pending">
+                    არააქტიური
+                  </span>
+                </td>
 
-              <td>დიზაინი</td>
+                <td>
 
-              <td>ანა თოდუა</td>
+                  <button className="edit-btn">
+                    ნახვა
+                  </button>
 
-              <td>185</td>
+                  <button className="delete-btn">
+                    წაშლა
+                  </button>
 
-              <td>$75</td>
+                </td>
 
-              <td>
-                <span className="status pending">
-                 არააქტიური
-                </span>
-              </td>
+              </tr>
 
-              <td>
+              <tr>
 
-                <button className="view-btn">
-                  ნახვა
-                </button>
+                <td>
+                  <img
+                    src="https://placehold.co/60x60"
+                    alt="Course"
+                    className="course-image"
+                  />
+                </td>
 
-            
+                <td>Digital Marketing</td>
 
-                <button className="delete-btn">
-                  წაშლა
-                </button>
+                <td>მარკეტინგი</td>
 
-              </td>
+                <td>ნიკა მაისურაძე</td>
 
-            </tr>
+                <td>240</td>
 
-            <tr>
+                <td>$99</td>
 
-              <td>
-                <img
-                  src="https://placehold.co/60x60"
-                  alt="Course"
-                  className="course-image"
-                />
-              </td>
+                <td>
+                  <span className="status active">
+                    აქტიური
+                  </span>
+                </td>
 
-              <td>ციფრული მარკეტინგი</td>
+                <td>
 
-              <td>მარკეტინგი</td>
+                  <button className="edit-btn">
+                    ნახვა
+                  </button>
 
-              <td>ნიკოლოზ მაისურაძე</td>
+                  <button className="delete-btn">
+                    წაშლა
+                  </button>
 
-              <td>240</td>
+                </td>
 
-              <td>$99</td>
+              </tr>
 
-              <td>
-                <span className="status active">
-                  მოლოდინში
-                </span>
-              </td>
+            </tbody>
 
-              <td>
+          </table>
 
-                <button className="view-btn">
-                  ნახვა
-                </button>
-
-            
-
-                <button className="delete-btn">
-                  წაშლა
-                </button>
-
-              </td>
-
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </section>
+        </section>
+              </main>
 
     </div>
   );

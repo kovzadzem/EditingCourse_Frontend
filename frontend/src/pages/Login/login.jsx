@@ -138,7 +138,7 @@ function Login() {
           </div>
 
           <div className="forgot-password">
-            <a href="/forgot-password">
+            <a href="./forgot-password">
               პაროლი დაგავიწყდა?
             </a>
           </div>

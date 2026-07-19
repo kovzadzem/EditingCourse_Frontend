@@ -7,9 +7,11 @@ import Login from "../pages/Login/login";
 import Register from "../pages/Register/register";
 import Gallery from "../pages/Gallery/gallery";
 import Contact from "../pages/Contact/contact";
+import ForgotPassword from "../pages/Login/forgot-password";
 
 import Dashboard from "../pages/Dashboard/dashboard";
 import Courses from "../pages/Dashboard/courses";
+import Lessons from "../pages/Dashboard/lessons";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +46,14 @@ export const router = createBrowserRouter([
         path: "courses",
         element: <Courses />,
       },
+       {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+       path: "lessons",
+        element: <Lessons />,
+     },
     ],
   },
 ]);
