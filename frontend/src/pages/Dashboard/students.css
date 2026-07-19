@@ -4,12 +4,12 @@
 
   --background:#f6f7fb;
   --card:#ffffff;
+  --sidebar:#ffffff;
+  --header:#ffffff;
+
   --text:#1f2937;
   --text-light:#6b7280;
   --border:#e5e7eb;
-
-  --sidebar:#ffffff;
-  --header:#ffffff;
 
   --shadow:0 10px 30px rgba(0,0,0,.08);
 }
@@ -17,19 +17,15 @@
 body.dark{
   --background:#0f172a;
   --card:#1e293b;
+  --sidebar:#111827;
+  --header:#111827;
+
   --text:#f8fafc;
   --text-light:#cbd5e1;
   --border:#334155;
 
-  --sidebar:#111827;
-  --header:#111827;
-
   --shadow:0 12px 30px rgba(0,0,0,.35);
 }
-
-/* ===========================
-   Reset
-=========================== */
 
 *{
   margin:0;
@@ -41,7 +37,6 @@ body{
   font-family:Inter,sans-serif;
   background:var(--background);
   color:var(--text);
-  transition:.3s;
 }
 
 .dashboard{
@@ -49,16 +44,12 @@ body{
   min-height:100vh;
 }
 
-/* ===========================
-   Sidebar
-=========================== */
+/* ================= Sidebar ================= */
 
 .sidebar{
   width:270px;
   background:var(--sidebar);
   border-right:1px solid var(--border);
-  display:flex;
-  flex-direction:column;
   transition:.3s;
   box-shadow:var(--shadow);
 }
@@ -70,14 +61,13 @@ body{
 .logo{
   height:80px;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
   border-bottom:1px solid var(--border);
 }
 
 .logo h2{
   color:var(--primary);
-  font-size:24px;
 }
 
 .sidebar ul{
@@ -90,38 +80,29 @@ body{
   align-items:center;
   gap:14px;
   padding:14px 18px;
-  margin-bottom:8px;
   border-radius:14px;
-  cursor:pointer;
-  color:var(--text-light);
+  margin-bottom:8px;
   transition:.25s;
-  font-weight:500;
-}
-
-.sidebar li svg{
-  font-size:18px;
 }
 
 .sidebar li:hover{
   background:rgba(128,53,214,.12);
-  color:var(--primary);
+}
+
+.sidebar-link{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  text-decoration:none;
+  color:var(--text-light);
 }
 
 .sidebar li.active{
   background:var(--primary);
-  color:#fff;
 }
 
-.sidebar-link{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:14px;
-  text-decoration:none;
-  color:inherit;
-}
-
-.sidebar-link.active-link{
+.sidebar li.active .sidebar-link{
   color:#fff;
 }
 
@@ -130,85 +111,38 @@ body{
   color:#ef4444;
 }
 
-.logout:hover{
-  background:#ef444420;
-}
-
-/* ===========================
-   Main
-=========================== */
+/* ================= Main ================= */
 
 .main-content{
   flex:1;
   padding:30px;
 }
 
-/* ===========================
-   Header
-=========================== */
+/* ================= Header ================= */
 
 .header{
-  height:80px;
   background:var(--header);
   border-radius:18px;
+  padding:22px 25px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0 24px;
   margin-bottom:30px;
   box-shadow:var(--shadow);
 }
 
-.left-header{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
+.left-header,
 .right-header{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:15px;
 }
-
-/* ===========================
-   Search
-=========================== */
-
-.search-box{
-  width:320px;
-  height:46px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  background:var(--background);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:0 15px;
-}
-
-.search-box svg{
-  color:var(--text-light);
-}
-
-.search-box input{
-  width:100%;
-  border:none;
-  outline:none;
-  background:none;
-  color:var(--text);
-  font-size:15px;
-}
-
-/* ===========================
-   Buttons
-=========================== */
 
 .menu-btn,
 .theme-btn,
 .notification-btn{
-  width:44px;
-  height:44px;
+  width:46px;
+  height:46px;
   border:none;
   border-radius:12px;
   cursor:pointer;
@@ -226,24 +160,59 @@ body{
   background:var(--primary-hover);
 }
 
-.theme-btn:hover{
-  transform:rotate(20deg);
-}
-
 .notification-btn{
   background:var(--card);
   border:1px solid var(--border);
   color:var(--text);
 }
 
-.notification-btn:hover{
-  background:var(--primary);
-  color:#fff;
+.search-box{
+  width:340px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 16px;
+  background:var(--background);
+  border:1px solid var(--border);
+  border-radius:14px;
 }
 
-/* ===========================
-   Admin Profile
-=========================== */
+.search-box input{
+  width:100%;
+  border:none;
+  outline:none;
+  background:none;
+  color:var(--text);
+}
+
+.category-filter{
+  height:46px;
+  padding:0 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  cursor:pointer;
+}
+
+.primary-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:none;
+  background:var(--primary);
+  color:#fff;
+  padding:12px 22px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.primary-btn:hover{
+  background:var(--primary-hover);
+}
 
 .admin-profile{
   display:flex;
@@ -252,192 +221,113 @@ body{
 }
 
 .admin-profile svg{
-  font-size:36px;
+  font-size:34px;
   color:var(--primary);
 }
 
 .admin-info h4{
-  font-size:15px;
   color:var(--text);
 }
 
 .admin-info span{
-  font-size:13px;
   color:var(--text-light);
-}
-/* ===========================
-   Toolbar
-=========================== */
-
-.courses-toolbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-  margin-bottom:30px;
-  flex-wrap:wrap;
+  font-size:13px;
 }
 
-/* ===========================
-   Category Filter
-=========================== */
-
-.category-filter{
-  min-width:220px;
-  height:48px;
-  padding:0 16px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  background:var(--card);
-  color:var(--text);
-  font-size:15px;
-  outline:none;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.category-filter:hover,
-.category-filter:focus{
-  border-color:var(--primary);
-}
-
-/* ===========================
-   Primary Button
-=========================== */
-
-.primary-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-
-  height:48px;
-  padding:0 22px;
-
-  background:var(--primary);
-  color:#fff;
-
-  border:none;
-  border-radius:14px;
-
-  font-size:15px;
-  font-weight:600;
-
-  cursor:pointer;
-  transition:.25s;
-}
-
-.primary-btn:hover{
-  background:var(--primary-hover);
-  transform:translateY(-2px);
-}
-
-/* ===========================
-   Statistics Cards
-=========================== */
+/* ================= Statistics ================= */
 
 .stats-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px;
-  margin-bottom:35px;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+  margin-bottom:30px;
 }
 
 .stat-card{
-  position:relative;
-  overflow:hidden;
-
   background:var(--card);
   border:1px solid var(--border);
   border-radius:18px;
-
-  padding:28px;
-
+  padding:24px;
   box-shadow:var(--shadow);
   transition:.3s;
 }
 
-.stat-card::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-
-  width:5px;
-  height:100%;
-
-  background:var(--primary);
-}
-
 .stat-card:hover{
   transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(128,53,214,.18);
 }
 
 .stat-card h4{
   color:var(--text-light);
-  font-size:15px;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .stat-card h2{
   color:var(--primary);
   font-size:34px;
-  margin-bottom:10px;
+  margin-bottom:6px;
 }
 
 .stat-card p{
   color:var(--text-light);
-  font-size:14px;
 }
-
 /* ===========================
-   Table Section
+   Students Table
 =========================== */
 
 .table-section{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:25px;
+  border-radius:20px;
   box-shadow:var(--shadow);
-  overflow-x:auto;
+  overflow:hidden;
 }
 
 .table-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:25px;
+  padding:22px 24px;
+  border-bottom:1px solid var(--border);
 }
 
 .table-header h2{
-  font-size:24px;
   color:var(--text);
+  font-size:26px;
 }
+
+.table-wrapper{
+  width:100%;
+  overflow-x:auto;
+}
+
+/* ===========================
+   Table
+=========================== */
 
 table{
   width:100%;
-  min-width:1000px;
+  min-width:1300px;
   border-collapse:collapse;
 }
 
 thead{
-  background:rgba(128,53,214,.08);
+  background:#8035d610;
 }
 
 thead th{
   padding:18px;
-  text-align:left;
   color:var(--primary);
   font-size:15px;
   font-weight:700;
+  text-align:left;
+  white-space:nowrap;
 }
 
 tbody td{
   padding:18px;
   border-bottom:1px solid var(--border);
   color:var(--text);
+  vertical-align:middle;
 }
 
 tbody tr{
@@ -445,15 +335,68 @@ tbody tr{
 }
 
 tbody tr:hover{
-  background:rgba(128,53,214,.05);
+  background:#8035d608;
 }
 
-.course-image{
-  width:60px;
-  height:60px;
-  border-radius:12px;
-  object-fit:cover;
+/* ===========================
+   Student Info
+=========================== */
+
+.student-info{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
+
+.student-info img{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #8035d620;
+}
+
+.student-info h4{
+  font-size:15px;
+  color:var(--text);
+  margin-bottom:4px;
+}
+
+.student-info span{
+  font-size:12px;
+  color:var(--text-light);
+}
+
+/* ===========================
+   Progress Bar
+=========================== */
+
+.progress{
+  width:140px;
+  height:10px;
+  background:#e5e7eb;
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:6px;
+}
+
+.progress-fill{
+  height:100%;
+  border-radius:999px;
+}
+
+.progress-fill.green{
+  background:#22c55e;
+}
+
+.progress-fill.yellow{
+  background:#f59e0b;
+}
+
+.progress-fill.red{
+  background:#ef4444;
+}
+
 /* ===========================
    Status
 =========================== */
@@ -462,7 +405,7 @@ tbody tr:hover{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  padding:8px 16px;
+  padding:7px 16px;
   border-radius:999px;
   font-size:13px;
   font-weight:600;
@@ -484,24 +427,29 @@ tbody tr:hover{
 }
 
 /* ===========================
-   Buttons
+   Action Buttons
 =========================== */
 
-.edit-btn,
+td:last-child{
+  white-space:nowrap;
+}
+
 .view-btn,
+.edit-btn,
 .delete-btn{
+  width:40px;
+  height:40px;
   border:none;
   border-radius:10px;
-  padding:10px 16px;
-  font-weight:600;
   cursor:pointer;
+  margin-right:8px;
   transition:.25s;
+  font-size:15px;
 }
 
 .view-btn{
   background:#3b82f6;
   color:#fff;
-  margin-right:8px;
 }
 
 .view-btn:hover{
@@ -511,7 +459,6 @@ tbody tr:hover{
 .edit-btn{
   background:var(--primary);
   color:#fff;
-  margin-right:8px;
 }
 
 .edit-btn:hover{
@@ -527,54 +474,29 @@ tbody tr:hover{
   background:#dc2626;
 }
 
-/* ===========================
-   Overlay (Burger Menu)
-=========================== */
-
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.35);
-  backdrop-filter:blur(2px);
-  z-index:999;
-}
-
-/* ===========================
-   Dark Mode
-=========================== */
-
-body.dark thead{
-  background:rgba(128,53,214,.15);
-}
-
-body.dark tbody tr:hover{
-  background:rgba(255,255,255,.04);
-}
-
-body.dark .category-filter{
-  background:var(--card);
-  color:var(--text);
-}
-
-body.dark .search-box{
-  background:var(--background);
-}
-
-body.dark .table-section,
-body.dark .stat-card{
-  border-color:var(--border);
-}
-
-/* ===========================
+input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  cursor:pointer;
+}/* ===========================
    Responsive
 =========================== */
 
-@media (max-width:1100px){
+@media (max-width:1200px){
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media (max-width:992px){
 
   .sidebar{
     position:fixed;
     top:0;
     left:-270px;
+    width:270px;
     height:100vh;
     z-index:1000;
   }
@@ -588,40 +510,25 @@ body.dark .stat-card{
     padding:20px;
   }
 
-  .search-box{
-    width:220px;
-  }
-
-}
-
-@media (max-width:768px){
-
   .header{
     flex-direction:column;
     align-items:flex-start;
-    height:auto;
-    padding:20px;
-    gap:18px;
+    gap:20px;
   }
 
   .left-header,
   .right-header{
     width:100%;
+    flex-wrap:wrap;
   }
 
-  .right-header{
-    justify-content:flex-end;
-  }
-
-  .courses-toolbar{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .category-filter,
-  .primary-btn{
+  .search-box{
     width:100%;
   }
+
+}
+
+@media (max-width:768px){
 
   .stats-grid{
     grid-template-columns:1fr;
@@ -633,12 +540,14 @@ body.dark .stat-card{
     gap:15px;
   }
 
-  table{
-    min-width:850px;
+  .student-info img{
+    width:44px;
+    height:44px;
   }
 
-  .admin-info{
-    display:none;
+  thead th,
+  tbody td{
+    padding:14px;
   }
 
 }
@@ -649,30 +558,78 @@ body.dark .stat-card{
     padding:15px;
   }
 
-  .search-box{
-    width:100%;
+  .admin-info{
+    display:none;
   }
 
   .menu-btn,
   .theme-btn,
   .notification-btn{
-    width:40px;
-    height:40px;
+    width:42px;
+    height:42px;
   }
 
-  .logo h2{
-    font-size:20px;
+  .primary-btn{
+    width:100%;
+    justify-content:center;
   }
 
+}
+
+/* ===========================
+   Overlay
+=========================== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:999;
+}
+
+/* ===========================
+   Dark Mode
+=========================== */
+
+body.dark .table-section{
+  background:var(--card);
+}
+
+body.dark thead{
+  background:rgba(128,53,214,.15);
+}
+
+body.dark tbody tr:hover{
+  background:rgba(255,255,255,.04);
+}
+
+body.dark .progress{
+  background:#334155;
+}
+
+body.dark input[type="checkbox"]{
+  accent-color:var(--primary);
 }
 
 /* ===========================
    Scrollbar
 =========================== */
 
+.table-wrapper::-webkit-scrollbar{
+  height:8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb{
+  background:var(--primary);
+  border-radius:20px;
+}
+
+.table-wrapper::-webkit-scrollbar-track{
+  background:transparent;
+}
+
 ::-webkit-scrollbar{
   width:8px;
-  height:8px;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -685,14 +642,24 @@ body.dark .stat-card{
 }
 
 /* ===========================
-   Smooth Transition
+   Animations
 =========================== */
 
-*{
-  transition:
-    background .25s,
-    color .25s,
-    border-color .25s,
-    box-shadow .25s,
-    transform .25s;
+.stat-card,
+.table-section{
+  animation:fadeIn .35s ease;
+}
+
+@keyframes fadeIn{
+
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
 }

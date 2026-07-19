@@ -11,7 +11,12 @@ import ForgotPassword from "../pages/Login/forgot-password";
 
 import Dashboard from "../pages/Dashboard/dashboard";
 import Courses from "../pages/Dashboard/courses";
-import Lessons from "../pages/Dashboard/lessons";
+import Calendar from "../pages/Dashboard/calendar";
+import OfflineCourse from "../pages/Dashboard/offlinecourse";
+import Recordings from "../pages/Dashboard/recordings";
+import Students from "../pages/Dashboard/students";
+import Payments from "../pages/Dashboard/payments";
+import Syllabus from "../pages/Dashboard/syllabus";
 
 export const router = createBrowserRouter([
   {
@@ -51,8 +56,34 @@ export const router = createBrowserRouter([
         element: <ForgotPassword />,
       },
       {
-       path: "lessons",
-        element: <Lessons />,
+       path: "Calendar",
+        element: <Calendar/>,
+     },
+      {
+       path: "offlinecourse",
+        element: <OfflineCourse/>,
+     },
+
+     {
+       path: "recordings",
+        element: <Recordings/>,
+     },
+
+     {
+       path: "students",
+        element: <Students/>,
+     },
+     {
+       path: "payments",
+        element: <Payments/>,
+     },
+     {
+       path: "syllabus",
+        element: <Syllabus/>,
+     },
+     {
+       path: "contact",
+        element: <Contact/>,
      },
     ],
   },

@@ -91,14 +91,14 @@ function Courses() {
     </li>
 
     <li>
-      <NavLink to="/lessons" className="sidebar-link">
+      <NavLink to="/Calendar" className="sidebar-link">
         <FaLayerGroup />
-        <span>გაკვეთილები</span>
+        <span>კალენდარი</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/live-groups" className="sidebar-link">
+      <NavLink to="/offlinecourse" className="sidebar-link">
         <FaVideo />
         <span>დამსწრე ჯგუფები</span>
       </NavLink>
