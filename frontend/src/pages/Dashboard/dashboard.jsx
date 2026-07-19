@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Dashboard.css";
 
+
 import {
   FaMoon,
   FaSun,
@@ -24,13 +25,12 @@ import {
 } from "react-icons/fa";
 
 function Dashboard() {
-  
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem("theme") === "dark"
   );
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
+  // Sidebar თავიდან დახურული
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const [search, setSearch] = useState("");
 
@@ -44,91 +44,125 @@ function Dashboard() {
     }
   }, [darkMode]);
 
- 
-
   return (
     <div className="dashboard">
+
+      {/* Overlay */}
+
+      {sidebarOpen && (
+        <div
+          className="overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
       {/* Sidebar */}
 
       <aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
 
-        <div className="logo">
-          <h2>ედიტოლოგია</h2>
-        </div>
+  <div className="logo">
+    <h2>ედიტოლოგია</h2>
+  </div>
 
-        <ul>
+  <ul>
 
-          <li className="active">
-            <FaTachometerAlt />
-            მართვის პანელი
-          </li>
+    <li>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
+        <span>მართვის პანელი</span>
+      </NavLink>
+    </li>
 
-         <li>
-  <NavLink to="/courses"
-    className={({ isActive }) =>
-      isActive ? "sidebar-link active-link" : "sidebar-link"
-    }
-  >
-    <FaBook />
-    <span>კურსები</span>
-  </NavLink>
-</li>
+    <li>
+      <NavLink
+        to="/courses"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaBook />
+        <span>კურსები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaLayerGroup />
-            გაკვეთილები
-          </li>
+    <li>
+      <NavLink to="/lessons" className="sidebar-link">
+        <FaLayerGroup />
+        <span>გაკვეთილები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaVideo />
-            დამსწრე ჯგუფები?
-          </li>
+    <li>
+      <NavLink to="/live-groups" className="sidebar-link">
+        <FaVideo />
+        <span>დამსწრე ჯგუფები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaPlayCircle />
-            ჩანაწერები
-          </li>
+    <li>
+      <NavLink to="/recordings" className="sidebar-link">
+        <FaPlayCircle />
+        <span>ჩანაწერები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaUserGraduate />
-            სტუდენტები
-          </li>
+    <li>
+      <NavLink to="/students" className="sidebar-link">
+        <FaUserGraduate />
+        <span>სტუდენტები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaCreditCard />
-            გადახდები
-          </li>
+    <li>
+      <NavLink to="/payments" className="sidebar-link">
+        <FaCreditCard />
+        <span>გადახდები</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaImages />
-            გალერეა
-          </li>
+    <li>
+      <NavLink to="/gallery" className="sidebar-link">
+        <FaImages />
+        <span>გალერეა</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaFileAlt />
-            სილაბუსი
-          </li>
+    <li>
+      <NavLink to="/syllabus" className="sidebar-link">
+        <FaFileAlt />
+        <span>სილაბუსი</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaEnvelope />
-            კონტაქტი
-          </li>
+    <li>
+      <NavLink to="/contact" className="sidebar-link">
+        <FaEnvelope />
+        <span>კონტაქტი</span>
+      </NavLink>
+    </li>
 
-          <li>
-            <FaCog />
-            პარამეტრები
-          </li>
+    <li>
+      <NavLink to="/settings" className="sidebar-link">
+        <FaCog />
+        <span>პარამეტრები</span>
+      </NavLink>
+    </li>
 
-          <li className="logout">
-            <FaSignOutAlt />
-            გასვლა
-          </li>
+    <li className="logout">
+      <NavLink to="/login" className="sidebar-link">
+        <FaSignOutAlt />
+        <span>გასვლა</span>
+      </NavLink>
+    </li>
 
-        </ul>
+  </ul>
 
-      </aside>
-
+</aside>
       {/* Main */}
 
       <main className="main-content">
@@ -141,7 +175,9 @@ function Dashboard() {
 
             <button
               className="menu-btn"
-              onClick={() => setSidebarOpen(!sidebarOpen)}
+              onClick={() =>
+                setSidebarOpen(!sidebarOpen)
+              }
             >
               <FaBars />
             </button>
@@ -152,9 +188,11 @@ function Dashboard() {
 
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="ძებნა..."
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) =>
+                  setSearch(e.target.value)
+                }
               />
 
             </div>
@@ -163,11 +201,11 @@ function Dashboard() {
 
           <div className="right-header">
 
-            {/* Theme */}
-
             <button
               className="theme-btn"
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={() =>
+                setDarkMode(!darkMode)
+              }
             >
               {darkMode ? <FaSun /> : <FaMoon />}
             </button>
@@ -178,13 +216,19 @@ function Dashboard() {
 
             <div className="admin-profile">
               <FaUserCircle />
-              <span>Admin</span>
+
+              <div className="admin-info">
+                <h4>Admin</h4>
+                <span>Administrator</span>
+              </div>
+
             </div>
 
           </div>
 
-        </header> 
-                {/* Dashboard Cards */}
+        </header>
+
+        {/* Cards */}
 
         <section className="stats-grid">
 
@@ -209,12 +253,12 @@ function Dashboard() {
           <div className="stat-card">
             <h4>შემოსავალი</h4>
             <h2>$24,580</h2>
-            <p>თვის</p>
+            <p>ამ თვეში</p>
           </div>
 
         </section>
 
-        {/* Recent Students */}
+        {/* Table */}
 
         <section className="table-section">
 
@@ -233,17 +277,11 @@ function Dashboard() {
             <thead>
 
               <tr>
-
                 <th>სახელი</th>
-
-                <th>ელფოსტა</th>
-
+                <th>ელ.ფოსტა</th>
                 <th>კურსი</th>
-
                 <th>სტატუსი</th>
-
-                <th>სტატისტიკა</th>
-
+                <th>მოქმედებები</th>
               </tr>
 
             </thead>
@@ -253,9 +291,7 @@ function Dashboard() {
               <tr>
 
                 <td>ნიკა მაისურაძე</td>
-
                 <td>nika@gmail.com</td>
-
                 <td>React</td>
 
                 <td>
@@ -281,9 +317,7 @@ function Dashboard() {
               <tr>
 
                 <td>ლუკა</td>
-
-                <td>john@gmail.com</td>
-
+                <td>luka@gmail.com</td>
                 <td>JavaScript</td>
 
                 <td>
@@ -309,9 +343,7 @@ function Dashboard() {
               <tr>
 
                 <td>ანა თოდუა</td>
-
                 <td>ana@gmail.com</td>
-
                 <td>UI/UX</td>
 
                 <td>

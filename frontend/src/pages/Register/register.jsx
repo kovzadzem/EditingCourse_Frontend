@@ -275,13 +275,18 @@ function Register() {
             <span></span>
           </div>
 
-          <button
-            type="button"
-            className="social-btn"
-          >
-            <FaGoogle />
-            Google-ით რეგისტრაცია
-          </button>
+      
+           <button
+  type="button"
+  className="social-btn"
+  onClick={() => {
+    window.location.href =
+      "http://localhost:3000/auth/google";
+  }}
+>
+  <FaGoogle />
+  Google-ით რეგისტრაცია
+</button>
 
           <button
             type="button"
