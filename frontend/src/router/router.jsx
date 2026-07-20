@@ -18,6 +18,8 @@ import Students from "../pages/Dashboard/students";
 import Payments from "../pages/Dashboard/payments";
 import Syllabus from "../pages/Dashboard/syllabus";
 
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -85,6 +87,7 @@ export const router = createBrowserRouter([
        path: "contact",
         element: <Contact/>,
      },
+      
     ],
   },
 ]);

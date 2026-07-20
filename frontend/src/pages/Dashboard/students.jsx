@@ -201,8 +201,6 @@ function Students() {
               <option>ჯგუფი C</option>
             </select>
 
-           
-
             <button className="primary-btn">
               <FaPlus />
               <span>სტუდენტის დამატება</span>
@@ -236,13 +234,13 @@ function Students() {
         <section className="stats-grid">
 
           <div className="stat-card">
-            <h4> სტუდენტები</h4>
+            <h4>სტუდენტები</h4>
             <h2>248</h2>
             <p>სულ სტუდენტი</p>
           </div>
 
           <div className="stat-card">
-            <h4>აქტიური</h4>
+            <h4> აქტიური</h4>
             <h2>213</h2>
             <p>აქტიური სტუდენტი</p>
           </div>
@@ -323,7 +321,7 @@ function Students() {
                         alt=""
                       />
                       <div>
-                        <h4>გიგი</h4>
+                        <h4>გიგი </h4>
                         <span>ID: ST001</span>
                       </div>
                     </div>

@@ -266,118 +266,111 @@ onClick={()=>setSidebarOpen(false)}
 
 
 
-<aside className={sidebarOpen?"sidebar open":"sidebar"}>
+<aside className={sidebarOpen ? "sidebar open" : "sidebar"}>
 
+  <div className="logo">
+    <h2>ედიტოლოგია</h2>
+  </div>
 
-<div className="logo">
-<h2>ედიტოლოგია</h2>
-</div>
+  <ul>
 
+    <li>
+      <NavLink
+        to="/dashboard"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
+        <span>მართვის პანელი</span>
+      </NavLink>
+    </li>
 
-<ul>
+    <li>
+      <NavLink
+        to="/courses"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaBook />
+        <span>კურსები</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/calendar" className="sidebar-link">
+        <FaLayerGroup />
+        <span>კალენდარი</span>
+      </NavLink>
+    </li>
 
-<li>
-<NavLink to="/dashboard" className="sidebar-link">
-<FaTachometerAlt/>
-<span>მართვის პანელი</span>
-</NavLink>
-</li>
+    <li>
+      <NavLink to="/offlinecourse" className="sidebar-link">
+        <FaVideo />
+        <span>დამსწრე ჯგუფები</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/recordings" className="sidebar-link">
+        <FaPlayCircle />
+        <span>ჩანაწერები</span>
+      </NavLink>
+    </li>
 
-<li>
-<NavLink to="/courses" className="sidebar-link">
-<FaBook/>
-<span>კურსები</span>
-</NavLink>
-</li>
+    <li>
+      <NavLink to="/students" className="sidebar-link">
+        <FaUserGraduate />
+        <span>სტუდენტები</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/payments" className="sidebar-link">
+        <FaCreditCard />
+        <span>გადახდები</span>
+      </NavLink>
+    </li>
 
-<li>
-<NavLink to="/calendar" className="sidebar-link">
-<FaLayerGroup/>
-<span>კალენდარი</span>
-</NavLink>
-</li>
+    <li>
+      <NavLink to="/gallery" className="sidebar-link">
+        <FaImages />
+        <span>გალერეა</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/syllabus" className="sidebar-link">
+        <FaFileAlt />
+        <span>სილაბუსი</span>
+      </NavLink>
+    </li>
 
-<li>
-<NavLink to="/offlinecourse" className="sidebar-link">
-<FaVideo/>
-<span>დამსწრე ჯგუფები</span>
-</NavLink>
-</li>
+    <li>
+      <NavLink to="/contact" className="sidebar-link">
+        <FaEnvelope />
+        <span>კონტაქტი</span>
+      </NavLink>
+    </li>
 
+    <li>
+      <NavLink to="/settings" className="sidebar-link">
+        <FaCog />
+        <span>პარამეტრები</span>
+      </NavLink>
+    </li>
 
-<li>
-<NavLink to="/recordings" className="sidebar-link">
-<FaPlayCircle/>
-<span>ჩანაწერები</span>
-</NavLink>
-</li>
+    <li className="logout">
+      <NavLink to="/login" className="sidebar-link">
+        <FaSignOutAlt />
+        <span>გასვლა</span>
+      </NavLink>
+    </li>
 
-
-<li>
-<NavLink to="/students" className="sidebar-link">
-<FaUserGraduate/>
-<span>სტუდენტები</span>
-</NavLink>
-</li>
-
-
-<li>
-<NavLink to="/payments" className="sidebar-link">
-<FaCreditCard/>
-<span>გადახდები</span>
-</NavLink>
-</li>
-
-
-<li>
-<NavLink to="/gallery" className="sidebar-link">
-<FaImages/>
-<span>გალერეა</span>
-</NavLink>
-</li>
-
-
-<li className="active">
-<NavLink to="/syllabus" className="sidebar-link active-link">
-<FaFileAlt/>
-<span>სილაბუსი</span>
-</NavLink>
-</li>
-
-
-<li>
-<NavLink to="/contact" className="sidebar-link">
-<FaEnvelope/>
-<span>კონტაქტი</span>
-</NavLink>
-</li>
-
-
-<li>
-<NavLink to="/settings" className="sidebar-link">
-<FaCog/>
-<span>პარამეტრები</span>
-</NavLink>
-</li>
-
-
-<li className="logout">
-<NavLink to="/login" className="sidebar-link">
-<FaSignOutAlt/>
-<span>გასვლა</span>
-</NavLink>
-</li>
-
-
-</ul>
-
+  </ul>
 
 </aside>
-
 
 
 
