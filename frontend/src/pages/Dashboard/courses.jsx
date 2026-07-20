@@ -91,49 +91,84 @@ function Courses() {
     </li>
 
     <li>
-      <NavLink to="/Calendar" className="sidebar-link">
+     <NavLink
+        to="/calendar"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaLayerGroup />
         <span>კალენდარი</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/offlinecourse" className="sidebar-link">
+<NavLink
+        to="/offlinecourse"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaVideo />
         <span>დამსწრე ჯგუფები</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/recordings" className="sidebar-link">
+      <NavLink
+        to="/recordings"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaPlayCircle />
         <span>ჩანაწერები</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/students" className="sidebar-link">
+     <NavLink
+        to="/students"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaUserGraduate />
         <span>სტუდენტები</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/payments" className="sidebar-link">
+      <NavLink
+        to="/payments"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaCreditCard />
         <span>გადახდები</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/gallery" className="sidebar-link">
+    <NavLink
+        to="/gallery"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaImages />
         <span>გალერეა</span>
       </NavLink>
     </li>
 
     <li>
-      <NavLink to="/syllabus" className="sidebar-link">
+     <NavLink
+        to="/syllabus"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaFileAlt />
         <span>სილაბუსი</span>
       </NavLink>
@@ -339,11 +374,11 @@ function Courses() {
                 <td>
 
                   <button className="edit-btn">
-                    ნახვა
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>
@@ -378,12 +413,12 @@ function Courses() {
 
                 <td>
 
-                  <button className="edit-btn">
-                    ნახვა
+                 <button className="edit-btn">
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>
@@ -419,11 +454,11 @@ function Courses() {
                 <td>
 
                   <button className="edit-btn">
-                    ნახვა
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>

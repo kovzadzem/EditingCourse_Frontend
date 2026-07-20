@@ -87,7 +87,7 @@ function Recordings() {
           </li>
 
           <li>
-            <NavLink to="" className="sidebar-link">
+            <NavLink to="/offline-course" className="sidebar-link">
               <FaVideo />
               <span>დამსწრე ჯგუფები</span>
             </NavLink>
@@ -217,25 +217,25 @@ function Recordings() {
         <section className="stats-grid">
 
           <div className="stat-card">
-            <h4>🎥 ყველა ჩანაწერი</h4>
+            <h4> ყველა ჩანაწერი</h4>
             <h2>248</h2>
             <p>ვიდეო</p>
           </div>
 
           <div className="stat-card">
-            <h4>📚 კურსები</h4>
+            <h4> კურსები</h4>
             <h2>18</h2>
             <p>აქტიური</p>
           </div>
 
           <div className="stat-card">
-            <h4>👁️ ნახვები</h4>
+            <h4> ნახვები</h4>
             <h2>48K</h2>
             <p>სულ</p>
           </div>
 
           <div className="stat-card">
-            <h4>⏱ საათები</h4>
+            <h4> საათები</h4>
             <h2>356h</h2>
             <p>ვიდეო მასალა</p>
           </div>
@@ -248,7 +248,7 @@ function Recordings() {
 
           <div className="table-header">
 
-            <h2>🎥 ვიდეო ბიბლიოთეკა</h2>
+            <h2> ვიდეო ბიბლიოთეკა</h2>
 
           </div>
 
@@ -282,7 +282,7 @@ function Recordings() {
                 <p>Frontend Development</p>
 
                 <div className="video-meta">
-                  <span>👨‍🏫 ლუკა ჩიჩუა</span>
+                  <span> ლუკა ჩიჩუა</span>
                 </div>
 
                 <div className="video-meta">
@@ -338,7 +338,7 @@ function Recordings() {
                 <p>Figma Components</p>
 
                 <div className="video-meta">
-                  <span>👩‍🏫 ანა თოდუა</span>
+                  <span> ანა თოდუა</span>
                 </div>
 
                 <div className="video-meta">
@@ -394,7 +394,7 @@ function Recordings() {
                 <p>Meta & Google Ads</p>
 
                 <div className="video-meta">
-                  <span>👨‍🏫 ნინო ბერიძე</span>
+                  <span> ნინო ბერიძე</span>
                 </div>
 
                 <div className="video-meta">
@@ -450,7 +450,7 @@ function Recordings() {
                 <p>Flask REST API</p>
 
                 <div className="video-meta">
-                  <span>👨‍🏫 გიორგი დავითაძე</span>
+                  <span> გიორგი დავითაძე</span>
                 </div>
 
                 <div className="video-meta">

@@ -89,69 +89,122 @@ function Dashboard() {
         <span>კურსები</span>
       </NavLink>
     </li>
-
-    <li>
-      <NavLink to="/calendar" className="sidebar-link">
-        <FaLayerGroup />
+<li>
+      <NavLink
+        to="/calendar"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>კალენდარი</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/offlinecourse" className="sidebar-link">
+   <li>
+<NavLink
+        to="/offlinecourse"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
         <FaVideo />
         <span>დამსწრე ჯგუფები</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/recordings" className="sidebar-link">
-        <FaPlayCircle />
+
+   <li>
+      <NavLink
+        to="/recordings"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>ჩანაწერები</span>
       </NavLink>
     </li>
+ 
+  
 
     <li>
-      <NavLink to="/students" className="sidebar-link">
-        <FaUserGraduate />
+      <NavLink
+        to="/students"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>სტუდენტები</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/payments" className="sidebar-link">
-        <FaCreditCard />
+
+   <li>
+      <NavLink
+        to="/payments"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>გადახდები</span>
       </NavLink>
     </li>
 
+
     <li>
-      <NavLink to="/gallery" className="sidebar-link">
-        <FaImages />
+      <NavLink
+        to="/gallery"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>გალერეა</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/syllabus" className="sidebar-link">
-        <FaFileAlt />
+
+   <li>
+      <NavLink
+        to="/syllabus"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>სილაბუსი</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/contact" className="sidebar-link">
-        <FaEnvelope />
+
+   <li>
+      <NavLink
+        to="/contact"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>კონტაქტი</span>
       </NavLink>
     </li>
 
-    <li>
-      <NavLink to="/settings" className="sidebar-link">
-        <FaCog />
+
+  <li>
+      <NavLink
+        to="/settings"
+        className={({ isActive }) =>
+          isActive ? "sidebar-link active-link" : "sidebar-link"
+        }
+      >
+        <FaTachometerAlt />
         <span>პარამეტრები</span>
       </NavLink>
     </li>
+
 
     <li className="logout">
       <NavLink to="/login" className="sidebar-link">
@@ -303,11 +356,11 @@ function Dashboard() {
                 <td>
 
                   <button className="edit-btn">
-                    რედაქტირება
+                    ✏️
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>
@@ -328,12 +381,12 @@ function Dashboard() {
 
                 <td>
 
-                  <button className="edit-btn">
-                    რედაქტირება
+                 <button className="edit-btn">
+                    ✏️
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>
@@ -354,12 +407,12 @@ function Dashboard() {
 
                 <td>
 
-                  <button className="edit-btn">
-                    რედაქტირება
+                 <button className="edit-btn">
+                    ✏️
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
 
                 </td>

@@ -121,28 +121,11 @@ function OfflineCourse() {
             </NavLink>
           </li>
 
- <li>
-            <NavLink
-              to="/recordings"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebar-link active-link"
-                  : "sidebar-link"
-              }
-            >
-              <FaCalendarAlt />
-              <span>ჩანაწერები</span>
-            </NavLink>
+          <li>
+            <FaPlayCircle />
+            <span>ჩანაწერები</span>
           </li>
 
- <NavLink
-              to="/recordings"
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebar-link active-link"
-                  : "sidebar-link"
-              }
-            ></NavLink>
           <li>
             <FaUserGraduate />
             <span>სტუდენტები</span>
@@ -255,188 +238,33 @@ function OfflineCourse() {
         </header>
                 {/* Statistics Cards */}
 
-    {/* Course Catalog */}
+        <section className="stats-grid">
 
-<section className="catalog-section">
+          <div className="stat-card">
+            <h4>დამსწრე ჯგუფები</h4>
+            <h2>24</h2>
+            <p>ჯამური რაოდენობა</p>
+          </div>
 
-  <div className="table-header">
-    <h2>📚 კურსების კატალოგი</h2>
+          <div className="stat-card">
+            <h4>აქტიური ჯგუფები</h4>
+            <h2>16</h2>
+            <p>მიმდინარე სწავლება</p>
+          </div>
 
-    <button className="primary-btn">
-      <FaPlus />
-      <span>კურსის დამატება</span>
-    </button>
-  </div>
+          <div className="stat-card">
+            <h4>სტუდენტები</h4>
+            <h2>352</h2>
+            <p>ჩარიცხული სტუდენტი</p>
+          </div>
 
-  <div className="catalog-grid">
+          <div className="stat-card">
+            <h4>ლექტორები</h4>
+            <h2>12</h2>
+            <p>აქტიური ლექტორი</p>
+          </div>
 
-    {/* Card 1 */}
-
-    <div className="catalog-card">
-
-      <img
-        src="https://placehold.co/600x350"
-        alt="Frontend"
-        className="catalog-image"
-      />
-
-      <div className="catalog-content">
-
-        <h3 className="catalog-title">
-          Frontend Development
-        </h3>
-
-        <p className="catalog-description">
-          React • HTML • CSS • JavaScript
-        </p>
-
-        <div className="catalog-info">
-          <span>👨‍🏫 ლუკა ჩიჩუა</span>
-          <span>👥 24 სტუდენტი</span>
-        </div>
-
-        <div className="catalog-info">
-          <span>📍 თბილისი</span>
-          <span>🗓️ ორშ / ოთხ / პარ</span>
-        </div>
-
-        <span className="status active">აქტიური</span>
-
-        <div className="catalog-actions">
-          <button className="view-btn">ნახვა</button>
-          <button className="edit-btn">რედაქტირება</button>
-        </div>
-
-      </div>
-
-    </div>
-
-    {/* Card 2 */}
-
-    <div className="catalog-card">
-
-      <img
-        src="https://placehold.co/600x350"
-        alt="UI UX"
-        className="catalog-image"
-      />
-
-      <div className="catalog-content">
-
-        <h3 className="catalog-title">
-          UI / UX Design
-        </h3>
-
-        <p className="catalog-description">
-          Figma • Adobe XD
-        </p>
-
-        <div className="catalog-info">
-          <span>👩‍🏫 ანა თოდუა</span>
-          <span>👥 18 სტუდენტი</span>
-        </div>
-
-        <div className="catalog-info">
-          <span>📍 ბათუმი</span>
-          <span>🗓️ სამშ / ხუთ</span>
-        </div>
-
-        <span className="status pending">დაგეგმილი</span>
-
-        <div className="catalog-actions">
-             <button className="view-btn">ნახვა</button>
-          <button className="edit-btn">რედაქტირება</button>
-        </div>
-
-      </div>
-
-    </div>
-
-    {/* Card 3 */}
-
-    <div className="catalog-card">
-
-      <img
-        src="https://placehold.co/600x350"
-        alt="Marketing"
-        className="catalog-image"
-      />
-
-      <div className="catalog-content">
-
-        <h3 className="catalog-title">
-          Digital Marketing
-        </h3>
-
-        <p className="catalog-description">
-          SEO • Meta Ads • Google Ads
-        </p>
-
-        <div className="catalog-info">
-          <span>👨‍🏫 ნინო ბერიძე</span>
-          <span>👥 30 სტუდენტი</span>
-        </div>
-
-        <div className="catalog-info">
-          <span>📍 ქუთაისი</span>
-          <span>🗓️ შაბათი</span>
-        </div>
-
-        <span className="status active">აქტიური</span>
-
-        <div className="catalog-actions">
-        <button className="view-btn">ნახვა</button>
-          <button className="edit-btn">რედაქტირება</button>
-        </div>
-
-      </div>
-
-    </div>
-
-    {/* Card 4 */}
-
-    <div className="catalog-card">
-
-      <img
-        src="https://placehold.co/600x350"
-        alt="Graphic Design"
-        className="catalog-image"
-      />
-
-      <div className="catalog-content">
-
-        <h3 className="catalog-title">
-          Graphic Design
-        </h3>
-
-        <p className="catalog-description">
-          Photoshop • Illustrator • Branding
-        </p>
-
-        <div className="catalog-info">
-          <span>👩‍🏫 თაკო ჯავახიშვილი</span>
-          <span>👥 27 სტუდენტი</span>
-        </div>
-
-        <div className="catalog-info">
-          <span>📍 თბილისი</span>
-          <span>🗓️ შაბათი • 11:00</span>
-        </div>
-
-        <span className="status active">აქტიური</span>
-
-        <div className="catalog-actions">
-         <button className="view-btn">ნახვა</button>
-          <button className="edit-btn">რედაქტირება</button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+        </section>
 
         {/* Groups Table */}
 
@@ -494,7 +322,7 @@ function OfflineCourse() {
 
                 <td>
 
-                  <button className="view-btn">
+                   <button className="view-btn">
                     👁
                   </button>
 
@@ -528,7 +356,7 @@ function OfflineCourse() {
 
                 <td>
 
-                   <button className="view-btn">
+                  <button className="view-btn">
                     👁
                   </button>
 
@@ -601,6 +429,7 @@ function OfflineCourse() {
                   <button className="delete-btn">
                     🗑
                   </button>
+
                 </td>
 
               </tr>
@@ -627,7 +456,7 @@ function OfflineCourse() {
 
                 <td>
 
-                 <button className="view-btn">
+                <button className="view-btn">
                     👁
                   </button>
 

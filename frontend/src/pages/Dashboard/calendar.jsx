@@ -112,12 +112,9 @@ function Calendar() {
             </NavLink>
           </li>
 
-          <li className="active">
-            <NavLink
-              to="/recordings"
-              className="sidebar-link active-link"
-            >
-              <FaPlayCircle />
+          <li>
+            <NavLink to="/recordings" className="sidebar-link">
+              <FaTachometerAlt />
               <span>ჩანაწერები</span>
             </NavLink>
           </li>
@@ -506,11 +503,11 @@ function Calendar() {
 
                 <td>
                   <button className="edit-btn">
-                    ნახვა
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
                 </td>
               </tr>
@@ -529,12 +526,12 @@ function Calendar() {
                 </td>
 
                 <td>
-                  <button className="edit-btn">
-                    ნახვა
+                 <button className="edit-btn">
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
                 </td>
               </tr>
@@ -553,12 +550,12 @@ function Calendar() {
                 </td>
 
                 <td>
-                  <button className="edit-btn">
-                    ნახვა
+                   <button className="edit-btn">
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
                 </td>
               </tr>
@@ -578,11 +575,11 @@ function Calendar() {
 
                 <td>
                   <button className="edit-btn">
-                    ნახვა
+                    👁
                   </button>
 
                   <button className="delete-btn">
-                    წაშლა
+                    🗑
                   </button>
                 </td>
               </tr>
