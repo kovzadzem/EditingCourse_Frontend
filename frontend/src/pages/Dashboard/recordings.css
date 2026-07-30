@@ -124,7 +124,7 @@ body{
 
 /* ================= Header ================= */
 
-.header{
+.recordings-header{
   height:82px;
   background:var(--header);
   border-radius:18px;
@@ -136,15 +136,15 @@ body{
   box-shadow:var(--shadow);
 }
 
-.left-header,
-.right-header{
+.recordings-left,
+.recordings-right{
   display:flex;
   align-items:center;
   gap:16px;
 }
 
-.menu-btn,
-.theme-btn,
+.recordings-menu-btn,
+.recordings-theme-btn,
 .notification-btn{
   width:45px;
   height:45px;

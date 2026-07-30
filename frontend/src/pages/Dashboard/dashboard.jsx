@@ -135,7 +135,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaUserGraduate />
         <span>სტუდენტები</span>
       </NavLink>
     </li>
@@ -148,7 +148,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaCreditCard />
         <span>გადახდები</span>
       </NavLink>
     </li>
@@ -161,7 +161,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaImages />
         <span>გალერეა</span>
       </NavLink>
     </li>
@@ -174,7 +174,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaFileAlt />
         <span>სილაბუსი</span>
       </NavLink>
     </li>
@@ -187,7 +187,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaEnvelope />
         <span>კონტაქტი</span>
       </NavLink>
     </li>
@@ -200,7 +200,7 @@ function Dashboard() {
           isActive ? "sidebar-link active-link" : "sidebar-link"
         }
       >
-        <FaTachometerAlt />
+        <FaCog />
         <span>პარამეტრები</span>
       </NavLink>
     </li>

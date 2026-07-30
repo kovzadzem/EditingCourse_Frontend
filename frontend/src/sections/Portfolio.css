@@ -1,0 +1,138 @@
+.portfolio {
+  padding: 120px 8%;
+}
+
+.portfolio .section-title {
+  max-width: 700px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+.portfolio .section-title span {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: rgba(128, 53, 214, .08);
+  color: #8035D6;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.portfolio .section-title h2 {
+  margin: 25px 0;
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: -2px;
+}
+
+.portfolio .section-title p {
+  font-size: 18px;
+  line-height: 1.8;
+  opacity: .75;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.portfolio-card {
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  border: 1px solid #ececec;
+  transition: .35s;
+}
+
+[data-theme="dark"] .portfolio-card {
+  background: #181818;
+  border-color: #292929;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0,0,0,.08);
+}
+
+.portfolio-image {
+  height: 250px;
+  background: linear-gradient(
+    135deg,
+    #8035D6,
+    #B57CFF
+  );
+  position: relative;
+}
+
+.portfolio-image::before {
+  content: "VIDEO";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: rgba(255,255,255,.25);
+  letter-spacing: 6px;
+}
+
+.portfolio-content {
+  padding: 28px;
+}
+
+.portfolio-content h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.portfolio-content span {
+  color: #8035D6;
+  font-weight: 600;
+}
+
+@media (max-width:1100px){
+
+.portfolio-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:768px){
+
+.portfolio{
+padding:90px 6%;
+}
+
+.portfolio-grid{
+grid-template-columns:1fr;
+}
+
+.portfolio .section-title h2{
+font-size:40px;
+}
+
+.portfolio-image{
+height:220px;
+}
+
+}
+
+@media (max-width:500px){
+
+.portfolio .section-title h2{
+font-size:34px;
+}
+
+.portfolio-content{
+padding:22px;
+}
+
+.portfolio-content h3{
+font-size:20px;
+}
+
+}

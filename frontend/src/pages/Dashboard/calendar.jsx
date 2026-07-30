@@ -162,12 +162,12 @@ function Calendar() {
 
       <main className="main-content">
 
-        <header className="header">
+        <header className="calendar-header">
 
-          <div className="left-header">
+          <div className="calendar-left">
 
             <button
-              className="menu-btn"
+              className="calendar-menu-btn"
               onClick={() =>
                 setSidebarOpen(!sidebarOpen)
               }
@@ -192,7 +192,7 @@ function Calendar() {
 
           </div>
 
-          <div className="right-header">
+          <div className="calendar-right">
 
             {/* Month */}
 
@@ -236,7 +236,7 @@ function Calendar() {
             </button>
 
             <button
-              className="theme-btn"
+              className="calendar-theme-btn"
               onClick={() =>
                 setDarkMode(!darkMode)
               }

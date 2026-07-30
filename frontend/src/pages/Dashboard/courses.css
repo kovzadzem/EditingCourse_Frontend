@@ -147,7 +147,7 @@ body{
    Header
 =========================== */
 
-.header{
+.courses-header{
   height:80px;
   background:var(--header);
   border-radius:18px;
@@ -159,13 +159,13 @@ body{
   box-shadow:var(--shadow);
 }
 
-.left-header{
+.courses-left{
   display:flex;
   align-items:center;
   gap:18px;
 }
 
-.right-header{
+.courses-right{
   display:flex;
   align-items:center;
   gap:16px;
@@ -204,8 +204,8 @@ body{
    Buttons
 =========================== */
 
-.menu-btn,
-.theme-btn,
+.courses-menu-btn,
+.courses-theme-btn,
 .notification-btn{
   width:44px;
   height:44px;

@@ -120,7 +120,7 @@ body{
 
 /* ================= Header ================= */
 
-.header{
+.Payments-header{
   background:var(--header);
   border-radius:18px;
   padding:20px 24px;
@@ -131,15 +131,15 @@ body{
   box-shadow:var(--shadow);
 }
 
-.left-header,
-.right-header{
+.Payments-left,
+.Payments-right{
   display:flex;
   align-items:center;
   gap:15px;
 }
 
-.menu-btn,
-.theme-btn,
+.Payments-menu-btn,
+.Payments-theme-btn,
 .notification-btn{
   width:46px;
   height:46px;

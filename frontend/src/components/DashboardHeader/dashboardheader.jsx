@@ -9,9 +9,8 @@ function DashboardHeader({
   setSearch,
 }) {
   return (
-    <header className="header">
-
-      <div className="left-header">
+<header className="dashboard-header">
+      <div className="dashboard-left">
 
         <button
           className="menu-btn"
@@ -35,10 +34,10 @@ function DashboardHeader({
 
       </div>
 
-      <div className="right-header">
+      <div className="dashboard-right">
 
         <button
-          className="theme-btn"
+          className="dashboard-theme-btn"
           onClick={() => setDarkMode(!darkMode)}
         >
           {darkMode ? <FaSun /> : <FaMoon />}

@@ -169,12 +169,12 @@ function Payments() {
 
       <main className="main-content">
 
-        <header className="header">
+        <header className="Payments-header">
 
-          <div className="left-header">
+          <div className="Payments-left">
 
             <button
-              className="menu-btn"
+              className="Payments-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <FaBars />
@@ -195,7 +195,7 @@ function Payments() {
 
           </div>
 
-          <div className="right-header">
+          <div className="Payments-right">
 
         
 
@@ -227,7 +227,7 @@ function Payments() {
             </button>
 
             <button
-              className="theme-btn"
+              className="Payments-theme-btn"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun /> : <FaMoon />}

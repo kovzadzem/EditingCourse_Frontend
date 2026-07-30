@@ -1,4 +1,4 @@
-.header{
+.dashboard-header{
   height:75px;
   background:var(--header);
   border-radius:18px;
@@ -10,13 +10,13 @@
   box-shadow:var(--shadow);
 }
 
-.left-header{
+.dashboard-left{
   display:flex;
   align-items:center;
   gap:18px;
 }
 
-.right-header{
+.dashboard-right{
   display:flex;
   align-items:center;
   gap:16px;
@@ -43,7 +43,7 @@
 }
 
 .menu-btn,
-.theme-btn,
+.dashboard-theme-btn,
 .notification-btn{
   width:44px;
   height:44px;

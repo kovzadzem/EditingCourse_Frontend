@@ -120,7 +120,7 @@ body{
 
 /* ================= Header ================= */
 
-.header{
+.students-header{
   background:var(--header);
   border-radius:18px;
   padding:22px 25px;
@@ -131,15 +131,15 @@ body{
   box-shadow:var(--shadow);
 }
 
-.left-header,
-.right-header{
+.students-left,
+.students-right{
   display:flex;
   align-items:center;
   gap:15px;
 }
 
-.menu-btn,
-.theme-btn,
+.students-menu-btn,
+.students-theme-btn,
 .notification-btn{
   width:46px;
   height:46px;
