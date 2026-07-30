@@ -1,0 +1,277 @@
+.syllabus {
+  padding: 140px 8% 100px;
+}
+
+/* ================= HERO ================= */
+
+.syllabus-hero {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.syllabus-hero span {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(128,53,214,.08);
+  color: #8035D6;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.syllabus-hero h1 {
+  font-size: 64px;
+  margin: 30px 0 25px;
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.syllabus-hero p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 1.9;
+  opacity: .75;
+}
+
+/* ================= OVERVIEW ================= */
+
+.course-overview {
+  margin-top: 90px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+
+.overview-card {
+  padding: 35px;
+  border-radius: 22px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ececec;
+  transition: .35s;
+}
+
+[data-theme="dark"] .overview-card {
+  background: #181818;
+  border-color: #292929;
+}
+
+.overview-card:hover {
+  transform: translateY(-8px);
+  border-color: #8035D6;
+}
+
+.overview-card h2 {
+  font-size: 52px;
+  color: #8035D6;
+}
+
+.overview-card span {
+  margin-top: 10px;
+  display: block;
+  opacity: .7;
+}
+
+/* ================= MODULES ================= */
+
+.modules {
+  margin-top: 110px;
+}
+
+.modules h2 {
+  font-size: 44px;
+  margin-bottom: 45px;
+}
+
+.modules details {
+  margin-bottom: 18px;
+  border: 1px solid #ececec;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+[data-theme="dark"] .modules details {
+  background: #181818;
+  border-color: #292929;
+}
+
+.modules summary {
+  cursor: pointer;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.modules summary::-webkit-details-marker {
+  display: none;
+}
+
+.modules summary span {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(128,53,214,.1);
+  color: #8035D6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.lessons {
+  padding: 0 30px 30px;
+}
+
+.lessons p {
+  padding: 15px 0;
+  border-bottom: 1px solid #ececec;
+  opacity: .75;
+}
+
+.lessons p:last-child {
+  border: none;
+}
+
+/* ================= LEARN ================= */
+
+.learn {
+  margin-top: 120px;
+}
+
+.learn h2 {
+  font-size: 44px;
+  margin-bottom: 45px;
+}
+
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 25px;
+}
+
+.learn-grid div {
+  padding: 24px;
+  border-radius: 18px;
+  background: rgba(128,53,214,.06);
+  border: 1px solid rgba(128,53,214,.12);
+  transition: .35s;
+}
+
+.learn-grid div:hover {
+  transform: translateY(-6px);
+  background: rgba(128,53,214,.12);
+}
+
+/* ================= CTA ================= */
+
+.cta {
+  margin-top: 120px;
+  padding: 70px;
+  text-align: center;
+  border-radius: 30px;
+  background: linear-gradient(135deg,#8035D6,#9D5CFF);
+  color: white;
+}
+
+.cta h2 {
+  font-size: 46px;
+  margin-bottom: 30px;
+}
+
+.cta button {
+  padding: 18px 38px;
+  border: none;
+  border-radius: 14px;
+  background: white;
+  color: #8035D6;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .35s;
+}
+
+.cta button:hover {
+  transform: translateY(-4px);
+}
+
+/* ================= Responsive ================= */
+
+@media(max-width:1100px){
+
+.course-overview{
+grid-template-columns:repeat(2,1fr);
+}
+
+.learn-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.syllabus-hero h1{
+font-size:48px;
+}
+
+}
+
+@media(max-width:768px){
+
+.syllabus{
+padding:100px 6%;
+}
+
+.course-overview{
+grid-template-columns:1fr;
+}
+
+.learn-grid{
+grid-template-columns:1fr;
+}
+
+.modules summary{
+font-size:18px;
+padding:20px;
+}
+
+.modules h2,
+.learn h2,
+.cta h2{
+font-size:34px;
+}
+
+.syllabus-hero h1{
+font-size:38px;
+}
+
+.cta{
+padding:45px 25px;
+}
+
+}
+
+@media(max-width:500px){
+
+.syllabus-hero h1{
+font-size:32px;
+}
+
+.overview-card h2{
+font-size:42px;
+}
+
+.modules summary span{
+width:42px;
+height:42px;
+}
+
+.cta button{
+width:100%;
+}
+
+}

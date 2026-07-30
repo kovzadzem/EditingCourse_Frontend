@@ -378,14 +378,14 @@ onClick={()=>setSidebarOpen(false)}
 <main className="main-content">
 
 
-<header className="header">
+<header className="syllabus-header">
 
 
-<div className="left-header">
+<div className="syllabus-left">
 
 
 <button 
-className="menu-btn"
+className="syllabus-menu-btn"
 onClick={()=>setSidebarOpen(!sidebarOpen)}
 >
 
@@ -414,11 +414,11 @@ onChange={(e)=>setSearch(e.target.value)}
 
 
 
-<div className="right-header">
+<div className="syllabus-right">
 
 
 <button
-className="theme-btn"
+className="syllabus-theme-btn"
 onClick={()=>setDarkMode(!darkMode)}
 >
 

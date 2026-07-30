@@ -150,12 +150,12 @@ function Students() {
 
       <main className="main-content">
 
-        <header className="header">
+        <header className="students-header">
 
-          <div className="left-header">
+          <div className="students-left">
 
             <button
-              className="menu-btn"
+              className="students-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <FaBars />
@@ -176,7 +176,7 @@ function Students() {
 
           </div>
 
-          <div className="right-header">
+          <div className="students-right">
 
             <select
               className="category-filter"
@@ -207,7 +207,7 @@ function Students() {
             </button>
 
             <button
-              className="theme-btn"
+              className="students-theme-btn"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun /> : <FaMoon />}

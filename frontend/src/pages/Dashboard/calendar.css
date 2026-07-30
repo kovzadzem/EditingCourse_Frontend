@@ -134,7 +134,7 @@ body{
    Header
 =========================== */
 
-.header{
+.calendar-header{
   height:80px;
   background:var(--header);
   border-radius:18px;
@@ -146,15 +146,15 @@ body{
   box-shadow:var(--shadow);
 }
 
-.left-header,
-.right-header{
+.calendar-left,
+.calendar-right{
   display:flex;
   align-items:center;
   gap:18px;
 }
 
-.menu-btn,
-.theme-btn,
+.calendar-menu-btn,
+.calendar-theme-btn,
 .notification-btn,
 .month-btn{
   width:44px;
@@ -165,8 +165,8 @@ body{
   transition:.3s;
 }
 
-.menu-btn,
-.theme-btn,
+.calendar-menu-btn,
+.calendar-theme-btn,
 .month-btn{
   background:var(--primary);
   color:#fff;

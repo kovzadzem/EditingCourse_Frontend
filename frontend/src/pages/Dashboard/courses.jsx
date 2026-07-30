@@ -205,12 +205,12 @@ function Courses() {
 
         {/* Header */}
 
-        <header className="header">
+        <header className="courses-header">
 
-          <div className="left-header">
+          <div className="courses-left">
 
             <button
-              className="menu-btn"
+              className="courses-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <FaBars />
@@ -231,10 +231,10 @@ function Courses() {
 
           </div>
 
-          <div className="right-header">
+          <div className="courses-right">
 
             <button
-              className="theme-btn"
+              className="courses-theme-btn"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun /> : <FaMoon />}

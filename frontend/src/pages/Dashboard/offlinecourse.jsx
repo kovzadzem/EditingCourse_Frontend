@@ -167,12 +167,12 @@ function OfflineCourse() {
 
       <main className="main-content">
 
-        <header className="header">
+        <header className="offlinecourse-header">
 
-          <div className="left-header">
+          <div className="offlinecourse-left">
 
             <button
-              className="menu-btn"
+              className="offlinecourse-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <FaBars />
@@ -193,7 +193,7 @@ function OfflineCourse() {
 
           </div>
 
-          <div className="right-header">
+          <div className="offlinecourse-right">
 
             <select
               className="category-filter"
@@ -212,7 +212,7 @@ function OfflineCourse() {
             </button>
 
             <button
-              className="theme-btn"
+              className="offlinecourse-theme-btn"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun /> : <FaMoon />}

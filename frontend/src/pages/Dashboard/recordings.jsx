@@ -144,12 +144,12 @@ function Recordings() {
 
       <main className="main-content">
 
-        <header className="header">
+        <header className="recordings-header">
 
-          <div className="left-header">
+          <div className="recordings-left">
 
             <button
-              className="menu-btn"
+              className="recordings-menu-btn"
               onClick={() => setSidebarOpen(!sidebarOpen)}
             >
               <FaBars />
@@ -170,7 +170,7 @@ function Recordings() {
 
           </div>
 
-          <div className="right-header">
+          <div className="recordings-right">
 
             <select
               className="category-filter"
@@ -190,7 +190,7 @@ function Recordings() {
             </button>
 
             <button
-              className="theme-btn"
+              className="recordings-theme-btn"
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? <FaSun /> : <FaMoon />}
