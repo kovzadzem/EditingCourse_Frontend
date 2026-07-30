@@ -1,45 +1,26 @@
-import HeroVisual from "./HeroVisual";
-import "./Hero"
-function Hero() {
+export default function Hero() {
   return (
-    <main className="min-h-screen bg-black overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-gray-100 px-6">
+      <div className="max-w-3xl text-center">
+        <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          Build something amazing
+        </h1>
 
-      <section className="
-        max-w-7xl
-        mx-auto
-        min-h-screen
-        grid
-        lg:grid-cols-2
-        items-center
-        px-6
-      ">
+        <p className="text-lg text-gray-600 mb-8">
+          Simple hero section made with React and Tailwind CSS.
+          Create, customize and launch your ideas faster.
+        </p>
 
-        <div>
-          <h1 className="
-            text-white
-            text-5xl
-            md:text-7xl
-            font-bold
-          ">
-            Build modern products
-          </h1>
+        <div className="flex justify-center gap-4">
+          <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
+            Get Started
+          </button>
 
-          <p className="
-            text-white/50
-            mt-6
-            text-lg
-          ">
-            Beautiful React animations with glass UI.
-          </p>
+          <button className="border border-gray-300 px-6 py-3 rounded-lg hover:bg-white transition">
+            Learn More
+          </button>
         </div>
-
-
-        <HeroVisual />
-
-      </section>
-
-    </main>
+      </div>
+    </section>
   );
 }
-
-export default Hero;
