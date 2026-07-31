@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/header/header";
+
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
-function MainLayout() {
+const MainLayout = () => {
   return (
     <>
       <Header />
@@ -14,6 +15,6 @@ function MainLayout() {
       <Footer />
     </>
   );
-}
+};
 
 export default MainLayout;

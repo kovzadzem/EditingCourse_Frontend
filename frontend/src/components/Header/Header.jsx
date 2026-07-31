@@ -3,190 +3,279 @@ import { NavLink } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
-
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
   const [scrolled, setScrolled] = useState(false);
 
-  // დროებით false
   const isLoggedIn = false;
 
   useEffect(() => {
+    const theme = darkMode ? "dark" : "light";
 
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme
+    );
+
+    localStorage.setItem("theme", theme);
+  }, [darkMode]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
 
     window.addEventListener("scroll", handleScroll);
 
-    return () =>
+    return () => {
       window.removeEventListener("scroll", handleScroll);
-
+    };
   }, []);
 
-  const toggleTheme = () => {
-    document.body.classList.toggle("dark");
-    setDarkMode(!darkMode);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 850) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const closeMenu = () => {
+    setMenuOpen(false);
   };
 
-  return (
+  const navLinkClass = ({ isActive }) =>
+    isActive ? "active" : "";
 
+  return (
     <>
       <header
-        className={`home-header ${scrolled ? "scrolled" : ""}`}
+        className={`home-header ${
+          scrolled ? "scrolled" : ""
+        }`}
       >
-
         <div className="home-header-wrapper">
+
+          {/* LOGO */}
 
           <NavLink
             to="/"
             className="logo"
+            onClick={closeMenu}
           >
-            Edit<span>Academy</span>
+            Edit<span>Ologia</span>
           </NavLink>
+
+          {/* DESKTOP NAVIGATION */}
 
           <nav className="desktop-nav">
 
-            <NavLink to="/live-courses">
+            <NavLink
+              to="/livecourses"
+              className={navLinkClass}
+              onClick={closeMenu}
+            >
               Live Courses
             </NavLink>
 
-            <NavLink to="/recorded">
+            <NavLink
+              to="/recordings"
+              className={navLinkClass}
+              onClick={closeMenu}
+            >
               ჩანაწერები
             </NavLink>
 
-            <NavLink to="/syllabus">
-              სილაბუსი
+            <NavLink
+              to="/curriculum"
+              className={navLinkClass}
+              onClick={closeMenu}
+            >
+              სასწავლო გეგმა
             </NavLink>
 
-            <NavLink to="/about">
+            <NavLink
+              to="/about"
+              className={navLinkClass}
+              onClick={closeMenu}
+            >
               ჩვენს შესახებ
             </NavLink>
 
-            <NavLink to="/portfolio">
+            <NavLink
+              to="/Portfolio"
+              className={navLinkClass}
+              onClick={closeMenu}
+            >
               პორტფოლიო
             </NavLink>
 
           </nav>
 
+          {/* RIGHT */}
+
           <div className="home-header-right">
 
             <button
+              type="button"
               className="home-theme-btn"
-              onClick={toggleTheme}
+              onClick={() => setDarkMode((prev) => !prev)}
+              aria-label="Toggle theme"
             >
               {darkMode ? "☀" : "☾"}
             </button>
 
-            {
-              isLoggedIn ? (
+            {isLoggedIn ? (
+              <NavLink
+                to="/profile"
+                className="home-profile-btn"
+                onClick={closeMenu}
+              >
+                პროფილი
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/register"
+                className="home-register-btn"
+                onClick={closeMenu}
+              >
+                რეგისტრაცია
+              </NavLink>
+            )}
 
-                <NavLink
-                  className="home-profile-btn"
-                  to="/profile"
-                >
-                  პროფილი
-                </NavLink>
-
-              ) : (
-
-                <NavLink
-                  className="home-register-btn"
-                  to="/register"
-                >
-                  რეგისტრაცია
-                </NavLink>
-
-              )
-            }
-                        {/* Burger */}
-
-            <div
-              className={`burger ${menuOpen ? "active" : ""}`}
-              onClick={() => setMenuOpen(!menuOpen)}
+            <button
+              type="button"
+              className={`burger ${
+                menuOpen ? "active" : ""
+              }`}
+              onClick={() =>
+                setMenuOpen((prev) => !prev)
+              }
+              aria-label={
+                menuOpen
+                  ? "Close menu"
+                  : "Open menu"
+              }
+              aria-expanded={menuOpen}
             >
-
-              <span></span>
-              <span></span>
-              <span></span>
-
-            </div>
+              <span />
+              <span />
+              <span />
+            </button>
 
           </div>
-
         </div>
-
       </header>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
 
       <div
-        className={`mobile-menu ${menuOpen ? "show" : ""}`}
+        className={`mobile-menu ${
+          menuOpen ? "show" : ""
+        }`}
       >
 
         <NavLink
-          to="/live-courses"
-          onClick={() => setMenuOpen(false)}
+          to="/livecourses"
+          className={navLinkClass}
+          onClick={closeMenu}
         >
+          <span>01</span>
           Live Courses
         </NavLink>
 
         <NavLink
-          to="/recorded"
-          onClick={() => setMenuOpen(false)}
+          to="/recordings"
+          className={navLinkClass}
+          onClick={closeMenu}
         >
+          <span>02</span>
           ჩანაწერები
         </NavLink>
 
         <NavLink
-          to="/syllabus"
-          onClick={() => setMenuOpen(false)}
+          to="/curriculum"
+          className={navLinkClass}
+          onClick={closeMenu}
         >
-          სილაბუსი
+          <span>03</span>
+          სასწავლო გეგმა
         </NavLink>
 
         <NavLink
           to="/about"
-          onClick={() => setMenuOpen(false)}
+          className={navLinkClass}
+          onClick={closeMenu}
         >
+          <span>04</span>
           ჩვენს შესახებ
         </NavLink>
 
         <NavLink
-          to="/portfolio"
-          onClick={() => setMenuOpen(false)}
+          to="/Portfolio"
+          className={navLinkClass}
+          onClick={closeMenu}
         >
+          <span>05</span>
           პორტფოლიო
         </NavLink>
 
-        {
-          isLoggedIn ? (
+        <div className="mobile-menu-divider" />
 
-            <NavLink
-              to="/profile"
-              onClick={() => setMenuOpen(false)}
-            >
-              პროფილი
-            </NavLink>
-
-          ) : (
-
-            <NavLink
-              to="/register"
-              onClick={() => setMenuOpen(false)}
-            >
-              რეგისტრაცია
-            </NavLink>
-
-          )
-        }
+        {isLoggedIn ? (
+          <NavLink
+            to="/profile"
+            className={navLinkClass}
+            onClick={closeMenu}
+          >
+            პროფილი
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/register"
+            className="mobile-register-link"
+            onClick={closeMenu}
+          >
+            რეგისტრაცია
+          </NavLink>
+        )}
 
       </div>
 
+      {/* OVERLAY */}
+
+      <div
+        className={`mobile-overlay ${
+          menuOpen ? "show" : ""
+        }`}
+        onClick={closeMenu}
+      />
     </>
-
   );
-
 };
 
 export default Header;
