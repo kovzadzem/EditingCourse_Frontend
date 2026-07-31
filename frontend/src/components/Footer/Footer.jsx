@@ -1,114 +1,223 @@
-import "./Footer.css";
 import { NavLink } from "react-router-dom";
+import {
+  FaInstagram,
+  FaFacebookF,
+  FaYoutube,
+  FaArrowUp,
+  FaArrowRight,
+} from "react-icons/fa";
+
+import "./Footer.css";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <footer className="footer">
+    <footer className="site-footer">
+
+      {/* =========================
+          TOP CTA
+      ========================= */}
 
       <div className="footer-container">
 
-        {/* LEFT */}
+        <div className="footer-cta">
 
-        <div className="footer-column">
+          <div className="footer-cta-content">
 
-          <h2 className="footer-logo">
-            Edit<span>Academy</span>
-          </h2>
+            <span className="footer-eyebrow">
+              EDIT ACADEMY
+            </span>
 
-          <p className="footer-text">
-            ისწავლე Adobe Premiere Pro,
-            Motion, Sound Design,
-            Color Grading და Storytelling
-            თანამედროვე სასწავლო გარემოში.
-          </p>
+            <h2>
+              შექმენი შენი
+              <span> მომავალი.</span>
+            </h2>
 
-        </div>
+            <p>
+              ისწავლე ვიდეო მონტაჟი პრაქტიკულად
+              და შექმენი პროფესიონალური კონტენტი.
+            </p>
 
-        {/* Navigation */}
+          </div>
 
-        <div className="footer-column">
-
-          <h3>ნავიგაცია</h3>
-
-          <NavLink to="/">
-            მთავარი
-          </NavLink>
-
-          <NavLink to="/live-courses">
-            Live Courses
-          </NavLink>
-
-          <NavLink to="/recorded">
-            ჩანაწერები
-          </NavLink>
-
-          <NavLink to="/syllabus">
-            სილაბუსი
-          </NavLink>
-
-          <NavLink to="/portfolio">
-            პორტფოლიო
+          <NavLink
+            to="/register"
+            className="footer-cta-button"
+          >
+            დაიწყე სწავლა
+            <FaArrowRight />
           </NavLink>
 
         </div>
 
-        {/* Courses */}
 
-        <div className="footer-column">
+        {/* =========================
+            MAIN FOOTER
+        ========================= */}
 
-          <h3>კურსები</h3>
+        <div className="footer-main">
 
-          <p>Adobe Premiere Pro</p>
+          {/* BRAND */}
 
-          <p>Motion Graphics</p>
+          <div className="footer-brand">
 
-          <p>Sound Design</p>
+            <NavLink
+              to="/"
+              className="footer-logo"
+            >
+              Edit<span>Ologia</span>
+            </NavLink>
 
-          <p>Color Grading</p>
+            <p>
+              თანამედროვე ონლაინ აკადემია
+              მათთვის, ვისაც სურს ვიდეო მონტაჟის
+              პროფესიონალურად სწავლა.
+            </p>
 
-          <p>Storytelling</p>
+            <div className="footer-socials">
+
+              <a
+                href="#"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+
+              <a
+                href="#"
+                aria-label="Facebook"
+              >
+                <FaFacebookF />
+              </a>
+
+              <a
+                href="#"
+                aria-label="YouTube"
+              >
+                <FaYoutube />
+              </a>
+
+            </div>
+
+          </div>
+
+
+          {/* NAVIGATION */}
+
+          <div className="footer-column">
+
+            <h3>
+              ნავიგაცია
+            </h3>
+
+            <NavLink to="/">
+              მთავარი
+            </NavLink>
+
+            <NavLink to="/livecourses">
+              Live Courses
+            </NavLink>
+
+            <NavLink to="/recordings">
+              ჩანაწერები
+            </NavLink>
+
+            <NavLink to="/curriculum">
+              სილაბუსი
+            </NavLink>
+
+          </div>
+
+
+          {/* COMPANY */}
+
+          <div className="footer-column">
+
+            <h3>
+              ედიტოლოგია
+            </h3>
+
+            <NavLink to="/about">
+              ჩვენს შესახებ
+            </NavLink>
+
+            <NavLink to="/portfolio">
+              პორტფოლიო
+            </NavLink>
+
+            <NavLink to="/gallery">
+              გალერეა
+            </NavLink>
+
+            <NavLink to="/contact">
+              კონტაქტი
+            </NavLink>
+
+          </div>
+
+
+          {/* CONTACT */}
+
+          <div className="footer-column footer-contact">
+
+            <h3>
+              დაგვიკავშირდი
+            </h3>
+
+            <a href="mailto:info@editacademy.ge">
+              info@editologia.ge
+            </a>
+
+            <a href="tel:+995000000000">
+              +995 000 00 00 00
+            </a>
+
+            <span>
+              ონლაინ სწავლება
+            </span>
+
+          </div>
 
         </div>
-                {/* Contact */}
 
-        <div className="footer-column">
 
-          <h3>კონტაქტი</h3>
+        {/* =========================
+            BOTTOM
+        ========================= */}
 
-          <a href="mailto:info@editacademy.ge">
-            info@editacademy.ge
-          </a>
-
-          <a href="tel:+995555123456">
-            +995 555 12 34 56
-          </a>
+        <div className="footer-bottom">
 
           <p>
-            თბილისი, საქართველო
+            © {new Date().getFullYear()} EditOlogia.
+            ყველა უფლება დაცულია.
           </p>
 
-        </div>
+          <div className="footer-bottom-links">
 
-      </div>
+            <a href="#">
+              კონფიდენციალურობა
+            </a>
 
-      {/* Bottom */}
+            <a href="#">
+              წესები და პირობები
+            </a>
 
-      <div className="footer-bottom">
+          </div>
 
-        <p>
-          © {new Date().getFullYear()} EditAcademy.
-          ყველა უფლება დაცულია.
-        </p>
-
-        <div className="footer-bottom-links">
-
-          <NavLink to="/privacy">
-            Privacy Policy
-          </NavLink>
-
-          <NavLink to="/terms">
-            Terms of Service
-          </NavLink>
+          <button
+            type="button"
+            className="footer-top-button"
+            onClick={scrollToTop}
+            aria-label="Back to top"
+          >
+            <FaArrowUp />
+          </button>
 
         </div>
 

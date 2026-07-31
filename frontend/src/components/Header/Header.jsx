@@ -204,7 +204,7 @@ const Header = () => {
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span>01</span>
+          <span></span>
           Live Courses
         </NavLink>
 
@@ -213,7 +213,7 @@ const Header = () => {
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span>02</span>
+          <span></span>
           ჩანაწერები
         </NavLink>
 
@@ -222,7 +222,7 @@ const Header = () => {
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span>03</span>
+          <span></span>
           სასწავლო გეგმა
         </NavLink>
 
@@ -231,7 +231,7 @@ const Header = () => {
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span>04</span>
+          <span></span>
           ჩვენს შესახებ
         </NavLink>
 
@@ -240,7 +240,7 @@ const Header = () => {
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span>05</span>
+          <span></span>
           პორტფოლიო
         </NavLink>
 
