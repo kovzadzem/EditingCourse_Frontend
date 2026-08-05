@@ -1,0 +1,295 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+:root {
+  --primary: #8035D6;
+  --primary-hover: #6d28d9;
+
+  --background: #f5f6fa;
+  --card: #ffffff;
+  --text: #222;
+  --text-secondary: #666;
+  --border: #ddd;
+  --input: #ffffff;
+}
+
+body.dark {
+  --background: #0f172a;
+  --card: #1e293b;
+  --text: #ffffff;
+  --text-secondary: #cbd5e1;
+  --border: #334155;
+  --input: #273449;
+}
+
+body {
+  background: var(--background);
+  transition: .3s;
+}
+
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card);
+  border-radius: 22px;
+  padding: 35px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  transition: .3s;
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.theme-toggle button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: .3s;
+}
+
+.theme-toggle button:hover {
+  background: var(--primary-hover);
+  transform: rotate(20deg);
+}
+
+.register-card h1 {
+  text-align: center;
+  color: var(--text);
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+
+.register-card p {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px 15px;
+  transition: .3s;
+}
+
+.input-box:focus-within {
+  border-color: var(--primary);
+}
+
+.input-box svg {
+  color: var(--text-secondary);
+}
+
+.input-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  margin-left: 10px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.input-box input::placeholder {
+  color: #999;
+}
+
+.eye-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.terms {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 20px 0;
+}
+
+.terms input {
+  margin-top: 3px;
+}
+
+.terms label {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.terms a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.register-btn:hover {
+  background: var(--primary-hover);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.divider span {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.divider p {
+  margin: 0 15px;
+  color: var(--text-secondary);
+}
+
+.social-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: .3s;
+  font-size: 15px;
+}
+
+.social-btn:hover {
+  border-color: var(--primary);
+}
+
+.social-btn svg {
+  font-size: 18px;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+}
+
+.login-link a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover,
+.terms a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width:768px) {
+  .register-card {
+    max-width: 470px;
+    padding: 30px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width:480px) {
+
+  .register-page {
+    padding: 15px;
+  }
+
+  .register-card {
+    max-width: 100%;
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .register-card h1 {
+    font-size: 28px;
+  }
+
+  .register-card p {
+    font-size: 14px;
+  }
+
+  .input-box {
+    padding: 12px;
+  }
+
+  .register-btn,
+  .social-btn {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .terms {
+    font-size: 13px;
+  }
+}
+
+/* ---------- Small Phones ---------- */
+
+@media (max-width:360px) {
+
+  .register-card {
+    padding: 18px;
+  }
+
+  .register-card h1 {
+    font-size: 24px;
+  }
+
+}
