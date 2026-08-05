@@ -1,0 +1,1080 @@
+/* ===========================
+HEADER
+=========================== */
+
+.home-header{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+
+    z-index: 9999;
+
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+}
+
+.home-header-wrapper {
+    width: 100%;
+    height: 82px;
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    padding: 0 35px;
+
+    background: rgba(255,255,255,.95);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 24px;
+
+    box-shadow: 0 15px 45px rgba(0,0,0,.08);
+
+    transition:
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* DARK */
+
+html[data-theme="dark"] .home-header-wrapper {
+
+    background: rgba(18,18,18,.95);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35);
+
+}
+body.dark .home-header-wrapper{
+
+background:rgba(18,18,18,.95);
+
+}
+
+/* ===========================
+LOGO
+=========================== */
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+font-size:40px;
+
+font-weight:800;
+
+letter-spacing:-1px;
+
+text-decoration:none;
+
+color:#111;
+
+white-space:nowrap;
+
+transition:.35s;
+
+}
+
+.logo span{
+
+color:#8035D6;
+
+}
+
+body.dark .logo{
+
+color:white;
+
+}
+
+.logo:hover{
+
+transform:scale(1.03);
+
+}
+
+/* ===========================
+NAVIGATION
+=========================== */
+/* ================================
+   DESKTOP NAV
+================================ */
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  white-space: nowrap;
+}
+
+.desktop-nav a {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+
+  color: var(--text-color);
+
+  transition: opacity 0.2s ease;
+}
+
+.desktop-nav a:hover {
+  opacity: 0.65;
+}
+
+.desktop-nav a.active {
+  color: var(--text-color);
+}
+
+
+/* ================================
+   HEADER RIGHT
+================================ */
+
+.home-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+
+/* ================================
+   MOBILE NAV
+================================ */
+
+.mobile-menu a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.mobile-menu a.active {
+  color: var(--text-color);
+}
+/* ===========================
+HEADER ACTIONS
+=========================== */
+
+.home-header-actions{
+
+display:flex;
+
+align-items:center;
+
+justify-content:flex-end;
+
+gap:16px;
+
+}
+
+.home-header-right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+}/* ===========================
+THEME BUTTON
+=========================== */
+
+.home-theme-btn{
+
+width:46px;
+
+height:46px;
+
+border:none;
+
+outline:none;
+
+border-radius:14px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#8035D6;
+
+color:white;
+
+font-size:20px;
+
+cursor:pointer;
+
+transition:all .35s ease;
+
+box-shadow:0 12px 25px rgba(128,53,214,.25);
+
+}
+
+.home-theme-btn:hover{
+
+transform:translateY(-3px);
+
+background:#9252df;
+
+box-shadow:0 18px 35px rgba(128,53,214,.35);
+
+}
+
+.home-theme-btn:active{
+
+transform:scale(.95);
+
+}
+
+/* Dark Mode */
+
+body.dark .home-theme-btn{
+
+background:#2b2b2b;
+
+color:#fff;
+
+}
+
+body.dark .home-theme-btn:hover{
+
+background:#8035D6;
+
+}
+
+/* ===========================
+REGISTER BUTTON
+=========================== */
+
+.home-register-btn{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:15px 30px;
+
+border-radius:16px;
+
+background:#8035D6;
+
+color:white;
+
+font-size:15px;
+
+font-weight:600;
+
+text-decoration:none;
+
+transition:all .35s ease;
+
+box-shadow:0 15px 30px rgba(128,53,214,.25);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+/* Shine Effect */
+
+.home-register-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-120%;
+
+width:50%;
+
+height:100%;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-25deg);
+
+transition:.7s;
+
+}
+
+.home-register-btn:hover::before{
+
+left:160%;
+
+}
+
+.home-register-btn:hover{
+
+transform:translateY(-3px);
+
+background:#9252df;
+
+box-shadow:0 20px 45px rgba(128,53,214,.4);
+
+}
+
+.home-register-btn:active{
+
+transform:scale(.96);
+
+}
+
+/* ===========================
+PROFILE BUTTON
+=========================== */
+
+.profile-btn{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+padding:15px 26px;
+
+border-radius:16px;
+
+background:#8035D6;
+
+color:#fff;
+
+font-weight:600;
+
+text-decoration:none;
+
+transition:.35s;
+
+}
+
+.profile-btn:hover{
+
+background:#9252df;
+
+transform:translateY(-3px);
+
+}/* =========================================================
+   BURGER
+========================================================= */
+
+.burger {
+  display: none;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  gap: 5px;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+.burger span {
+  display: block;
+
+  width: 20px;
+  height: 1.5px;
+
+  border-radius: 10px;
+
+  background: var(--header-text, #111);
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+
+/* =========================================================
+   BURGER ACTIVE
+========================================================= */
+
+.burger.active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  top: 78px;
+  left: 16px;
+  right: 16px;
+
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 12px;
+
+  border-radius: 22px;
+
+  background: var(--header-bg, #ffffff);
+
+  border: 1px solid var(--header-border, rgba(0,0,0,.08));
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.12);
+
+  backdrop-filter: blur(25px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-10px) scale(.98);
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    visibility .25s ease;
+}
+
+.mobile-menu.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0) scale(1);
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  color: var(--header-text, #111);
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  background: var(--header-surface, #f5f5f7);
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.mobile-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 998;
+
+  background: rgba(0,0,0,.18);
+
+  backdrop-filter: blur(2px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .25s ease,
+    visibility .25s ease;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .home-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .home-register-btn,
+  .home-profile-btn {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 851px) {
+
+  .burger {
+    display: none;
+  }
+
+  .mobile-menu,
+  .mobile-overlay {
+    display: none;
+  }
+}
+
+/* ===========================
+SMOOTH ANIMATIONS
+=========================== */
+
+.desktop-nav a,
+.logo,
+.theme-btn,
+.register-btn,
+.profile-btn,
+.mobile-menu a{
+
+transition:all .3s ease;
+
+}
+
+/* ===========================
+SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#8035D6;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#ececec;
+
+}
+
+body.dark::-webkit-scrollbar-track{
+
+background:#111;
+
+}
+
+/* ===========================
+TEXT SELECTION
+=========================== */
+
+::selection{
+
+background:#8035D6;
+
+color:#fff;
+
+}
+.home-header {
+  background: var(--header-bg);
+
+  color: var(--text);
+
+  border-bottom: 1px solid var(--border);
+
+  backdrop-filter: blur(20px);
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+
+.logo {
+  color: var(--text);
+}
+
+
+.logo span {
+  color: var(--text-secondary);
+}
+
+
+.desktop-nav a {
+  color: var(--text-secondary);
+
+  transition:
+    color 0.25s ease;
+}
+
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+  color: var(--text);
+}
+
+
+.home-theme-btn {
+  color: var(--text);
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.home-register-btn,
+.home-profile-btn {
+  background: var(--button-bg);
+
+  color: var(--button-text);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+.mobile-menu {
+  background: var(--bg);
+
+  color: var(--text);
+
+  border-color: var(--border);
+}
+
+
+.mobile-menu a {
+  color: var(--text);
+}
+/* =========================================================
+   HEADER — RESPONSIVE FIX
+========================================================= */
+
+/* DESKTOP */
+
+.home-header-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  min-height: 76px;
+  padding: 0 6vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.logo {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 28px;
+
+  flex: 1;
+}
+
+.home-header-right {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-shrink: 0;
+}
+
+/* Burger თავიდან დამალულია */
+
+.burger {
+  display: none;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .home-header-wrapper {
+    min-height: 70px;
+
+    padding: 0 24px;
+
+    gap: 15px;
+  }
+
+  /* სრული desktop navigation ქრება */
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  /* Register ქრება */
+
+  .home-register-btn,
+  .home-profile-btn {
+    display: none !important;
+  }
+
+  /* Burger ჩნდება */
+
+  .burger {
+    display: flex !important;
+
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+    margin: 0;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 5px;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+  }
+
+  .burger span {
+    display: block;
+
+    width: 20px;
+    height: 1.5px;
+
+    border-radius: 20px;
+
+    background: var(--header-text, #111);
+
+    transition:
+      transform .25s ease,
+      opacity .2s ease;
+  }
+
+  /* Burger → X */
+
+  .burger.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .burger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .home-header-wrapper {
+    min-height: 64px;
+
+    padding: 0 18px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .home-header-right {
+    gap: 5px;
+  }
+
+  .home-theme-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .burger {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .home-header-wrapper {
+    padding: 0 14px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .home-theme-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  .burger {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.mobile-menu {
+  position: fixed;
+
+  top: 82px;
+  left: 16px;
+  right: 16px;
+
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  border-radius: 20px;
+
+  background: var(--header-bg, #fff);
+
+  border: 1px solid var(
+    --header-border,
+    rgba(0,0,0,.08)
+  );
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.12);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-12px);
+
+  transition:
+    opacity .25s ease,
+    transform .25s ease,
+    visibility .25s ease;
+}
+
+.mobile-menu.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+
+  transform: translateY(0);
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  color: var(--header-text, #111);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  background: var(
+    --header-surface,
+    #f5f5f7
+  );
+}
+
+
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
+
+.mobile-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9998;
+
+  background: rgba(0,0,0,.15);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .25s ease,
+    visibility .25s ease;
+}
+
+.mobile-overlay.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+[data-theme="dark"] .burger span {
+  background: #fff;
+}
+
+[data-theme="dark"] .mobile-menu {
+  background: #111114;
+
+  border-color: rgba(255,255,255,.08);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5);
+}
+
+[data-theme="dark"] .mobile-menu a {
+  color: #fff;
+}
+
+[data-theme="dark"] .mobile-menu a:hover,
+[data-theme="dark"] .mobile-menu a.active {
+  background: #1c1c20;
+}
+
+
+/* =========================================================
+   DESKTOP — FORCE MOBILE OFF
+========================================================= */
+
+@media (min-width: 901px) {
+
+  .burger {
+    display: none !important;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+  }
+
+  .home-register-btn,
+  .home-profile-btn {
+    display: inline-flex !important;
+  }
+
+  .mobile-menu,
+  .mobile-overlay {
+    display: none !important;
+  }
+}

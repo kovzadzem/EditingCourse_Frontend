@@ -1,0 +1,616 @@
+:root {
+  --primary: #8035D6;
+  --primary-hover: #6d28d9;
+
+  --background: #f6f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --border: #e5e7eb;
+
+  --sidebar: #ffffff;
+  --header: #ffffff;
+
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+body.dark{
+  --background:#0f172a;
+  --card:#1e293b;
+  --text:#f8fafc;
+  --text-light:#cbd5e1;
+  --border:#334155;
+
+  --sidebar:#111827;
+  --header:#111827;
+
+  --shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Inter,sans-serif;
+  background:var(--background);
+  color:var(--text);
+  transition:.3s;
+}
+
+.calendar-page,
+.dashboard{
+  display:flex;
+  min-height:100vh;
+}
+
+/* ===========================
+   Sidebar
+=========================== */
+
+.sidebar{
+  width:270px;
+  background:var(--sidebar);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+  box-shadow:var(--shadow);
+}
+
+.sidebar:not(.open){
+  width:90px;
+}
+
+.logo{
+  height:80px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+}
+
+.logo h2{
+  color:var(--primary);
+  font-size:24px;
+}
+
+.sidebar ul{
+  list-style:none;
+  padding:20px 12px;
+}
+
+.sidebar li{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 18px;
+  margin-bottom:8px;
+  border-radius:14px;
+  cursor:pointer;
+  color:var(--text-light);
+  transition:.25s;
+}
+
+.sidebar li:hover{
+  background:rgba(128,53,214,.12);
+  color:var(--primary);
+}
+
+.sidebar li.active{
+  background:var(--primary);
+}
+
+.sidebar-link{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  color:inherit;
+  text-decoration:none;
+}
+
+.sidebar-link.active-link{
+  color:#fff;
+}
+
+.logout{
+  margin-top:25px;
+  color:#ef4444;
+}
+
+/* ===========================
+   Main
+=========================== */
+
+.main-content{
+  flex:1;
+  padding:30px;
+}
+
+/* ===========================
+   Header
+=========================== */
+
+.calendar-header{
+  height:80px;
+  background:var(--header);
+  border-radius:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 24px;
+  margin-bottom:30px;
+  box-shadow:var(--shadow);
+}
+
+.calendar-left,
+.calendar-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.calendar-menu-btn,
+.calendar-theme-btn,
+.notification-btn,
+.month-btn{
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.calendar-menu-btn,
+.calendar-theme-btn,
+.month-btn{
+  background:var(--primary);
+  color:#fff;
+}
+
+.menu-btn:hover,
+.theme-btn:hover,
+.month-btn:hover{
+  background:var(--primary-hover);
+}
+
+.theme-btn:hover{
+  transform:rotate(20deg);
+}
+
+.notification-btn{
+  background:var(--card);
+  border:1px solid var(--border);
+  color:var(--text);
+}
+
+.notification-btn:hover{
+  background:var(--primary);
+  color:#fff;
+}
+
+/* ===========================
+   Search
+=========================== */
+
+.search-box{
+  width:320px;
+  height:46px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:var(--background);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:0 15px;
+}
+
+.search-box input{
+  width:100%;
+  border:none;
+  outline:none;
+  background:none;
+  color:var(--text);
+}
+
+/* ===========================
+   Admin
+=========================== */
+
+.admin-profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.admin-profile svg{
+  font-size:34px;
+  color:var(--primary);
+}
+
+.admin-info h4{
+  color:var(--text);
+}
+
+.admin-info span{
+  font-size:13px;
+  color:var(--text-light);
+}
+
+/* ===========================
+   Month Navigation
+=========================== */
+
+.month-navigation{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.month-navigation h3{
+  min-width:180px;
+  text-align:center;
+  color:var(--text);
+  font-size:22px;
+}
+
+.primary-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:none;
+  background:var(--primary);
+  color:#fff;
+  border-radius:12px;
+  padding:12px 22px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.3s;
+}
+
+.primary-btn:hover{
+  background:var(--primary-hover);
+}
+
+/* ===========================
+   Calendar
+=========================== */
+
+.calendar-section{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+}
+
+.calendar-weekday{
+  background:var(--primary);
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  font-weight:700;
+  border-right:1px solid rgba(255,255,255,.15);
+}
+
+.calendar-weekday:last-child{
+  border-right:none;
+}
+
+.calendar-cell{
+  min-height:140px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:10px;
+  position:relative;
+  background:var(--card);
+  transition:.25s;
+}
+
+.calendar-cell:hover{
+  background:rgba(128,53,214,.05);
+}
+
+.calendar-cell.empty{
+  background:var(--background);
+}
+
+.day-number{
+  position:absolute;
+  right:12px;
+  top:10px;
+  font-weight:700;
+  color:var(--text);
+}
+/* ===========================
+   Events
+=========================== */
+
+.calendar-event{
+  margin-top:28px;
+  background:rgba(128,53,214,.12);
+  color:var(--primary);
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:13px;
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:6px;
+}
+
+.calendar-event.blue{
+  background:#3b82f620;
+  color:#3b82f6;
+}
+
+.calendar-event.green{
+  background:#22c55e20;
+  color:#22c55e;
+}
+
+.calendar-event.orange{
+  background:#f59e0b20;
+  color:#f59e0b;
+}
+
+.calendar-event.red{
+  background:#ef444420;
+  color:#ef4444;
+}
+
+/* ===========================
+   Schedule Table
+=========================== */
+
+.table-section{
+  margin-top:35px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:25px;
+  overflow-x:auto;
+}
+
+.table-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.table-header h2{
+  font-size:24px;
+  color:var(--text);
+}
+
+table{
+  width:100%;
+  min-width:900px;
+  border-collapse:collapse;
+}
+
+thead{
+  background:rgba(128,53,214,.08);
+}
+
+thead th{
+  padding:18px;
+  text-align:left;
+  color:var(--primary);
+  font-weight:700;
+}
+
+tbody td{
+  padding:18px;
+  border-bottom:1px solid var(--border);
+}
+
+tbody tr{
+  transition:.25s;
+}
+
+tbody tr:hover{
+  background:rgba(128,53,214,.05);
+}
+
+/* ===========================
+   Status
+=========================== */
+
+.status{
+  display:inline-block;
+  padding:8px 16px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
+}
+
+.status.active{
+  background:#22c55e20;
+  color:#22c55e;
+}
+
+.status.pending{
+  background:#f59e0b20;
+  color:#f59e0b;
+}
+
+/* ===========================
+   Buttons
+=========================== */
+
+.edit-btn,
+.delete-btn{
+  border:none;
+  border-radius:10px;
+  padding:10px 16px;
+  cursor:pointer;
+  font-weight:600;
+  transition:.25s;
+}
+
+.edit-btn{
+  background:var(--primary);
+  color:#fff;
+  margin-right:10px;
+}
+
+.edit-btn:hover{
+  background:var(--primary-hover);
+}
+
+.delete-btn{
+  background:#ef4444;
+  color:#fff;
+}
+
+.delete-btn:hover{
+  background:#dc2626;
+}
+
+/* ===========================
+   Overlay
+=========================== */
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:999;
+}
+
+/* ===========================
+   Dark Mode
+=========================== */
+
+body.dark .calendar-cell:hover{
+  background:rgba(255,255,255,.05);
+}
+
+body.dark thead{
+  background:rgba(128,53,214,.15);
+}
+
+body.dark tbody tr:hover{
+  background:rgba(255,255,255,.04);
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:1100px){
+
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:-270px;
+    height:100vh;
+    z-index:1000;
+  }
+
+  .sidebar.open{
+    left:0;
+  }
+
+  .main-content{
+    width:100%;
+    padding:20px;
+  }
+
+  .search-box{
+    width:220px;
+  }
+
+  .calendar-cell{
+    min-height:120px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .header{
+    flex-direction:column;
+    align-items:flex-start;
+    height:auto;
+    padding:20px;
+    gap:20px;
+  }
+
+  .left-header,
+  .right-header{
+    width:100%;
+  }
+
+  .right-header{
+    justify-content:flex-end;
+  }
+
+  .month-navigation{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .calendar-grid{
+    min-width:900px;
+  }
+
+  .table-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+  }
+
+}
+
+@media (max-width:480px){
+
+  .main-content{
+    padding:15px;
+  }
+
+  .admin-info{
+    display:none;
+  }
+
+  .menu-btn,
+  .theme-btn,
+  .notification-btn,
+  .month-btn{
+    width:40px;
+    height:40px;
+  }
+
+}
+
+/* ===========================
+   Scrollbar
+=========================== */
+
+::-webkit-scrollbar{
+  width:8px;
+  height:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:var(--primary);
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+  background:transparent;
+}
