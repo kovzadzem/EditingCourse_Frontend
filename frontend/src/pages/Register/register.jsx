@@ -18,7 +18,8 @@ function Register() {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -46,14 +47,21 @@ function Register() {
     }
 
     try {
+      console.log({
+  firstName: formData.firstName,
+  lastName: formData.lastName,
+  email: formData.email,
+  phone: formData.phone,
+  password: formData.password,
+});
       const response = await api.post("/auth/register", {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        avatar: formData.avatar,
-      });
+  first_name: formData.firstName.trim(),
+  last_name: formData.lastName.trim(),
+  email: formData.email.trim(),
+  password: formData.password,
+  phone: formData.phone.trim(),
+  avatar: null,
+});
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem(
@@ -65,20 +73,15 @@ function Register() {
 
       navigate("/dashboard");
     } catch (error) {
-      console.error(error);
+  console.log(error.response);
+  console.log(error.response?.data);
 
       if (error.response) {
         alert(
-          `Status: ${error.response.status}\n\n${JSON.stringify(
-            error.response.data,
-            null,
-            2
-          )}`
+          JSON.stringify(error.response.data, null, 2)
         );
-      } else if (error.request) {
-        alert("Backend არ პასუხობს.");
       } else {
-        alert(error.message);
+        alert("Backend არ პასუხობს.");
       }
     }
   };
@@ -86,8 +89,12 @@ function Register() {
   return (
     <div className="register-page">
       <div className="register-card">
+
         <h1>რეგისტრაცია</h1>
-        <p>შექმენი ახალი ანგარიში</p>
+
+        <p>
+          შექმენი ახალი ანგარიში
+        </p>
 
         <form onSubmit={handleSubmit}>
                     <div className="input-group">
@@ -153,6 +160,7 @@ function Register() {
                 placeholder="+995 555 12 34 56"
                 value={formData.phone}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -175,9 +183,15 @@ function Register() {
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                {showPassword ? (
+                  <FaEyeSlash />
+                ) : (
+                  <FaEye />
+                )}
               </button>
             </div>
           </div>
@@ -189,7 +203,11 @@ function Register() {
               <FaLock />
 
               <input
-                type={showConfirmPassword ? "text" : "password"}
+                type={
+                  showConfirmPassword
+                    ? "text"
+                    : "password"
+                }
                 name="confirmPassword"
                 placeholder="გაიმეორე პაროლი"
                 value={formData.confirmPassword}
@@ -201,7 +219,9 @@ function Register() {
                 type="button"
                 className="eye-btn"
                 onClick={() =>
-                  setShowConfirmPassword(!showConfirmPassword)
+                  setShowConfirmPassword(
+                    !showConfirmPassword
+                  )
                 }
               >
                 {showConfirmPassword ? (
@@ -212,13 +232,20 @@ function Register() {
               </button>
             </div>
           </div>
-                    <div className="terms">
-            <input type="checkbox" required />
+
+          <div className="terms">
+            <input
+              type="checkbox"
+              required
+            />
 
             <label>
               ვეთანხმები
               <a href="/"> წესებს</a> და
-              <a href="/"> კონფიდენციალურობის პოლიტიკას</a>
+              <a href="/">
+                {" "}
+                კონფიდენციალურობის პოლიტიკას
+              </a>
             </label>
           </div>
 
@@ -227,9 +254,7 @@ function Register() {
             className="register-btn"
           >
             რეგისტრაცია
-          </button>
-
-          <div className="divider">
+          </button>          <div className="divider">
             <span></span>
             <p>ან</p>
             <span></span>
@@ -259,7 +284,9 @@ function Register() {
             უკვე გაქვს ანგარიში?
             <a href="/login"> შესვლა</a>
           </div>
+
         </form>
+
       </div>
     </div>
   );

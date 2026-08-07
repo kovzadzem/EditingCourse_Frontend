@@ -20,16 +20,6 @@ const projects = [
       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    id: 2,
-    title: "Social Media Campaign",
-    category: "Reels",
-    type: "Social Media",
-    description:
-      "მოკლე ფორმატის ვიდეოების სერია Instagram-ისა და TikTok-ისთვის.",
-    image:
-      "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
     id: 3,
     title: "Product Advertisement",
     category: "რეკლამა",

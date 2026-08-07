@@ -67,7 +67,7 @@ const recordingsData = [
     description:
       "Keyframes, animation და motion principles Premiere Pro-ში.",
     image:
-      "https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&w=900&q=80",
+     "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: 6,
@@ -93,7 +93,7 @@ const recordingsData = [
     description:
       "სწრაფი და ეფექტური პროფესიონალური editing workflow.",
     image:
-      "https://images.unsplash.com/photo-1574717024976-4e1e3e8f9b1c?auto=format&fit=crop&w=900&q=80",
+       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80",
   },
   {
     id: 8,
@@ -157,7 +157,7 @@ export default function Recordings() {
         <div className="recordings-hero-inner">
 
           <div className="recordings-breadcrumb">
-            <NavLink to="/">მთავარი</NavLink>
+            <NavLink to="./livecourses/livecourses.jsx">მთავარი</NavLink>
             <span>/</span>
             <span>ლაივ ჩანაწერები</span>
           </div>
@@ -448,7 +448,7 @@ export default function Recordings() {
           </p>
         </div>
 
-        <NavLink to="/live-courses">
+        <NavLink to="../LiveCourses">
           ლაივ კურსების ნახვა →
         </NavLink>
 
