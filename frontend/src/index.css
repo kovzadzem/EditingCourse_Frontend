@@ -104,3 +104,15 @@ footer {
     color 0.35s ease,
     border-color 0.35s ease;
 }
+
+:root {
+  --bg: #f7f8fc;
+
+  --surface: #f3f4f6;
+  --card: #ffffff;
+
+  --text: #111827;
+  --text-secondary: #707070;
+
+  --border: rgba(0,0,0,.08);
+}

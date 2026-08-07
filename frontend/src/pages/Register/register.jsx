@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import api from "../../api/api";
@@ -12,16 +12,10 @@ import {
   FaEyeSlash,
   FaGoogle,
   FaFacebook,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
 
 function Register() {
   const navigate = useNavigate();
-
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -35,16 +29,6 @@ function Register() {
     confirmPassword: "",
     avatar: null,
   });
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
 
   const handleChange = (e) => {
     setFormData({
@@ -102,22 +86,11 @@ function Register() {
   return (
     <div className="register-page">
       <div className="register-card">
-
-        <div className="theme-toggle">
-          <button
-            type="button"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-        </div>
-
         <h1>რეგისტრაცია</h1>
         <p>შექმენი ახალი ანგარიში</p>
 
         <form onSubmit={handleSubmit}>
-
-          <div className="input-group">
+                    <div className="input-group">
             <label>სახელი</label>
 
             <div className="input-box">
@@ -202,15 +175,9 @@ function Register() {
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? (
-                  <FaEyeSlash />
-                ) : (
-                  <FaEye />
-                )}
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
           </div>
@@ -222,11 +189,7 @@ function Register() {
               <FaLock />
 
               <input
-                type={
-                  showConfirmPassword
-                    ? "text"
-                    : "password"
-                }
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 placeholder="გაიმეორე პაროლი"
                 value={formData.confirmPassword}
@@ -238,9 +201,7 @@ function Register() {
                 type="button"
                 className="eye-btn"
                 onClick={() =>
-                  setShowConfirmPassword(
-                    !showConfirmPassword
-                  )
+                  setShowConfirmPassword(!showConfirmPassword)
                 }
               >
                 {showConfirmPassword ? (
@@ -251,8 +212,7 @@ function Register() {
               </button>
             </div>
           </div>
-
-          <div className="terms">
+                    <div className="terms">
             <input type="checkbox" required />
 
             <label>
@@ -275,18 +235,17 @@ function Register() {
             <span></span>
           </div>
 
-      
-           <button
-  type="button"
-  className="social-btn"
-  onClick={() => {
-    window.location.href =
-      "http://localhost:3000/auth/google";
-  }}
->
-  <FaGoogle />
-  Google-ით რეგისტრაცია
-</button>
+          <button
+            type="button"
+            className="social-btn"
+            onClick={() => {
+              window.location.href =
+                "http://localhost:3000/auth/google";
+            }}
+          >
+            <FaGoogle />
+            Google-ით რეგისტრაცია
+          </button>
 
           <button
             type="button"
@@ -300,9 +259,7 @@ function Register() {
             უკვე გაქვს ანგარიში?
             <a href="/login"> შესვლა</a>
           </div>
-
         </form>
-
       </div>
     </div>
   );
