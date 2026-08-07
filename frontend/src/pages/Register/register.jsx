@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import api from "../../api/api";
@@ -12,19 +12,14 @@ import {
   FaEyeSlash,
   FaGoogle,
   FaFacebook,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
 
 function Register() {
   const navigate = useNavigate();
 
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -35,16 +30,6 @@ function Register() {
     confirmPassword: "",
     avatar: null,
   });
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
 
   const handleChange = (e) => {
     setFormData({
@@ -62,14 +47,21 @@ function Register() {
     }
 
     try {
+      console.log({
+  firstName: formData.firstName,
+  lastName: formData.lastName,
+  email: formData.email,
+  phone: formData.phone,
+  password: formData.password,
+});
       const response = await api.post("/auth/register", {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        avatar: formData.avatar,
-      });
+  first_name: formData.firstName.trim(),
+  last_name: formData.lastName.trim(),
+  email: formData.email.trim(),
+  password: formData.password,
+  phone: formData.phone.trim(),
+  avatar: null,
+});
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem(
@@ -81,20 +73,15 @@ function Register() {
 
       navigate("/dashboard");
     } catch (error) {
-      console.error(error);
+  console.log(error.response);
+  console.log(error.response?.data);
 
       if (error.response) {
         alert(
-          `Status: ${error.response.status}\n\n${JSON.stringify(
-            error.response.data,
-            null,
-            2
-          )}`
+          JSON.stringify(error.response.data, null, 2)
         );
-      } else if (error.request) {
-        alert("Backend არ პასუხობს.");
       } else {
-        alert(error.message);
+        alert("Backend არ პასუხობს.");
       }
     }
   };
@@ -103,21 +90,14 @@ function Register() {
     <div className="register-page">
       <div className="register-card">
 
-        <div className="theme-toggle">
-          <button
-            type="button"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-        </div>
-
         <h1>რეგისტრაცია</h1>
-        <p>შექმენი ახალი ანგარიში</p>
+
+        <p>
+          შექმენი ახალი ანგარიში
+        </p>
 
         <form onSubmit={handleSubmit}>
-
-          <div className="input-group">
+                    <div className="input-group">
             <label>სახელი</label>
 
             <div className="input-box">
@@ -180,6 +160,7 @@ function Register() {
                 placeholder="+995 555 12 34 56"
                 value={formData.phone}
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -253,12 +234,18 @@ function Register() {
           </div>
 
           <div className="terms">
-            <input type="checkbox" required />
+            <input
+              type="checkbox"
+              required
+            />
 
             <label>
               ვეთანხმები
               <a href="/"> წესებს</a> და
-              <a href="/"> კონფიდენციალურობის პოლიტიკას</a>
+              <a href="/">
+                {" "}
+                კონფიდენციალურობის პოლიტიკას
+              </a>
             </label>
           </div>
 
@@ -267,26 +254,23 @@ function Register() {
             className="register-btn"
           >
             რეგისტრაცია
-          </button>
-
-          <div className="divider">
+          </button>          <div className="divider">
             <span></span>
             <p>ან</p>
             <span></span>
           </div>
 
-      
-           <button
-  type="button"
-  className="social-btn"
-  onClick={() => {
-    window.location.href =
-      "http://localhost:3000/auth/google";
-  }}
->
-  <FaGoogle />
-  Google-ით რეგისტრაცია
-</button>
+          <button
+            type="button"
+            className="social-btn"
+            onClick={() => {
+              window.location.href =
+                "http://localhost:3000/auth/google";
+            }}
+          >
+            <FaGoogle />
+            Google-ით რეგისტრაცია
+          </button>
 
           <button
             type="button"

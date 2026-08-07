@@ -1,18 +1,32 @@
-import { Outlet } from "react-router-dom";
-
+import { Outlet, useLocation } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 const MainLayout = () => {
+  const location = useLocation();
+
+  const hideLayout = [
+    "/login",
+    "/register",
+    "/forgot-password",
+    "/dashboard",
+    "/calendar",
+    "/courses",
+    "/offlinecourse",
+    "/payments",
+    "/students",
+    "/syllabus",
+  ];
+
   return (
     <>
-      <Header />
+      {!hideLayout.includes(location.pathname) && <Header />}
 
       <main>
         <Outlet />
       </main>
 
-      <Footer />
+      {!hideLayout.includes(location.pathname) && <Footer />}
     </>
   );
 };

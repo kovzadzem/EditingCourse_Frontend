@@ -4,7 +4,6 @@
   box-sizing: border-box;
   font-family: "Segoe UI", sans-serif;
 }
-
 :root {
   --primary: #8035D6;
   --primary-hover: #6d28d9;
@@ -17,7 +16,7 @@
   --input: #ffffff;
 }
 
-body.dark {
+html[data-theme="dark"] {
   --background: #0f172a;
   --card: #1e293b;
   --text: #ffffff;
@@ -26,9 +25,21 @@ body.dark {
   --input: #273449;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --card: #1e293b;
+    --text: #ffffff;
+    --text-secondary: #cbd5e1;
+    --border: #334155;
+    --input: #273449;
+  }
+}
+
 body {
   background: var(--background);
-  transition: .3s;
+  color: var(--text);
+  transition: background-color .3s, color .3s;
 }
 
 .register-page {
@@ -45,32 +56,10 @@ body {
   background: var(--card);
   border-radius: 22px;
   padding: 35px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
   transition: .3s;
 }
 
-.theme-toggle {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
-.theme-toggle button {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  background: var(--primary);
-  color: white;
-  cursor: pointer;
-  font-size: 18px;
-  transition: .3s;
-}
-
-.theme-toggle button:hover {
-  background: var(--primary-hover);
-  transform: rotate(20deg);
-}
 
 .register-card h1 {
   text-align: center;
@@ -292,4 +281,19 @@ body {
     font-size: 24px;
   }
 
+}
+
+
+.register-page {
+  background: var(--background);
+}
+
+.register-card,
+.input-box,
+.register-btn,
+.social-btn {
+  transition:
+    background-color .3s,
+    color .3s,
+    border-color .3s;
 }
