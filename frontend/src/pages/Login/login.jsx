@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Login.css";
 import api from "../../api/api";
 
@@ -9,31 +9,15 @@ import {
   FaEyeSlash,
   FaGoogle,
   FaFacebook,
-  FaMoon,
-  FaSun,
 } from "react-icons/fa";
 
 function Login() {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
 
   const handleChange = (e) => {
     setFormData({
@@ -43,49 +27,47 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const response = await api.post("/auth/login", {
-      email: formData.email,
-      password: formData.password,
-    });
+    try {
+      const response = await api.post("/auth/login", {
+  email: formData.email,
+  password: formData.password,
+});
 
-    localStorage.setItem("token", response.data.token);
-    localStorage.setItem("user", JSON.stringify(response.data.user));
+localStorage.setItem("token", response.data.token);
+localStorage.setItem(
+  "user",
+  JSON.stringify(response.data.user)
+);
 
-    alert("Login successful!");
+alert("Login successful!");
 
-  } catch (error) {
-  console.log(error);
+    } catch (error) {
+      console.log(error);
 
-  if (error.response) {
-    alert(
-      `Status: ${error.response.status}\n\n${JSON.stringify(error.response.data, null, 2)}`
-    );
-  } else if (error.request) {
-    alert("Backend არ პასუხობს.");
-  } else {
-    alert(error.message);
-  }
-}
-};
+      if (error.response) {
+        alert(
+          `Status: ${error.response.status}\n\n${JSON.stringify(
+            error.response.data,
+            null,
+            2
+          )}`
+        );
+      } else if (error.request) {
+        alert("Backend არ პასუხობს.");
+      } else {
+        alert(error.message);
+      }
+    }
+  };
 
   return (
-    <div className="login-page">
-      <div className="login-card">
+  <div className="login-page">
+    <div className="login-card">
 
-        <div className="theme-toggle">
-          <button
-            type="button"
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-        </div>
-
-        <h1>შესვლა</h1>
-        <p>კეთილი იყოს შენი დაბრუნება!</p>
+      <h1>შესვლა</h1>
+      <p>კეთილი იყოს შენი დაბრუნება!</p>
 
         <form onSubmit={handleSubmit}>
 
@@ -124,21 +106,15 @@ function Login() {
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? (
-                  <FaEyeSlash />
-                ) : (
-                  <FaEye />
-                )}
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
           </div>
 
           <div className="forgot-password">
-            <a href="./forgot-password">
+            <a href="/forgot-password">
               პაროლი დაგავიწყდა?
             </a>
           </div>
@@ -159,6 +135,10 @@ function Login() {
           <button
             type="button"
             className="social-btn"
+            onClick={() => {
+              window.location.href =
+                "http://localhost:3000/auth/google";
+            }}
           >
             <FaGoogle />
             Google-ით შესვლა
