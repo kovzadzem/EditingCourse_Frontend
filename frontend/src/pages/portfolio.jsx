@@ -11,79 +11,61 @@ import "./portfolio.css";
 const projects = [
   {
     id: 1,
-    title: "Cinematic Brand Film",
-    category: "ვიდეო მონტაჟი",
-    type: "Video Editing",
+    title: "სტუდენტის პროექტი #1",
+    category: "სტუდენტი",
+    type: "Student",
+    image: "/images/portfolio/student1.jpg",
     description:
-      "ბრენდული ვიდეო თანამედროვე cinematic მონტაჟით, ფერის კორექციითა და sound design-ით.",
-    tags: ["Premiere Pro", "Color Grading", "Sound Design"],
+      "Edit Academy-ის სტუდენტის მიერ შესრულებული პრაქტიკული ვიდეო მონტაჟი.",
+    tags: ["Premiere Pro", "Student"],
   },
 
   {
     id: 2,
-    title: "Social Media Campaign",
-    category: "სოციალური მედია",
-    type: "Social Media",
+    title: "სტუდენტის პროექტი #2",
+    category: "სტუდენტი",
+    type: "Student",
+    image: "/images/portfolio/student2.jpg",
     description:
-      "Instagram Reels-ისა და TikTok-ისთვის შექმნილი დინამიკური მოკლე ვიდეოების სერია.",
-    tags: ["Reels", "TikTok", "Motion"],
+      "კურსის ფარგლებში შექმნილი პროფესიონალური ვიდეო.",
+    tags: ["Editing", "Student"],
   },
 
   {
     id: 3,
-    title: "Motion Typography",
-    category: "Motion Design",
-    type: "Motion Design",
+    title: "ლექტორის პროექტი #1",
+    category: "ლექტორი",
+    type: "Instructor",
+    image: "/images/portfolio/teacher1.jpg",
     description:
-      "თანამედროვე kinetic typography და ტექსტზე დაფუძნებული დინამიკური ანიმაციები.",
-    tags: ["Keyframes", "Typography", "Animation"],
+      "ლექტორის პროფესიონალური კომერციული პროექტი.",
+    tags: ["Commercial", "Instructor"],
   },
 
   {
     id: 4,
-    title: "Cinematic Color",
-    category: "Color Grading",
-    type: "Color Grading",
+    title: "ლექტორის პროექტი #2",
+    category: "ლექტორი",
+    type: "Instructor",
+    image: "/images/portfolio/teacher2.jpg",
     description:
-      "ვიდეოს ვიზუალური სტილის შექმნა Lumetri Color-ისა და cinematic color grading-ის გამოყენებით.",
-    tags: ["Lumetri", "LUT", "Cinematic"],
-  },
-
-  {
-    id: 5,
-    title: "YouTube Content",
-    category: "YouTube",
-    type: "YouTube",
-    description:
-      "YouTube ვიდეოს სრული პოსტ-პროდაქშენი, მონტაჟი, sound design და ვიზუალური ეფექტები.",
-    tags: ["YouTube", "Editing", "Effects"],
-  },
-
-  {
-    id: 6,
-    title: "Commercial Edit",
-    category: "რეკლამა",
-    type: "Commercial",
-    description:
-      "მოკლე სარეკლამო ვიდეო სწრაფი მონტაჟითა და თანამედროვე ვიზუალური ეფექტებით.",
-    tags: ["Commercial", "Effects", "Editing"],
+      "პროფესიონალური ვიდეო მონტაჟი და Color Grading.",
+    tags: ["Color", "Instructor"],
   },
 ];
 
 const categories = [
   "ყველა",
-  "ვიდეო მონტაჟი",
-  "Motion Design",
-  "Color Grading",
-  "სოციალური მედია",
-  "YouTube",
-  "რეკლამა",
+  "სტუდენტი",
+  "ლექტორი",
 ];
 
 const Portfolio = () => {
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("ყველა");
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeCategory, setActiveCategory] =
+    useState("ყველა");
+  const [selectedProject, setSelectedProject] =
+    useState(null);
 
   const filteredProjects = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -117,10 +99,6 @@ const Portfolio = () => {
   return (
     <section className="portfolio-page">
 
-      {/* =========================================
-          HERO
-      ========================================= */}
-
       <div className="portfolio-hero">
 
         <div className="portfolio-hero-content">
@@ -130,16 +108,14 @@ const Portfolio = () => {
           </span>
 
           <h1>
-            იდეები,
+            ჩვენი
             <br />
-            რომლებიც <span>მოძრაობენ.</span>
+            <span>პორტფოლიო</span>
           </h1>
 
           <p>
-            გაეცანი ჩვენს პროექტებს, ვიდეოებს და
-            ვიზუალურ ნამუშევრებს. აქ ნახავ იმ
-            მიმართულებებს, რომლებსაც Edit Academy-ში
-            შეისწავლი.
+            გაეცანი ჩვენი სტუდენტებისა და
+            ლექტორების ნამუშევრებს.
           </p>
 
         </div>
@@ -147,19 +123,15 @@ const Portfolio = () => {
         <div className="portfolio-hero-side">
 
           <div className="portfolio-hero-index">
-            06
+            04
           </div>
 
-          <span>
-            PROJECTS
-          </span>
+          <span>PROJECTS</span>
 
         </div>
 
       </div>
-
-
-      {/* =========================================
+            {/* =========================================
           TOOLBAR
       ========================================= */}
 
@@ -168,6 +140,7 @@ const Portfolio = () => {
         <div className="portfolio-toolbar-top">
 
           <div>
+
             <span className="portfolio-section-label">
               OUR WORK
             </span>
@@ -175,6 +148,7 @@ const Portfolio = () => {
             <h2>
               პროექტები
             </h2>
+
           </div>
 
           <span className="portfolio-result-count">
@@ -182,7 +156,6 @@ const Portfolio = () => {
           </span>
 
         </div>
-
 
         {/* SEARCH */}
 
@@ -193,18 +166,14 @@ const Portfolio = () => {
           <input
             type="text"
             value={search}
-            onChange={(event) =>
-              setSearch(event.target.value)
-            }
+            onChange={(e) => setSearch(e.target.value)}
             placeholder="მოძებნე პროექტი..."
-            aria-label="პროექტის ძებნა"
           />
 
           {search && (
             <button
               type="button"
               onClick={clearSearch}
-              aria-label="ძიების გასუფთავება"
             >
               <FaTimes />
             </button>
@@ -212,15 +181,15 @@ const Portfolio = () => {
 
         </div>
 
-
         {/* CATEGORIES */}
 
         <div className="portfolio-categories">
 
           {categories.map((category) => (
+
             <button
-              type="button"
               key={category}
+              type="button"
               className={
                 activeCategory === category
                   ? "active"
@@ -232,143 +201,93 @@ const Portfolio = () => {
             >
               {category}
             </button>
+
           ))}
 
         </div>
 
       </div>
 
-
       {/* =========================================
-          PROJECT GRID
+          PROJECTS
       ========================================= */}
 
-      {filteredProjects.length > 0 ? (
+      <div className="portfolio-grid">
 
-        <div className="portfolio-grid">
+        {filteredProjects.map((project, index) => (
 
-          {filteredProjects.map((project, index) => (
-
-            <article
-              className={`portfolio-project-card ${
-                index === 0
-                  ? "portfolio-project-featured"
-                  : ""
-              }`}
-              key={project.id}
-            >
-
-              {/* VISUAL */}
-
-              <div className="project-visual">
-
-                <div className="project-visual-bg">
-                  <span>
-                    {String(project.id).padStart(2, "0")}
-                  </span>
-                </div>
-
-                <div className="project-play">
-                  <FaPlay />
-                </div>
-
-                <span className="project-type">
-                  {project.type}
-                </span>
-
-              </div>
-
-
-              {/* CONTENT */}
-
-              <div className="project-content">
-
-                <div className="project-top">
-
-                  <span className="project-number">
-                    {String(project.id).padStart(2, "0")}
-                  </span>
-
-                  <button
-                    type="button"
-                    className="project-open"
-                    onClick={() =>
-                      setSelectedProject(project)
-                    }
-                    aria-label="პროექტის ნახვა"
-                  >
-                    <FaArrowUpRightFromSquare />
-                  </button>
-
-                </div>
-
-                <span className="project-category">
-                  {project.category}
-                </span>
-
-                <h3>
-                  {project.title}
-                </h3>
-
-                <p>
-                  {project.description}
-                </p>
-
-
-                <div className="project-tags">
-
-                  {project.tags.map((tag) => (
-                    <span key={tag}>
-                      {tag}
-                    </span>
-                  ))}
-
-                </div>
-
-              </div>
-
-            </article>
-
-          ))}
-
-        </div>
-
-      ) : (
-
-        /* =========================================
-           EMPTY
-        ========================================= */
-
-        <div className="portfolio-empty">
-
-          <div className="portfolio-empty-icon">
-            <FaSearch />
-          </div>
-
-          <h3>
-            პროექტი ვერ მოიძებნა
-          </h3>
-
-          <p>
-            სცადე სხვა საძიებო სიტყვა ან კატეგორია.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => {
-              setSearch("");
-              setActiveCategory("ყველა");
-            }}
+          <article
+            key={project.id}
+            className={`portfolio-project-card ${
+              index === 0
+                ? "portfolio-project-featured"
+                : ""
+            }`}
           >
-            ფილტრების გასუფთავება
-          </button>
 
-        </div>
+            <div className="project-visual">
 
-      )}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="project-image"
+              />
 
+              <div className="project-play">
+                <FaPlay />
+              </div>
 
-      {/* =========================================
+              <span className="project-type">
+                {project.type}
+              </span>
+
+            </div>
+
+            <div className="project-content">
+
+              <div className="project-top">
+
+                <span className="project-number">
+                  {String(project.id).padStart(2, "0")}
+                </span>
+
+                <button
+                  className="project-open"
+                  onClick={() =>
+                    setSelectedProject(project)
+                  }
+                >
+                  <FaArrowUpRightFromSquare />
+                </button>
+
+              </div>
+
+              <span className="project-category">
+                {project.category}
+              </span>
+
+              <h3>{project.title}</h3>
+
+              <p>{project.description}</p>
+
+              <div className="project-tags">
+
+                {project.tags.map((tag) => (
+                  <span key={tag}>
+                    {tag}
+                  </span>
+                ))}
+
+              </div>
+
+            </div>
+
+          </article>
+
+        ))}
+
+      </div>
+            {/* =========================================
           CTA
       ========================================= */}
 
@@ -377,13 +296,13 @@ const Portfolio = () => {
         <div>
 
           <span>
-            HAVE A PROJECT IN MIND?
+            EDIT ACADEMY
           </span>
 
           <h2>
-            შენი იდეა შემდეგი
+            შენიც შეიძლება
             <br />
-            პროექტი შეიძლება იყოს.
+            აღმოჩნდეს აქ.
           </h2>
 
         </div>
@@ -395,7 +314,6 @@ const Portfolio = () => {
 
       </section>
 
-
       {/* =========================================
           MODAL
       ========================================= */}
@@ -404,38 +322,29 @@ const Portfolio = () => {
 
         <div
           className="portfolio-modal-backdrop"
-          onClick={() =>
-            setSelectedProject(null)
-          }
+          onClick={() => setSelectedProject(null)}
         >
 
           <div
             className="portfolio-modal"
-            onClick={(event) =>
-              event.stopPropagation()
-            }
+            onClick={(e) => e.stopPropagation()}
           >
 
             <button
               type="button"
               className="portfolio-modal-close"
-              onClick={() =>
-                setSelectedProject(null)
-              }
-              aria-label="დახურვა"
+              onClick={() => setSelectedProject(null)}
             >
               <FaTimes />
             </button>
 
             <div className="portfolio-modal-visual">
 
-              <span>
-                {String(
-                  selectedProject.id
-                ).padStart(2, "0")}
-              </span>
-
-              <FaPlay />
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.title}
+                className="project-image"
+              />
 
             </div>
 

@@ -329,7 +329,7 @@ const reviews = [
   {
     name: "ანა კაპანაძე",
     role: "კურსდამთავრებული",
-    avatar: "/images/reviews/anna.jpg",
+    avatar: "/images/reviews/ana.jpg",
     text:
       "ყველას ვინც ვიდეო ედიტინგით ხარ დაინტერესებული, გირჩევთ ამ კურსს. ყველაფერი ძალიან მარტივად და გასაგებად არის ახსნილი.",
   },
@@ -361,7 +361,7 @@ const reviews = [
   {
     name: "ელენე ორჯონიკიძე",
     role: "კურსდამთავრებული",
-    avatar: "/images/reviews/elene2.jpg",
+    avatar: "/images/reviews/elene.jpg",
     text:
       "Highly recommended! ყველაფერი ძალიან კარგად იყო ახსნილი და პრაქტიკული დავალებებიც ძალიან დამეხმარა.",
   },
