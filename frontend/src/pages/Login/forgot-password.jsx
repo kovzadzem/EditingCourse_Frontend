@@ -1,95 +1,119 @@
-import { useState, useEffect } from "react";
-import { FaEnvelope, FaMoon, FaSun } from "react-icons/fa";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import api from "../../api/api";
+import { FaEnvelope } from "react-icons/fa";
+import { supabase } from "../../supabase";
 import "./login.css";
 
 function ForgotPassword() {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      await api.post("/auth/forgot-password", {
-        email,
-      });
+    setLoading(true);
 
-      alert("Password reset link sent successfully.");
-    } catch (error) {
-      if (error.response) {
-        alert(error.response.data.message);
-      } else {
-        alert("Backend is not responding.");
+    try {
+      const { error } =
+        await supabase.auth.resetPasswordForEmail(
+          email.trim(),
+          {
+            redirectTo:
+              window.location.origin +
+              "/reset-password",
+          }
+        );
+
+      if (error) {
+        throw error;
       }
+
+      alert(
+        "პაროლის აღდგენის ბმული გაიგზავნა ელფოსტაზე."
+      );
+    } catch (error) {
+      console.error(
+        "RESET EMAIL ERROR:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "პაროლის აღდგენის ბმულის გაგზავნა ვერ მოხერხდა."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="register-page">
-      <div className="register-card">
+    <div className="login-page">
 
-        <div className="theme-toggle">
-          <button onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-        </div>
+      <div className="login-card">
 
-        <h1>დაგავიწყდა პაროლი?
+        <h1>
+          დაგავიწყდა პაროლი?
         </h1>
 
         <p>
-          შეიყვანე შენი ელფოსტა და დაელოდე ბმულს.
+          შეიყვანე შენი ელფოსტა და მიიღე
+          პაროლის აღდგენის ბმული.
         </p>
 
         <form onSubmit={handleSubmit}>
 
+          {/* EMAIL */}
+
           <div className="input-group">
-            <label>Email</label>
+
+            <label>
+              ელ. ფოსტა
+            </label>
 
             <div className="input-box">
+
               <FaEnvelope />
 
               <input
                 type="email"
                 placeholder="example@email.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
                 required
               />
+
             </div>
+
           </div>
+
+          {/* RESET BUTTON */}
 
           <button
             type="submit"
-            className="register-btn"
+            className="login-btn"
+            disabled={loading}
           >
-            აღდგენის ბმულის გაგზავნა
+            {loading
+              ? "იგზავნება..."
+              : "აღდგენის ბმულის გაგზავნა"}
           </button>
 
-          <div className="login-link">
+          {/* BACK TO LOGIN */}
+
+          <div className="register-link">
+
             <Link to="/login">
               ავტორიზაციაზე დაბრუნება
             </Link>
+
           </div>
 
         </form>
 
       </div>
+
     </div>
   );
 }
