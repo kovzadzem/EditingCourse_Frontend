@@ -337,42 +337,80 @@ box-shadow:0 20px 45px rgba(128,53,214,.4);
 transform:scale(.96);
 
 }
-
 /* ===========================
 PROFILE BUTTON
 =========================== */
 
-.profile-btn{
+.home-profile-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-display:flex;
+  padding: 15px 26px;
 
-align-items:center;
+  border-radius: 16px;
 
-justify-content:center;
+  background: #8035D6;
+  color: #fff;
 
-padding:15px 26px;
+  font-size: 15px;
+  font-weight: 600;
 
-border-radius:16px;
+  text-decoration: none;
 
-background:#8035D6;
+  transition: all .35s ease;
 
-color:#fff;
+  box-shadow: 0 15px 30px rgba(128, 53, 214, .25);
 
-font-weight:600;
-
-text-decoration:none;
-
-transition:.35s;
-
+  position: relative;
+  overflow: hidden;
 }
 
-.profile-btn:hover{
+/* Shine Effect */
 
-background:#9252df;
+.home-profile-btn::before {
+  content: "";
 
-transform:translateY(-3px);
+  position: absolute;
 
-}/* =========================================================
+  top: 0;
+  left: -120%;
+
+  width: 50%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.45),
+    transparent
+  );
+
+  transform: skewX(-25deg);
+
+  transition: .7s;
+}
+
+.home-profile-btn:hover::before {
+  left: 160%;
+}
+
+.home-profile-btn:hover {
+  transform: translateY(-3px);
+
+  background: #9252df;
+
+  box-shadow:
+    0 20px 45px rgba(128, 53, 214, .4);
+}
+
+.home-profile-btn:active {
+  transform: scale(.96);
+}
+
+
+
+/* =========================================================
    BURGER
 ========================================================= */
 

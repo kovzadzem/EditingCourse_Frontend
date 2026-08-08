@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
-import api from "../../api/api";
+import { supabase } from "../../supabase";
 
 import {
   FaEnvelope,
@@ -12,6 +13,8 @@ import {
 } from "react-icons/fa";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -26,55 +29,202 @@ function Login() {
     });
   };
 
+  // =========================
+  // EMAIL / PASSWORD LOGIN
+  // =========================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await api.post("/auth/login", {
-  email: formData.email,
-  password: formData.password,
-});
+      const email = formData.email.trim();
 
-localStorage.setItem("token", response.data.token);
-localStorage.setItem(
-  "user",
-  JSON.stringify(response.data.user)
-);
+      const { data, error } =
+        await supabase.auth.signInWithPassword({
+          email,
+          password: formData.password,
+        });
 
-alert("Login successful!");
+      if (error) {
+        throw error;
+      }
+
+      // Email confirmation
+      if (!data.user?.email_confirmed_at) {
+        await supabase.auth.signOut();
+
+        alert(
+          "ელფოსტა ჯერ არ არის დადასტურებული.\n\n" +
+            "გთხოვ, შეამოწმე ელფოსტა და დაადასტურე ანგარიში."
+        );
+
+        return;
+      }
+
+      // =========================
+      // PROFILE
+      // =========================
+
+      const {
+        data: profile,
+        error: profileError,
+      } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", data.user.id)
+        .single();
+
+      if (profileError) {
+        console.error(
+          "PROFILE ERROR:",
+          profileError
+        );
+      }
+
+      // =========================
+      // LOCAL STORAGE
+      // =========================
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...data.user,
+          profile: profile || null,
+        })
+      );
+
+      alert(
+        "ავტორიზაცია წარმატებით დასრულდა!"
+      );
+
+      navigate("/profile");
 
     } catch (error) {
-      console.log(error);
+      console.error(
+        "LOGIN ERROR:",
+        error
+      );
 
-      if (error.response) {
+      const message =
+        error.message?.toLowerCase() || "";
+
+      if (
+        message.includes(
+          "email not confirmed"
+        )
+      ) {
         alert(
-          `Status: ${error.response.status}\n\n${JSON.stringify(
-            error.response.data,
-            null,
-            2
-          )}`
+          "ელფოსტა ჯერ არ არის დადასტურებული.\n\n" +
+            "შეამოწმე შენი ელფოსტა."
         );
-      } else if (error.request) {
-        alert("Backend არ პასუხობს.");
+      } else if (
+        message.includes(
+          "invalid login credentials"
+        )
+      ) {
+        alert(
+          "ელფოსტა ან პაროლი არასწორია."
+        );
       } else {
-        alert(error.message);
+        alert(
+          error.message ||
+            "ავტორიზაცია ვერ მოხერხდა."
+        );
       }
     }
   };
 
-  return (
-  <div className="login-page">
-    <div className="login-card">
+  // =========================
+  // GOOGLE LOGIN
+  // =========================
 
-      <h1>შესვლა</h1>
-      <p>კეთილი იყოს შენი დაბრუნება!</p>
+  const handleGoogleLogin = async () => {
+    try {
+      const { error } =
+        await supabase.auth.signInWithOAuth({
+          provider: "google",
+
+          options: {
+            redirectTo:
+              window.location.origin +
+              "/profile",
+          },
+        });
+
+      if (error) {
+        throw error;
+      }
+
+    } catch (error) {
+      console.error(
+        "GOOGLE LOGIN ERROR:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "Google-ით შესვლა ვერ მოხერხდა."
+      );
+    }
+  };
+
+  // =========================
+  // FACEBOOK LOGIN
+  // =========================
+
+  const handleFacebookLogin = async () => {
+    try {
+      const { error } =
+        await supabase.auth.signInWithOAuth({
+          provider: "facebook",
+
+          options: {
+            redirectTo:
+              window.location.origin +
+              "/profile",
+          },
+        });
+
+      if (error) {
+        throw error;
+      }
+
+    } catch (error) {
+      console.error(
+        "FACEBOOK LOGIN ERROR:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "Facebook-ით შესვლა ვერ მოხერხდა."
+      );
+    }
+  };
+
+  return (
+    <div className="login-page">
+
+      <div className="login-card">
+
+        <h1>შესვლა</h1>
+
+        <p>
+          კეთილი იყოს შენი დაბრუნება!
+        </p>
 
         <form onSubmit={handleSubmit}>
 
+          {/* EMAIL */}
+
           <div className="input-group">
-            <label>ელ. ფოსტა</label>
+
+            <label>
+              ელ. ფოსტა
+            </label>
 
             <div className="input-box">
+
               <FaEnvelope />
 
               <input
@@ -85,17 +235,29 @@ alert("Login successful!");
                 onChange={handleChange}
                 required
               />
+
             </div>
+
           </div>
 
+          {/* PASSWORD */}
+
           <div className="input-group">
-            <label>პაროლი</label>
+
+            <label>
+              პაროლი
+            </label>
 
             <div className="input-box">
+
               <FaLock />
 
               <input
-                type={showPassword ? "text" : "password"}
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
                 name="password"
                 placeholder="პაროლი"
                 value={formData.password}
@@ -106,18 +268,34 @@ alert("Login successful!");
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() => setShowPassword(!showPassword)}
+                onClick={() =>
+                  setShowPassword(
+                    !showPassword
+                  )
+                }
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                {showPassword ? (
+                  <FaEyeSlash />
+                ) : (
+                  <FaEye />
+                )}
               </button>
+
             </div>
+
           </div>
 
+          {/* FORGOT PASSWORD */}
+
           <div className="forgot-password">
-            <a href="/forgot-password">
+
+            <Link to="/forgot-password">
               პაროლი დაგავიწყდა?
-            </a>
+            </Link>
+
           </div>
+
+          {/* LOGIN */}
 
           <button
             type="submit"
@@ -126,40 +304,62 @@ alert("Login successful!");
             შესვლა
           </button>
 
+          {/* DIVIDER */}
+
           <div className="divider">
+
             <span></span>
+
             <p>ან</p>
+
             <span></span>
+
           </div>
 
-          <button
-            type="button"
-            className="social-btn"
-            onClick={() => {
-              window.location.href =
-                "http://localhost:3000/auth/google";
-            }}
-          >
-            <FaGoogle />
-            Google-ით შესვლა
-          </button>
+          {/* GOOGLE */}
 
           <button
             type="button"
             className="social-btn"
+            onClick={handleGoogleLogin}
           >
-            <FaFacebook />
-            Facebook-ით შესვლა
+
+            <FaGoogle />
+
+            Google-ით შესვლა
+
           </button>
+
+          {/* FACEBOOK */}
+
+          <button
+            type="button"
+            className="social-btn"
+            onClick={handleFacebookLogin}
+          >
+
+            <FaFacebook />
+
+            Facebook-ით შესვლა
+
+          </button>
+
+          {/* REGISTER */}
 
           <div className="register-link">
+
             არ გაქვს ანგარიში?
-            <a href="/register"> რეგისტრაცია</a>
+
+            <Link to="/register">
+              {" "}რეგისტრაცია
+            </Link>
+
           </div>
 
         </form>
 
       </div>
+
     </div>
   );
 }

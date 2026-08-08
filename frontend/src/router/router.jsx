@@ -22,7 +22,9 @@ import Payments from "../pages/Dashboard/payments";
 import Curriculum from "../pages/Curriculum/Curriculum";
 import About from "../pages/About/about";
 import Portfolio from "../pages/Portfolio/Portfolio";
+import Profile from "../pages/Profile/profile";
 
+import ResetPassword from "../pages/ResetPassword/reset-password";
 
 export const router = createBrowserRouter([
   {
@@ -109,11 +111,21 @@ export const router = createBrowserRouter([
         path: "about",
         element: <About />,
       },
-{
+
+      {
         path: "Portfolio",
         element: <Portfolio />,
       },
-      
+
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
+      },
     ],
   },
 ]);
