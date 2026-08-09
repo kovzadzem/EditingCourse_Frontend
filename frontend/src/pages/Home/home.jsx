@@ -7,6 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 
+import Pricing from "../Pricing/Pricing";
 import "./Home.css";
 
 /* =====================================================
@@ -174,7 +175,6 @@ function HeroVisual() {
       onMouseMove={handleMouseMove}
       onMouseLeave={resetMouse}
     >
-
       <motion.div
         className="hero-glow"
         animate={{
@@ -224,9 +224,7 @@ function HeroVisual() {
           ease: "easeOut",
         }}
       >
-
         <div className="dashboard-header">
-
           <div className="dashboard-dots">
             <span />
             <span />
@@ -240,12 +238,9 @@ function HeroVisual() {
           <div className="dashboard-number">
             01 / 12
           </div>
-
         </div>
 
-
         <div className="dashboard-video">
-
           <video
             className="hero-video"
             autoPlay
@@ -266,7 +261,6 @@ function HeroVisual() {
           </div>
 
           <div className="video-label">
-
             <span>
               PREMIERE PRO
             </span>
@@ -274,21 +268,15 @@ function HeroVisual() {
             <strong>
               Introduction to Video Editing
             </strong>
-
           </div>
-
         </div>
-
 
         <div className="dashboard-progress">
           <span />
         </div>
 
-
         <div className="dashboard-footer">
-
           <div>
-
             <small>
               CURRENT LESSON
             </small>
@@ -296,17 +284,13 @@ function HeroVisual() {
             <strong>
               Introduction to Premiere Pro
             </strong>
-
           </div>
 
           <div className="dashboard-time">
             08:42
           </div>
-
         </div>
-
       </motion.div>
-
 
       {cards.map((card, index) => (
         <FloatingCard
@@ -315,7 +299,6 @@ function HeroVisual() {
           index={index}
         />
       ))}
-
     </div>
   );
 }
@@ -333,7 +316,6 @@ const reviews = [
     text:
       "ყველას ვინც ვიდეო ედიტინგით ხარ დაინტერესებული, გირჩევთ ამ კურსს. ყველაფერი ძალიან მარტივად და გასაგებად არის ახსნილი.",
   },
-
   {
     name: "ელენე ხუციშვილი",
     role: "კურსდამთავრებული",
@@ -341,7 +323,6 @@ const reviews = [
     text:
       "პრემიერის სწავლა თუ ნულიდან გინდა დაიწყო, ეს კურსი ნამდვილად კარგი არჩევანია. დეტალურად და გასაგებად ხსნიან ყველაფერს.",
   },
-
   {
     name: "თორნიკე მაჭიაძე",
     role: "კურსდამთავრებული",
@@ -349,7 +330,6 @@ const reviews = [
     text:
       "თუ ვიდეო ედიტინგის სწავლა გინდა, ამ კურსს გირჩევ. მასწავლებელი ძალიან კარგად ხსნის ყველაფერს და პრაქტიკაც ბევრია.",
   },
-
   {
     name: "თაკო ბერიძე",
     role: "კურსდამთავრებული",
@@ -357,7 +337,6 @@ const reviews = [
     text:
       "საინტერესო და რაც მთავარია პრაქტიკული ინფორმაცია. კურსის დასრულების შემდეგ ბევრად უფრო თავდაჯერებული გავხდი.",
   },
-
   {
     name: "ელენე ორჯონიკიძე",
     role: "კურსდამთავრებული",
@@ -365,7 +344,6 @@ const reviews = [
     text:
       "Highly recommended! ყველაფერი ძალიან კარგად იყო ახსნილი და პრაქტიკული დავალებებიც ძალიან დამეხმარა.",
   },
-
   {
     name: "ზურა მახათაძე",
     role: "კურსდამთავრებული",
@@ -373,7 +351,6 @@ const reviews = [
     text:
       "თავსის საკმაოდ პროფესიონალი ლექტორი! ყველა დეტალს ძალიან კარგად ხსნის და პრაქტიკულად გვაჩვენებს.",
   },
-
   {
     name: "მათე ჭიჭია",
     role: "კურსდამთავრებული",
@@ -381,7 +358,6 @@ const reviews = [
     text:
       "10/10 რეკომენდაცია ვისაც 0-დან სურს ვიდეო ედიტინგის შესწავლა.",
   },
-
   {
     name: "გიგა დავითაძე",
     role: "კურსდამთავრებული",
@@ -399,16 +375,13 @@ const reviews = [
 function ReviewCard({ review }) {
   return (
     <article className="review-card">
-
       <div className="review-user">
-
         <img
           src={review.avatar}
           alt={review.name}
         />
 
         <div>
-
           <h3>
             {review.name}
           </h3>
@@ -416,21 +389,16 @@ function ReviewCard({ review }) {
           <span>
             {review.role}
           </span>
-
         </div>
-
       </div>
-
 
       <div className="review-stars">
         ★★★★★
       </div>
 
-
       <p>
         {review.text}
       </p>
-
     </article>
   );
 }
@@ -441,15 +409,8 @@ function ReviewCard({ review }) {
 ===================================================== */
 
 function Reviews() {
-
   const firstRow = reviews.slice(0, 4);
   const secondRow = reviews.slice(4, 8);
-
-  /*
-    თითოეული row ორჯერ მეორდება.
-    ამის გამო animation-ს დროს ცარიელი სივრცე
-    საერთოდ არ ჩნდება და მოძრაობა უწყვეტია.
-  */
 
   const firstRowLoop = [
     ...firstRow,
@@ -465,9 +426,7 @@ function Reviews() {
 
   return (
     <section className="reviews-section">
-
       <div className="reviews-heading">
-
         <span>
           STUDENT REVIEWS
         </span>
@@ -477,47 +436,31 @@ function Reviews() {
           <br />
           ჩვენი სტუდენტები?
         </h2>
-
       </div>
-
 
       <div className="reviews-wall">
 
-        {/* =================================================
-            ROW 1
-            მარჯვნიდან → მარცხნივ
-        ================================================= */}
-
+        {/* ROW 1 */}
         <div className="reviews-row reviews-row-one">
-
           {firstRowLoop.map((review, index) => (
             <ReviewCard
               key={`first-${review.name}-${index}`}
               review={review}
             />
           ))}
-
         </div>
 
-
-        {/* =================================================
-            ROW 2
-            მარცხნიდან → მარჯვნივ
-        ================================================= */}
-
+        {/* ROW 2 */}
         <div className="reviews-row reviews-row-two">
-
           {secondRowLoop.map((review, index) => (
             <ReviewCard
               key={`second-${review.name}-${index}`}
               review={review}
             />
           ))}
-
         </div>
 
       </div>
-
     </section>
   );
 }
@@ -528,37 +471,28 @@ function Reviews() {
 ===================================================== */
 
 export default function Home() {
-
   const rotatingWords = [
-    "პროფესიონალურად.",
-    "კრეატიულად.",
-    "თანამედროვედ.",
-    "შენი სტილით.",
+    "კრეატიულად",
+    "თავისუფლად",
+    "თანამედროვედ",
+    "შენებურად",
   ];
 
   const [wordIndex, setWordIndex] = useState(0);
 
-
   useEffect(() => {
-
     const interval = setInterval(() => {
-
       setWordIndex(
         (current) =>
           (current + 1) % rotatingWords.length
       );
-
     }, 2000);
 
-
     return () => clearInterval(interval);
-
   }, []);
-
 
   return (
     <main className="home">
-
 
       {/* =================================================
           HERO
@@ -566,16 +500,13 @@ export default function Home() {
 
       <section className="hero">
 
-
         <div className="hero-content">
 
           <span className="hero-label">
             VIDEO EDITING ACADEMY
           </span>
 
-
           <h1 className="hero-title">
-
             ისწავლე ვიდეოს შექმნა
 
             <br />
@@ -584,7 +515,6 @@ export default function Home() {
               className="rotating-word-wrapper"
               aria-live="polite"
             >
-
               <motion.span
                 key={wordIndex}
                 className="rotating-word"
@@ -601,34 +531,27 @@ export default function Home() {
                   ease: "easeOut",
                 }}
               >
-
                 {rotatingWords[wordIndex]}
-
               </motion.span>
-
             </span>
-
           </h1>
 
-
           <p>
-            პრაქტიკული ონლაინ კურსები ვიდეომონტაჟში 
+            პრაქტიკული ონლაინ კურსები ვიდეომონტაჟში
             Premiere Pro, ხმა, ფერი და Storytelling.
           </p>
-
 
           <div className="hero-buttons">
 
             <Link
-              to="/courses"
+              to="/"
               className="primary-btn"
             >
               კურსის ნახვა
             </Link>
 
-
             <Link
-              to="/live-courses"
+              to="/"
               className="secondary-btn"
             >
               Live კურსები
@@ -636,11 +559,9 @@ export default function Home() {
 
           </div>
 
-
           <div className="hero-stats">
 
             <div>
-
               <strong>
                 12
               </strong>
@@ -648,12 +569,9 @@ export default function Home() {
               <span>
                 ლექცია
               </span>
-
             </div>
 
-
             <div>
-
               <strong>
                 365
               </strong>
@@ -661,12 +579,9 @@ export default function Home() {
               <span>
                 დღე წვდომა
               </span>
-
             </div>
 
-
             <div>
-
               <strong>
                 100%
               </strong>
@@ -674,13 +589,11 @@ export default function Home() {
               <span>
                 პრაქტიკული
               </span>
-
             </div>
 
           </div>
 
         </div>
-
 
         <HeroVisual />
 
@@ -688,11 +601,17 @@ export default function Home() {
 
 
       {/* =================================================
+          PRICING
+      ================================================= */}
+
+      <Pricing />
+
+
+      {/* =================================================
           REVIEWS
       ================================================= */}
 
       <Reviews />
-
 
     </main>
   );

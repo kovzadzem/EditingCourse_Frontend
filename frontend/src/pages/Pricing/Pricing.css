@@ -1,0 +1,1162 @@
+/* =====================================================
+   PRICING — BOOK STYLE
+===================================================== */
+
+.pricing {
+  --pricing-primary: var(--primary, #6D3CC9);
+  --pricing-bg: var(--bg, #ffffff);
+  --pricing-text: var(--text, #171717);
+  --pricing-muted: var(--muted, #777777);
+  --pricing-card: var(--card, #ffffff);
+  --pricing-border: var(
+    --border,
+    rgba(109, 60, 201, 0.16)
+  );
+
+  position: relative;
+  width: 100%;
+
+  padding: 100px 24px 90px;
+
+  overflow: hidden;
+
+  background: var(--pricing-bg);
+  color: var(--pricing-text);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.pricing-top {
+  position: relative;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+.pricing-eyebrow {
+  color: var(--pricing-primary);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.18em;
+
+  transition: color 0.3s ease;
+}
+
+.pricing-title {
+  margin: 17px 0 0;
+
+  color: var(--pricing-text);
+
+  font-size: clamp(44px, 5vw, 68px);
+
+  line-height: 0.98;
+
+  font-weight: 750;
+
+  letter-spacing: -0.06em;
+
+  transition: color 0.3s ease;
+}
+
+.pricing-title span {
+  color: var(--pricing-primary);
+
+  transition: color 0.3s ease;
+}
+
+.pricing-intro {
+  margin: 22px 0 0;
+
+  color: var(--pricing-muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =====================================================
+   BOOK AREA
+===================================================== */
+
+.book-area {
+  position: relative;
+
+  width: 100%;
+  max-width: 1280px;
+
+  height: 680px;
+
+  margin: 42px auto 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  perspective: 1800px;
+}
+
+
+/* =====================================================
+   BOOK
+===================================================== */
+
+.pricing-book {
+  position: relative;
+
+  width: 1190px;
+  height: 590px;
+
+  transform-style: preserve-3d;
+}
+
+
+/* =====================================================
+   PAGE COLORS
+===================================================== */
+
+/* 01 — LIVE */
+
+.pricing-page-1 {
+  --page-color: #6D3CC9;
+  --page-soft: rgba(109, 60, 201, 0.10);
+  --page-border: rgba(109, 60, 201, 0.25);
+}
+
+
+/* 02 — INDIVIDUAL */
+
+.pricing-page-2 {
+  --page-color: #A83FC2;
+  --page-soft: rgba(168, 63, 194, 0.10);
+  --page-border: rgba(168, 63, 194, 0.25);
+}
+
+
+/* 03 — SELF-PACED */
+
+.pricing-page-3 {
+  --page-color: #168C9B;
+  --page-soft: rgba(22, 140, 155, 0.10);
+  --page-border: rgba(22, 140, 155, 0.25);
+}
+
+
+/* =====================================================
+   ALL PAGES
+===================================================== */
+
+.pricing-page {
+  position: absolute;
+
+  top: 50%;
+
+  width: 390px;
+  height: 505px;
+
+  transform-style: preserve-3d;
+
+  transform-origin: center center;
+
+  transition:
+    transform 0.75s
+      cubic-bezier(0.2, 0.75, 0.2, 1),
+    filter 0.3s ease;
+}
+
+
+/* =====================================================
+   LEFT PAGE
+===================================================== */
+
+.pricing-page-1 {
+  left: 25px;
+
+  z-index: 2;
+
+  transform:
+    translateY(-50%)
+    rotateY(12deg)
+    rotateZ(-4deg);
+}
+
+
+/* =====================================================
+   CENTER PAGE
+===================================================== */
+
+.pricing-page-2 {
+  left: 385px;
+
+  z-index: 5;
+
+  width: 420px;
+  height: 560px;
+
+  transform:
+    translateY(-50%)
+    translateZ(75px);
+}
+
+
+/* =====================================================
+   RIGHT PAGE
+===================================================== */
+
+.pricing-page-3 {
+  left: 775px;
+
+  z-index: 2;
+
+  transform:
+    translateY(-50%)
+    rotateY(-12deg)
+    rotateZ(4deg);
+}
+
+
+/* =====================================================
+   BOOK COVER
+===================================================== */
+
+.book-cover {
+  position: absolute;
+
+  inset: -9px;
+
+  z-index: 0;
+
+  border: 1px solid var(--pricing-border);
+
+  border-radius: 30px;
+
+  background: var(--pricing-card);
+
+  box-shadow:
+    0 15px 32px
+    rgba(0, 0, 0, 0.055);
+
+  transform: translateZ(-12px);
+
+  pointer-events: none;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.cover-number {
+  position: absolute;
+
+  top: 24px;
+  left: 24px;
+
+  color: var(--pricing-muted);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.cover-line {
+  position: absolute;
+
+  left: 24px;
+  right: 24px;
+
+  bottom: 24px;
+
+  height: 1px;
+
+  background: var(--pricing-border);
+}
+
+
+/* =====================================================
+   PAGE FACE
+===================================================== */
+
+.page-face {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border: 1px solid var(--page-border);
+
+  border-radius: 28px;
+
+  background: var(--pricing-card);
+
+  box-shadow:
+    0 18px 40px
+    rgba(0, 0, 0, 0.065);
+
+  transform: translateZ(4px);
+
+  backface-visibility: hidden;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+/* =====================================================
+   PAGE INNER
+===================================================== */
+
+.page-inner {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 38px 34px 32px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.plan-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plan-number {
+  color: var(--page-color);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+}
+
+.plan-subtitle {
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  background: var(--page-soft);
+
+  color: var(--page-color);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.plan-title {
+  margin: 35px 0 0;
+
+  color: var(--pricing-text);
+
+  font-size: 37px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.055em;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.plan-description {
+  max-width: 315px;
+
+  min-height: 62px;
+
+  margin: 17px 0 0;
+
+  color: var(--pricing-muted);
+
+  font-size: 11px;
+
+  line-height: 1.65;
+
+  transition: color 0.3s ease;
+}
+
+
+/* =====================================================
+   PRICE OPTIONS
+===================================================== */
+
+.price-options {
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  margin-top: 22px;
+
+  padding: 15px 0;
+
+  border-top: 1px solid var(--page-border);
+
+  border-bottom: 1px solid var(--page-border);
+
+  transition:
+    border-color 0.3s ease;
+}
+
+.price-option {
+  min-height: 61px;
+
+  padding: 8px 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-radius: 14px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.price-option:hover {
+  background: var(--page-soft);
+
+  transform: translateX(4px);
+}
+
+.price-option-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.price-label {
+  color: var(--pricing-text);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  transition: color 0.3s ease;
+}
+
+.price-extra {
+  max-width: 190px;
+
+  color: var(--pricing-muted);
+
+  font-size: 8.5px;
+
+  line-height: 1.4;
+
+  transition: color 0.3s ease;
+}
+
+.price-value {
+  flex-shrink: 0;
+
+  color: var(--page-color);
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.045em;
+}
+
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.plan-features {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+  max-height: 58px;
+
+  overflow: hidden;
+
+  transition:
+    max-height 0.4s ease;
+}
+
+.plan-features.expanded {
+  max-height: 180px;
+}
+
+.plan-feature {
+  min-height: 22px;
+
+  color: var(--pricing-text);
+
+  font-size: 10px;
+
+  line-height: 1.45;
+
+  transition: color 0.3s ease;
+}
+
+.extra-feature {
+  opacity: 0;
+
+  transform: translateY(-6px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.plan-features.expanded .extra-feature {
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* =====================================================
+   MORE BUTTON
+===================================================== */
+
+.more-button {
+  width: fit-content;
+
+  margin-top: 11px;
+
+  padding: 3px 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--page-color);
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.more-button:hover {
+  opacity: 0.7;
+}
+
+.more-icon {
+  width: 21px;
+  height: 21px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--page-soft);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.more-icon.rotated {
+  transform: rotate(90deg);
+}
+
+/* =====================================================
+   PREMIUM STRONG GRADIENT BUTTONS
+===================================================== */
+
+.pricing-page .plan-button {
+    width: 100%;
+    height: 56px;
+    min-height: 56px;
+
+    margin-top: auto;
+    padding: 5px 6px 5px 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 0;
+    border-radius: 18px;
+
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* =====================================================
+   01 — DEEP PURPLE
+===================================================== */
+
+.pricing-page-1 .plan-button {
+    background: linear-gradient(
+        115deg,
+        #32106F 0%,
+        #4B1FA8 25%,
+        #6D3CC9 50%,
+        #7F3FE0 75%,
+        #9A55F2 100%
+    );
+
+    box-shadow:
+        0 12px 30px rgba(109, 60, 201, 0.38),
+        0 5px 14px rgba(75, 31, 168, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   02 — DEEP VIOLET / PINK
+===================================================== */
+
+.pricing-page-2 .plan-button {
+    background: linear-gradient(
+        115deg,
+        #55106F 0%,
+        #7B1FA2 25%,
+        #A83FC2 50%,
+        #C13ED5 75%,
+        #D94CE5 100%
+    );
+
+    box-shadow:
+        0 12px 30px rgba(168, 63, 194, 0.40),
+        0 5px 14px rgba(123, 31, 162, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   03 — DEEP TURQUOISE
+===================================================== */
+
+.pricing-page-3 .plan-button {
+    background: linear-gradient(
+        115deg,
+        #034C57 0%,
+        #056A78 25%,
+        #168C9B 50%,
+        #109EAF 75%,
+        #18B4C2 100%
+    );
+
+    box-shadow:
+        0 12px 30px rgba(22, 140, 155, 0.40),
+        0 5px 14px rgba(3, 76, 87, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =====================================================
+   SHINE — SUBTLE
+===================================================== */
+
+.pricing-page .plan-button::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 55%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.10),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    transition: left 0.6s ease;
+
+    pointer-events: none;
+}
+
+.pricing-page .plan-button:hover::before {
+    left: 140%;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.pricing-page .plan-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.08);
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.pricing-page .button-icon {
+    width: 46px;
+    height: 46px;
+
+    flex: 0 0 46px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: rgba(0, 0, 0, 0.16);
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.12),
+        0 4px 10px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.pricing-page .plan-button:hover .button-icon {
+    transform: translateX(3px);
+
+    background: rgba(0, 0, 0, 0.22);
+}
+/* =====================================================
+   BUTTON ICON
+===================================================== */
+
+.pricing-page .button-icon {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.18);
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+/* ICON HOVER */
+
+.pricing-page .plan-button:hover .button-icon {
+  transform: translateX(2px);
+
+  background: rgba(255, 255, 255, 0.26);
+}
+/* =====================================================
+   CENTER PAGE
+===================================================== */
+
+.pricing-page-2 .page-face {
+  border-color: rgba(168, 63, 194, 0.30);
+
+  box-shadow:
+    0 22px 48px
+    rgba(168, 63, 194, 0.12);
+}
+
+
+/* =====================================================
+   HOVER — BOOK OPENS
+===================================================== */
+
+.book-area:hover .pricing-page-1 {
+  transform:
+    translateY(-50%)
+    translateX(-40px)
+    rotateY(28deg)
+    rotateZ(-3deg)
+    translateZ(15px);
+}
+
+.book-area:hover .pricing-page-2 {
+  transform:
+    translateY(-50%)
+    translateZ(105px)
+    scale(1.015);
+}
+
+.book-area:hover .pricing-page-3 {
+  transform:
+    translateY(-50%)
+    translateX(40px)
+    rotateY(-28deg)
+    rotateZ(3deg)
+    translateZ(15px);
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.pricing-bottom {
+  position: relative;
+
+  z-index: 5;
+
+  margin-top: 10px;
+
+  text-align: center;
+}
+
+.pricing-bottom p {
+  margin: 0;
+
+  color: var(--pricing-muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+
+  transition: color 0.3s ease;
+}
+
+.pricing-bottom p span {
+  color: var(--pricing-primary);
+
+  font-weight: 800;
+}
+
+.pricing-bottom p a {
+  color: var(--pricing-primary);
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    opacity 0.2s ease,
+    color 0.3s ease;
+}
+
+.pricing-bottom p a:hover {
+  opacity: 0.7;
+}
+
+.pricing-divider {
+  width: 220px;
+  height: 1px;
+
+  margin: 17px auto;
+
+  background: var(--pricing-border);
+
+  transition: background 0.3s ease;
+}
+
+.pricing-bottom strong {
+  color: var(--pricing-primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+[data-theme="dark"] .pricing {
+  --pricing-primary: #A77BEB;
+  --pricing-bg: #0F0D14;
+  --pricing-text: #F5F2FA;
+  --pricing-muted: #AAA3B5;
+  --pricing-card: #18151F;
+  --pricing-border: rgba(167, 123, 235, 0.20);
+}
+
+[data-theme="dark"] .pricing-page-1 {
+  --page-color: #A77BEB;
+  --page-soft: rgba(167, 123, 235, 0.13);
+  --page-border: rgba(167, 123, 235, 0.30);
+}
+
+[data-theme="dark"] .pricing-page-2 {
+  --page-color: #D477E7;
+  --page-soft: rgba(212, 119, 231, 0.13);
+  --page-border: rgba(212, 119, 231, 0.30);
+}
+
+[data-theme="dark"] .pricing-page-3 {
+  --page-color: #45B8C5;
+  --page-soft: rgba(69, 184, 197, 0.13);
+  --page-border: rgba(69, 184, 197, 0.30);
+}
+
+[data-theme="dark"] .pricing-page .page-face {
+  box-shadow:
+    0 18px 40px
+    rgba(0, 0, 0, 0.30);
+}
+
+[data-theme="dark"] .pricing-page-2 .page-face {
+  border-color: rgba(212, 119, 231, 0.35);
+
+  box-shadow:
+    0 22px 48px
+    rgba(212, 119, 231, 0.13);
+}
+
+[data-theme="dark"] .book-cover {
+  box-shadow:
+    0 15px 32px
+    rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1200px) {
+  .pricing-book {
+    transform: scale(0.9);
+  }
+}
+
+
+/* =====================================================
+   SMALL TABLET
+===================================================== */
+
+@media (max-width: 950px) {
+  .book-area {
+    height: 610px;
+  }
+
+  .pricing-book {
+    transform: scale(0.78);
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+  .pricing {
+    padding: 75px 15px 70px;
+  }
+
+  .pricing-title {
+    font-size: 43px;
+  }
+
+  .pricing-intro {
+    font-size: 11px;
+  }
+
+  .pricing-intro br {
+    display: none;
+  }
+
+  .book-area {
+    height: auto;
+
+    margin-top: 40px;
+
+    perspective: none;
+  }
+
+  .pricing-book {
+    width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+    transform: none !important;
+  }
+
+  .pricing-page,
+  .pricing-page-1,
+  .pricing-page-2,
+  .pricing-page-3 {
+    position: relative;
+
+    top: auto;
+    left: auto;
+
+    width: 100%;
+    height: 520px;
+
+    transform: none !important;
+  }
+
+  .pricing-page-2 {
+    width: 100%;
+    height: 550px;
+  }
+
+  .page-inner {
+    padding: 34px 27px 28px;
+  }
+
+  .plan-title {
+    font-size: 34px;
+  }
+
+  .price-value {
+    font-size: 23px;
+  }
+
+  .book-area:hover .pricing-page-1,
+  .book-area:hover .pricing-page-2,
+  .book-area:hover .pricing-page-3 {
+    transform: none !important;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 390px) {
+  .pricing {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .pricing-title {
+    font-size: 37px;
+  }
+
+  .pricing-page,
+  .pricing-page-1,
+  .pricing-page-2,
+  .pricing-page-3 {
+    height: 510px;
+  }
+
+  .pricing-page-2 {
+    height: 540px;
+  }
+
+  .page-inner {
+    padding-left: 23px;
+    padding-right: 23px;
+  }
+
+  .price-extra {
+    max-width: 145px;
+
+    font-size: 8px;
+  }
+
+  .price-value {
+    font-size: 21px;
+  }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-page,
+  .plan-button,
+  .price-option,
+  .more-icon {
+    transition: none;
+  }
+}
