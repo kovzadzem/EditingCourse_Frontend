@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
-import api from "../../api/api";
+import { supabase } from "../../supabase";
 
 import {
   FaUser,
@@ -17,7 +17,9 @@ import {
 function Register() {
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] =
+    useState(false);
+
   const [showConfirmPassword, setShowConfirmPassword] =
     useState(false);
 
@@ -28,7 +30,6 @@ function Register() {
     phone: "",
     password: "",
     confirmPassword: "",
-    avatar: null,
   });
 
   const handleChange = (e) => {
@@ -38,56 +39,215 @@ function Register() {
     });
   };
 
+  // =========================
+  // EMAIL REGISTRATION
+  // =========================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.password !== formData.confirmPassword) {
+    const firstName =
+      formData.firstName.trim();
+
+    const lastName =
+      formData.lastName.trim();
+
+    const email =
+      formData.email.trim();
+
+    const phone =
+      formData.phone.trim();
+
+    // PASSWORD MATCH
+    if (
+      formData.password !==
+      formData.confirmPassword
+    ) {
       alert("პაროლები არ ემთხვევა!");
       return;
     }
 
-    try {
-      console.log({
-  firstName: formData.firstName,
-  lastName: formData.lastName,
-  email: formData.email,
-  phone: formData.phone,
-  password: formData.password,
-});
-      const response = await api.post("/auth/register", {
-  first_name: formData.firstName.trim(),
-  last_name: formData.lastName.trim(),
-  email: formData.email.trim(),
-  password: formData.password,
-  phone: formData.phone.trim(),
-  avatar: null,
-});
+    // FIRST NAME
+    if (firstName.length < 2) {
+      alert(
+        "სახელი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს."
+      );
+      return;
+    }
 
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data.user)
+    // LAST NAME
+    if (lastName.length < 2) {
+      alert(
+        "გვარი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს."
+      );
+      return;
+    }
+
+    // PASSWORD
+    if (formData.password.length < 8) {
+      alert(
+        "პაროლი უნდა შეიცავდეს მინიმუმ 8 სიმბოლოს."
+      );
+      return;
+    }
+
+    try {
+      const { data, error } =
+        await supabase.auth.signUp({
+          email,
+          password: formData.password,
+
+          options: {
+            emailRedirectTo:
+              window.location.origin +
+              "/login",
+
+            data: {
+              first_name: firstName,
+              last_name: lastName,
+              phone: phone,
+            },
+          },
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      console.log(
+        "REGISTER RESPONSE:",
+        data
       );
 
-      alert("რეგისტრაცია წარმატებით დასრულდა!");
+      // =========================
+      // PROFILE
+      // =========================
 
-      navigate("/dashboard");
+      if (data.user) {
+        const {
+          error: profileError,
+        } = await supabase
+          .from("profiles")
+          .insert({
+            id: data.user.id,
+            first_name: firstName,
+            last_name: lastName,
+            phone: phone,
+            avatar: null,
+          });
+
+        if (profileError) {
+          console.error(
+            "PROFILE ERROR:",
+            profileError
+          );
+        }
+      }
+
+      alert(
+        "რეგისტრაცია წარმატებით დასრულდა!\n\n" +
+          "შეამოწმე ელფოსტა და დაადასტურე ანგარიში."
+      );
+
+      navigate("/login");
+
     } catch (error) {
-  console.log(error.response);
-  console.log(error.response?.data);
+      console.error(
+        "REGISTER ERROR:",
+        error
+      );
 
-      if (error.response) {
+      const message =
+        error.message?.toLowerCase() || "";
+
+      if (
+        message.includes(
+          "user already registered"
+        )
+      ) {
         alert(
-          JSON.stringify(error.response.data, null, 2)
+          "ეს ელფოსტა უკვე რეგისტრირებულია."
         );
       } else {
-        alert("Backend არ პასუხობს.");
+        alert(
+          error.message ||
+            "რეგისტრაცია ვერ მოხერხდა."
+        );
       }
+    }
+  };
+
+  // =========================
+  // GOOGLE REGISTER
+  // =========================
+
+  const handleGoogleRegister = async () => {
+    try {
+      const { error } =
+        await supabase.auth.signInWithOAuth({
+          provider: "google",
+
+          options: {
+            redirectTo:
+              window.location.origin +
+              "/profile",
+          },
+        });
+
+      if (error) {
+        throw error;
+      }
+
+    } catch (error) {
+      console.error(
+        "GOOGLE REGISTER ERROR:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "Google-ით რეგისტრაცია ვერ მოხერხდა."
+      );
+    }
+  };
+
+  // =========================
+  // FACEBOOK REGISTER
+  // =========================
+
+  const handleFacebookRegister = async () => {
+    try {
+      const { error } =
+        await supabase.auth.signInWithOAuth({
+          provider: "facebook",
+
+          options: {
+            redirectTo:
+              window.location.origin +
+              "/profile",
+          },
+        });
+
+      if (error) {
+        throw error;
+      }
+
+    } catch (error) {
+      console.error(
+        "FACEBOOK REGISTER ERROR:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "Facebook-ით რეგისტრაცია ვერ მოხერხდა."
+      );
     }
   };
 
   return (
     <div className="register-page">
+
       <div className="register-card">
 
         <h1>რეგისტრაცია</h1>
@@ -97,10 +257,17 @@ function Register() {
         </p>
 
         <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-            <label>სახელი</label>
+
+          {/* FIRST NAME */}
+
+          <div className="input-group">
+
+            <label>
+              სახელი
+            </label>
 
             <div className="input-box">
+
               <FaUser />
 
               <input
@@ -111,13 +278,21 @@ function Register() {
                 onChange={handleChange}
                 required
               />
+
             </div>
+
           </div>
 
+          {/* LAST NAME */}
+
           <div className="input-group">
-            <label>გვარი</label>
+
+            <label>
+              გვარი
+            </label>
 
             <div className="input-box">
+
               <FaUser />
 
               <input
@@ -128,13 +303,21 @@ function Register() {
                 onChange={handleChange}
                 required
               />
+
             </div>
+
           </div>
 
+          {/* EMAIL */}
+
           <div className="input-group">
-            <label>ელ. ფოსტა</label>
+
+            <label>
+              ელ. ფოსტა
+            </label>
 
             <div className="input-box">
+
               <FaEnvelope />
 
               <input
@@ -145,13 +328,21 @@ function Register() {
                 onChange={handleChange}
                 required
               />
+
             </div>
+
           </div>
 
+          {/* PHONE */}
+
           <div className="input-group">
-            <label>ტელეფონის ნომერი</label>
+
+            <label>
+              ტელეფონის ნომერი
+            </label>
 
             <div className="input-box">
+
               <FaPhone />
 
               <input
@@ -162,17 +353,29 @@ function Register() {
                 onChange={handleChange}
                 required
               />
+
             </div>
+
           </div>
 
+          {/* PASSWORD */}
+
           <div className="input-group">
-            <label>პაროლი</label>
+
+            <label>
+              პაროლი
+            </label>
 
             <div className="input-box">
+
               <FaLock />
 
               <input
-                type={showPassword ? "text" : "password"}
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
                 name="password"
                 placeholder="პაროლი"
                 value={formData.password}
@@ -184,7 +387,9 @@ function Register() {
                 type="button"
                 className="eye-btn"
                 onClick={() =>
-                  setShowPassword(!showPassword)
+                  setShowPassword(
+                    !showPassword
+                  )
                 }
               >
                 {showPassword ? (
@@ -193,13 +398,21 @@ function Register() {
                   <FaEye />
                 )}
               </button>
+
             </div>
+
           </div>
 
+          {/* CONFIRM PASSWORD */}
+
           <div className="input-group">
-            <label>გაიმეორე პაროლი</label>
+
+            <label>
+              გაიმეორე პაროლი
+            </label>
 
             <div className="input-box">
+
               <FaLock />
 
               <input
@@ -210,7 +423,9 @@ function Register() {
                 }
                 name="confirmPassword"
                 placeholder="გაიმეორე პაროლი"
-                value={formData.confirmPassword}
+                value={
+                  formData.confirmPassword
+                }
                 onChange={handleChange}
                 required
               />
@@ -230,64 +445,99 @@ function Register() {
                   <FaEye />
                 )}
               </button>
+
             </div>
+
           </div>
 
+          {/* TERMS */}
+
           <div className="terms">
+
             <input
               type="checkbox"
               required
             />
 
             <label>
-              ვეთანხმები
-              <a href="/"> წესებს</a> და
-              <a href="/">
-                {" "}
-                კონფიდენციალურობის პოლიტიკას
-              </a>
+              ვეთანხმები{" "}
+              <Link to="/">
+                წესებს
+              </Link>{" "}
+              და{" "}
+              <Link to="/">
+                კონფიდენციალურობის
+                პოლიტიკას
+              </Link>
             </label>
+
           </div>
+
+          {/* REGISTER */}
 
           <button
             type="submit"
             className="register-btn"
           >
             რეგისტრაცია
-          </button>          <div className="divider">
+          </button>
+
+          {/* DIVIDER */}
+
+          <div className="divider">
+
             <span></span>
+
             <p>ან</p>
+
             <span></span>
+
           </div>
 
-          <button
-            type="button"
-            className="social-btn"
-            onClick={() => {
-              window.location.href =
-                "http://localhost:3000/auth/google";
-            }}
-          >
-            <FaGoogle />
-            Google-ით რეგისტრაცია
-          </button>
+          {/* GOOGLE */}
 
           <button
             type="button"
             className="social-btn"
+            onClick={handleGoogleRegister}
           >
-            <FaFacebook />
-            Facebook-ით რეგისტრაცია
+
+            <FaGoogle />
+
+            Google-ით რეგისტრაცია
+
           </button>
+
+          {/* FACEBOOK */}
+
+          <button
+            type="button"
+            className="social-btn"
+            onClick={handleFacebookRegister}
+          >
+
+            <FaFacebook />
+
+            Facebook-ით რეგისტრაცია
+
+          </button>
+
+          {/* LOGIN */}
 
           <div className="login-link">
+
             უკვე გაქვს ანგარიში?
-            <a href="/login"> შესვლა</a>
+
+            <Link to="/login">
+              {" "}შესვლა
+            </Link>
+
           </div>
 
         </form>
 
       </div>
+
     </div>
   );
 }
