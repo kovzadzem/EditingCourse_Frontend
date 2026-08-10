@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
+import { supabase } from "../../supabase";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,18 +12,42 @@ const Header = () => {
 
   const [scrolled, setScrolled] = useState(false);
 
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const theme = darkMode ? "dark" : "light";
+useEffect(() => {
+  const checkSession = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    document.documentElement.setAttribute(
-      "data-theme",
-      theme
-    );
+    setIsLoggedIn(!!session);
+  };
 
-    localStorage.setItem("theme", theme);
-  }, [darkMode]);
+  checkSession();
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange(
+    (_event, session) => {
+      setIsLoggedIn(!!session);
+    }
+  );
+
+  return () => {
+    subscription.unsubscribe();
+  };
+}, []);
+
+useEffect(() => {
+  const theme = darkMode ? "dark" : "light";
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    theme
+  );
+
+  localStorage.setItem("theme", theme);
+}, [darkMode]);
 
   useEffect(() => {
     const handleScroll = () => {

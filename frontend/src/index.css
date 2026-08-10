@@ -5,8 +5,34 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Geo_Gorda";
+  src: url("./assets/fonts/geo_gorda-27191232884.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-main: "Geo_Gorda", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: "Geo_Gorda", sans-serif;
+  margin: 0;
 }
 :root {
   --bg: #ffffff;
