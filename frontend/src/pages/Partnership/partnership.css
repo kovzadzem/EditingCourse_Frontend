@@ -1,0 +1,712 @@
+/* =====================================================
+   PARTNERSHIP PAGE
+   Premium / Editorial / Minimal
+   Light + Dark Mode
+===================================================== */
+
+.partnership-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background: var(--bg);
+  color: var(--text);
+
+  overflow: hidden;
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.partnership-page *,
+.partnership-page *::before,
+.partnership-page *::after {
+  box-sizing: border-box;
+}
+
+.partnership-page a {
+  text-decoration: none;
+}
+
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.partnership-label {
+  display: block;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  line-height: 1.4;
+
+  letter-spacing: 0.02em;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.partnership-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 0 24px;
+
+  border: 1px solid var(--text);
+
+  border-radius: 7px;
+
+  background: var(--text);
+  color: var(--bg);
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.partnership-button:hover {
+  transform: translateY(-2px);
+
+  opacity: 0.82;
+}
+
+
+/* =====================================================
+   SECTION 01 — HERO
+===================================================== */
+
+.partnership-hero {
+  width: min(
+    1160px,
+    calc(100% - 48px)
+  );
+
+  min-height: 700px;
+
+  margin: 0 auto;
+
+  padding: 125px 0 95px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    410px;
+
+  align-items: center;
+
+  gap: 100px;
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.partnership-hero-content {
+  max-width: 680px;
+}
+
+.partnership-hero-content
+.partnership-label {
+  margin-bottom: 28px;
+}
+
+
+/* =====================================================
+   HERO TITLE
+===================================================== */
+
+.partnership-hero h1 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(
+    48px,
+    5.1vw,
+    68px
+  );
+
+  line-height: 1.045;
+
+  letter-spacing: -0.058em;
+
+  font-weight: 700;
+}
+
+.partnership-hero h1 span {
+  color: #8035d6;
+}
+
+
+/* =====================================================
+   HERO DESCRIPTION
+===================================================== */
+
+.partnership-hero-content p {
+  max-width: 500px;
+
+  margin: 29px 0 31px;
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   HERO VISUAL
+===================================================== */
+
+.partnership-visual {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 0.9;
+
+  overflow: hidden;
+
+  border: 1px solid var(--border);
+
+  border-radius: 19px;
+
+  background: var(--surface);
+
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
+
+.partnership-visual img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.65s cubic-bezier(
+      0.22,
+      1,
+      0.36,
+      1
+    );
+}
+
+.partnership-visual:hover img {
+  transform: scale(1.025);
+}
+
+
+/* =====================================================
+   PHOTO GRADIENT
+===================================================== */
+
+.partnership-visual::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.1) 48%,
+      transparent 75%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   PHOTO LABEL
+===================================================== */
+
+.partnership-visual-overlay {
+  position: absolute;
+
+  left: 23px;
+  right: 23px;
+  bottom: 22px;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  color: #ffffff;
+}
+
+.partnership-visual-overlay span {
+  font-size: 9px;
+
+  letter-spacing: 0.09em;
+
+  opacity: 0.75;
+}
+
+.partnership-visual-overlay strong {
+  font-size: 12px;
+
+  line-height: 1;
+
+  font-weight: 500;
+
+  letter-spacing: 0.03em;
+}
+
+
+/* =====================================================
+   SECTION 02
+===================================================== */
+
+.partnership-benefits {
+  width: min(
+    1160px,
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+
+  padding: 105px 0 80px;
+
+  border-top: 1px solid var(--border);
+}
+
+
+/* =====================================================
+   BENEFITS HEADING
+===================================================== */
+
+.benefits-heading {
+  max-width: 900px;
+}
+
+.benefits-heading
+.partnership-label {
+  margin-bottom: 27px;
+}
+
+.benefits-heading h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(
+    46px,
+    5vw,
+    64px
+  );
+
+  line-height: 1.04;
+
+  letter-spacing: -0.06em;
+
+  font-weight: 700;
+}
+
+.benefits-heading h2 span {
+  color: var(--text-secondary);
+}
+
+
+/* =====================================================
+   BENEFITS LIST
+===================================================== */
+
+.benefits-list {
+  margin-top: 72px;
+
+  border-top: 1px solid var(--border);
+}
+
+
+/* =====================================================
+   BENEFIT ROW
+===================================================== */
+
+.benefit-row {
+  min-height: 145px;
+
+  padding: 34px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    100px
+    280px
+    minmax(0, 1fr);
+
+  gap: 35px;
+
+  align-items: start;
+
+  border-bottom: 1px solid var(--border);
+
+  transition:
+    padding-left 0.3s ease,
+    border-color 0.35s ease;
+}
+
+.benefit-row:hover {
+  padding-left: 6px;
+}
+
+
+/* =====================================================
+   PREMIUM INDEX
+===================================================== */
+
+.benefit-index {
+  color: var(--text);
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  font-weight: 300;
+
+  letter-spacing: -0.07em;
+
+  opacity: 0.18;
+
+  transition:
+    color 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.benefit-row:hover
+.benefit-index {
+  color: #8035d6;
+
+  opacity: 0.85;
+
+  transform: translateX(4px);
+}
+
+
+/* =====================================================
+   BENEFIT TITLE
+===================================================== */
+
+.benefit-row h3 {
+  margin: 2px 0 0;
+
+  color: var(--text);
+
+  font-size: 15px;
+
+  line-height: 1.4;
+
+  font-weight: 600;
+
+  letter-spacing: -0.015em;
+}
+
+
+/* =====================================================
+   BENEFIT DESCRIPTION
+===================================================== */
+
+.benefit-row p {
+  max-width: 430px;
+
+  margin: 2px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.8;
+
+  font-weight: 400;
+}
+
+
+/* =====================================================
+   FINAL CTA
+===================================================== */
+
+.partnership-cta {
+  margin-top: 72px;
+
+  padding-top: 31px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 40px;
+
+  border-top: 1px solid var(--border);
+}
+
+
+/* =====================================================
+   CTA TITLE
+===================================================== */
+
+.partnership-cta h3 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 24px;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.035em;
+
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .partnership-hero {
+    grid-template-columns: 1fr;
+
+    gap: 60px;
+
+    padding-top: 110px;
+  }
+
+  .partnership-hero-content {
+    max-width: 700px;
+  }
+
+  .partnership-visual {
+    width: min(
+      430px,
+      100%
+    );
+
+    margin: 0 auto;
+  }
+
+
+  .benefit-row {
+    grid-template-columns:
+      75px
+      220px
+      minmax(0, 1fr);
+
+    gap: 25px;
+  }
+
+  .benefit-index {
+    font-size: 34px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
+
+  .partnership-hero,
+  .partnership-benefits {
+    width: calc(100% - 30px);
+  }
+
+
+  /* HERO */
+
+  .partnership-hero {
+    min-height: auto;
+
+    padding: 105px 0 70px;
+
+    gap: 48px;
+  }
+
+  .partnership-hero h1 {
+    font-size: 41px;
+
+    line-height: 1.07;
+  }
+
+  .partnership-hero-content p {
+    max-width: 430px;
+
+    margin: 24px 0 27px;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+  }
+
+
+  /* PHOTO */
+
+  .partnership-visual {
+    aspect-ratio: 0.92;
+
+    border-radius: 16px;
+  }
+
+  .partnership-visual-overlay {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+  }
+
+
+  /* BENEFITS */
+
+  .partnership-benefits {
+    padding: 75px 0 45px;
+  }
+
+  .benefits-heading
+  .partnership-label {
+    margin-bottom: 28px;
+  }
+
+  .benefits-heading h2 {
+    font-size: 41px;
+
+    line-height: 1.06;
+  }
+
+
+  /* LIST */
+
+  .benefits-list {
+    margin-top: 53px;
+  }
+
+  .benefit-row {
+    min-height: auto;
+
+    padding: 27px 0;
+
+    grid-template-columns:
+      58px
+      minmax(0, 1fr);
+
+    gap: 13px;
+  }
+
+  .benefit-row:hover {
+    padding-left: 0;
+  }
+
+
+  .benefit-index {
+    font-size: 30px;
+  }
+
+
+  .benefit-row h3 {
+    margin-top: 1px;
+
+    font-size: 13px;
+  }
+
+
+  .benefit-row p {
+    grid-column: 2;
+
+    max-width: 400px;
+
+    font-size: 10px;
+
+    line-height: 1.75;
+  }
+
+
+  /* CTA */
+
+  .partnership-cta {
+    margin-top: 55px;
+
+    padding-top: 27px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 25px;
+  }
+
+  .partnership-cta h3 {
+    font-size: 20px;
+  }
+
+  .partnership-cta .partnership-button {
+    width: 100%;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 390px) {
+
+  .partnership-hero h1 {
+    font-size: 37px;
+  }
+
+  .benefits-heading h2 {
+    font-size: 36px;
+  }
+
+  .benefit-index {
+    font-size: 27px;
+  }
+
+  .partnership-visual-overlay strong {
+    font-size: 11px;
+  }
+}
