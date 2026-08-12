@@ -23,6 +23,7 @@ import Curriculum from "../pages/Curriculum/Curriculum";
 import About from "../pages/About/about";
 import Portfolio from "../pages/Portfolio/Portfolio";
 import Profile from "../pages/Profile/profile";
+import Partnership from "../pages/Partnership/partnership";
 
 import ResetPassword from "../pages/ResetPassword/reset-password";
 
@@ -125,6 +126,10 @@ export const router = createBrowserRouter([
       {
         path: "reset-password",
         element: <ResetPassword />,
+      },
+    {
+        path: "partnership",
+        element: <Partnership/>,
       },
     ],
   },
