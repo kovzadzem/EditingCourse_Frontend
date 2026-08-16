@@ -1,26 +1,36 @@
 /* =========================================================
-   CURRICULUM PAGE
+   EDIT ACADEMY
+   PREMIUM CURRICULUM
 ========================================================= */
 
 .curriculum-page {
+  --purple: #8035d6;
+  --purple-light: rgba(128, 53, 214, 0.08);
+
+  --page-bg: #fbfafc;
+  --text-main: #111013;
+  --text-soft: #747078;
+
+  --border: rgba(20, 15, 25, 0.09);
+  --border-strong: rgba(20, 15, 25, 0.15);
+
   width: 100%;
   min-height: 100vh;
 
-  padding: 110px 7vw 100px;
+  background: var(--page-bg);
+  color: var(--text-main);
 
-  background:
-    radial-gradient(
-      circle at 85% 0%,
-      rgba(128, 53, 214, 0.08),
-      transparent 32%
-    ),
-    var(--bg-color, #f7f7f9);
+  overflow: hidden;
+}
 
-  color: var(--text-color, #171719);
 
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.curriculum-container {
+  width: min(1180px, calc(100% - 80px));
+  margin: 0 auto;
 }
 
 
@@ -29,944 +39,1032 @@
 ========================================================= */
 
 .curriculum-hero {
-  width: 100%;
-  max-width: 1250px;
-
-  min-height: 320px;
-
-  margin: 0 auto 45px;
-
-  padding: 55px 60px;
-
-  border-radius: 30px;
-
   position: relative;
+
+  min-height: 730px;
+
+  display: flex;
+  align-items: center;
 
   overflow: hidden;
 
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: space-between;
-
-  gap: 50px;
-
   background:
+    radial-gradient(
+      circle at 80% 45%,
+      rgba(128, 53, 214, 0.07),
+      transparent 31%
+    ),
+    var(--page-bg);
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.curriculum-hero-grid {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.4;
+
+  background-image:
     linear-gradient(
-      135deg,
-      rgba(128, 53, 214, 0.13),
-      rgba(255, 255, 255, 0.9)
+      to right,
+      rgba(20, 15, 25, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(20, 15, 25, 0.035) 1px,
+      transparent 1px
     );
 
-  border: 1px solid
-    rgba(128, 53, 214, 0.12);
+  background-size: 100px 100px;
 
-  box-shadow:
-    0 20px 70px
-    rgba(0, 0, 0, 0.05);
-}
-
-
-.curriculum-hero::after {
-  content: "";
-
-  position: absolute;
-
-  width: 420px;
-  height: 420px;
-
-  right: -180px;
-  top: -200px;
-
-  border-radius: 50%;
-
-  border: 1px solid
-    rgba(128, 53, 214, 0.12);
-
-  box-shadow:
-    0 0 0 60px rgba(128, 53, 214, 0.025),
-    0 0 0 120px rgba(128, 53, 214, 0.02);
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 75%,
+      transparent
+    );
 
   pointer-events: none;
 }
 
 
-.curriculum-hero-glow {
-  position: absolute;
+/* =========================================================
+   HERO INNER
+========================================================= */
 
-  width: 260px;
-  height: 260px;
-
-  right: 80px;
-  bottom: -160px;
-
-  border-radius: 50%;
-
-  background:
-    rgba(128, 53, 214, 0.16);
-
-  filter: blur(50px);
-
-  pointer-events: none;
-}
-
-
-.curriculum-hero-content {
-  max-width: 700px;
-
+.curriculum-hero-inner {
   position: relative;
-
   z-index: 2;
-}
 
+  width: min(1280px, calc(100% - 100px));
 
-.curriculum-label {
-  display: inline-flex;
+  margin: 0 auto;
+
+  padding: 125px 0 105px;
+
+  display: grid;
+
+  grid-template-columns: 1.05fr 0.95fr;
 
   align-items: center;
 
-  gap: 8px;
-
-  margin-bottom: 17px;
-
-  font-size: 10px;
-
-  font-weight: 800;
-
-  letter-spacing: 0.2em;
-
-  color: #8035d6;
+  gap: 65px;
 }
 
 
-.curriculum-label::before {
-  content: "";
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
-  width: 7px;
-  height: 7px;
+.curriculum-hero-content {
+  max-width: 650px;
+}
+
+
+/* =========================================================
+   OVERLINE
+========================================================= */
+
+.curriculum-overline {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 30px;
+
+  color: var(--text-soft);
+
+  font-size: 7px;
+  font-weight: 900;
+
+  letter-spacing: 0.19em;
+}
+
+.overline-line {
+  width: 32px;
+  height: 1px;
+
+  background: var(--purple);
+}
+
+.overline-dot {
+  width: 4px;
+  height: 4px;
 
   border-radius: 50%;
 
-  background: #8035d6;
-
-  box-shadow:
-    0 0 0 5px
-    rgba(128, 53, 214, 0.1);
+  background: var(--purple);
 }
 
+
+/* =========================================================
+   HERO TITLE
+========================================================= */
 
 .curriculum-hero h1 {
   margin: 0;
 
-  font-size: clamp(
-    48px,
-    6vw,
-    78px
-  );
+  max-width: 650px;
 
-  line-height: 0.98;
+  font-size: clamp(56px, 6.3vw, 86px);
 
-  letter-spacing: -0.055em;
+  line-height: 0.88;
 
-  font-weight: 800;
+  letter-spacing: -0.075em;
+
+  font-weight: 950;
 }
 
-
-.curriculum-hero p {
-  max-width: 620px;
-
-  margin: 25px 0 0;
-
-  font-size: 15px;
-
-  line-height: 1.8;
-
-  color: #777;
+.curriculum-hero h1 span {
+  color: var(--purple);
 }
 
 
 /* =========================================================
-   STATS
+   HERO TEXT
 ========================================================= */
 
-.curriculum-stats {
-  position: relative;
+.curriculum-hero-text {
+  max-width: 420px;
 
-  z-index: 2;
+  margin: 30px 0 0;
 
-  display: flex;
-
-  align-items: center;
-
-  gap: 38px;
-}
-
-
-.curriculum-stat {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 4px;
-
-  min-width: 70px;
-}
-
-
-.curriculum-stat strong {
-  font-size: 30px;
-
-  line-height: 1;
-
-  letter-spacing: -0.04em;
-}
-
-
-.curriculum-stat span {
-  font-size: 11px;
-
-  color: #8c8c91;
-}
-
-
-/* =========================================================
-   SEARCH SECTION
-========================================================= */
-
-.curriculum-search-section {
-  width: 100%;
-  max-width: 1250px;
-
-  margin: 0 auto 25px;
-}
-
-
-.curriculum-search-top {
-  display: flex;
-
-  align-items: flex-end;
-
-  justify-content: space-between;
-
-  gap: 20px;
-
-  margin-bottom: 15px;
-}
-
-
-.search-eyebrow {
-  display: block;
-
-  margin-bottom: 5px;
+  color: var(--text-soft);
 
   font-size: 10px;
 
-  font-weight: 800;
+  line-height: 1.8;
 
-  letter-spacing: 0.13em;
-
-  text-transform: uppercase;
-
-  color: #9b9ba1;
-}
-
-
-.curriculum-search-top h2 {
-  margin: 0;
-
-  font-size: 22px;
-
-  letter-spacing: -0.03em;
-}
-
-
-.lesson-result-count {
-  font-size: 12px;
-
-  color: #777;
-}
-
-
-.lesson-result-count span {
-  color: #aaa;
+  letter-spacing: -0.005em;
 }
 
 
 /* =========================================================
-   SEARCH
+   HERO INFO
 ========================================================= */
 
-.curriculum-search {
-  width: 100%;
-
-  height: 64px;
+.curriculum-hero-info {
+  margin-top: 30px;
 
   display: flex;
-
-  align-items: center;
-
-  gap: 15px;
-
-  padding: 0 17px;
-
-  border-radius: 18px;
-
-  background:
-    var(--card-bg, #ffffff);
-
-  border: 1px solid
-    rgba(0, 0, 0, 0.07);
-
-  box-shadow:
-    0 10px 35px
-    rgba(0, 0, 0, 0.035);
-
-  transition:
-    border 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
-}
-
-
-.curriculum-search:focus-within {
-  transform: translateY(-1px);
-
-  border-color:
-    rgba(128, 53, 214, 0.45);
-
-  box-shadow:
-    0 15px 45px
-    rgba(128, 53, 214, 0.12),
-    0 0 0 4px
-    rgba(128, 53, 214, 0.06);
-}
-
-
-.curriculum-search.has-value {
-  border-color:
-    rgba(128, 53, 214, 0.3);
-}
-
-
-.search-icon {
-  width: 38px;
-  height: 38px;
-
-  flex: 0 0 38px;
-
-  display: grid;
-
-  place-items: center;
-
-  border-radius: 11px;
-
-  background:
-    rgba(128, 53, 214, 0.09);
-
-  color: #8035d6;
-
-  font-size: 14px;
-}
-
-
-.curriculum-search input {
-  width: 100%;
-
-  min-width: 0;
-
-  height: 100%;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  color: inherit;
-
-  font-family: inherit;
-
-  font-size: 14px;
-}
-
-
-.curriculum-search input::placeholder {
-  color: #aaa;
-}
-
-
-.curriculum-search input::-webkit-search-cancel-button {
-  display: none;
-}
-
-
-.search-shortcut {
-  display: flex;
-
-  align-items: center;
-
-  gap: 4px;
-
-  flex-shrink: 0;
-}
-
-
-.search-shortcut span {
-  min-width: 24px;
-  height: 24px;
-
-  display: grid;
-
-  place-items: center;
-
-  border-radius: 6px;
-
-  background: #f2f2f4;
-
-  color: #8d8d93;
-
-  font-size: 11px;
-
-  font-weight: 700;
-}
-
-
-.search-clear {
-  width: 34px;
-  height: 34px;
-
-  flex: 0 0 34px;
-
-  display: grid;
-
-  place-items: center;
-
-  border: none;
-
-  border-radius: 10px;
-
-  background: #f1f1f3;
-
-  color: #777;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-
-.search-clear:hover {
-  background:
-    rgba(128, 53, 214, 0.1);
-
-  color: #8035d6;
-
-  transform: scale(1.05);
-}
-
-
-/* =========================================================
-   SEARCH FEEDBACK
-========================================================= */
-
-.search-feedback {
-  margin-top: 10px;
-
-  padding: 0 5px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 15px;
-
-  font-size: 12px;
-
-  color: #8d8d92;
-}
-
-
-.search-feedback-left {
-  display: flex;
-
-  align-items: center;
-
-  gap: 8px;
-}
-
-
-.search-feedback strong {
-  color: #8035d6;
-
-  font-weight: 700;
-}
-
-
-.search-feedback-left > span {
-  flex-shrink: 0;
-}
-
-
-.search-status-dot {
-  width: 6px;
-  height: 6px;
-
-  border-radius: 50%;
-
-  background: #8035d6;
-
-  box-shadow:
-    0 0 0 4px
-    rgba(128, 53, 214, 0.1);
-}
-
-
-/* =========================================================
-   SEARCH HIGHLIGHT
-========================================================= */
-
-mark {
-  padding: 1px 4px;
-
-  border-radius: 5px;
-
-  background:
-    rgba(128, 53, 214, 0.15);
-
-  color: #7130c0;
-
-  font-weight: 700;
-}
-
-
-/* =========================================================
-   LESSON LIST
-========================================================= */
-
-.curriculum-list {
-  width: 100%;
-  max-width: 1250px;
-
-  margin: 0 auto;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 10px;
-}
-
-
-/* =========================================================
-   LESSON
-========================================================= */
-
-.curriculum-lesson {
-  overflow: hidden;
-
-  background:
-    var(--card-bg, #ffffff);
-
-  border: 1px solid
-    rgba(0, 0, 0, 0.065);
-
-  border-radius: 20px;
-
-  transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-
-.curriculum-lesson:hover {
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 12px 35px
-    rgba(0, 0, 0, 0.045);
-}
-
-
-.curriculum-lesson.lesson-open {
-  border-color:
-    rgba(128, 53, 214, 0.25);
-
-  box-shadow:
-    0 18px 45px
-    rgba(128, 53, 214, 0.07);
-}
-
-
-/* =========================================================
-   LESSON HEADER
-========================================================= */
-
-.lesson-header {
-  width: 100%;
-
-  min-height: 96px;
-
-  padding: 22px 28px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 25px;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  color: inherit;
-
-  cursor: pointer;
-
-  text-align: left;
-}
-
-
-.lesson-header:focus-visible {
-  box-shadow:
-    inset 0 0 0 3px
-    rgba(128, 53, 214, 0.2);
-}
-
-
-/* =========================================================
-   LESSON LEFT
-========================================================= */
-
-.lesson-left {
-  min-width: 0;
-
-  display: flex;
-
   align-items: center;
 
   gap: 20px;
 }
 
+.hero-info-block {
+  display: flex;
+  flex-direction: column;
 
-.lesson-counter {
-  width: 50px;
-  height: 50px;
+  gap: 6px;
+}
 
-  flex: 0 0 50px;
+.hero-info-block strong {
+  font-size: 16px;
 
-  display: grid;
+  line-height: 1;
 
-  place-items: center;
+  letter-spacing: -0.045em;
+}
+
+.hero-info-block span {
+  color: var(--text-soft);
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.11em;
+
+  text-transform: uppercase;
+}
+
+.hero-info-line {
+  width: 1px;
+  height: 25px;
+
+  background: var(--border);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+========================================================= */
+
+.curriculum-hero-visual {
+  position: relative;
+
+  height: 470px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* =========================================================
+   ORBITS
+========================================================= */
+
+.hero-orbit {
+  position: absolute;
+
+  border: 1px solid rgba(128, 53, 214, 0.11);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.orbit-one {
+  width: 470px;
+  height: 470px;
+
+  transform: rotate(-20deg);
+}
+
+.orbit-two {
+  width: 350px;
+  height: 350px;
+
+  transform: rotate(35deg);
+}
+
+
+/* =========================================================
+   COURSE OBJECT
+========================================================= */
+
+.hero-course-object {
+  position: relative;
+
+  width: 370px;
+  height: 410px;
+
+  padding: 23px 25px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #18131e 0%,
+      #21152e 55%,
+      #120e17 100%
+    );
+
+  box-shadow:
+    0 45px 90px rgba(34, 20, 45, 0.18);
+
+  transform: rotate(4deg);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.hero-course-object::before {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  top: -110px;
+  right: -110px;
+
+  border-radius: 50%;
+
+  background: rgba(128, 53, 214, 0.32);
+
+  filter: blur(50px);
+}
+
+.hero-course-object::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.045),
+      transparent 60%
+    );
+
+  pointer-events: none;
+}
+
+.curriculum-hero-visual:hover
+.hero-course-object {
+  transform:
+    rotate(0deg)
+    translateY(-7px);
+
+  box-shadow:
+    0 55px 110px rgba(34, 20, 45, 0.23);
+}
+
+
+/* =========================================================
+   OBJECT HEADER
+========================================================= */
+
+.hero-object-header {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: space-between;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.16em;
+}
+
+.hero-object-index {
+  color: rgba(255, 255, 255, 0.27);
+}
+
+
+/* =========================================================
+   OBJECT MAIN
+========================================================= */
+
+.hero-object-main {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-object-small {
+  margin-bottom: 8px;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.2em;
+}
+
+.hero-object-big {
+  font-size: 88px;
+
+  line-height: 0.72;
+
+  letter-spacing: -0.1em;
+
+  font-weight: 950;
+
+  color: #fff;
+}
+
+.hero-object-big.outline {
+  margin-left: 34px;
+  margin-top: 4px;
+
+  color: transparent;
+
+  -webkit-text-stroke:
+    1px rgba(255, 255, 255, 0.5);
+}
+
+
+/* =========================================================
+   OBJECT FOOTER
+========================================================= */
+
+.hero-object-footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: rgba(255, 255, 255, 0.34);
+
+  font-size: 5px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.14em;
+}
+
+.hero-object-footer svg {
+  color: #a36ce8;
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   MINI CARD
+========================================================= */
+
+.hero-mini-card {
+  position: absolute;
+
+  right: 5px;
+  bottom: 20px;
+
+  width: 215px;
+
+  padding: 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: 1px solid var(--border);
 
   border-radius: 14px;
 
   background:
-    rgba(128, 53, 214, 0.09);
+    rgba(255, 255, 255, 0.92);
 
-  color: #8035d6;
+  backdrop-filter: blur(15px);
 
-  font-size: 12px;
+  box-shadow:
+    0 22px 55px rgba(20, 15, 25, 0.1);
 
-  font-weight: 800;
+  z-index: 5;
+
+  transform: rotate(-3deg);
 }
 
+.hero-mini-icon {
+  width: 32px;
+  height: 32px;
 
-.lesson-heading {
-  min-width: 0;
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  background: var(--purple);
+
+  color: #fff;
+
+  font-size: 7px;
 }
 
-
-.lesson-label {
+.hero-mini-card strong {
   display: block;
 
-  margin-bottom: 6px;
+  font-size: 8px;
 
-  font-size: 10px;
+  font-weight: 900;
+}
 
-  font-weight: 800;
+.hero-mini-card span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--text-soft);
+
+  font-size: 6px;
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  left: 40px;
+  bottom: 35px;
+
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text-soft);
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.13em;
+
+  writing-mode: vertical-rl;
+}
+
+.hero-scroll svg {
+  color: var(--purple);
+
+  animation:
+    scrollArrow 1.7s infinite ease-in-out;
+}
+
+@keyframes scrollArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+
+/* =========================================================
+   CURRICULUM SECTION
+========================================================= */
+
+.curriculum-section {
+  padding: 115px 0 135px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.curriculum-section-head {
+  padding-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+}
+
+.section-number {
+  color: var(--purple);
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+}
+
+.section-label {
+  margin-left: 11px;
+
+  color: var(--text-soft);
+
+  font-size: 7px;
+
+  font-weight: 900;
 
   letter-spacing: 0.12em;
 
-  color: #9b9ba1;
+  text-transform: uppercase;
 }
 
+.lesson-count {
+  color: var(--text-soft);
 
-.lesson-header h2 {
-  margin: 0;
+  font-size: 6px;
 
-  overflow: hidden;
+  font-weight: 900;
 
-  font-size: 17px;
-
-  line-height: 1.4;
-
-  font-weight: 700;
-
-  letter-spacing: -0.02em;
-
-  text-overflow: ellipsis;
+  letter-spacing: 0.16em;
 }
 
 
 /* =========================================================
-   LESSON RIGHT
+   CURRICULUM ROW
 ========================================================= */
 
-.lesson-right {
-  display: flex;
-
-  align-items: center;
-
-  gap: 18px;
-
-  flex-shrink: 0;
+.curriculum-row {
+  border-bottom:
+    1px solid var(--border);
 }
 
+.curriculum-row-trigger {
+  width: 100%;
 
-.lesson-topic-count {
-  font-size: 12px;
-
-  color: #999;
-}
-
-
-.lesson-toggle {
-  width: 38px;
-  height: 38px;
+  padding: 29px 0;
 
   display: grid;
 
-  place-items: center;
+  grid-template-columns:
+    65px 1fr auto;
 
-  border-radius: 12px;
+  align-items: center;
 
-  background: #f3f3f5;
+  gap: 25px;
 
-  color: #777;
+  border: 0;
 
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease,
-    color 0.3s ease;
+  background: transparent;
+
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
 }
 
+.lesson-number {
+  color: var(--purple);
 
-.lesson-open .lesson-toggle {
-  transform: rotate(180deg);
+  font-size: 8px;
 
-  background: #8035d6;
+  font-weight: 900;
 
-  color: white;
+  letter-spacing: 0.08em;
+}
+
+.lesson-title {
+  font-size: 21px;
+
+  line-height: 1.1;
+
+  font-weight: 850;
+
+  letter-spacing: -0.045em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.curriculum-row:hover
+.lesson-title,
+.curriculum-row.active
+.lesson-title {
+  color: var(--purple);
+}
+
+.curriculum-row:hover
+.lesson-title {
+  transform: translateX(5px);
 }
 
 
 /* =========================================================
-   CONTENT
+   ACTION
 ========================================================= */
 
-.lesson-content {
+.lesson-action {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  color: var(--text-soft);
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.1em;
+}
+
+.lesson-circle {
+  width: 39px;
+  height: 39px;
+
+  display: grid;
+  place-items: center;
+
+  border:
+    1px solid var(--border-strong);
+
+  border-radius: 50%;
+
+  color: var(--purple);
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.curriculum-row:hover
+.lesson-circle,
+.curriculum-row.active
+.lesson-circle {
+  border-color: var(--purple);
+
+  background: var(--purple);
+
+  color: #fff;
+}
+
+.curriculum-row.active
+.lesson-circle {
+  transform: rotate(90deg);
+}
+
+
+/* =========================================================
+   EXPAND
+========================================================= */
+
+.lesson-expand {
   display: grid;
 
   grid-template-rows: 0fr;
 
   transition:
-    grid-template-rows 0.35s ease;
+    grid-template-rows
+    0.45s cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    );
 }
 
-
-.lesson-content.show {
+.curriculum-row.active
+.lesson-expand {
   grid-template-rows: 1fr;
 }
 
+.lesson-expand-inner {
+  min-height: 0;
 
-.lesson-content > .topics-grid {
   overflow: hidden;
+
+  padding:
+    0 65px 0 90px;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.25s ease,
+    padding-bottom 0.45s ease;
+}
+
+.curriculum-row.active
+.lesson-expand-inner {
+  padding-bottom: 32px;
+
+  opacity: 1;
 }
 
 
 /* =========================================================
-   TOPICS
+   DESCRIPTION
 ========================================================= */
 
-.topics-grid {
-  padding:
-    0 30px
-    30px
-    98px;
+.lesson-description {
+  display: grid;
 
+  grid-template-columns: 165px 1fr;
+
+  gap: 30px;
+}
+
+.lesson-description > span,
+.lesson-details-label {
+  color: var(--text-soft);
+
+  font-size: 6px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.14em;
+
+  text-transform: uppercase;
+}
+
+.lesson-description p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: var(--text-soft);
+
+  font-size: 9px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   DETAILS
+========================================================= */
+
+.lesson-details {
+  margin-top: 25px;
+
+  display: grid;
+
+  grid-template-columns: 165px 1fr;
+
+  gap: 30px;
+}
+
+.lesson-topics {
   display: grid;
 
   grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+    repeat(2, minmax(170px, 1fr));
 
-  gap:
-    0 35px;
+  gap: 7px;
+}
+
+.lesson-topic {
+  min-height: 39px;
+
+  padding: 9px 11px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius: 8px;
+
+  color: var(--text-soft);
+
+  font-size: 7px;
+
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.lesson-topic:hover {
+  border-color:
+    rgba(128, 53, 214, 0.25);
+
+  color: var(--text-main);
+}
+
+.lesson-topic span {
+  width: 17px;
+  height: 17px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--purple-light);
+
+  color: var(--purple);
+
+  font-size: 5px;
 }
 
 
-.curriculum-topic {
-  min-height: 49px;
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+.lesson-preview {
+  margin-top: 22px;
+
+  padding: 13px 15px;
 
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  border:
+    1px solid var(--border);
+
+  border-radius: 10px;
+
+  background:
+    rgba(128, 53, 214, 0.025);
+}
+
+.preview-left {
+  display: flex;
   align-items: center;
 
   gap: 11px;
-
-  border-bottom:
-    1px solid
-    rgba(0, 0, 0, 0.055);
 }
 
-
-.topic-check {
-  width: 22px;
-  height: 22px;
-
-  flex: 0 0 22px;
+.preview-number {
+  width: 29px;
+  height: 29px;
 
   display: grid;
-
   place-items: center;
 
   border-radius: 7px;
 
-  background:
-    rgba(128, 53, 214, 0.08);
+  background: var(--purple-light);
 
-  color: #8035d6;
+  color: var(--purple);
 
-  font-size: 9px;
+  font-size: 6px;
+
+  font-weight: 900;
 }
 
+.preview-left strong {
+  display: block;
 
-.topic-number {
-  width: 20px;
-
-  flex: 0 0 20px;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  color: #b0b0b5;
+  font-size: 8px;
 }
 
+.preview-left p {
+  margin: 3px 0 0;
 
-.curriculum-topic p {
-  margin: 0;
+  color: var(--text-soft);
 
-  font-size: 12.5px;
+  font-size: 6px;
+}
 
-  line-height: 1.5;
+.preview-play {
+  width: 31px;
+  height: 31px;
 
-  color: #666;
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: var(--text-main);
+
+  color: var(--page-bg);
+
+  font-size: 6px;
 }
 
 
 /* =========================================================
-   EMPTY
+   END
 ========================================================= */
 
-.curriculum-empty {
+.curriculum-end {
+  padding-bottom: 65px;
+}
+
+.end-line {
   width: 100%;
-  max-width: 1250px;
+  height: 1px;
 
-  margin: 35px auto;
-
-  padding: 70px 25px;
-
-  text-align: center;
-
-  border-radius: 24px;
-
-  background:
-    var(--card-bg, #ffffff);
-
-  border: 1px solid
-    rgba(0, 0, 0, 0.06);
+  background: var(--border);
 }
 
+.end-content {
+  padding-top: 16px;
 
-.empty-icon {
-  width: 64px;
-  height: 64px;
+  display: flex;
+  justify-content: space-between;
 
-  margin: 0 auto 20px;
+  color: var(--text-soft);
 
-  display: grid;
+  font-size: 6px;
 
-  place-items: center;
+  font-weight: 900;
 
-  border-radius: 18px;
-
-  background:
-    rgba(128, 53, 214, 0.1);
-
-  color: #8035d6;
-
-  font-size: 21px;
-}
-
-
-.curriculum-empty h2 {
-  margin: 0 0 8px;
-
-  font-size: 22px;
-
-  letter-spacing: -0.03em;
-}
-
-
-.curriculum-empty p {
-  margin: 0 0 25px;
-
-  color: #888;
-
-  font-size: 14px;
-}
-
-
-.curriculum-empty button {
-  border: none;
-
-  padding: 12px 20px;
-
-  border-radius: 12px;
-
-  background: #8035d6;
-
-  color: white;
-
-  cursor: pointer;
-
-  font-family: inherit;
-
-  font-weight: 700;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-
-.curriculum-empty button:hover {
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 8px 20px
-    rgba(128, 53, 214, 0.2);
+  letter-spacing: 0.15em;
 }
 
 
@@ -974,284 +1072,314 @@ mark {
    DARK MODE
 ========================================================= */
 
-[data-theme="dark"] .curriculum-page {
-  --bg-color: #0d0d10;
-  --card-bg: #17171b;
-  --text-color: #f4f4f5;
+[data-theme="dark"] .curriculum-page,
+.dark .curriculum-page {
+  --page-bg: #0b0a0d;
 
+  --text-main: #f5f3f7;
+
+  --text-soft:
+    rgba(245, 243, 247, 0.47);
+
+  --border:
+    rgba(255, 255, 255, 0.09);
+
+  --border-strong:
+    rgba(255, 255, 255, 0.16);
+
+  --purple-light:
+    rgba(128, 53, 214, 0.15);
+}
+
+[data-theme="dark"] .curriculum-hero,
+.dark .curriculum-hero {
   background:
     radial-gradient(
-      circle at 85% 0%,
-      rgba(128, 53, 214, 0.14),
+      circle at 80% 45%,
+      rgba(128, 53, 214, 0.12),
       transparent 32%
     ),
-    #0d0d10;
+    var(--page-bg);
 }
 
+[data-theme="dark"] .curriculum-hero-grid,
+.dark .curriculum-hero-grid {
+  opacity: 0.22;
 
-[data-theme="dark"] .curriculum-hero {
-  background:
+  background-image:
     linear-gradient(
-      135deg,
-      rgba(128, 53, 214, 0.16),
-      rgba(23, 23, 27, 0.96)
+      to right,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
     );
-
-  border-color:
-    rgba(255, 255, 255, 0.07);
-
-  box-shadow:
-    0 20px 70px
-    rgba(0, 0, 0, 0.2);
 }
 
-
-[data-theme="dark"] .curriculum-hero p {
-  color: #999;
-}
-
-
-[data-theme="dark"] .curriculum-search {
-  background: #17171b;
-
-  border-color:
-    rgba(255, 255, 255, 0.07);
-
-  box-shadow:
-    0 10px 35px
-    rgba(0, 0, 0, 0.2);
-}
-
-
-[data-theme="dark"] .curriculum-search:focus-within {
-  border-color:
-    rgba(128, 53, 214, 0.55);
-
-  box-shadow:
-    0 15px 45px
-    rgba(0, 0, 0, 0.3),
-    0 0 0 4px
-    rgba(128, 53, 214, 0.08);
-}
-
-
-[data-theme="dark"] .search-shortcut span {
-  background: #24242a;
-
-  color: #999;
-}
-
-
-[data-theme="dark"] .search-clear {
-  background: #29292f;
-
-  color: #aaa;
-}
-
-
-[data-theme="dark"] .curriculum-lesson {
-  background: #17171b;
-
-  border-color:
-    rgba(255, 255, 255, 0.07);
-}
-
-
-[data-theme="dark"] .curriculum-lesson.lesson-open {
-  border-color:
-    rgba(128, 53, 214, 0.4);
-}
-
-
-[data-theme="dark"] .lesson-toggle {
-  background: #24242a;
-
-  color: #aaa;
-}
-
-
-[data-theme="dark"] .curriculum-topic {
-  border-color:
-    rgba(255, 255, 255, 0.06);
-}
-
-
-[data-theme="dark"] .curriculum-topic p {
-  color: #aaa;
-}
-
-
-[data-theme="dark"] .topic-check {
+[data-theme="dark"] .hero-mini-card,
+.dark .hero-mini-card {
   background:
-    rgba(128, 53, 214, 0.14);
-}
-
-
-[data-theme="dark"] mark {
-  background:
-    rgba(128, 53, 214, 0.25);
-
-  color: #c69cff;
-}
-
-
-[data-theme="dark"] .curriculum-empty {
-  background: #17171b;
+    rgba(20, 17, 23, 0.9);
 
   border-color:
-    rgba(255, 255, 255, 0.07);
+    rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .hero-course-object,
+.dark .hero-course-object {
+  box-shadow:
+    0 50px 100px
+    rgba(0, 0, 0, 0.42);
+}
+
+[data-theme="dark"] .lesson-preview,
+.dark .lesson-preview {
+  background:
+    rgba(128, 53, 214, 0.05);
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLET
 ========================================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
 
-  .curriculum-page {
-    padding:
-      100px 25px 70px;
+  .curriculum-hero-inner {
+    width:
+      calc(100% - 60px);
+
+    gap: 35px;
   }
 
-
-  .curriculum-hero {
-    min-height: auto;
-
-    padding: 42px;
-
-    flex-direction: column;
-
-    align-items: flex-start;
+  .curriculum-hero h1 {
+    font-size:
+      clamp(52px, 6.5vw, 76px);
   }
 
-
-  .curriculum-stats {
-    width: 100%;
-
-    justify-content: space-between;
+  .hero-course-object {
+    width: 340px;
+    height: 385px;
   }
 
-
-  .topics-grid {
-    grid-template-columns: 1fr;
-
-    padding:
-      0 30px 30px 30px;
+  .hero-object-big {
+    font-size: 80px;
   }
 
+  .curriculum-container {
+    width:
+      calc(100% - 60px);
+  }
 }
 
 
-@media (max-width: 600px) {
+/* =========================================================
+   MOBILE
+========================================================= */
 
-  .curriculum-page {
-    padding:
-      90px 15px 60px;
-  }
-
+@media (max-width: 780px) {
 
   .curriculum-hero {
-    padding: 30px 24px;
-
-    border-radius: 23px;
+    min-height: auto;
   }
 
+  .curriculum-hero-inner {
+    width:
+      calc(100% - 36px);
+
+    padding:
+      95px 0 85px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 55px;
+  }
 
   .curriculum-hero h1 {
-    font-size: 46px;
+    font-size:
+      clamp(49px, 13vw, 70px);
+
+    line-height: 0.88;
   }
 
+  .curriculum-hero-text {
+    max-width: 390px;
 
-  .curriculum-hero p {
-    font-size: 13px;
+    margin-top: 25px;
+
+    font-size: 9px;
+
+    line-height: 1.8;
   }
 
+  .curriculum-hero-info {
+    margin-top: 25px;
 
-  .curriculum-stats {
     gap: 15px;
   }
 
-
-  .curriculum-stat strong {
-    font-size: 23px;
+  .curriculum-hero-visual {
+    height: 430px;
   }
 
+  .hero-course-object {
+    width:
+      min(350px, 88vw);
 
-  .curriculum-search-top {
-    align-items: flex-start;
-
-    flex-direction: column;
+    height: 385px;
   }
 
-
-  .lesson-header {
-    min-height: 82px;
-
-    padding: 18px;
+  .hero-object-big {
+    font-size: 82px;
   }
 
+  .hero-mini-card {
+    right: 1%;
 
-  .lesson-left {
-    gap: 13px;
+    bottom: 15px;
   }
 
-
-  .lesson-counter {
-    width: 42px;
-    height: 42px;
-
-    flex-basis: 42px;
-
-    border-radius: 12px;
-
-    font-size: 10px;
-  }
-
-
-  .lesson-header h2 {
-    font-size: 14px;
-  }
-
-
-  .lesson-label {
-    font-size: 9px;
-  }
-
-
-  .lesson-topic-count {
+  .hero-scroll {
     display: none;
   }
 
 
-  .lesson-toggle {
+  /* CURRICULUM */
+
+  .curriculum-section {
+    padding:
+      80px 0 90px;
+  }
+
+  .curriculum-container {
+    width:
+      calc(100% - 36px);
+  }
+
+  .curriculum-row-trigger {
+    padding:
+      24px 0;
+
+    grid-template-columns:
+      32px 1fr auto;
+
+    gap: 11px;
+  }
+
+  .lesson-title {
+    font-size: 17px;
+  }
+
+  .lesson-action-text {
+    display: none;
+  }
+
+  .lesson-circle {
     width: 34px;
     height: 34px;
   }
 
-
-  .topics-grid {
-    padding:
-      0 18px 22px;
+  .lesson-expand-inner {
+    padding-left: 43px;
+    padding-right: 0;
   }
 
-
-  .curriculum-topic p {
-    font-size: 12px;
+  .lesson-description,
+  .lesson-details {
+    display: block;
   }
 
-
-  .search-shortcut {
-    display: none;
+  .lesson-description p {
+    margin-top: 11px;
   }
 
-
-  .search-feedback {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 6px;
+  .lesson-details {
+    margin-top: 23px;
   }
 
+  .lesson-details-label {
+    display: block;
+
+    margin-bottom: 11px;
+  }
+
+  .lesson-topics {
+    grid-template-columns:
+      1fr 1fr;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 460px) {
+
+  .curriculum-hero-inner {
+    width:
+      calc(100% - 28px);
+  }
+
+  .curriculum-hero h1 {
+    font-size: 47px;
+  }
+
+  .curriculum-hero-text {
+    font-size: 8.5px;
+  }
+
+  .curriculum-hero-info {
+    gap: 11px;
+  }
+
+  .hero-info-block strong {
+    font-size: 14px;
+  }
+
+  .curriculum-hero-visual {
+    height: 390px;
+  }
+
+  .hero-course-object {
+    width: 300px;
+    height: 345px;
+
+    padding: 19px;
+  }
+
+  .hero-object-big {
+    font-size: 70px;
+  }
+
+  .hero-mini-card {
+    width: 190px;
+
+    padding: 11px;
+  }
+
+  .curriculum-container {
+    width:
+      calc(100% - 28px);
+  }
+
+  .lesson-title {
+    font-size: 15px;
+  }
+
+  .lesson-expand-inner {
+    padding-left: 43px;
+  }
+
+  .lesson-topics {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-preview {
+    padding: 11px;
+  }
 }
