@@ -1,560 +1,469 @@
-import { useMemo, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { FaMapMarkerAlt, FaChevronRight, FaTimes } from "react-icons/fa";
 import "./LiveCourses.css";
 
-const courses = [
+// ===============================
+// MENTOR
+// ===============================
+
+const mentor = {
+  name: "ნიკოლოზ ამაშუკელი",
+  role: "ლექტორი • Video Editing",
+  experience: "5+ წელი გამოცდილება",
+  students: "100+ სტუდენტი",
+  image: "/images/CO.jpg",
+};
+
+// ===============================
+// GROUPS
+// ===============================
+
+const groups = [
   {
     id: 1,
-    title: "Video Editing - Beginner",
-    category: "დამწყები",
-    level: "Beginner",
-    description:
-      "ნულიდან ისწავლე პროფესიონალური ვიდეო მონტაჟი Adobe Premiere Pro-ში.",
-    duration: "8 კვირა",
-    lessons: "16 ლექცია",
-    date: "15 სექტემბერი, 2026",
-    time: "19:00 - 21:00",
-    location: "თბილისი • Creative Studio",
-    seats: 12,
-    available: 5,
-    price: "450 ₾",
-    accent: "purple",
-    tag: "ყველაზე მოთხოვნადი",
+    title: "აუდიტორიაში",
+    students: 0,
+    maxStudents: 15,
+    duration: "6 კვირა",
+    lectures: "12 ლექცია",
+    experience: "0 გამოცდილება",
+    price: "600 ₾",
+    status: "რეგისტრაცია ღიაა",
   },
   {
     id: 2,
-    title: "Advanced Editing",
-    category: "Advanced",
-    level: "Advanced",
-    description:
-      "გააუმჯობესე მონტაჟის ტექნიკა და შექმენი პროფესიონალური ვიდეო პროექტები.",
+    title: "ონლაინ ",
+    students: 0,
+    maxStudents: 15,
     duration: "6 კვირა",
-    lessons: "12 ლექცია",
-    date: "3 ოქტომბერი, 2026",
-    time: "18:30 - 20:30",
-    location: "თბილისი • Creative Studio",
-    seats: 10,
-    available: 3,
-    price: "520 ₾",
-    accent: "orange",
-    tag: "Advanced",
-  },
-  {
-    id: 3,
-    title: "Color & Storytelling",
-    category: "Color",
-    level: "Intermediate",
-    description:
-      "ფერის კორექცია, ვიზუალური სტილი და storytelling ვიდეოს ემოციის გასაძლიერებლად.",
-    duration: "5 კვირა",
-    lessons: "10 ლექცია",
-    date: "20 ოქტომბერი, 2026",
-    time: "19:00 - 21:00",
-    location: "თბილისი • Creative Studio",
-    seats: 12,
-    available: 8,
-    price: "390 ₾",
-    accent: "pink",
-    tag: "ახალი",
-  },
-  {
-    id: 4,
-    title: "Sound Design for Video",
-    category: "Sound",
-    level: "Intermediate",
-    description:
-      "ხმის დიზაინი, მუსიკა, ეფექტები და პროფესიონალური აუდიო workflow.",
-    duration: "4 კვირა",
-    lessons: "8 ლექცია",
-    date: "5 ნოემბერი, 2026",
-    time: "18:00 - 20:00",
-    location: "თბილისი • Creative Studio",
-    seats: 10,
-    available: 6,
-    price: "350 ₾",
-    accent: "blue",
-    tag: "Sound",
+    lectures: "12 ლექცია",
+    experience: "0 გამოცდილება",
+    price: "400 ₾",
+    status: "რეგისტრაცია ღიაა",
   },
 ];
 
-const categories = [
-  "ყველა",
-  "დამწყები",
-  "Advanced",
-  "Color",
-  "Sound",
-];
-
-function CourseVisual({ accent, number }) {
-  return (
-    <div className={`course-visual ${accent}`}>
-      <div className="visual-grid"></div>
-
-      <div className="visual-circle"></div>
-
-      <div className="visual-number">
-        0{number}
-      </div>
-
-      <div className="visual-label">
-        LIVE COURSE
-      </div>
-
-      <div className="visual-play">
-        <span>▶</span>
-      </div>
-    </div>
-  );
-}
-
-export default function LiveCourses() {
-  const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] =
-    useState("ყველა");
-
-  const filteredCourses = useMemo(() => {
-    return courses.filter((course) => {
-      const matchesCategory =
-        activeCategory === "ყველა" ||
-        course.category === activeCategory;
-
-      const searchValue = search.toLowerCase();
-
-      const matchesSearch =
-        course.title.toLowerCase().includes(searchValue) ||
-        course.description
-          .toLowerCase()
-          .includes(searchValue) ||
-        course.category
-          .toLowerCase()
-          .includes(searchValue);
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [search, activeCategory]);
+function LiveCourses() {
+  const [showMentor, setShowMentor] = useState(false);
 
   return (
     <main className="live-page">
 
-      {/* HERO */}
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
       <section className="live-hero">
 
-        <div className="live-hero-content">
+        <div className="hero-content">
 
-          <div className="live-eyebrow">
-            <span></span>
-            EDIT ACADEMY / LIVE
+          <div className="hero-badge">
+            <span className="hero-dot"></span>
+            LIVE COURSE
           </div>
 
           <h1>
-            ისწავლე
-            <br />
-            <em>რეალურ გარემოში.</em>
+            ისწავლე ვიდეო მონტაჟი
+            <span></span>
           </h1>
 
-          <p>
-            ცოცხალი პრაქტიკული კურსები ვიდეო მონტაჟში -
-            მცირე ჯგუფები, პროფესიონალი მენტორი და
-            რეალური პროექტები.
+          <p className="hero-description">
+            რეალურ სამუშაო პროცესში მუშაობ - არა შაბლონურ ფაილებზე,
+            არამედ რეალურ ვიდეომასალასთან, რეალურ პროექტებსა და
+            პროფესიონალურ workflow-ზე.
           </p>
 
-          <div className="hero-stats">
-
+          <div className="hero-features">
             <div>
-              <strong>02</strong>
-              <span>აქტიური ჯგუფი</span>
+              <strong>აუდიტორიაში</strong>
+              <span>დასწრებით</span>
             </div>
 
             <div>
-              <strong>12</strong>
-              <span>მაქს. სტუდენტი</span>
+              <strong>ონლაინ</strong>
+              <span>დისტანციურად</span>
             </div>
 
             <div>
-              <strong>01</strong>
-              <span>ლოკაცია</span>
+              <strong>პრაქტიკა</strong>
+              <span>რეალურ პროექტებზე</span>
             </div>
 
+            <div>
+              <strong>6 კვირა</strong>
+              <span>სრული პროგრამა</span>
+            </div>
           </div>
 
         </div>
 
-        <div className="live-hero-art">
+        {/* =====================================================
+            MENTOR CARD
+        ===================================================== */}
 
-          <div className="hero-orbit orbit-one"></div>
-          <div className="hero-orbit orbit-two"></div>
+        <div className="mentor-wrapper">
 
-          <div className="hero-card-main">
+          <button
+            className="mentor-image-card"
+            onClick={() => setShowMentor(true)}
+            aria-label="მენტორის ინფორმაციის ნახვა"
+          >
 
-            <div className="hero-card-top">
-              <span>LIVE</span>
-              <span>2026 / 27</span>
+            <div className="mentor-image">
+              <img
+                src={mentor.image}
+                alt={mentor.name}
+              />
             </div>
 
-            <div className="hero-card-center">
-              <span>EDIT</span>
-              <strong>ACADEMY</strong>
+            <div className="mentor-overlay"></div>
+
+            <div className="mentor-card-top">
+              <span>MENTOR</span>
+
+              <span className="pro-badge">
+                PRO
+              </span>
             </div>
 
-            <div className="hero-card-bottom">
-              <span>VIDEO</span>
-              <span>PRO</span>
+            <div className="mentor-card-bottom">
+
+              <div>
+                <small>ლექტორი</small>
+
+                <h3>
+                  {mentor.name}
+                </h3>
+              </div>
+
+              <div className="mentor-arrow">
+                <FaChevronRight />
+              </div>
+
             </div>
 
-          </div>
-
-          <div className="floating-info info-one">
-            <span>●</span>
-            Small Groups
-          </div>
-
-          <div className="floating-info info-two">
-            1:1 Feedback
-          </div>
+          </button>
 
         </div>
 
       </section>
 
 
-      {/* SEARCH / FILTER */}
+      {/* =====================================================
+          GROUPS
+      ===================================================== */}
 
-      <section className="course-browser">
+      <section className="groups-section">
 
-        <div className="browser-top">
+        <div className="section-heading">
 
           <div>
-            <span className="section-kicker">
-              FIND YOUR COURSE
+            <span className="section-eyebrow">
+              LIVE PROGRAM
             </span>
 
             <h2>
-              აირჩიე შენი მიმართულება
+              აირჩიე შენთვის სასურველი ჯგუფი
             </h2>
           </div>
 
-          <div className="course-count">
-            <strong>
-              {filteredCourses.length}
-            </strong>
-
-            <span>
-              კურსი
-            </span>
-          </div>
+          <p>
+            მცირე ჯგუფები, ინდივიდუალური ყურადღება და
+            პრაქტიკული სწავლება რეალურ პროექტებზე.
+          </p>
 
         </div>
 
 
-        <div className="browser-controls">
+        <div className="groups-grid">
 
-          <div className="search-box">
+          {groups.map((group) => {
 
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <circle
-                cx="11"
-                cy="11"
-                r="7"
-              />
-              <path d="M16 16L21 21" />
-            </svg>
+            const available =
+              group.maxStudents - group.students;
 
-            <input
-              type="text"
-              placeholder="მოძებნე კურსი..."
-              value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
-            />
+            const progress =
+              (group.students / group.maxStudents) * 100;
 
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="clear-search"
+            return (
+              <article
+                className="group-card"
+                key={group.id}
               >
-                ×
-              </button>
-            )}
 
-          </div>
+                <div className="group-card-header">
+
+                  <div>
+                    <span className="group-label">
+                      LIVE GROUP
+                    </span>
+
+                    <h3>
+                      {group.title}
+                    </h3>
+                  </div>
+
+                  <span className="group-status">
+                    {group.status}
+                  </span>
+
+                </div>
 
 
-          <div className="category-filter">
+                <div className="group-availability">
 
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={
-                  activeCategory === category
-                    ? "active"
-                    : ""
-                }
-                onClick={() =>
-                  setActiveCategory(category)
-                }
-              >
-                {category}
-              </button>
-            ))}
+                  <div className="availability-top">
 
-          </div>
+                    <span>
+                      ადგილები
+                    </span>
+
+                    <strong>
+                      {available}
+                      <small>
+                        / {group.maxStudents}
+                      </small>
+                    </strong>
+
+                  </div>
+
+                  <div className="availability-bar">
+
+                    <span
+                      style={{
+                        width: `${progress}%`,
+                      }}
+                    />
+
+                  </div>
+
+                  <div className="availability-bottom">
+                    <span>
+                      {available} თავისუფალი ადგილი
+                    </span>
+
+                    <span>
+                      მაქს. {group.maxStudents} სტუდენტი
+                    </span>
+                  </div>
+
+                </div>
+
+
+                <div className="group-info-grid">
+
+                  <div>
+                    <span>
+                      გამოცდილება
+                    </span>
+
+                    <strong>
+                      {group.experience}
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>
+                      ხანგრძლივობა
+                    </span>
+
+                    <strong>
+                      {group.duration}
+                    </strong>
+                  </div>
+
+                  <div>
+                    <span>
+                      ლექციები
+                    </span>
+
+                    <strong>
+                      {group.lectures}
+                    </strong>
+                  </div>
+
+                </div>
+
+
+                <div className="group-footer">
+
+                  <div className="price">
+
+                    <span>
+                      კურსის ღირებულება
+                    </span>
+
+                    <strong>
+                      {group.price}
+                    </strong>
+
+                  </div>
+
+                  <button className="group-button">
+                    ჯგუფის არჩევა
+                    <FaChevronRight />
+                  </button>
+
+                </div>
+
+              </article>
+            );
+          })}
 
         </div>
 
       </section>
 
 
-      {/* COURSES */}
+      {/* =====================================================
+          LOCATION
+      ===================================================== */}
 
-      <section className="courses-section">
+      <section className="location-section">
 
-        {filteredCourses.length === 0 ? (
+        <div className="location-card">
 
-          <div className="empty-courses">
+          <div className="location-icon">
+            <FaMapMarkerAlt />
+          </div>
 
-            <div className="empty-icon">
-              /
-            </div>
+          <div className="location-text">
+
+            <span>
+              LOCATION
+            </span>
 
             <h3>
-              კურსი ვერ მოიძებნა
+              სასწავლო სივრცე
             </h3>
 
             <p>
-              სცადე სხვა სიტყვა ან კატეგორია.
+              ლოკაცია დაემატება რეგისტრაციის დაწყებისას.
             </p>
 
-            <button
-              onClick={() => {
-                setSearch("");
-                setActiveCategory("ყველა");
-              }}
-            >
-              ფილტრების გასუფთავება
-            </button>
-
           </div>
 
-        ) : (
-
-          <div className="courses-list">
-
-            {filteredCourses.map(
-              (course, index) => {
-
-                const percentage =
-                  Math.round(
-                    (course.available /
-                      course.seats) *
-                      100
-                  );
-
-                return (
-
-                  <article
-                    className="live-course"
-                    key={course.id}
-                  >
-
-                    <CourseVisual
-                      accent={course.accent}
-                      number={index + 1}
-                    />
-
-
-                    <div className="course-content">
-
-                      <div className="course-heading">
-
-                        <div>
-
-                          <div className="course-tag">
-                            {course.tag}
-                          </div>
-
-                          <h3>
-                            {course.title}
-                          </h3>
-
-                        </div>
-
-                        <div className="course-price">
-                          <span>
-                            ფასი
-                          </span>
-
-                          <strong>
-                            {course.price}
-                          </strong>
-                        </div>
-
-                      </div>
-
-
-                      <p className="course-description">
-                        {course.description}
-                      </p>
-
-
-                      <div className="course-meta">
-
-                        <div>
-                          <span>LEVEL</span>
-                          <strong>
-                            {course.level}
-                          </strong>
-                        </div>
-
-                        <div>
-                          <span>DURATION</span>
-                          <strong>
-                            {course.duration}
-                          </strong>
-                        </div>
-
-                        <div>
-                          <span>LESSONS</span>
-                          <strong>
-                            {course.lessons}
-                          </strong>
-                        </div>
-
-                      </div>
-
-
-                      <div className="course-schedule">
-
-                        <div className="schedule-item">
-
-                          <span>
-                            დაწყება
-                          </span>
-
-                          <strong>
-                            {course.date}
-                          </strong>
-
-                        </div>
-
-                        <div className="schedule-item">
-
-                          <span>
-                            დრო
-                          </span>
-
-                          <strong>
-                            {course.time}
-                          </strong>
-
-                        </div>
-
-                        <div className="schedule-item">
-
-                          <span>
-                            ლოკაცია
-                          </span>
-
-                          <strong>
-                            {course.location}
-                          </strong>
-
-                        </div>
-
-                      </div>
-
-
-                      <div className="course-footer">
-
-                        <div className="availability">
-
-                          <div className="availability-header">
-
-                            <span>
-                              დარჩენილი ადგილები
-                            </span>
-
-                            <strong>
-                              {course.available}
-                              /
-                              {course.seats}
-                            </strong>
-
-                          </div>
-
-                          <div className="availability-bar">
-
-                            <span
-                              style={{
-                                width: `${percentage}%`,
-                              }}
-                            ></span>
-
-                          </div>
-
-                        </div>
-
-
-                        <NavLink
-                          to={`/live-courses/${course.id}`}
-                          className="course-button"
-                        >
-                          კურსის ნახვა
-
-                          <span>
-                            →
-                          </span>
-                        </NavLink>
-
-                      </div>
-
-                    </div>
-
-                  </article>
-
-                );
-              }
-            )}
-
-          </div>
-
-        )}
-
-      </section>
-
-
-      {/* BOTTOM CTA */}
-
-      <section className="live-cta">
-
-        <div>
-
-          <span className="section-kicker">
-            NOT SURE YET?
-          </span>
-
-          <h2>
-            ვერ გადაწყვიტე
-            <br />
-            რომელი კურსია შენთვის?
-          </h2>
+         <button
+  className="location-button"
+  type="button"
+  onClick={() =>
+    window.open(
+      "https://www.google.com/maps/search/?api=1&query=Tbilisi,Georgia",
+      "_blank"
+    )
+  }
+>
+  რუკაზე ნახვა
+  <FaChevronRight />
+</button>
 
         </div>
 
-        <NavLink
-          to="/contact"
-          className="cta-button"
-        >
-          დაგვიკავშირდი
-          <span>→</span>
-        </NavLink>
-
       </section>
+
+
+      {/* =====================================================
+          MENTOR MODAL
+      ===================================================== */}
+
+      {showMentor && (
+
+        <div
+          className="mentor-modal"
+          onClick={() => setShowMentor(false)}
+        >
+
+          <div
+            className="mentor-modal-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+
+            <button
+              className="mentor-close"
+              onClick={() => setShowMentor(false)}
+            >
+              <FaTimes />
+            </button>
+
+
+            <div className="modal-image">
+
+              <img
+                src={mentor.image}
+                alt={mentor.name}
+              />
+
+            </div>
+
+
+            <div className="modal-content">
+
+              <div className="modal-badge">
+                PRO MENTOR
+              </div>
+
+              <h2>
+                {mentor.name}
+              </h2>
+
+              <p className="modal-role">
+                {mentor.role}
+              </p>
+
+
+              <div className="mentor-stats">
+
+                <div>
+                  <strong>
+                    5+
+                  </strong>
+
+                  <span>
+                    წელი გამოცდილება
+                  </span>
+                </div>
+
+                <div>
+                  <strong>
+                    100+
+                  </strong>
+
+                  <span>
+                    სტუდენტი
+                  </span>
+                </div>
+
+                <div>
+                  <strong>
+                    12
+                  </strong>
+
+                  <span>
+                    ლექცია
+                  </span>
+                </div>
+
+              </div>
+
+
+              <p className="modal-description">
+                სწავლება ეფუძნება რეალურ სამუშაო პროცესს,
+                პრაქტიკულ დავალებებსა და ვიდეომასალაზე მუშაობას.
+                მიზანია სტუდენტმა კურსის დასრულების შემდეგ
+                დამოუკიდებლად შეძლოს პროფესიონალური ვიდეო
+                მონტაჟის შესრულება.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
 
     </main>
   );
 }
+
+export default LiveCourses;
