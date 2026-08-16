@@ -1,459 +1,817 @@
-import { useMemo, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  FaCheck,
+  FaChevronRight,
+  FaClock,
+  FaLock,
+  FaPlay,
+  FaPause,
+  FaVideo,
+} from "react-icons/fa";
+
 import "./Recordings.css";
 
-const recordingsData = [
+const LESSONS = [
   {
     id: 1,
-    title: "Premiere Pro - პირველი ნაბიჯები",
-    category: "Premiere Pro",
-    module: "Editing",
-    date: "24 ივლისი, 2026",
-    duration: "1:42:18",
-    lesson: "ლექცია 01",
-    description:
-      "Adobe Premiere Pro-ს ინტერფეისი, პროექტის შექმნა და სამუშაო სივრცის სწორად ორგანიზება.",
-    image:
-      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1200&q=80",
-    featured: true,
+    title: "ვიდეო მონტაჟის საფუძვლები",
+    duration: "42:00",
+    preview: true,
   },
   {
     id: 2,
-    title: "Timeline & Professional Editing",
-    category: "Editing",
-    module: "Premiere Pro",
-    date: "27 ივლისი, 2026",
-    duration: "1:28:42",
-    lesson: "ლექცია 02",
-    description:
-      "Timeline-ის პროფესიონალური გამოყენება, cuts, transitions და editing workflow.",
-    image:
-      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80",
+    title: "Premiere Pro — სამუშაო გარემო",
+    duration: "48:00",
   },
   {
     id: 3,
-    title: "Sound Design საფუძვლები",
-    category: "Sound",
-    module: "Audio",
-    date: "30 ივლისი, 2026",
-    duration: "1:16:35",
-    lesson: "ლექცია 03",
-    description:
-      "ხმის გაწმენდა, levels, background noise და პროფესიონალური sound design.",
-    image:
-      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80",
+    title: "Timeline და მონტაჟის ლოგიკა",
+    duration: "51:00",
   },
   {
     id: 4,
-    title: "Color Correction & Grading",
-    category: "Color",
-    module: "Color",
-    date: "2 აგვისტო, 2026",
-    duration: "1:34:20",
-    lesson: "ლექცია 04",
-    description:
-      "Color correction-ის საფუძვლები და კადრის პროფესიონალური ვიზუალური დამუშავება.",
-    image:
-      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+    title: "Cut, Trim და ძირითადი ინსტრუმენტები",
+    duration: "44:00",
   },
   {
     id: 5,
-    title: "Motion & Keyframes",
-    category: "Motion",
-    module: "Motion",
-    date: "5 აგვისტო, 2026",
-    duration: "1:21:11",
-    lesson: "ლექცია 05",
-    description:
-      "Keyframes, animation და motion principles Premiere Pro-ში.",
-    image:
-     "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=900&q=80",
+    title: "ფერების კორექცია",
+    duration: "46:00",
   },
   {
     id: 6,
-    title: "Storytelling ვიდეოში",
-    category: "Storytelling",
-    module: "Story",
-    date: "8 აგვისტო, 2026",
-    duration: "1:12:48",
-    lesson: "ლექცია 06",
-    description:
-      "როგორ შევქმნათ ემოციური და საინტერესო ვიდეო მონტაჟის საშუალებით.",
-    image:
-      "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=900&q=80",
+    title: "აუდიოს დამუშავება",
+    duration: "39:00",
   },
   {
     id: 7,
-    title: "Advanced Editing Workflow",
-    category: "Editing",
-    module: "Premiere Pro",
-    date: "11 აგვისტო, 2026",
-    duration: "1:48:09",
-    lesson: "ლექცია 07",
-    description:
-      "სწრაფი და ეფექტური პროფესიონალური editing workflow.",
-    image:
-       "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80",
+    title: "Transitions და ეფექტები",
+    duration: "43:00",
   },
   {
     id: 8,
-    title: "Final Project Review",
-    category: "Project",
-    module: "Final",
-    date: "15 აგვისტო, 2026",
-    duration: "1:55:27",
-    lesson: "ლექცია 08",
-    description:
-      "სტუდენტების საბოლოო პროექტების განხილვა და პროფესიონალური feedback.",
-    image:
-      "https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=900&q=80",
+    title: "Titles, Text და Animation",
+    duration: "47:00",
+  },
+  {
+    id: 9,
+    title: "Speed Ramping და Slow Motion",
+    duration: "41:00",
+  },
+  {
+    id: 10,
+    title: "პროფესიონალური Color Grading",
+    duration: "52:00",
+  },
+  {
+    id: 11,
+    title: "Sound Design",
+    duration: "45:00",
+  },
+  {
+    id: 12,
+    title: "ვიდეოს ვიზუალური სტილი",
+    duration: "49:00",
+  },
+  {
+    id: 13,
+    title: "რეალური პროექტის აწყობა",
+    duration: "56:00",
+  },
+  {
+    id: 14,
+    title: "Final Edit — პროექტის დასრულება",
+    duration: "53:00",
+  },
+  {
+    id: 15,
+    title: "PRO Workflow — სრული სამუშაო პროცესი",
+    duration: "61:00",
   },
 ];
 
-const categories = [
-  "ყველა",
-  "Premiere Pro",
-  "Editing",
-  "Sound",
-  "Color",
-  "Motion",
-  "Storytelling",
-  "Project",
-];
+const parseDuration = (duration) => {
+  const [minutes, seconds] = duration.split(":").map(Number);
 
-export default function Recordings() {
-  const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("ყველა");
+  return minutes * 60 + seconds;
+};
 
-  const filteredRecordings = useMemo(() => {
-    return recordingsData.filter((recording) => {
-      const matchesCategory =
-        activeCategory === "ყველა" ||
-        recording.category === activeCategory ||
-        recording.module === activeCategory;
+const formatTime = (seconds) => {
+  const safeSeconds = Math.max(0, Math.floor(seconds || 0));
 
-      const searchText = search.toLowerCase();
+  const minutes = Math.floor(safeSeconds / 60);
+  const remainingSeconds = safeSeconds % 60;
 
-      const matchesSearch =
-        recording.title.toLowerCase().includes(searchText) ||
-        recording.description.toLowerCase().includes(searchText) ||
-        recording.category.toLowerCase().includes(searchText) ||
-        recording.module.toLowerCase().includes(searchText);
+  return `${String(minutes).padStart(2, "0")}:${String(
+    remainingSeconds
+  ).padStart(2, "0")}`;
+};
 
-      return matchesCategory && matchesSearch;
+function Recordings() {
+  /*
+   * =====================================================
+   * TEMPORARY ACCESS
+   * =====================================================
+   *
+   * false = კურსი არ არის ნაყიდი
+   * true  = კურსი ნაყიდია
+   *
+   * მოგვიანებით ეს პირდაპირ Supabase-დან მოვა.
+   */
+
+  const [hasAccess, setHasAccess] = useState(false);
+
+  /*
+   * დასრულებული ლექციები
+   */
+
+  const [completedLessons, setCompletedLessons] = useState([]);
+
+  /*
+   * მიმდინარე ლექცია
+   */
+
+  const [activeLessonId, setActiveLessonId] = useState(1);
+
+  /*
+   * ვიდეოს მიმდინარე დრო
+   */
+
+  const [currentTime, setCurrentTime] = useState(0);
+
+  /*
+   * Play / Pause
+   */
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const timerRef = useRef(null);
+
+  const activeLesson = useMemo(() => {
+    return (
+      LESSONS.find((lesson) => lesson.id === activeLessonId) ||
+      LESSONS[0]
+    );
+  }, [activeLessonId]);
+
+  const activeDuration = parseDuration(activeLesson.duration);
+
+  /*
+   * =====================================================
+   * PROGRESS
+   * =====================================================
+   */
+
+  const completedCount = hasAccess
+    ? completedLessons.length
+    : 0;
+
+  const courseProgress = Math.round(
+    (completedCount / LESSONS.length) * 100
+  );
+
+  const videoProgress = Math.min(
+    100,
+    Math.round((currentTime / activeDuration) * 100)
+  );
+
+  /*
+   * =====================================================
+   * NEXT UNLOCKED LESSON
+   * =====================================================
+   */
+
+  const nextLessonId = hasAccess
+    ? Math.min(
+        completedLessons.length + 1,
+        LESSONS.length
+      )
+    : 0;
+
+  /*
+   * =====================================================
+   * VIDEO SIMULATION
+   * =====================================================
+   *
+   * სანამ ნამდვილ <video>-ს ჩავსვამთ,
+   * ეს უბრალოდ ამოძრავებს progress-ს.
+   */
+
+  useEffect(() => {
+    if (!isPlaying) {
+      clearInterval(timerRef.current);
+      return;
+    }
+
+    timerRef.current = setInterval(() => {
+      setCurrentTime((previous) => {
+        const next = previous + 1;
+
+        if (next >= activeDuration) {
+          clearInterval(timerRef.current);
+
+          setIsPlaying(false);
+
+          handleLessonComplete(activeLesson.id);
+
+          return activeDuration;
+        }
+
+        return next;
+      });
+    }, 1000);
+
+    return () => {
+      clearInterval(timerRef.current);
+    };
+  }, [isPlaying, activeDuration, activeLesson.id]);
+
+  /*
+   * =====================================================
+   * COMPLETE LESSON
+   * =====================================================
+   */
+
+  const handleLessonComplete = (lessonId) => {
+    if (!hasAccess) return;
+
+    setCompletedLessons((previous) => {
+      if (previous.includes(lessonId)) {
+        return previous;
+      }
+
+      return [...previous, lessonId].sort(
+        (a, b) => a - b
+      );
     });
-  }, [search, activeCategory]);
 
-  const featured =
-    recordingsData.find((item) => item.featured) ||
-    recordingsData[0];
+    /*
+     * შემდეგ ლექციაზე გადასვლა
+     */
+
+    if (lessonId < LESSONS.length) {
+      setTimeout(() => {
+        setActiveLessonId(lessonId + 1);
+        setCurrentTime(0);
+        setIsPlaying(false);
+      }, 400);
+    }
+  };
+
+  /*
+   * =====================================================
+   * LESSON STATUS
+   * =====================================================
+   */
+
+  const getLessonStatus = (lesson) => {
+    const isCompleted = completedLessons.includes(
+      lesson.id
+    );
+
+    const isNext =
+      hasAccess &&
+      lesson.id === nextLessonId;
+
+    const isPrevious =
+      hasAccess &&
+      lesson.id < nextLessonId;
+
+    const isPreview =
+      !hasAccess && lesson.id === 1;
+
+    const isLocked =
+      !isPreview &&
+      !isCompleted &&
+      !isNext;
+
+    return {
+      isCompleted,
+      isNext,
+      isPrevious,
+      isPreview,
+      isLocked,
+    };
+  };
+
+  /*
+   * =====================================================
+   * SELECT LESSON
+   * =====================================================
+   */
+
+  const selectLesson = (lesson) => {
+    const status = getLessonStatus(lesson);
+
+    if (status.isLocked) {
+      return;
+    }
+
+    setActiveLessonId(lesson.id);
+    setCurrentTime(0);
+    setIsPlaying(false);
+  };
+
+  /*
+   * =====================================================
+   * PLAY
+   * =====================================================
+   */
+
+  const togglePlay = () => {
+    if (!hasAccess && activeLesson.id !== 1) {
+      return;
+    }
+
+    setIsPlaying((previous) => !previous);
+  };
+
+  /*
+   * =====================================================
+   * BUY COURSE
+   * =====================================================
+   */
+
+  const handleBuyCourse = () => {
+    setHasAccess(true);
+
+    setCompletedLessons([]);
+
+    setActiveLessonId(1);
+
+    setCurrentTime(0);
+
+    setIsPlaying(false);
+  };
+
+  /*
+   * =====================================================
+   * RESET — მხოლოდ development-ისთვის
+   * =====================================================
+   */
+
+  const resetProgress = () => {
+    setCompletedLessons([]);
+
+    setActiveLessonId(1);
+
+    setCurrentTime(0);
+
+    setIsPlaying(false);
+  };
 
   return (
     <main className="recordings-page">
 
-      {/* HERO */}
+      {/* =================================================
+          HEADER
+      ================================================= */}
 
-      <section className="recordings-hero">
-        <div className="recordings-hero-inner">
+      <section className="recordings-header">
 
-          <div className="recordings-breadcrumb">
-            <NavLink to="./livecourses/livecourses.jsx">მთავარი</NavLink>
-            <span>/</span>
-            <span>ლაივ ჩანაწერები</span>
+        <div className="header-copy">
+
+          <div className="recordings-label">
+            <span className="label-dot" />
+            EDIT ACADEMY / RECORDINGS
           </div>
 
-          <div className="recordings-heading">
-
-            <div>
-              <span className="recordings-eyebrow">
-                LIVE COURSE ARCHIVE
-              </span>
-
-              <h1>
-                ლექციების
-                <span> ჩანაწერები</span>
-              </h1>
-
-              <p>
-                აქ იპოვი ლაივ კურსის ფარგლებში ჩატარებული
-                ლექციების სრულ არქივს და ნებისმიერ დროს შეძლებ
-                გავლილი მასალის გადახედვას.
-              </p>
-            </div>
-
-            <div className="recordings-count">
-              <strong>{recordingsData.length}</strong>
-              <span>ჩანაწერი</span>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* FEATURED */}
-
-      <section className="featured-recording">
-
-        <div className="featured-image">
-          <img
-            src={featured.image}
-            alt={featured.title}
-          />
-
-          <div className="featured-overlay"></div>
-
-          <div className="featured-play">
-            <span>▶</span>
-          </div>
-
-          <div className="featured-duration">
-            {featured.duration}
-          </div>
-        </div>
-
-        <div className="featured-content">
-
-          <span className="featured-label">
-            ბოლო ჩანაწერი
-          </span>
-
-          <span className="featured-lesson">
-            {featured.lesson}
-          </span>
-
-          <h2>{featured.title}</h2>
-
-          <p>{featured.description}</p>
-
-          <div className="featured-meta">
-            <span>● {featured.category}</span>
-            <span>◷ {featured.duration}</span>
-            <span>▣ {featured.date}</span>
-          </div>
-
-          <button className="watch-featured">
-            ▶ ნახვა
-          </button>
-
-        </div>
-
-      </section>
-
-      {/* CONTENT */}
-
-      <section className="recordings-content">
-
-        <div className="recordings-toolbar">
-
-          <div className="category-filters">
-
-            {categories.map((category) => (
-              <button
-                key={category}
-                className={
-                  activeCategory === category
-                    ? "active"
-                    : ""
-                }
-                onClick={() =>
-                  setActiveCategory(category)
-                }
-              >
-                {category}
-              </button>
-            ))}
-
-          </div>
-
-          <div className="recordings-search">
-
-            <span>⌕</span>
-
-            <input
-              type="text"
-              placeholder="მოძებნე ჩანაწერი..."
-              value={search}
-              onChange={(e) =>
-                setSearch(e.target.value)
-              }
-            />
-
-            {search && (
-              <button
-                onClick={() => setSearch("")}
-                className="clear-search"
-              >
-                ×
-              </button>
-            )}
-
-          </div>
-
-        </div>
-
-        {/* HEADER */}
-
-        <div className="recordings-list-header">
-
-          <div>
-            <span className="section-mini-label">
-              ARCHIVE
-            </span>
-
-            <h2>
-              ყველა ჩანაწერი
-            </h2>
-          </div>
-
-          <span>
-            {filteredRecordings.length} შედეგი
-          </span>
-
-        </div>
-
-        {/* GRID */}
-
-        {filteredRecordings.length > 0 ? (
-
-          <div className="recordings-grid">
-
-            {filteredRecordings.map((recording, index) => (
-
-              <article
-                className="recording-card"
-                key={recording.id}
-                style={{
-                  "--delay": `${index * 70}ms`,
-                }}
-              >
-
-                <div className="recording-thumbnail">
-
-                  <img
-                    src={recording.image}
-                    alt={recording.title}
-                  />
-
-                  <div className="thumbnail-overlay"></div>
-
-                  <button className="recording-play">
-                    ▶
-                  </button>
-
-                  <span className="recording-time">
-                    {recording.duration}
-                  </span>
-
-                  <span className="recording-lesson">
-                    {recording.lesson}
-                  </span>
-
-                </div>
-
-                <div className="recording-info">
-
-                  <div className="recording-topline">
-
-                    <span>
-                      {recording.category}
-                    </span>
-
-                    <span>
-                      {recording.date}
-                    </span>
-
-                  </div>
-
-                  <h3>
-                    {recording.title}
-                  </h3>
-
-                  <p>
-                    {recording.description}
-                  </p>
-
-                  <div className="recording-bottom">
-
-                    <span className="recording-duration">
-                      ◷ {recording.duration}
-                    </span>
-
-                    <button className="recording-watch">
-                      ყურება <span>→</span>
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </article>
-
-            ))}
-
-          </div>
-
-        ) : (
-
-          <div className="no-recordings">
-
-            <div className="no-recordings-icon">
-              ⌕
-            </div>
-
-            <h3>
-              ჩანაწერი ვერ მოიძებნა
-            </h3>
-
-            <p>
-              შეცვალე საძიებო სიტყვა ან აირჩიე სხვა კატეგორია.
-            </p>
-
-            <button
-              onClick={() => {
-                setSearch("");
-                setActiveCategory("ყველა");
-              }}
-            >
-              ფილტრების გასუფთავება
-            </button>
-
-          </div>
-
-        )}
-
-      </section>
-
-      {/* ACCESS INFO */}
-
-      <section className="recordings-access">
-
-        <div className="access-icon">
-          ▶
-        </div>
-
-        <div>
-          <span>
-            LIVE COURSE STUDENTS
-          </span>
-
-          <h3>
-            ჩანაწერები ხელმისაწვდომია კურსის სტუდენტებისთვის
-          </h3>
+          <h1>
+            ჩანაწერები
+          </h1>
 
           <p>
-            ლაივ კურსის შეძენის შემდეგ შენს პირად კაბინეტში
-            ავტომატურად გამოჩნდება ყველა ხელმისაწვდომი
-            ლექციის ჩანაწერი.
+            წინასწარ მომზადებული 15 ჩანაწერი,
+            რომელიც დაგეხმარება ვიდეო მონტაჟის
+            სწავლაში 0-დან პროფესიონალურ დონემდე.
           </p>
+
         </div>
 
-        <NavLink to="../LiveCourses">
-          ლაივ კურსების ნახვა →
-        </NavLink>
+
+        <div className="header-meta">
+
+          <div className="meta-item">
+            <strong>15</strong>
+            <span>ლექცია</span>
+          </div>
+
+          <div className="meta-line" />
+
+          <div className="meta-item">
+            <strong>1 წელი</strong>
+            <span>წვდომა</span>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =================================================
+          COURSE PROGRESS
+      ================================================= */}
+
+      <section className="course-progress">
+
+        <div className="progress-top">
+
+          <div>
+
+            <span>კურსის პროგრესი</span>
+
+            <strong>
+              {completedCount} / {LESSONS.length}
+            </strong>
+
+          </div>
+
+          <strong className="progress-percent">
+            {courseProgress}%
+          </strong>
+
+        </div>
+
+        <div className="course-progress-track">
+
+          <div
+            className="course-progress-fill"
+            style={{
+              width: `${courseProgress}%`,
+            }}
+          />
+
+        </div>
+
+        <div className="progress-caption">
+
+          {!hasAccess
+            ? "კურსის შეძენის შემდეგ დაიწყება შენი პროგრესის დაგროვება."
+            : completedCount === LESSONS.length
+            ? "კურსი დასრულებულია — შესანიშნავი სამუშაოა."
+            : `შემდეგი: ლექცია ${nextLessonId}`}
+
+        </div>
+
+      </section>
+
+
+      {/* =================================================
+          PLAYER AREA
+      ================================================= */}
+
+      <section className="learning-area">
+
+        {/* =================================================
+            PLAYER
+        ================================================= */}
+
+        <div className="player-column">
+
+          <div className="player-card">
+
+            <div className="player-head">
+
+              <div className="player-course">
+                <FaVideo />
+
+                <span>
+                  VIDEO COURSE
+                </span>
+              </div>
+
+              <div className="player-index">
+                {String(activeLesson.id).padStart(2, "0")}
+                <span>/15</span>
+              </div>
+
+            </div>
+
+
+            {/* PLAYER */}
+
+            <div className="video-stage">
+
+              <div className="video-noise" />
+
+              <div className="video-stage-content">
+
+                <div className="stage-kicker">
+                  EDIT ACADEMY
+                </div>
+
+                <h2>
+                  {activeLesson.title}
+                </h2>
+
+                <p>
+                  {hasAccess
+                    ? isPlaying
+                      ? "ლექცია მიმდინარეობს..."
+                      : "დააჭირე Play-ს გასაგრძელებლად."
+                    : "ნახე პირველი ლექციის Preview."}
+                </p>
+
+
+                <button
+                  type="button"
+                  className="stage-play"
+                  onClick={togglePlay}
+                >
+
+                  {isPlaying ? (
+                    <FaPause />
+                  ) : (
+                    <FaPlay />
+                  )}
+
+                </button>
+
+              </div>
+
+
+              <div className="stage-number">
+                {String(activeLesson.id).padStart(2, "0")}
+              </div>
+
+            </div>
+
+
+            {/* VIDEO BAR */}
+
+            <div className="video-controls">
+
+              <div className="video-time">
+                {formatTime(currentTime)}
+              </div>
+
+              <div className="video-track">
+
+                <div
+                  className="video-track-fill"
+                  style={{
+                    width: `${videoProgress}%`,
+                  }}
+                />
+
+              </div>
+
+              <div className="video-time">
+                {activeLesson.duration}
+              </div>
+
+            </div>
+
+
+            {/* VIDEO TITLE */}
+
+            <div className="player-info">
+
+              <div>
+
+                <span>
+                  ლექცია{" "}
+                  {String(activeLesson.id).padStart(
+                    2,
+                    "0"
+                  )}
+                </span>
+
+                <h2>
+                  {activeLesson.title}
+                </h2>
+
+              </div>
+
+              <div className="player-duration">
+                <FaClock />
+                {activeLesson.duration}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              PURCHASE CARD
+          ================================================= */}
+
+          {!hasAccess && (
+
+            <div className="purchase-card">
+
+              <div className="purchase-copy">
+
+                <span>
+                  სრული წვდომა
+                </span>
+
+                <h3>
+                  ისწავლე ვიდეო მონტაჟი
+                  <br />
+                  <em>0-დან PRO-მდე.</em>
+                </h3>
+
+                <p>
+                  კურსის შეძენის შემდეგ მიიღებ
+                  წვდომას ყველა 15 ჩანაწერზე ერთი წლის
+                  განმავლობაში.
+                </p>
+
+              </div>
+
+
+              <div className="purchase-action">
+
+                <div className="purchase-price">
+                  <span>კურსის ფასი</span>
+                  <strong>
+                    450 <small>₾</small>
+                  </strong>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleBuyCourse}
+                >
+                  კურსის შეძენა
+                  <FaChevronRight />
+                </button>
+
+              </div>
+
+            </div>
+
+          )}
+
+        </div>
+
+
+        {/* =================================================
+            LESSON LIST
+        ================================================= */}
+
+        <aside className="lesson-column">
+
+          <div className="lesson-column-head">
+
+            <div>
+
+              <span>
+                COURSE CONTENT
+              </span>
+
+              <h2>
+                ლექციები
+              </h2>
+
+            </div>
+
+            <strong>
+              {completedCount}/15
+            </strong>
+
+          </div>
+
+
+          <div className="lesson-list">
+
+            {LESSONS.map((lesson) => {
+
+              const status =
+                getLessonStatus(lesson);
+
+              const isActive =
+                activeLessonId === lesson.id;
+
+              return (
+                <button
+                  key={lesson.id}
+                  type="button"
+                  className={[
+                    "lesson-row",
+                    isActive
+                      ? "lesson-active"
+                      : "",
+                    status.isCompleted
+                      ? "lesson-done"
+                      : "",
+                    status.isLocked
+                      ? "lesson-locked"
+                      : "",
+                  ].join(" ")}
+                  onClick={() =>
+                    selectLesson(lesson)
+                  }
+                  disabled={status.isLocked}
+                >
+
+                  <div className="lesson-status">
+
+                    {status.isCompleted ? (
+                      <FaCheck />
+                    ) : status.isLocked ? (
+                      <FaLock />
+                    ) : (
+                      String(lesson.id).padStart(
+                        2,
+                        "0"
+                      )
+                    )}
+
+                  </div>
+
+
+                  <div className="lesson-main">
+
+                    <div className="lesson-tag">
+
+                      {status.isCompleted
+                        ? "დასრულებული"
+                        : status.isPreview
+                        ? "PREVIEW"
+                        : status.isNext
+                        ? "შემდეგი ლექცია"
+                        : "ჩაკეტილი"}
+
+                    </div>
+
+                    <h3>
+                      {lesson.title}
+                    </h3>
+
+                  </div>
+
+
+                  <div className="lesson-right">
+
+                    <span>
+                      {lesson.duration}
+                    </span>
+
+                    {!status.isLocked && (
+                      <FaChevronRight />
+                    )}
+
+                  </div>
+
+                </button>
+              );
+            })}
+
+          </div>
+
+
+          {/* =================================================
+              ACCESS INFO
+          ================================================= */}
+
+          <div className="access-info">
+
+            <div className="access-icon">
+              {hasAccess ? (
+                <FaCheck />
+              ) : (
+                <FaLock />
+              )}
+            </div>
+
+            <div>
+
+              <strong>
+                {hasAccess
+                  ? "კურსზე წვდომა აქტიურია"
+                  : "კურსის ჩანაწერები ჩაკეტილია"}
+              </strong>
+
+              <p>
+                {hasAccess
+                  ? "ყოველი ლექციის დასრულების შემდეგ შემდეგი ავტომატურად გაიხსნება."
+                  : "პირველი ლექციის Preview-ის ნახვა შეგიძლია კურსის შეძენამდე."}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          {hasAccess && (
+            <button
+              type="button"
+              className="reset-button"
+              onClick={resetProgress}
+            >
+              Reset progress
+            </button>
+          )}
+
+        </aside>
 
       </section>
 
     </main>
   );
 }
+
+export default Recordings;
