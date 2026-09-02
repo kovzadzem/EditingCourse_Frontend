@@ -3,7 +3,9 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 
 import Home from "../pages/Home/home";
-import LiveCourses from "../pages/LiveCourses/LiveCourses";
+
+import VideoEditing from "../pages/LiveCourses/VideoEditing/VideoEditing";
+import Videography from "../pages/LiveCourses/Videography/Videography";
 
 import Login from "../pages/Login/login";
 import Register from "../pages/Register/register";
@@ -19,7 +21,9 @@ import Recordings from "../pages/recordings/recordings";
 import Students from "../pages/Dashboard/students";
 import Payments from "../pages/Dashboard/payments";
 
-import Curriculum from "../pages/Curriculum/Curriculum";
+import VideoEditingCurriculum from "../pages/Curriculum/VideoEditing/VideoEditing";
+import VideographyCurriculum from "../pages/Curriculum/Videography/Videography";
+
 import About from "../pages/About/about";
 import Portfolio from "../pages/Portfolio/Portfolio";
 import Profile from "../pages/Profile/profile";
@@ -38,10 +42,23 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
 
+      /* =====================================================
+         LIVE COURSES
+      ===================================================== */
+
       {
-        path: "livecourses",
-        element: <LiveCourses />,
+        path: "livecourses/video-editing",
+        element: <VideoEditing />,
       },
+
+      {
+        path: "livecourses/videography",
+        element: <Videography />,
+      },
+
+      /* =====================================================
+         AUTH
+      ===================================================== */
 
       {
         path: "login",
@@ -58,6 +75,10 @@ export const router = createBrowserRouter([
         element: <ForgotPassword />,
       },
 
+      /* =====================================================
+         GENERAL
+      ===================================================== */
+
       {
         path: "gallery",
         element: <Gallery />,
@@ -67,6 +88,10 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
+
+      /* =====================================================
+         DASHBOARD
+      ===================================================== */
 
       {
         path: "dashboard",
@@ -103,10 +128,19 @@ export const router = createBrowserRouter([
         element: <Payments />,
       },
 
-      {
-        path: "curriculum",
-        element: <Curriculum />,
-      },
+      /* =====================================================
+         OTHER PAGES
+      ===================================================== */
+
+{
+  path: "curriculum/video-editing",
+  element: <VideoEditingCurriculum />,
+},
+
+{
+  path: "curriculum/videography",
+  element: <VideographyCurriculum />,
+},
 
       {
         path: "about",
@@ -127,9 +161,10 @@ export const router = createBrowserRouter([
         path: "reset-password",
         element: <ResetPassword />,
       },
-    {
+
+      {
         path: "partnership",
-        element: <Partnership/>,
+        element: <Partnership />,
       },
     ],
   },
