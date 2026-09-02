@@ -22,11 +22,10 @@ function PlayIcon({ size = 20 }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
-        d="M8 5.5V18.5C8 19.3 8.9 19.8 9.6 19.35L19 13.1C19.65 12.67 19.65 11.73 19 11.3L9.6 5.05C8.9 4.6 8 5.1 8 5.9V5.5Z"
+        d="M8 5.9C8 5.1 8.9 4.6 9.6 5.05L19 11.3C19.65 11.73 19.65 12.67 19 13.1L9.6 19.35C8.9 19.8 8 19.3 8 18.5V5.9Z"
         fill="currentColor"
       />
     </svg>
@@ -40,7 +39,6 @@ function PauseIcon({ size = 20 }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <rect
@@ -70,21 +68,18 @@ function VolumeIcon({ size = 20 }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
         d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z"
         fill="currentColor"
       />
-
       <path
         d="M16 8C17.35 9.1 18 10.45 18 12C18 13.55 17.35 14.9 16 16"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
       />
-
       <path
         d="M18.5 5.8C20.45 7.45 21.5 9.55 21.5 12C21.5 14.45 20.45 16.55 18.5 18.2"
         stroke="currentColor"
@@ -102,21 +97,18 @@ function MuteIcon({ size = 20 }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
       <path
         d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z"
         fill="currentColor"
       />
-
       <path
         d="M16 9L21 15"
         stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
       />
-
       <path
         d="M21 9L16 15"
         stroke="currentColor"
@@ -138,7 +130,6 @@ function AnimatedNumber({ value, duration = 1.2 }) {
     const controls = animate(0, value, {
       duration,
       ease: [0.16, 1, 0.3, 1],
-
       onUpdate: (latest) => {
         setDisplayValue(Math.round(latest));
       },
@@ -151,10 +142,10 @@ function AnimatedNumber({ value, duration = 1.2 }) {
 }
 
 /* =====================================================
-   PREMIUM STAT
+   STAT CARD
 ===================================================== */
 
-function PremiumStat({
+function StatCard({
   number,
   label,
   description,
@@ -162,15 +153,9 @@ function PremiumStat({
 }) {
   return (
     <motion.div
-      className={`stats-strip-item stats-${type}`}
-      initial={{
-        opacity: 0,
-        y: 18,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
+      className={`stat-card stat-card-${type}`}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{
         once: true,
         amount: 0.4,
@@ -180,101 +165,58 @@ function PremiumStat({
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {/* ICON */}
+      <span className="stat-card-label">
+        {label}
+      </span>
 
-      {type === "lessons" && "▦"}
-      {type === "students" && "◉"}
-      {type === "access" && "◷"}
-      {type === "level" && "✦"}
-
-      <div className="stats-strip-content">
-        <span className="stats-strip-label">
-          {label}
-        </span>
-
-        <strong className="stats-strip-number">
-          {type === "level" ? (
-            <>
-              <span>0</span>
-
-              <span className="stats-arrow">
-                →
-              </span>
-
-              <span className="stats-pro">
-                PRO
-              </span>
-            </>
-          ) : (
+      <strong className="stat-card-number">
+        {type === "level" ? (
+          <>
+            <span>0</span>
+            <span className="stat-card-arrow">
+              →
+            </span>
+            <span className="stat-card-pro">
+              PRO
+            </span>
+          </>
+        ) : (
+          <>
             <AnimatedNumber value={number} />
-          )}
-        </strong>
 
-        <small>{description}</small>
+            {(type === "lessons" ||
+              type === "students") &&
+              "+"}
+          </>
+        )}
+      </strong>
+
+      <small className="stat-card-desc">
+        {description}
+      </small>
+
+      <div className="stat-card-bar">
+        <motion.span
+          initial={{ width: 0 }}
+          whileInView={{
+            width: `${
+              type === "level"
+                ? 90
+                : type === "lessons"
+                  ? 75
+                  : type === "students"
+                    ? 60
+                    : 100
+            }%`,
+          }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 1.2,
+            delay: 0.3,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+        />
       </div>
-
-      {/* LESSONS PROGRESS */}
-
-      {type === "lessons" && (
-        <div className="stats-mini-line">
-          <motion.span
-            initial={{
-              width: 0,
-            }}
-            whileInView={{
-              width: "75%",
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 1.2,
-              delay: 0.3,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          />
-        </div>
-      )}
-
-      {/* ACCESS ORBIT */}
-
-      {type === "access" && (
-        <div className="stats-orbit">
-          <motion.span
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        </div>
-      )}
-
-      {/* LEVEL PROGRESS */}
-
-      {type === "level" && (
-        <div className="stats-level-progress">
-          <motion.span
-            initial={{
-              width: 0,
-            }}
-            whileInView={{
-              width: "90%",
-            }}
-            viewport={{
-              once: true,
-            }}
-            transition={{
-              duration: 1.4,
-              delay: 0.3,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          />
-        </div>
-      )}
     </motion.div>
   );
 }
@@ -294,35 +236,23 @@ function FloatingCard({
     <motion.div
       className={`floating-card ${position}`}
       animate={{
-        y: [0, -8, 0],
-        rotateZ: [0, 1, 0, -1, 0],
-        rotateY: [0, 2, 0, -2, 0],
+        y: [0, -7, 0],
       }}
       transition={{
         duration: 5 + index * 0.5,
         repeat: Infinity,
         ease: "easeInOut",
-        delay: index * 0.4,
+        delay: index * 0.35,
       }}
       whileHover={{
-        scale: 1.06,
-        y: -10,
+        scale: 1.04,
       }}
     >
       <div className="floating-card-top">
         <span>{title}</span>
-
-        <div className="floating-icon">
-          {type === "lessons" && ""}
-          {type === "students" && ""}
-          {type === "progress" && ""}
-          {type === "status" && ""}
-        </div>
       </div>
 
-      <strong>{value}</strong>
-
-      {/* LESSONS */}
+      {value && <strong>{value}</strong>}
 
       {type === "lessons" && (
         <div className="floating-lines">
@@ -331,8 +261,6 @@ function FloatingCard({
           <span />
         </div>
       )}
-
-      {/* STUDENTS */}
 
       {type === "students" && (
         <div className="student-dots">
@@ -343,20 +271,16 @@ function FloatingCard({
         </div>
       )}
 
-      {/* PROGRESS */}
-
       {type === "progress" && (
         <div className="floating-progress">
           <span />
         </div>
       )}
 
-      {/* STATUS */}
-
       {type === "status" && (
         <div className="status-indicator">
           <span />
-          Live course
+          <small>LIVE COURSE</small>
         </div>
       )}
     </motion.div>
@@ -375,9 +299,10 @@ function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
 
-  return `${String(minutes).padStart(2, "0")}:${String(
-    secs
-  ).padStart(2, "0")}`;
+  return `${String(minutes).padStart(
+    2,
+    "0"
+  )}:${String(secs).padStart(2, "0")}`;
 }
 
 /* =====================================================
@@ -387,14 +312,17 @@ function formatTime(seconds) {
 function VideoPlayer() {
   const videoRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] =
+    useState(false);
 
-  /* -----------------------------
-     PLAY / PAUSE
-  ----------------------------- */
+  const [currentTime, setCurrentTime] =
+    useState(0);
+
+  const [duration, setDuration] =
+    useState(0);
+
+  const [isMuted, setIsMuted] =
+    useState(true);
 
   const togglePlay = async () => {
     const video = videoRef.current;
@@ -417,53 +345,6 @@ function VideoPlayer() {
     }
   };
 
-  /* -----------------------------
-     VIDEO EVENTS
-  ----------------------------- */
-
-  const handleLoadedMetadata = () => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    setDuration(video.duration);
-  };
-
-  const handleTimeUpdate = () => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    setCurrentTime(video.currentTime);
-  };
-
-  const handlePlay = () => {
-    setIsPlaying(true);
-  };
-
-  const handlePause = () => {
-    setIsPlaying(false);
-  };
-
-  /* -----------------------------
-     SEEK
-  ----------------------------- */
-
-  const handleSeek = (event) => {
-    const video = videoRef.current;
-
-    if (!video) return;
-
-    const newTime = Number(event.target.value);
-
-    video.currentTime = newTime;
-    setCurrentTime(newTime);
-  };
-
-  /* -----------------------------
-     MUTE
-  ----------------------------- */
-
   const toggleMute = () => {
     const video = videoRef.current;
 
@@ -474,11 +355,22 @@ function VideoPlayer() {
     setIsMuted(video.muted);
   };
 
+  const handleSeek = (event) => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    const newTime = Number(
+      event.target.value
+    );
+
+    video.currentTime = newTime;
+
+    setCurrentTime(newTime);
+  };
+
   return (
     <div className="dashboard-video-wrapper">
-
-      {/* VIDEO */}
-
       <div
         className="dashboard-video"
         onClick={togglePlay}
@@ -486,27 +378,32 @@ function VideoPlayer() {
         <video
           ref={videoRef}
           className="hero-video"
+          muted={isMuted}
           playsInline
           preload="metadata"
-          onLoadedMetadata={
-            handleLoadedMetadata
+          onLoadedMetadata={(event) =>
+            setDuration(
+              event.currentTarget.duration
+            )
           }
-          onTimeUpdate={handleTimeUpdate}
-          onPlay={handlePlay}
-          onPause={handlePause}
+          onTimeUpdate={(event) =>
+            setCurrentTime(
+              event.currentTarget.currentTime
+            )
+          }
+          onPlay={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
         >
           <source
             src="/Videos/hero-video.mp4"
             type="video/mp4"
           />
 
-          Your browser does not support the video
-          element.
+          Your browser does not support the
+          video element.
         </video>
 
         <div className="video-overlay" />
-
-        {/* CENTER PLAY BUTTON */}
 
         <motion.button
           type="button"
@@ -536,8 +433,6 @@ function VideoPlayer() {
           )}
         </motion.button>
 
-        {/* VIDEO LABEL */}
-
         <div className="video-label">
           <span>PREMIERE PRO</span>
 
@@ -545,9 +440,11 @@ function VideoPlayer() {
             ვიდეო მონტაჟის საფუძვლები
           </strong>
         </div>
-      </div>
 
-      {/* VIDEO CONTROLS */}
+        <div className="video-duration">
+          {formatTime(duration)}
+        </div>
+      </div>
 
       <div
         className="video-controls"
@@ -555,8 +452,6 @@ function VideoPlayer() {
           event.stopPropagation()
         }
       >
-        {/* PROGRESS */}
-
         <input
           className="video-progress"
           type="range"
@@ -568,20 +463,17 @@ function VideoPlayer() {
           style={{
             "--progress":
               duration > 0
-                ? `${(currentTime / duration) * 100}%`
+                ? `${
+                    (currentTime / duration) *
+                    100
+                  }%`
                 : "0%",
           }}
           aria-label="Video progress"
         />
 
-        {/* BOTTOM CONTROLS */}
-
         <div className="video-controls-bottom">
-
           <div className="video-controls-left">
-
-            {/* PLAY / PAUSE */}
-
             <button
               type="button"
               className="control-button"
@@ -593,27 +485,21 @@ function VideoPlayer() {
               }
             >
               {isPlaying ? (
-                <PauseIcon size={18} />
+                <PauseIcon size={17} />
               ) : (
-                <PlayIcon size={18} />
+                <PlayIcon size={17} />
               )}
             </button>
 
-            {/* TIME */}
-
             <span className="video-time">
-              {formatTime(currentTime)}
-              {" / "}
+              {formatTime(currentTime)} /{" "}
               {formatTime(duration)}
             </span>
-
           </div>
-
-          {/* VOLUME */}
 
           <button
             type="button"
-            className="control-button volume-button"
+            className="control-button"
             onClick={toggleMute}
             aria-label={
               isMuted
@@ -622,12 +508,11 @@ function VideoPlayer() {
             }
           >
             {isMuted ? (
-              <MuteIcon size={18} />
+              <MuteIcon size={17} />
             ) : (
-              <VolumeIcon size={18} />
+              <VolumeIcon size={17} />
             )}
           </button>
-
         </div>
       </div>
     </div>
@@ -655,74 +540,55 @@ function HeroVisual() {
   const rotateX = useTransform(
     smoothY,
     [-0.5, 0.5],
-    [8, -8]
+    [4, -4]
   );
 
   const rotateY = useTransform(
     smoothX,
     [-0.5, 0.5],
-    [-10, 10]
+    [-6, 6]
   );
 
-  const moveX = useTransform(
-    smoothX,
-    [-0.5, 0.5],
-    [-12, 12]
-  );
-
-  const moveY = useTransform(
-    smoothY,
-    [-0.5, 0.5],
-    [-12, 12]
-  );
-
-  /* -----------------------------
-     MOUSE MOVE
-  ----------------------------- */
-
-  function handleMouseMove(event) {
+  const handleMouseMove = (event) => {
     const rect =
       event.currentTarget.getBoundingClientRect();
 
-    const x =
+    mouseX.set(
       (event.clientX - rect.left) /
-      rect.width;
+        rect.width -
+        0.5
+    );
 
-    const y =
+    mouseY.set(
       (event.clientY - rect.top) /
-      rect.height;
+        rect.height -
+        0.5
+    );
+  };
 
-    mouseX.set(x - 0.5);
-    mouseY.set(y - 0.5);
-  }
-
-  function resetMouse() {
+  const resetMouse = () => {
     mouseX.set(0);
     mouseY.set(0);
-  }
+  };
 
   const cards = [
     {
-      title: "Lessons",
-      value: "12",
+      title: "12+ ლექცია",
       type: "lessons",
       position: "card-top-left",
     },
     {
-      title: "Groups",
-      value: "15",
+      title: "8+ წლის გამოცდილება",
       type: "students",
       position: "card-top-right",
     },
     {
-      title: "Access",
-      value: "1 Year",
+      title: "1 წელი წვდომა",
       type: "progress",
       position: "card-bottom-left",
     },
     {
-      title: "Course",
-      value: "Live",
+      title: "Live კურსი",
       type: "status",
       position: "card-bottom-right",
     },
@@ -734,49 +600,20 @@ function HeroVisual() {
       onMouseMove={handleMouseMove}
       onMouseLeave={resetMouse}
     >
+      <div className="hero-glow" />
 
-      {/* GLOW */}
-
-      <motion.div
-        className="hero-glow"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.35, 0.6, 0.35],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="hero-glow-secondary"
-        animate={{
-          x: [-20, 20, -20],
-          y: [15, -15, 15],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* DASHBOARD */}
+      <div className="hero-glow-secondary" />
 
       <motion.div
         className="hero-dashboard"
         style={{
           rotateX,
           rotateY,
-          x: moveX,
-          y: moveY,
         }}
         initial={{
           opacity: 0,
-          scale: 0.85,
-          y: 60,
+          scale: 0.94,
+          y: 30,
         }}
         animate={{
           opacity: 1,
@@ -788,11 +625,7 @@ function HeroVisual() {
           ease: "easeOut",
         }}
       >
-
-        {/* HEADER */}
-
         <div className="dashboard-header">
-
           <div className="dashboard-dots">
             <span />
             <span />
@@ -806,32 +639,24 @@ function HeroVisual() {
           <div className="dashboard-number">
             01 / 12
           </div>
-
         </div>
-
-        {/* VIDEO */}
 
         <VideoPlayer />
 
-        {/* FOOTER */}
-
         <div className="dashboard-footer">
-
           <div>
             <small>
-              CURRENT LESSON
+              მიმდინარე გაკვეთილი
             </small>
 
             <strong>
-              Introduction to Premiere Pro
+              შესავალი Premiere Pro-ში
             </strong>
           </div>
 
+          <span>→</span>
         </div>
-
       </motion.div>
-
-      {/* FLOATING CARDS */}
 
       {cards.map((card, index) => (
         <FloatingCard
@@ -840,7 +665,6 @@ function HeroVisual() {
           index={index}
         />
       ))}
-
     </div>
   );
 }
@@ -851,10 +675,11 @@ function HeroVisual() {
 
 export default function Home() {
   const rotatingWords = [
-    "კრეატიულად",
-    "პრაქტიკულად",
-    "თავისუფლად",
-    "შენებურად",
+    "0-იდან",
+    "მარტივად",
+    "პროფესიონალურ დონეზე",
+    "6 კვირაში",
+    "აუდიტორიაში",
   ];
 
   const [wordIndex, setWordIndex] =
@@ -873,188 +698,180 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
-
-      {/* =================================================
-          HERO
-      ================================================= */}
-
+    <main className="home-page">
       <section className="hero">
+        <div className="hero-background-glow hero-background-glow-one" />
 
-        {/* LEFT */}
+        <div className="hero-background-glow hero-background-glow-two" />
 
-        <div className="hero-content">
+        <div className="hero-inner">
+          <div className="hero-content">
+            <motion.span
+              className="hero-label"
+              initial={{
+                opacity: 0,
+                y: 10,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+              }}
+            >
+              <span className="hero-label-bar" />
 
-          <motion.span
-            className="hero-label"
-            initial={{
-              opacity: 0,
-              y: 12,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            VIDEO EDITING ACADEMY
-          </motion.span>
+              VIDEO EDITING ACADEMY
+            </motion.span>
 
-          <motion.h1
-            className="hero-title"
-            initial={{
-              opacity: 0,
-              y: 25,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.1,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            ისწავლე ვიდეო მონტაჟი
+            <motion.h1
+              className="hero-title"
+              initial={{
+                opacity: 0,
+                y: 24,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.1,
+              }}
+            >
+              <span className="hero-title-main">
+                <span>ისწავლე ვიდეო</span>
 
-            <br />
+                <span>მონტაჟი</span>
+              </span>
 
-            <span className="rotating-word-wrapper">
+              <span className="rotating-line">
+                <motion.span
+                  key={wordIndex}
+                  className="rotating-word"
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [
+                      0.16,
+                      1,
+                      0.3,
+                      1,
+                    ],
+                  }}
+                >
+                  {rotatingWords[wordIndex]}
+                </motion.span>
+              </span>
+            </motion.h1>
 
-              <motion.span
-                key={wordIndex}
-                className="rotating-word"
-                initial={{
-                  opacity: 0,
-                  y: 18,
-                  filter: "blur(8px)",
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                }}
-                transition={{
-                  duration: 0.55,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
+            <motion.p
+              className="hero-description"
+              initial={{
+                opacity: 0,
+                y: 16,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.25,
+              }}
+            >
+              ისწავლე ვიდეო მონტაჟი 0-დან
+              პროფესიონალურ დონემდე, Offline
+              ან Online დასწრებით, პრაქტიკული
+              დავალებებით და ლექტორის ფიდბექით
+              თითოეულ დავალებაზე.
+            </motion.p>
+
+            <motion.div
+              className="hero-buttons"
+              initial={{
+                opacity: 0,
+                y: 16,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.7,
+                delay: 0.35,
+              }}
+            >
+              <Link
+                to="/pricing"
+                className="primary-btn"
               >
-                {rotatingWords[wordIndex]}
-              </motion.span>
+                კურსის ნახვა
 
-            </span>
-          </motion.h1>
+                <span>→</span>
+              </Link>
 
-          <motion.p
-            initial={{
-              opacity: 0,
-              y: 18,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.25,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            ისწავლე ვიდეო მონტაჟი 0-დან
-            პროფესიონალურ დონემდე —
-            პრაქტიკული კურსებით, რეალური
-            ვიდეომასალით და თანამედროვე
-            სამუშაო პროცესით.
-          </motion.p>
+              <Link
+                to="/live-courses"
+                className="secondary-btn"
+              >
+                Live კურსები
+              </Link>
+            </motion.div>
 
-          {/* BUTTONS */}
+            <div className="hero-note">
+              <span className="hero-note-dot" />
 
-          <motion.div
-            className="hero-buttons"
-            initial={{
-              opacity: 0,
-              y: 18,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.7,
-              delay: 0.35,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
+              <span>
+                დაიწყე სწავლა დღესვე
+              </span>
+            </div>
+          </div>
 
-            <Link
-              to="/"
-              className="primary-btn"
-            >
-              კურსის ნახვა
-            </Link>
-
-            <Link
-              to="/live-courses"
-              className="secondary-btn"
-            >
-              Live კურსები
-            </Link>
-
-          </motion.div>
-
+          <HeroVisual />
         </div>
-
-        {/* RIGHT */}
-
-        <HeroVisual />
-
       </section>
 
-      {/* =================================================
-          STATS
-      ================================================= */}
-
       <section className="stats-strip">
-
-        <PremiumStat
+        <StatCard
           number={12}
           label="ლექცია"
           description="პრაქტიკული პროგრამა"
           type="lessons"
         />
 
-        <PremiumStat
+        <StatCard
           number={15}
           label="სტუდენტი"
           description="მაქსიმუმ ჯგუფში"
           type="students"
         />
 
-        <PremiumStat
+        <StatCard
           number={1}
           label="წელი"
           description="სრული წვდომა"
           type="access"
         />
 
-        <PremiumStat
+        <StatCard
           label="დონე"
           description="ნულიდან პროფესიონალამდე"
           type="level"
         />
-
       </section>
 
-      {/* =================================================
-          PRICING
-      ================================================= */}
-
-      <Pricing />
-
+      <section id="pricing">
+        <Pricing />
+      </section>
     </main>
   );
 }

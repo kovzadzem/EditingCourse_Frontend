@@ -1,6 +1,16 @@
 /* =========================================================
    FOOTER
 ========================================================= */
+@font-face {
+  font-family: 'MS RING';
+  src: url('./assets/fonts/MS RING-44480510007.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+  font-family: 'MS RING', sans-serif;
+}
+
 
 .site-footer {
   width: 100%;

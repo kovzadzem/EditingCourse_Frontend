@@ -3,6 +3,34 @@ import "./Pricing.css";
 
 const plans = [
   {
+    type: "ინდივიდუალური",
+    number: "02",
+    title: "ინდივიდუალური",
+    subtitle: "1 : 1 Course",
+    description:
+      "პერსონალური სწავლება, რომელიც მთლიანად შენს მიზნებსა და ტემპზეა მორგებული.",
+    prices: [
+      {
+        label: "ონლაინ",
+        price: "700 ₾",
+        text: "ინდივიდუალური გაკვეთილები ონლაინ ფორმატში.",
+      },
+      {
+        label: "აუდიტორიაში",
+        price: "1,000 ₾",
+        text: "ინდივიდუალური სწავლება ადგილზე მისვლით.",
+      },
+    ],
+    features: [
+      "1 : 1 სწავლება",
+      "პერსონალური პროგრამა",
+      "ინდივიდუალური მიდგომა",
+      "პერსონალური დახმარება",
+    ],
+  },
+
+  
+  {
     type: "live",
     number: "01",
     title: "LIVE",
@@ -11,12 +39,12 @@ const plans = [
       "დაესწარი კურსს ლაივ რეჟიმში - აირჩიე ონლაინ ან აუდიტორიაში დასწრება.",
     prices: [
       {
-        label: "ONLINE",
+        label: "ონლაინ",
         price: "400 ₾",
         text: "დაესწარი გაკვეთილებს სრულად ონლაინ რეჟიმში.",
       },
       {
-        label: "AUDITORIUM",
+        label: "აუდიტორიაში",
         price: "600 ₾",
         text: "დაესწარი კურსს ადგილზე, აუდიტორიის სივრცეში.",
       },
@@ -30,47 +58,20 @@ const plans = [
   },
 
   {
-    type: "individual",
-    number: "02",
-    title: "INDIVIDUAL",
-    subtitle: "1 : 1 Course",
-    description:
-      "პერსონალური სწავლება, რომელიც მთლიანად შენს მიზნებსა და ტემპზეა მორგებული.",
-    prices: [
-      {
-        label: "ONLINE",
-        price: "700 ₾",
-        text: "ინდივიდუალური გაკვეთილები ონლაინ ფორმატში.",
-      },
-      {
-        label: "ON-SITE",
-        price: "1,000 ₾",
-        text: "ინდივიდუალური სწავლება ადგილზე მისვლით.",
-      },
-    ],
-    features: [
-      "1 : 1 სწავლება",
-      "პერსონალური პროგრამა",
-      "ინდივიდუალური მიდგომა",
-      "პერსონალური დახმარება",
-    ],
-  },
-
-  {
-    type: "self-paced",
+    type: "საკუთარი ტემპით",
     number: "03",
-    title: "SELF-PACED",
-    subtitle: "Recorded Course",
+    title: "საკუთარი ტემპით",
+    subtitle: "ჩაწერილი ლექციებით",
     description:
       "ისწავლე შენს დროს და საკუთარი ტემპით - კურსი ყოველთვის ხელმისაწვდომია.",
     prices: [
       {
-        label: "RECORDED",
+        label: "ჩანაწერები",
         price: "200 ₾",
         text: "ჩაწერილი კურსი, რომლის გავლაც შეგიძლია ნებისმიერ დროს.",
       },
       {
-        label: "WITH SUPPORT",
+        label: "მხარდაჭერით",
         price: "300 ₾",
         text: "ჩაწერილი კურსი დამატებითი მხარდაჭერით.",
       },
@@ -237,7 +238,7 @@ function Pricing() {
 <div className="pricing-bottom">
   <p>
     ვერ გადაწყვიტე რომელი ფორმატი აირჩიო?
-    <a href="/"> დაგვიკავშირდი.</a>
+    <a href="https://www.instagram.com/editologia0?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="> დაგვიკავშირდი.</a>
   </p>
 
   <div className="pricing-divider" />

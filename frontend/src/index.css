@@ -1,24 +1,16 @@
+
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'MS RING';
+  src: url('./assets/fonts/MS RING-44480510007.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: "Geo_Gorda";
-  src: url("./assets/fonts/geo_gorda-27191232884.ttf")
-    format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --font-main: "Geo_Gorda", sans-serif;
-}
-
-* {
   box-sizing: border-box;
 }
 
@@ -31,8 +23,7 @@ body,
 }
 
 body {
-  font-family: "Geo_Gorda", sans-serif;
-  margin: 0;
+  font-family: 'MS RING', !important;
 }
 :root {
   --bg: #ffffff;
