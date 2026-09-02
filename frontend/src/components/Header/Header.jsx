@@ -7,73 +7,140 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
   const [scrolled, setScrolled] = useState(false);
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-useEffect(() => {
-  const checkSession = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
+  /* =========================================================
+     AUTH
+  ========================================================= */
 
-    setIsLoggedIn(!!session);
-  };
+  useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
-  checkSession();
-
-  const {
-    data: { subscription },
-  } = supabase.auth.onAuthStateChange(
-    (_event, session) => {
       setIsLoggedIn(!!session);
-    }
-  );
+    };
 
-  return () => {
-    subscription.unsubscribe();
-  };
-}, []);
+    checkSession();
 
-useEffect(() => {
-  const theme = darkMode ? "dark" : "light";
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setIsLoggedIn(!!session);
+      }
+    );
 
-  document.documentElement.setAttribute(
-    "data-theme",
-    theme
-  );
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
-  localStorage.setItem("theme", theme);
-}, [darkMode]);
+  /* =========================================================
+     THEME
+  ========================================================= */
+
+  useEffect(() => {
+    const theme = darkMode ? "dark" : "light";
+
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme
+    );
+
+    localStorage.setItem("theme", theme);
+  }, [darkMode]);
+
+  /* =========================================================
+     SYSTEM THEME
+  ========================================================= */
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+
+    const handleSystemTheme = (event) => {
+      const savedTheme = localStorage.getItem("theme");
+
+      if (!savedTheme) {
+        setDarkMode(event.matches);
+      }
+    };
+
+    mediaQuery.addEventListener(
+      "change",
+      handleSystemTheme
+    );
+
+    return () => {
+      mediaQuery.removeEventListener(
+        "change",
+        handleSystemTheme
+      );
+    };
+  }, []);
+
+  /* =========================================================
+     SCROLL
+  ========================================================= */
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
     };
   }, []);
 
+  /* =========================================================
+     RESIZE
+  ========================================================= */
+
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth > 850) {
+      if (window.innerWidth > 900) {
         setMenuOpen(false);
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener(
+      "resize",
+      handleResize
+    );
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener(
+        "resize",
+        handleResize
+      );
     };
   }, []);
+
+  /* =========================================================
+     ESCAPE
+  ========================================================= */
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -82,10 +149,16 @@ useEffect(() => {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
     };
   }, []);
 
@@ -98,6 +171,10 @@ useEffect(() => {
 
   return (
     <>
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <header
         className={`home-header ${
           scrolled ? "scrolled" : ""
@@ -115,17 +192,68 @@ useEffect(() => {
             Edit<span>Ologia</span>
           </NavLink>
 
-          {/* DESKTOP NAVIGATION */}
+          {/* =================================================
+              DESKTOP NAV
+          ================================================= */}
 
           <nav className="desktop-nav">
 
-            <NavLink
-              to="/livecourses"
-              className={navLinkClass}
-              onClick={closeMenu}
-            >
-              Live Courses
-            </NavLink>
+            {/* LIVE COURSES */}
+
+            <div className="nav-dropdown">
+
+              <span className="nav-dropdown-trigger">
+                Live Courses
+              </span>
+
+              <div className="nav-dropdown-menu">
+
+                {/* VIDEO EDITING */}
+
+                <NavLink
+                  to="/livecourses/video-editing"
+                  onClick={closeMenu}
+                >
+                  <div className="dropdown-item-icon">
+                    🎬
+                  </div>
+
+                  <div className="dropdown-item-content">
+                    <strong>
+                      ვიდეო ედითინგი
+                    </strong>
+
+                    <span>
+                      ვიდეო მონტაჟის კურსი
+                    </span>
+                  </div>
+                </NavLink>
+
+                {/* VIDEOGRAPHY */}
+
+                <NavLink
+                  to="/livecourses/videography"
+                  onClick={closeMenu}
+                >
+                  <div className="dropdown-item-icon">
+                    🎥
+                  </div>
+
+                  <div className="dropdown-item-content">
+                    <strong>
+                      ვიდეოგრაფია
+                    </strong>
+
+                    <span>
+                      ვიდეოგრაფიის კურსი
+                    </span>
+                  </div>
+                </NavLink>
+
+              </div>
+            </div>
+
+            {/* RECORDINGS */}
 
             <NavLink
               to="/recordings"
@@ -135,13 +263,60 @@ useEffect(() => {
               ჩანაწერები
             </NavLink>
 
-            <NavLink
-              to="/curriculum"
-              className={navLinkClass}
-              onClick={closeMenu}
-            >
-              სასწავლო გეგმა
-            </NavLink>
+            {/* =================================================
+                SYLLABUS
+            ================================================= */}
+
+            <div className="nav-dropdown">
+
+              <span className="nav-dropdown-trigger">
+                სილაბუსი
+              </span>
+
+              <div className="nav-dropdown-menu">
+
+                <NavLink
+                  to="/curriculum/video-editing"
+                  onClick={closeMenu}
+                >
+                  <div className="dropdown-item-icon">
+                    🎬
+                  </div>
+
+                  <div className="dropdown-item-content">
+                    <strong>
+                      ვიდეო ედითინგი
+                    </strong>
+
+                    <span>
+                      სასწავლო პროგრამა
+                    </span>
+                  </div>
+                </NavLink>
+
+                <NavLink
+                  to="/curriculum/videography"
+                  onClick={closeMenu}
+                >
+                  <div className="dropdown-item-icon">
+                    🎥
+                  </div>
+
+                  <div className="dropdown-item-content">
+                    <strong>
+                      ვიდეოგრაფია
+                    </strong>
+
+                    <span>
+                      სასწავლო პროგრამა
+                    </span>
+                  </div>
+                </NavLink>
+
+              </div>
+            </div>
+
+            {/* ABOUT */}
 
             <NavLink
               to="/about"
@@ -150,6 +325,8 @@ useEffect(() => {
             >
               ჩვენს შესახებ
             </NavLink>
+
+            {/* PORTFOLIO */}
 
             <NavLink
               to="/Portfolio"
@@ -161,18 +338,30 @@ useEffect(() => {
 
           </nav>
 
-          {/* RIGHT */}
+          {/* =================================================
+              RIGHT
+          ================================================= */}
 
           <div className="home-header-right">
+
+            {/* THEME */}
 
             <button
               type="button"
               className="home-theme-btn"
-              onClick={() => setDarkMode((prev) => !prev)}
+              onClick={() =>
+                setDarkMode(
+                  (prev) => !prev
+                )
+              }
               aria-label="Toggle theme"
             >
-              {darkMode ? "☀" : "☾"}
+              <span>
+                {darkMode ? "☀" : "☾"}
+              </span>
             </button>
+
+            {/* AUTH */}
 
             {isLoggedIn ? (
               <NavLink
@@ -192,13 +381,17 @@ useEffect(() => {
               </NavLink>
             )}
 
+            {/* BURGER */}
+
             <button
               type="button"
               className={`burger ${
                 menuOpen ? "active" : ""
               }`}
               onClick={() =>
-                setMenuOpen((prev) => !prev)
+                setMenuOpen(
+                  (prev) => !prev
+                )
               }
               aria-label={
                 menuOpen
@@ -216,7 +409,9 @@ useEffect(() => {
         </div>
       </header>
 
-      {/* MOBILE MENU */}
+      {/* =====================================================
+          MOBILE MENU
+      ===================================================== */}
 
       <div
         className={`mobile-menu ${
@@ -224,57 +419,99 @@ useEffect(() => {
         }`}
       >
 
-        <NavLink
-          to="/livecourses"
-          className={navLinkClass}
-          onClick={closeMenu}
-        >
-          <span></span>
-          Live Courses
-        </NavLink>
+        {/* LIVE COURSES */}
+
+        <div className="mobile-dropdown">
+
+          <div className="mobile-dropdown-title">
+            Live Courses
+          </div>
+
+          {/* VIDEO EDITING */}
+
+          <NavLink
+            to="/livecourses/video-editing"
+            onClick={closeMenu}
+          >
+            🎬
+            <span>ვიდეო ედითინგი</span>
+          </NavLink>
+
+          {/* VIDEOGRAPHY */}
+
+          <NavLink
+            to="/livecourses/videography"
+            onClick={closeMenu}
+          >
+            🎥
+            <span>ვიდეოგრაფია</span>
+          </NavLink>
+
+        </div>
+
+        {/* RECORDINGS */}
 
         <NavLink
           to="/recordings"
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span></span>
           ჩანაწერები
         </NavLink>
 
-        <NavLink
-          to="/curriculum"
-          className={navLinkClass}
-          onClick={closeMenu}
-        >
-          <span></span>
-          სასწავლო გეგმა
-        </NavLink>
+        {/* SYLLABUS */}
+
+        <div className="mobile-dropdown">
+
+          <div className="mobile-dropdown-title">
+            სილაბუსი
+          </div>
+
+          <NavLink
+            to="/curriculum/video-editing"
+            onClick={closeMenu}
+          >
+            🎬
+            <span>ვიდეო ედითინგი</span>
+          </NavLink>
+
+          <NavLink
+            to="/curriculum/videography"
+            onClick={closeMenu}
+          >
+            🎥
+            <span>ვიდეოგრაფია</span>
+          </NavLink>
+
+        </div>
+
+        {/* ABOUT */}
 
         <NavLink
           to="/about"
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span></span>
           ჩვენს შესახებ
         </NavLink>
+
+        {/* PORTFOLIO */}
 
         <NavLink
           to="/Portfolio"
           className={navLinkClass}
           onClick={closeMenu}
         >
-          <span></span>
           პორტფოლიო
         </NavLink>
 
         <div className="mobile-menu-divider" />
 
+        {/* AUTH */}
+
         {isLoggedIn ? (
           <NavLink
             to="/profile"
-            className={navLinkClass}
             onClick={closeMenu}
           >
             პროფილი
@@ -282,7 +519,6 @@ useEffect(() => {
         ) : (
           <NavLink
             to="/register"
-            className="mobile-register-link"
             onClick={closeMenu}
           >
             რეგისტრაცია
@@ -299,6 +535,7 @@ useEffect(() => {
         }`}
         onClick={closeMenu}
       />
+
     </>
   );
 };

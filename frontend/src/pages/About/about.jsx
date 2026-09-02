@@ -1,7 +1,53 @@
 import { useState } from "react";
-import { FaPlus, FaCheck } from "react-icons/fa";
+import {
+  FaArrowRight,
+  FaCheck,
+  FaPlus,
+} from "react-icons/fa";
 
 import "./about.css";
+
+const whyCards = [
+  {
+    id: 0,
+    number: "01",
+    label: "LEARN",
+    title: "ისწავლე",
+    highlight: "პრაქტიკით",
+    text: "ვიდეო მონტაჟს თავიდანვე რეალურ პროექტებზე მუშაობით ისწავლი.",
+    points: [
+      "Adobe Premiere Pro",
+      "რეალური პროექტები",
+      "პრაქტიკული დავალებები",
+    ],
+  },
+  {
+    id: 1,
+    number: "02",
+    label: "CREATE",
+    title: "შექმენი",
+    highlight: "პორტფოლიო",
+    text: "კურსის განმავლობაში შექმნი ნამუშევრებს, რომლებიც შენს პორტფოლიოს შეავსებს.",
+    points: [
+      "რეალური ნამუშევრები",
+      "კრეატიული პროექტები",
+      "პირადი სტილი",
+    ],
+  },
+  {
+    id: 2,
+    number: "03",
+    label: "GROW",
+    title: "დაიწყე",
+    highlight: "კარიერა",
+    text: "მიიღებ ცოდნასა და უნარებს, რომლებიც დაგეხმარება პროფესიულ განვითარებაში.",
+    points: [
+      "პროფესიული უნარები",
+      "კარიერული მიმართულება",
+      "სერტიფიკატი",
+    ],
+  },
+];
 
 const faqData = [
   {
@@ -37,6 +83,7 @@ const faqData = [
 ];
 
 const About = () => {
+  const [activeWhy, setActiveWhy] = useState(0);
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -49,498 +96,293 @@ const About = () => {
     <main className="about-page">
 
       {/* =====================================================
-          HERO — ძველი დიზაინი
+          HERO
       ===================================================== */}
 
       <section className="about-hero">
 
-        <div className="about-hero-content">
+        <div className="about-hero-top">
 
-          <span className="about-eyebrow">
-            EDIT ACADEMY
-          </span>
+          <div className="about-mini-logo">
+            EDIT<span>ACADEMY</span>
+          </div>
 
-          <h1>
-            შექმენი შენი
-            <br />
-            <span>შემოქმედებითი</span>
-            <br />
-            მომავალი
-          </h1>
-
-          <p>
-            Edit Academy არის თანამედროვე ონლაინ
-            საგანმანათლებლო სივრცე მათთვის, ვისაც
-            სურს ვიდეო მონტაჟის პროფესიონალურად
-            სწავლა და საკუთარი შესაძლებლობების
-            განვითარება.
-          </p>
-
-          <div className="about-hero-actions">
-
-            <a
-              href="/livecourses"
-              className="about-primary-btn"
-            >
-              კურსების ნახვა
-            </a>
-
-            <a
-              href="#faq"
-              className="about-secondary-btn"
-            >
-              ხშირად დასმული კითხვები
-            </a>
-
+          <div className="about-hero-tag">
+            CREATIVE EDUCATION
           </div>
 
         </div>
 
 
-        {/* ძველი VISUAL CARD */}
+        <div className="about-hero-content">
 
-        <div className="about-hero-visual">
+          <div className="about-hero-text">
 
-          <div className="visual-card visual-card-main">
-
-            <video
-              src="/Videos/hero.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-            />
-
-            <span className="visual-number">
-              01
+            <span className="about-small-label">
+              VIDEO EDITING ACADEMY
             </span>
 
-            <div className="visual-play">
-              
-            </div>
+            <h1>
+              შექმენი
+              <br />
+              <span>შენი</span>
+              <br />
+              მომავალი.
+            </h1>
 
-            <div className="visual-bottom">
+            <p>
+              ისწავლე ვიდეო მონტაჟი პრაქტიკულად,
+              შექმენი საკუთარი სტილი და აქციე
+              შენი იდეები რეალურ ნამუშევრებად.
+            </p>
 
-              <strong>
-                VIDEO
-                <br />
-                EDITING
-              </strong>
 
-              <span>
-                EDIT ACADEMY
-              </span>
+            <div className="about-hero-actions">
+
+              <a
+                href="/livecourses"
+                className="about-main-button"
+              >
+                <span>კურსების ნახვა</span>
+
+                <i>
+                  <FaArrowRight />
+                </i>
+              </a>
+
+
+              <a
+                href="#faq"
+                className="about-faq-button"
+              >
+                ხშირად დასმული კითხვები
+
+                <span>↓</span>
+              </a>
 
             </div>
 
           </div>
 
 
-          <div className="visual-card visual-card-small">
+          <div className="about-hero-media">
 
-            <span>
-              CREATIVE
+            <div className="about-video">
+
+              <video
+                src="/Videos/hero.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+
+              <div className="about-video-overlay" />
+
+              <div className="about-video-top">
+                <span>EDIT ACADEMY</span>
+                <span>2026</span>
+              </div>
+
+              <div className="about-video-bottom">
+                <span>CREATE</span>
+                <strong>YOUR STORY.</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          WHY EDIT ACADEMY
+      ===================================================== */}
+
+      <section className="why-section">
+
+        <div className="why-heading">
+
+          <div>
+
+            <span className="section-label">
+              WHY EDIT ACADEMY
             </span>
 
-            <strong>
-              +100
-            </strong>
+            <h2>
+              ისწავლე.
+              <br />
+              შექმენი.
+              <br />
+              <span>განვითარდი.</span>
+            </h2>
+
+          </div>
+
+
+          <p>
+            ჩვენ არ გვინდა უბრალოდ ვიდეო
+            მონტაჟი გასწავლოთ. გვინდა,
+            რეალურად შეგიქმნათ შესაძლებლობა
+            შექმნათ საკუთარი გზა.
+          </p>
+
+        </div>
+
+
+        <div className="why-card-area">
+
+          <div className="why-card-stack">
+
+            {whyCards.map((card, index) => {
+
+              const position =
+                (index - activeWhy + whyCards.length) %
+                whyCards.length;
+
+              return (
+                <article
+                  key={card.id}
+                  className={`why-card why-card-${position}`}
+                  onClick={() => setActiveWhy(index)}
+                >
+
+                  <div className="why-card-top">
+
+                    <span>
+                      {card.number}
+                    </span>
+
+                    <span>
+                      {card.label}
+                    </span>
+
+                  </div>
+
+
+                  <div className="why-card-main">
+
+                    <div className="why-card-icon">
+                      <FaArrowRight />
+                    </div>
+
+                    <h3>
+                      {card.title}
+                      <br />
+                      <span>
+                        {card.highlight}
+                      </span>
+                    </h3>
+
+                  </div>
+
+
+                  <div className="why-card-bottom">
+
+                    <p>
+                      {card.text}
+                    </p>
+
+                    <div className="why-card-points">
+
+                      {card.points.map((point) => (
+
+                        <span key={point}>
+                          <FaCheck />
+                          {point}
+                        </span>
+
+                      ))}
+
+                    </div>
+
+                  </div>
+
+                </article>
+              );
+            })}
+
+          </div>
+
+
+          <div className="why-card-navigation">
+
+            {whyCards.map((card, index) => (
+
+              <button
+                key={card.id}
+                type="button"
+                className={
+                  activeWhy === index
+                    ? "active"
+                    : ""
+                }
+                onClick={() => setActiveWhy(index)}
+              >
+
+                <span>
+                  0{index + 1}
+                </span>
+
+                {card.label}
+
+              </button>
+
+            ))}
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
+          FAQ
+      ===================================================== */}
+
+      <section
+        className="faq-section"
+        id="faq"
+      >
+
+        <div className="faq-heading">
+
+          <div>
+
+            <span className="section-label">
+              FREQUENTLY ASKED
+            </span>
+
+            <h2>
+              კითხვები?
+              <br />
+              <span>
+                აქ არის პასუხები.
+              </span>
+            </h2>
+
+          </div>
+
+
+          <div className="faq-heading-badge">
+
+            <span>FAQ</span>
 
             <small>
-              სტუდენტი
+              ყველაზე ხშირად
+              დასმული კითხვები
             </small>
 
           </div>
 
         </div>
 
-      </section>
 
-
-      {/* =====================================================
-          INTRO — ძველი დიზაინი
-      ===================================================== */}
-
-      <section className="about-intro">
-
-        <div className="about-section-label">
-          <span>01</span>
-          ჩვენს შესახებ
-        </div>
-
-        <div className="about-intro-content">
-
-          <h2>
-            ცოდნა, რომელიც
-            <br />
-            <span>პრაქტიკაში მუშაობს</span>
-          </h2>
-
-          <div className="about-intro-text">
-
-            <p>
-              ჩვენ გვჯერა, რომ ვიდეო მონტაჟის სწავლა
-              მხოლოდ თეორიის დამახსოვრებას არ ნიშნავს.
-              მთავარი არის პრაქტიკა, სწორი მიდგომა და
-              რეალურ პროექტებზე მუშაობა.
-            </p>
-
-            <p>
-              სწორედ ამიტომ შევქმენით Edit Academy -
-              სივრცე, სადაც შეგიძლია ეტაპობრივად
-              შეისწავლო ვიდეო მონტაჟი და მიიღო ის
-              ცოდნა, რომელიც რეალურ სამუშაო გარემოში
-              გამოგადგება.
-            </p>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          VALUES — ძველი სტილი
-      ===================================================== */}
-
-      <section className="about-values">
-
-        <div className="value-card">
-
-          <span>01</span>
-
-          <div className="value-icon">
-            <FaCheck />
-          </div>
-
-          <h3>
-            პრაქტიკული სწავლება
-          </h3>
-
-          <p>
-            სწავლობ არა მხოლოდ თეორიას,
-            არამედ რეალურ სამუშაო პროცესს.
-          </p>
-
-        </div>
-
-
-        <div className="value-card">
-
-          <span>02</span>
-
-          <div className="value-icon">
-            <FaCheck />
-          </div>
-
-          <h3>
-            თანამედროვე პროგრამა
-          </h3>
-
-          <p>
-            კურსის პროგრამა შექმნილია თანამედროვე
-            ვიდეო ინდუსტრიის მოთხოვნების შესაბამისად.
-          </p>
-
-        </div>
-
-
-        <div className="value-card">
-
-          <span>03</span>
-
-          <div className="value-icon">
-            <FaCheck />
-          </div>
-
-          <h3>
-            განვითარებაზე ორიენტირებული
-          </h3>
-
-          <p>
-            მიიღებ ცოდნას, რომელიც დაგეხმარება
-            საკუთარი პორტფოლიოსა და კარიერის შექმნაში.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          NIKA / CO-FOUNDER
-          ძველი visual card-ის სტილი
-      ===================================================== */}
-
-      <section className="about-nika">
-
-        <div className="about-section-label">
-          <span>02</span>
-          ჩვენი გუნდი
-        </div>
-
-
-        <div className="nika-layout">
-
-          {/* PHOTO CARD */}
-
-          <div className="nika-visual">
-
-            <div className="nika-image-card">
-
-              <img
-                src="/images/CO.jpg"
-                alt="Nika - Co-founder of Edit Academy"
-              />
-
-              <div className="nika-image-overlay">
-
-                <span className="nika-number">
-                  02
-                </span>
-
-                <div className="nika-image-bottom">
-
-                  <strong>
-                    CO
-                    <br />
-                    FOUNDER
-                  </strong>
-
-                  <span>
-                    EDIT ACADEMY
-                  </span>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div className="nika-small-card">
-
-              <span>
-                EDIT ACADEMY
-              </span>
-
-              <strong>
-                Lecture
-              </strong>
-
-              <small>
-                ნიკა ამაშუკელი
-              </small>
-
-            </div>
-
-          </div>
-
-
-          {/* TEXT */}
-
-          <div className="nika-content">
-
-            <span className="nika-eyebrow">
-              CO-FOUNDER
-            </span>
-
-            <h2>
-              რატომ შეიქმნა
-              <br />
-              <span>Edit Academy?</span>
-            </h2>
-
-            <p>
-              Edit Academy შეიქმნა იდეით, რომ ვიდეო
-              მონტაჟის სწავლა უფრო პრაქტიკული,
-              თანამედროვე და რეალურ სამუშაო პროცესთან
-              ახლოს ყოფილიყო.
-            </p>
-
-            <p>
-              ჩვენ გვინდა, რომ სტუდენტმა კურსის
-              დასრულებისას მხოლოდ პროგრამის ფუნქციები
-              კი არ იცოდეს, არამედ შეძლოს საკუთარი
-              იდეის რეალურ პროექტად გადაქცევა.
-            </p>
-
-
-            <div className="nika-info">
-
-              <div>
-                <strong>100+</strong>
-                <span>სტუდენტი</span>
-              </div>
-
-              <div>
-                <strong>PRO</strong>
-                <span>ორიენტირებული სწავლება</span>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          PARTNER
-      ===================================================== */}
-
-      <section className="about-partner">
-
-        <div className="about-section-label">
-          <span>03</span>
-          პარტნიორობა
-        </div>
-
-
-        <div className="partner-content">
-
-          <div className="partner-heading">
-
-  <span className="partner-eyebrow">
-    PARTNERSHIP
-  </span>
-
-  <h2>
-    დაგვიმეგობრდი.
-    <br />
-    <span>გახდი ჩვენი პარტნიორი.</span>
-  </h2>
-
-  <p>
-    გახდი Edit Academy-ის მეგობარი კომპანია
-    და მიიღე განსაკუთრებული პირობები
-    თანამშრომლების პროფესიული განვითარებისთვის.
-  </p>
-
-  <a
-    href="/partnership"
-    className="partner-join-btn"
-  >
-    შემოგვიერთდი
-  </a>
-
-</div>
-
-          <div className="partner-list">
-
-            <div className="partner-row">
-
-              <span>01</span>
-
-              <div>
-                <h3>
-                  კორპორატიული შეთავაზებები
-                </h3>
-
-                <p>
-                  სპეციალური პირობები კომპანიებისა
-                  და მათი თანამშრომლებისთვის.
-                </p>
-              </div>
-
-            </div>
-
-
-            <div className="partner-row">
-
-              <span>02</span>
-
-              <div>
-                <h3>
-                  მორგებული სასწავლო პროგრამა
-                </h3>
-
-                <p>
-                  კურსები და ტრენინგები კომპანიის
-                  საჭიროებების შესაბამისად.
-                </p>
-              </div>
-
-            </div>
-
-
-            <div className="partner-row">
-
-              <span>03</span>
-
-              <div>
-                <h3>
-                  მოქნილი სწავლება
-                </h3>
-
-                <p>
-                  სასწავლო ფორმატი, რომელიც
-                  სამუშაო პროცესს არ აფერხებს.
-                </p>
-              </div>
-
-            </div>
-
-
-            <div className="partner-row">
-
-              <span>04</span>
-
-              <div>
-                <h3>
-                  რეკრუტინგის მხარდაჭერა
-                </h3>
-
-                <p>
-                  წვდომა მომზადებულ და მოტივირებულ
-                  კურსდამთავრებულებზე.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          FAQ — ძველი დიზაინი
-      ===================================================== */}
-
-      <section
-        className="about-faq"
-        id="faq"
-      >
-
-        <div className="about-faq-heading">
-
-          <div className="about-section-label">
-            <span>04</span>
-            ხშირად დასმული კითხვები
-          </div>
-
-          <h2>
-            გაქვს კითხვა?
-            <br />
-            <span>აქ არის პასუხი.</span>
-          </h2>
-
-          <p>
-            თუ კურსთან დაკავშირებით კითხვა გაქვს,
-            დიდი ალბათობით პასუხს აქ იპოვი.
-          </p>
-
-        </div>
-
-
-        <div className="faq-list">
+        <div className="faq-cards">
 
           {faqData.map((faq, index) => {
 
@@ -548,47 +390,47 @@ const About = () => {
 
             return (
               <article
-                className={`faq-item ${
-                  isOpen ? "faq-open" : ""
+                className={`faq-card ${
+                  isOpen
+                    ? "faq-card-open"
+                    : ""
                 }`}
                 key={faq.question}
               >
 
                 <button
                   type="button"
-                  className="faq-question"
+                  className="faq-card-question"
                   onClick={() => toggleFaq(index)}
                   aria-expanded={isOpen}
                 >
 
-                  <div>
+                  <span className="faq-card-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-                    <span className="faq-number">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                  <span className="faq-card-title">
+                    {faq.question}
+                  </span>
 
-                    <span className="faq-title">
-                      {faq.question}
-                    </span>
-
-                  </div>
-
-                  <span className="faq-toggle">
+                  <span className="faq-card-plus">
                     <FaPlus />
                   </span>
 
                 </button>
 
 
-                <div
-                  className={`faq-answer ${
-                    isOpen ? "show" : ""
-                  }`}
-                >
+                <div className="faq-card-answer">
 
-                  <p>
-                    {faq.answer}
-                  </p>
+                  <div className="faq-answer-inner">
+
+                    <div className="faq-answer-line" />
+
+                    <p>
+                      {faq.answer}
+                    </p>
+
+                  </div>
 
                 </div>
 
@@ -603,32 +445,159 @@ const About = () => {
 
 
       {/* =====================================================
-          CTA — ძველი დიზაინის პრინციპით
+          CONTACT
       ===================================================== */}
 
-      <section className="about-cta">
+      <section className="contact-section">
 
-        <div>
+        <div className="contact-card">
 
-          <span>
-            READY TO START?
-          </span>
+          <div className="contact-left">
 
-          <h2>
-            შენი პირველი ნაბიჯი
-            <br />
-            იწყება აქ.
-          </h2>
+            <span className="section-label">
+              CONTACT
+            </span>
+
+            <h2>
+              დაგვიკავშირდი
+            </h2>
+
+            <p>
+              გაქვს კითხვა კურსზე ან გინდა
+              სწავლა დაიწყო? მოგვწერე.
+            </p>
+
+          </div>
+
+
+          <div className="contact-right">
+
+            <div className="contact-links">
+
+              {/* EMAIL */}
+
+              <a
+                href="mailto:Amashukelinika5@gmail.com"
+              >
+
+                <div className="contact-link-icon">
+                  @
+                </div>
+
+                <div className="contact-link-content">
+
+                  <span>
+                    EMAIL
+                  </span>
+
+                  <strong>
+                    Amashukelinika5@gmail.com
+                  </strong>
+
+                </div>
+
+                <b>
+                  ↗
+                </b>
+
+              </a>
+
+
+              {/* PHONE */}
+
+              <a
+                href="tel:+995595036986"
+              >
+
+                <div className="contact-link-icon">
+                  ☎
+                </div>
+
+                <div className="contact-link-content">
+
+                  <span>
+                    PHONE
+                  </span>
+
+                  <strong>
+                    595 03 69 86
+                  </strong>
+
+                </div>
+
+                <b>
+                  ↗
+                </b>
+
+              </a>
+
+
+              {/* INSTAGRAM */}
+
+              <a
+                href="https://www.instagram.com/editologia0/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div className="contact-link-icon">
+                  ◎
+                </div>
+
+                <div className="contact-link-content">
+
+                  <span>
+                    INSTAGRAM
+                  </span>
+
+                  <strong>
+                    @editologia0
+                  </strong>
+
+                </div>
+
+                <b>
+                  ↗
+                </b>
+
+              </a>
+
+
+              {/* FACEBOOK */}
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61588131500547"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+
+                <div className="contact-link-icon">
+                  f
+                </div>
+
+                <div className="contact-link-content">
+
+                  <span>
+                    FACEBOOK
+                  </span>
+
+                  <strong>
+                    Editologia
+                  </strong>
+
+                </div>
+
+                <b>
+                  ↗
+                </b>
+
+              </a>
+
+            </div>
+
+          </div>
 
         </div>
-
-
-        <a
-          href="/livecourses"
-          className="about-cta-btn"
-        >
-          დაიწყე სწავლა
-        </a>
 
       </section>
 

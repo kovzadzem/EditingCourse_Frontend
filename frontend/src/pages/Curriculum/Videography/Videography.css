@@ -1,0 +1,2687 @@
+/* =========================================================
+   VIDEOGRAPHY PAGE
+   PREMIUM EDITORIAL DESIGN
+   ========================================================= */
+
+.videography-page {
+  --vg-purple: #8035d6;
+  --vg-purple-light: #a86bea;
+
+  --vg-bg: #f7f7f9;
+  --vg-surface: #ffffff;
+  --vg-surface-2: #f1f1f4;
+
+  --vg-text: #111116;
+  --vg-text-soft: #62626b;
+  --vg-muted: #96969f;
+
+  --vg-border: rgba(15, 15, 20, 0.09);
+  --vg-border-strong: rgba(15, 15, 20, 0.16);
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background:
+    var(--vg-bg);
+
+  color:
+    var(--vg-text);
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html[data-theme="dark"] .videography-page {
+  --vg-bg: #07070a;
+  --vg-surface: #0d0d11;
+  --vg-surface-2: #131318;
+
+  --vg-text: #f7f7f8;
+  --vg-text-soft: #9999a3;
+  --vg-muted: #66666f;
+
+  --vg-border: rgba(255, 255, 255, 0.085);
+  --vg-border-strong: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.vg-container {
+  width:
+    min(1260px, calc(100% - 70px));
+
+  margin:
+    0 auto;
+
+  position: relative;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.vg-hero {
+  position: relative;
+
+  min-height: 900px;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    var(--vg-bg);
+}
+
+
+.vg-hero-noise {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.025;
+
+  pointer-events: none;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+}
+
+
+.vg-hero-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter:
+    blur(120px);
+}
+
+
+.vg-glow-one {
+  width: 650px;
+  height: 650px;
+
+  right: -300px;
+  top: -220px;
+
+  background:
+    rgba(128, 53, 214, 0.10);
+}
+
+
+.vg-glow-two {
+  width: 450px;
+  height: 450px;
+
+  left: -250px;
+  bottom: -250px;
+
+  background:
+    rgba(128, 53, 214, 0.055);
+}
+
+
+.vg-hero-lines {
+  position: absolute;
+
+  inset: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  pointer-events: none;
+}
+
+
+.vg-hero-lines span {
+  border-right:
+    1px solid var(--vg-border);
+}
+
+
+/* =========================================================
+   HERO TOP
+   ========================================================= */
+
+.vg-hero-top {
+  position: absolute;
+
+  top: 30px;
+
+  left: 0;
+  right: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items: center;
+
+  color:
+    var(--vg-muted);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+}
+
+
+.vg-hero-center-label {
+  color:
+    var(--vg-purple);
+}
+
+
+.vg-hero-year {
+  text-align: right;
+}
+
+
+/* =========================================================
+   HERO MAIN
+   ========================================================= */
+
+.vg-hero-main {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  align-items: center;
+
+  gap: 80px;
+}
+
+
+/* =========================================================
+   HERO LEFT
+   ========================================================= */
+
+.vg-hero-left {
+  padding-top: 40px;
+}
+
+
+.vg-eyebrow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color:
+    var(--vg-muted);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.21em;
+}
+
+
+.vg-eyebrow span {
+  width: 28px;
+  height: 1px;
+
+  background:
+    var(--vg-purple);
+}
+
+
+/* =========================================================
+   HERO TITLE
+   ========================================================= */
+
+.vg-hero-left h1 {
+  margin:
+    32px 0 0;
+
+  font-size:
+    clamp(75px, 9vw, 128px);
+
+  line-height:
+    0.79;
+
+  letter-spacing:
+    -0.10em;
+
+  font-weight:
+    800;
+}
+
+
+.vg-title-line {
+  display: block;
+}
+
+
+.vg-outline {
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1px var(--vg-text);
+}
+
+
+.vg-purple {
+  color:
+    var(--vg-purple);
+}
+
+
+.vg-hero-description {
+  max-width:
+    470px;
+
+  margin:
+    40px 0 0;
+
+  color:
+    var(--vg-text-soft);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.9;
+}
+
+
+/* =========================================================
+   HERO ACTIONS
+   ========================================================= */
+
+.vg-hero-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 35px;
+
+  margin-top:
+    40px;
+}
+
+
+.vg-primary-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding:
+    5px
+    5px
+    5px
+    20px;
+
+  border:
+    1px solid var(--vg-border-strong);
+
+  border-radius:
+    100px;
+
+  background:
+    var(--vg-surface);
+
+  color:
+    var(--vg-text);
+
+  font-size:
+    8px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.05em;
+
+  box-shadow:
+    0 20px 60px rgba(20, 20, 30, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.vg-primary-button:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(128, 53, 214, 0.4);
+}
+
+
+.vg-primary-button i {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--vg-purple);
+
+  color:
+    #ffffff;
+
+  font-size:
+    7px;
+
+  font-style:
+    normal;
+}
+
+
+/* =========================================================
+   HERO STATS
+   ========================================================= */
+
+.vg-hero-stats {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+.vg-hero-stats > div:not(.vg-stat-divider) {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.vg-hero-stats strong {
+  font-size:
+    14px;
+
+  letter-spacing:
+    -0.04em;
+}
+
+
+.vg-hero-stats span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.vg-stat-divider {
+  width: 1px;
+  height: 27px;
+
+  background:
+    var(--vg-border-strong);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.vg-hero-visual {
+  position: relative;
+
+  height:
+    610px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.vg-visual-number {
+  position: absolute;
+
+  top: -20px;
+  right: -10px;
+
+  color:
+    rgba(128, 53, 214, 0.06);
+
+  font-size:
+    230px;
+
+  line-height:
+    1;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.12em;
+}
+
+
+/* =========================================================
+   CAMERA
+   ========================================================= */
+
+.vg-camera {
+  position: relative;
+
+  width:
+    440px;
+
+  height:
+    530px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #202026,
+      #07070a
+    );
+
+  box-shadow:
+    0 55px 120px rgba(0, 0, 0, 0.28);
+
+  transform:
+    perspective(1400px)
+    rotateY(-7deg);
+
+  transition:
+    transform 0.7s ease;
+}
+
+
+.vg-camera:hover {
+  transform:
+    perspective(1400px)
+    rotateY(0deg)
+    translateY(-8px);
+}
+
+
+.vg-camera::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.vg-camera-screen {
+  position: absolute;
+
+  inset:
+    30px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(128, 53, 214, 0.30),
+      transparent 35%
+    );
+}
+
+
+/* =========================================================
+   CAMERA CORNERS
+   ========================================================= */
+
+.vg-camera-corner {
+  position: absolute;
+
+  z-index: 5;
+
+  width: 20px;
+  height: 20px;
+
+  border-color:
+    rgba(255, 255, 255, 0.5);
+
+  border-style:
+    solid;
+}
+
+
+.corner-tl {
+  top: 22px;
+  left: 22px;
+
+  border-width:
+    1px 0 0 1px;
+}
+
+
+.corner-tr {
+  top: 22px;
+  right: 22px;
+
+  border-width:
+    1px 1px 0 0;
+}
+
+
+.corner-bl {
+  bottom: 22px;
+  left: 22px;
+
+  border-width:
+    0 0 1px 1px;
+}
+
+
+.corner-br {
+  right: 22px;
+  bottom: 22px;
+
+  border-width:
+    0 1px 1px 0;
+}
+
+
+/* =========================================================
+   CAMERA UI
+   ========================================================= */
+
+.vg-camera-top,
+.vg-camera-bottom {
+  position: absolute;
+
+  z-index: 4;
+
+  left: 15px;
+  right: 15px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.vg-camera-top {
+  top: 15px;
+}
+
+
+.vg-camera-bottom {
+  bottom: 15px;
+}
+
+
+.vg-record {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.vg-record i {
+  width: 5px;
+  height: 5px;
+
+  border-radius:
+    50%;
+
+  background:
+    #ff435b;
+
+  box-shadow:
+    0 0 10px #ff435b;
+}
+
+
+/* =========================================================
+   LENS
+   ========================================================= */
+
+.vg-camera-lens {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.vg-lens-outer {
+  width:
+    225px;
+
+  height:
+    225px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius:
+    50%;
+}
+
+
+.vg-lens-middle {
+  width:
+    170px;
+
+  height:
+    170px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.14);
+
+  border-radius:
+    50%;
+}
+
+
+.vg-lens-inner {
+  position: relative;
+
+  width:
+    130px;
+
+  height:
+    130px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius:
+    50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(128, 53, 214, 0.46),
+      #050508 74%
+    );
+
+  box-shadow:
+    inset 0 0 45px rgba(128, 53, 214, 0.2),
+    0 0 70px rgba(128, 53, 214, 0.1);
+}
+
+
+.vg-lens-inner::before {
+  content: "";
+
+  position: absolute;
+
+  inset:
+    22px;
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.17);
+
+  border-radius:
+    50%;
+}
+
+
+.vg-lens-inner::after {
+  content: "";
+
+  position: absolute;
+
+  inset:
+    42px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
+  border-radius:
+    50%;
+}
+
+
+.vg-lens-inner span {
+  width:
+    16px;
+
+  height:
+    16px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius:
+    50%;
+}
+
+
+/* =========================================================
+   FOCUS CORNERS
+   ========================================================= */
+
+.vg-focus-corners {
+  position: absolute;
+
+  inset:
+    20%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  grid-template-rows:
+    1fr 1fr;
+}
+
+
+.vg-focus-corners span {
+  width:
+    14px;
+
+  height:
+    14px;
+
+  border-color:
+    rgba(255, 255, 255, 0.25);
+
+  border-style:
+    solid;
+}
+
+
+.vg-focus-corners span:nth-child(1) {
+  border-width:
+    1px 0 0 1px;
+}
+
+
+.vg-focus-corners span:nth-child(2) {
+  justify-self: end;
+
+  border-width:
+    1px 1px 0 0;
+}
+
+
+.vg-focus-corners span:nth-child(3) {
+  align-self: end;
+
+  border-width:
+    0 0 1px 1px;
+}
+
+
+.vg-focus-corners span:nth-child(4) {
+  align-self: end;
+  justify-self: end;
+
+  border-width:
+    0 1px 1px 0;
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+   ========================================================= */
+
+.vg-floating-card {
+  position: absolute;
+
+  z-index: 7;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid var(--vg-border);
+
+  background:
+    rgba(255, 255, 255, 0.72);
+
+  backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.09);
+}
+
+
+html[data-theme="dark"] .vg-floating-card {
+  background:
+    rgba(13, 13, 17, 0.72);
+}
+
+
+.vg-floating-card span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-floating-card strong {
+  font-size:
+    10px;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+.vg-floating-one {
+  left:
+    -35px;
+
+  bottom:
+    85px;
+}
+
+
+.vg-floating-two {
+  right:
+    -25px;
+
+  top:
+    105px;
+}
+
+
+/* =========================================================
+   HERO BOTTOM
+   ========================================================= */
+
+.vg-hero-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom:
+    28px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 17px;
+
+  color:
+    var(--vg-muted);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-hero-bottom span:last-child {
+  margin-left:
+    auto;
+}
+
+
+.vg-scroll-line {
+  width:
+    100px;
+
+  height:
+    1px;
+
+  background:
+    var(--vg-border-strong);
+}
+
+
+.vg-scroll-line span {
+  display: block;
+
+  width:
+    35%;
+
+  height:
+    1px;
+
+  background:
+    var(--vg-purple);
+}
+
+
+/* =========================================================
+   CURRICULUM
+   ========================================================= */
+
+.vg-curriculum {
+  position: relative;
+
+  padding:
+    150px 0
+    160px;
+
+  border-top:
+    1px solid var(--vg-border);
+
+  background:
+    var(--vg-bg);
+}
+
+
+/* =========================================================
+   CURRICULUM HEADER
+   ========================================================= */
+
+.vg-curriculum-header {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  padding-bottom:
+    65px;
+
+  border-bottom:
+    1px solid var(--vg-border);
+}
+
+
+.vg-section-number {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.2em;
+}
+
+
+.vg-curriculum-header h2 {
+  margin:
+    25px 0 0;
+
+  font-size:
+    clamp(72px, 8vw, 112px);
+
+  line-height:
+    0.77;
+
+  letter-spacing:
+    -0.105em;
+}
+
+
+.vg-curriculum-header h2 span {
+  display:
+    block;
+
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1px var(--vg-text);
+}
+
+
+.vg-curriculum-description {
+  width:
+    245px;
+}
+
+
+.vg-curriculum-description > span {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-curriculum-description p {
+  margin:
+    13px 0 0;
+
+  color:
+    var(--vg-text-soft);
+
+  font-size:
+    10px;
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   CARD GRID
+   ========================================================= */
+
+.vg-card-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap:
+    18px;
+
+  margin-top:
+    42px;
+}
+
+
+/* =========================================================
+   COURSE CARD
+   ========================================================= */
+
+.vg-course-card {
+  position: relative;
+
+  min-height:
+    375px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  padding:
+    27px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid var(--vg-border);
+
+  border-radius:
+    25px;
+
+  background:
+    var(--vg-surface);
+
+  color:
+    var(--vg-text);
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 20px 60px rgba(20, 20, 30, 0.045);
+
+  transition:
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+
+.vg-course-card:hover {
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(128, 53, 214, 0.3);
+
+  box-shadow:
+    0 35px 80px rgba(128, 53, 214, 0.09);
+}
+
+
+/* =========================================================
+   CARD PURPLE LINE
+   ========================================================= */
+
+.vg-course-card::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 2px;
+  height: 0;
+
+  background:
+    var(--vg-purple);
+
+  transition:
+    height 0.45s ease;
+}
+
+
+.vg-course-card:hover::before {
+  height:
+    100%;
+}
+
+
+/* =========================================================
+   CARD WATERMARK
+   ========================================================= */
+
+.vg-card-bg-number {
+  position: absolute;
+
+  right:
+    -18px;
+
+  bottom:
+    -35px;
+
+  color:
+    rgba(128, 53, 214, 0.045);
+
+  font-size:
+    155px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.12em;
+
+  pointer-events:
+    none;
+
+  transition:
+    color 0.4s ease,
+    transform 0.4s ease;
+}
+
+
+.vg-course-card:hover
+  .vg-card-bg-number {
+  color:
+    rgba(128, 53, 214, 0.09);
+
+  transform:
+    translateY(-8px);
+}
+
+
+/* =========================================================
+   CARD TOP
+   ========================================================= */
+
+.vg-card-top {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    10px;
+}
+
+
+.vg-card-number {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+}
+
+
+.vg-card-category {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-card-plus {
+  width:
+    34px;
+
+  height:
+    34px;
+
+  margin-left:
+    auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid var(--vg-border);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--vg-text-soft);
+
+  font-size:
+    7px;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+.vg-course-card:hover
+  .vg-card-plus {
+  background:
+    var(--vg-purple);
+
+  border-color:
+    var(--vg-purple);
+
+  color:
+    white;
+
+  transform:
+    rotate(-45deg);
+}
+
+
+/* =========================================================
+   CARD ICON
+   ========================================================= */
+
+.vg-card-icon {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    48px;
+
+  height:
+    48px;
+
+  margin-top:
+    58px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid var(--vg-border);
+
+  border-radius:
+    15px;
+
+  background:
+    var(--vg-surface-2);
+
+  color:
+    var(--vg-purple);
+
+  font-size:
+    14px;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease;
+}
+
+
+.vg-course-card:hover
+  .vg-card-icon {
+  transform:
+    translateY(-5px);
+
+  background:
+    rgba(128, 53, 214, 0.08);
+}
+
+
+/* =========================================================
+   CARD BODY
+   ========================================================= */
+
+.vg-card-body {
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+.vg-card-body h3 {
+  max-width:
+    320px;
+
+  margin:
+    24px 0 0;
+
+  font-size:
+    23px;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.vg-card-body p {
+  max-width:
+    320px;
+
+  margin:
+    14px 0 0;
+
+  color:
+    var(--vg-text-soft);
+
+  font-size:
+    9px;
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   CARD BOTTOM
+   ========================================================= */
+
+.vg-card-bottom {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    100%;
+
+  margin-top:
+    auto;
+}
+
+
+.vg-card-bottom > span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-card-line {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin-top:
+    13px;
+
+  background:
+    var(--vg-border);
+}
+
+
+.vg-card-line span {
+  display:
+    block;
+
+  width:
+    15%;
+
+  height:
+    1px;
+
+  background:
+    var(--vg-purple);
+
+  transition:
+    width 0.45s ease;
+}
+
+
+.vg-course-card:hover
+  .vg-card-line span {
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   CARD OVERLAY
+   ========================================================= */
+
+.vg-card-overlay {
+  position: fixed;
+
+  z-index: 9999;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    30px;
+
+  background:
+    rgba(5, 5, 8, 0.48);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  animation:
+    vgOverlayIn 0.3s ease both;
+}
+
+
+@keyframes vgOverlayIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   ACTIVE CARD
+   ========================================================= */
+
+.vg-active-card {
+  position: relative;
+
+  width:
+    min(620px, 100%);
+
+  max-height:
+    min(720px, calc(100vh - 60px));
+
+  overflow:
+    auto;
+
+  padding:
+    42px;
+
+  border:
+    1px solid rgba(128, 53, 214, 0.35);
+
+  border-radius:
+    30px;
+
+  background:
+    var(--vg-surface);
+
+  box-shadow:
+    0 50px 150px rgba(0, 0, 0, 0.35),
+    0 0 100px rgba(128, 53, 214, 0.12);
+
+  animation:
+    vgCardComeForward 0.48s
+    cubic-bezier(0.2, 0.85, 0.25, 1)
+    both;
+}
+
+
+@keyframes vgCardComeForward {
+
+  from {
+    opacity: 0;
+
+    transform:
+      perspective(1200px)
+      translateY(70px)
+      scale(0.76)
+      rotateX(8deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      perspective(1200px)
+      translateY(0)
+      scale(1)
+      rotateX(0);
+  }
+
+}
+
+
+.vg-active-card-glow {
+  position: absolute;
+
+  width:
+    300px;
+
+  height:
+    300px;
+
+  right:
+    -130px;
+
+  top:
+    -140px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(128, 53, 214, 0.12);
+
+  filter:
+    blur(80px);
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.vg-close-button {
+  position: absolute;
+
+  z-index: 10;
+
+  top:
+    20px;
+
+  right:
+    20px;
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid var(--vg-border);
+
+  border-radius:
+    50%;
+
+  background:
+    var(--vg-surface-2);
+
+  color:
+    var(--vg-text);
+
+  font-size:
+    10px;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.vg-close-button:hover {
+  background:
+    var(--vg-purple);
+
+  border-color:
+    var(--vg-purple);
+
+  color:
+    white;
+
+  transform:
+    rotate(90deg);
+}
+
+
+/* =========================================================
+   ACTIVE CARD TOP
+   ========================================================= */
+
+.vg-active-card-top {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.vg-active-card-top > span {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.2em;
+}
+
+
+.vg-active-icon {
+  width:
+    48px;
+
+  height:
+    48px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid rgba(128, 53, 214, 0.2);
+
+  border-radius:
+    14px;
+
+  background:
+    rgba(128, 53, 214, 0.07);
+
+  color:
+    var(--vg-purple);
+
+  font-size:
+    14px;
+}
+
+
+/* =========================================================
+   ACTIVE NUMBER
+   ========================================================= */
+
+.vg-active-card-number {
+  position: absolute;
+
+  right:
+    35px;
+
+  top:
+    55px;
+
+  color:
+    rgba(128, 53, 214, 0.045);
+
+  font-size:
+    150px;
+
+  line-height:
+    1;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.12em;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   ACTIVE CONTENT
+   ========================================================= */
+
+.vg-active-content {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  margin-top:
+    45px;
+}
+
+
+.vg-active-content h3 {
+  margin:
+    0;
+
+  max-width:
+    470px;
+
+  font-size:
+    clamp(35px, 5vw, 54px);
+
+  line-height:
+    0.94;
+
+  letter-spacing:
+    -0.07em;
+}
+
+
+.vg-active-content p {
+  max-width:
+    500px;
+
+  margin:
+    22px 0 0;
+
+  color:
+    var(--vg-text-soft);
+
+  font-size:
+    11px;
+
+  line-height:
+    1.9;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.vg-active-divider {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin:
+    32px 0;
+
+  background:
+    var(--vg-border);
+}
+
+
+/* =========================================================
+   LEARNING
+   ========================================================= */
+
+.vg-active-learning > span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.vg-active-topics {
+  margin-top:
+    14px;
+
+  border-top:
+    1px solid var(--vg-border);
+}
+
+
+.vg-active-topic {
+  display:
+    grid;
+
+  grid-template-columns:
+    35px 1fr 20px;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  min-height:
+    48px;
+
+  border-bottom:
+    1px solid var(--vg-border);
+}
+
+
+.vg-active-topic > span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    7px;
+}
+
+
+.vg-active-topic strong {
+  font-size:
+    10px;
+
+  font-weight:
+    500;
+}
+
+
+.vg-active-topic svg {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    8px;
+}
+
+
+/* =========================================================
+   ACTIVE FOOTER
+   ========================================================= */
+
+.vg-active-footer {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    15px;
+
+  margin-top:
+    28px;
+
+  padding:
+    14px;
+
+  border:
+    1px solid rgba(128, 53, 214, 0.14);
+
+  background:
+    rgba(128, 53, 214, 0.045);
+}
+
+
+.vg-active-footer > div {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    4px;
+}
+
+
+.vg-active-footer span {
+  color:
+    var(--vg-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.vg-active-footer strong {
+  font-size:
+    9px;
+
+  font-weight:
+    500;
+}
+
+
+.vg-active-footer > svg {
+  margin-left:
+    auto;
+
+  color:
+    var(--vg-purple);
+
+  font-size:
+    9px;
+}
+
+
+/* =========================================================
+   CURRICULUM FOOTER
+   ========================================================= */
+
+.vg-curriculum-footer {
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr auto auto;
+
+  align-items:
+    center;
+
+  gap:
+    25px;
+
+  margin-top:
+    70px;
+}
+
+
+.vg-footer-line {
+  height:
+    1px;
+
+  background:
+    var(--vg-border);
+}
+
+
+.vg-footer-line span {
+  display:
+    block;
+
+  width:
+    35%;
+
+  height:
+    1px;
+
+  background:
+    var(--vg-purple);
+}
+
+
+.vg-footer-info {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    20px;
+}
+
+
+.vg-footer-info span {
+  color:
+    var(--vg-purple);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.vg-footer-info strong {
+  font-size:
+    8px;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+.vg-footer-arrow {
+  width:
+    36px;
+
+  height:
+    36px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+  justify-content:
+    center;
+
+  border:
+    1px solid var(--vg-border);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--vg-purple);
+
+  font-size:
+    7px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .vg-hero {
+    min-height:
+      auto;
+
+    padding:
+      130px 0
+      100px;
+  }
+
+
+  .vg-hero-main {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      60px;
+  }
+
+
+  .vg-hero-left {
+    max-width:
+      760px;
+  }
+
+
+  .vg-hero-visual {
+    height:
+      560px;
+  }
+
+
+  .vg-card-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .vg-container {
+    width:
+      calc(100% - 32px);
+  }
+
+
+  .vg-hero {
+    padding:
+      100px 0
+      80px;
+  }
+
+
+  .vg-hero-top {
+    top:
+      23px;
+
+    grid-template-columns:
+      1fr auto;
+
+    font-size:
+      6px;
+  }
+
+
+  .vg-hero-center-label {
+    display:
+      none;
+  }
+
+
+  .vg-hero-main {
+    gap:
+      40px;
+  }
+
+
+  .vg-hero-left h1 {
+    font-size:
+      clamp(61px, 17vw, 88px);
+  }
+
+
+  .vg-hero-description {
+    margin-top:
+      30px;
+
+    font-size:
+      12px;
+  }
+
+
+  .vg-hero-actions {
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    gap:
+      25px;
+  }
+
+
+  .vg-hero-visual {
+    height:
+      440px;
+  }
+
+
+  .vg-camera {
+    width:
+      285px;
+
+    height:
+      360px;
+
+    transform:
+      perspective(1000px)
+      rotateY(-4deg);
+  }
+
+
+  .vg-camera:hover {
+    transform:
+      perspective(1000px)
+      rotateY(0)
+      translateY(-5px);
+  }
+
+
+  .vg-camera-screen {
+    inset:
+      20px;
+  }
+
+
+  .vg-lens-outer {
+    width:
+      155px;
+
+    height:
+      155px;
+  }
+
+
+  .vg-lens-middle {
+    width:
+      125px;
+
+    height:
+      125px;
+  }
+
+
+  .vg-lens-inner {
+    width:
+      98px;
+
+    height:
+      98px;
+  }
+
+
+  .vg-lens-inner::before {
+    inset:
+      15px;
+  }
+
+
+  .vg-lens-inner::after {
+    inset:
+      30px;
+  }
+
+
+  .vg-floating-one {
+    left:
+      -5px;
+
+    bottom:
+      45px;
+  }
+
+
+  .vg-floating-two {
+    right:
+      -5px;
+
+    top:
+      40px;
+  }
+
+
+  .vg-visual-number {
+    right:
+      0;
+
+    top:
+      0;
+
+    font-size:
+      130px;
+  }
+
+
+  .vg-hero-bottom {
+    display:
+      none;
+  }
+
+
+  /* CURRICULUM */
+
+  .vg-curriculum {
+    padding:
+      90px 0
+      100px;
+  }
+
+
+  .vg-curriculum-header {
+    display:
+      block;
+
+    padding-bottom:
+      45px;
+  }
+
+
+  .vg-curriculum-header h2 {
+    font-size:
+      clamp(59px, 16vw, 85px);
+  }
+
+
+  .vg-curriculum-description {
+    width:
+      100%;
+
+    margin-top:
+      30px;
+  }
+
+
+  .vg-card-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      14px;
+
+    margin-top:
+      30px;
+  }
+
+
+  .vg-course-card {
+    min-height:
+      345px;
+
+    padding:
+      23px;
+  }
+
+
+  .vg-card-icon {
+    margin-top:
+      45px;
+  }
+
+
+  .vg-card-body h3 {
+    font-size:
+      24px;
+  }
+
+
+  /* MODAL */
+
+  .vg-card-overlay {
+    padding:
+      16px;
+  }
+
+
+  .vg-active-card {
+    max-height:
+      calc(100vh - 32px);
+
+    padding:
+      28px 23px;
+
+    border-radius:
+      24px;
+  }
+
+
+  .vg-active-card-number {
+    right:
+      15px;
+
+    top:
+      50px;
+
+    font-size:
+      110px;
+  }
+
+
+  .vg-active-content {
+    margin-top:
+      35px;
+  }
+
+
+  .vg-active-content h3 {
+    font-size:
+      36px;
+  }
+
+
+  .vg-active-content p {
+    font-size:
+      10px;
+  }
+
+
+  .vg-active-divider {
+    margin:
+      25px 0;
+  }
+
+
+  .vg-active-topic {
+    min-height:
+      45px;
+
+    grid-template-columns:
+      28px 1fr 15px;
+  }
+
+
+  .vg-active-topic strong {
+    font-size:
+      9px;
+  }
+
+
+  .vg-curriculum-footer {
+    grid-template-columns:
+      1fr auto;
+
+    margin-top:
+      50px;
+  }
+
+
+  .vg-footer-line {
+    grid-column:
+      1 / -1;
+  }
+
+
+  .vg-footer-info {
+    display:
+      block;
+  }
+
+
+  .vg-footer-info strong {
+    display:
+      block;
+
+    margin-top:
+      5px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .vg-hero-left h1 {
+    font-size:
+      58px;
+  }
+
+
+  .vg-camera {
+    width:
+      255px;
+
+    height:
+      325px;
+  }
+
+
+  .vg-hero-visual {
+    height:
+      395px;
+  }
+
+
+  .vg-floating-card {
+    padding:
+      10px 13px;
+  }
+
+
+  .vg-curriculum-header h2 {
+    font-size:
+      56px;
+  }
+
+
+  .vg-course-card {
+    min-height:
+      325px;
+  }
+
+
+  .vg-active-content h3 {
+    font-size:
+      31px;
+  }
+
+}
+
+
+/* =========================================================
+   BODY LOCK
+   ========================================================= */
+
+body.vg-modal-open {
+  overflow:
+    hidden;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .videography-page *,
+  .videography-page *::before,
+  .videography-page *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+
+}

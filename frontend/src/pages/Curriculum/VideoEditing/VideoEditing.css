@@ -1,0 +1,2895 @@
+/* =========================================================
+   VIDEO EDITING
+   PREMIUM EDITORIAL DESIGN
+   ========================================================= */
+
+.ve-page {
+  --ve-purple: #8035d6;
+  --ve-purple-light: #a76be9;
+
+  --ve-bg: #f7f7f9;
+  --ve-surface: #ffffff;
+  --ve-surface-2: #f1f1f4;
+
+  --ve-text: #111116;
+  --ve-text-soft: #62626b;
+  --ve-muted: #96969f;
+
+  --ve-border: rgba(15, 15, 20, 0.09);
+  --ve-border-strong: rgba(15, 15, 20, 0.16);
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: var(--ve-bg);
+
+  color: var(--ve-text);
+
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
+}
+
+
+/* =========================================================
+   DARK
+   ========================================================= */
+
+html[data-theme="dark"] .ve-page {
+  --ve-bg: #07070a;
+  --ve-surface: #0d0d11;
+  --ve-surface-2: #131318;
+
+  --ve-text: #f7f7f8;
+  --ve-text-soft: #9999a3;
+  --ve-muted: #66666f;
+
+  --ve-border: rgba(255, 255, 255, 0.085);
+  --ve-border-strong: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.ve-container {
+  position: relative;
+
+  width:
+    min(1260px, calc(100% - 70px));
+
+  margin:
+    0 auto;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.ve-hero {
+  position: relative;
+
+  min-height: 900px;
+
+  display: flex;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    var(--ve-bg);
+}
+
+
+.ve-hero-noise {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.025;
+
+  pointer-events: none;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.65'/%3E%3C/svg%3E");
+}
+
+
+.ve-hero-glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter:
+    blur(120px);
+}
+
+
+.ve-glow-one {
+  width: 650px;
+  height: 650px;
+
+  right: -300px;
+  top: -220px;
+
+  background:
+    rgba(128, 53, 214, 0.10);
+}
+
+
+.ve-glow-two {
+  width: 450px;
+  height: 450px;
+
+  left: -250px;
+  bottom: -250px;
+
+  background:
+    rgba(128, 53, 214, 0.055);
+}
+
+
+.ve-hero-lines {
+  position: absolute;
+
+  inset: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  pointer-events: none;
+}
+
+
+.ve-hero-lines span {
+  border-right:
+    1px solid var(--ve-border);
+}
+
+
+/* =========================================================
+   HERO TOP
+   ========================================================= */
+
+.ve-hero-top {
+  position: absolute;
+
+  top: 30px;
+
+  left: 0;
+  right: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items: center;
+
+  color:
+    var(--ve-muted);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.22em;
+}
+
+
+.ve-hero-top-center {
+  color:
+    var(--ve-purple);
+}
+
+
+.ve-hero-top span:last-child {
+  text-align:
+    right;
+}
+
+
+/* =========================================================
+   HERO MAIN
+   ========================================================= */
+
+.ve-hero-main {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  align-items: center;
+
+  gap:
+    80px;
+}
+
+
+/* =========================================================
+   LEFT
+   ========================================================= */
+
+.ve-hero-left {
+  padding-top:
+    40px;
+}
+
+
+.ve-eyebrow {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  color:
+    var(--ve-muted);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.21em;
+}
+
+
+.ve-eyebrow > span {
+  width:
+    28px;
+
+  height:
+    1px;
+
+  background:
+    var(--ve-purple);
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.ve-hero-left h1 {
+  margin:
+    32px 0 0;
+
+  font-size:
+    clamp(75px, 9vw, 128px);
+
+  line-height:
+    0.79;
+
+  letter-spacing:
+    -0.10em;
+
+  font-weight:
+    800;
+}
+
+
+.ve-hero-left h1 span {
+  display:
+    block;
+}
+
+
+.ve-outline {
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1px var(--ve-text);
+}
+
+
+.ve-purple {
+  color:
+    var(--ve-purple);
+}
+
+
+.ve-hero-description {
+  max-width:
+    470px;
+
+  margin:
+    40px 0 0;
+
+  color:
+    var(--ve-text-soft);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.9;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.ve-hero-actions {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    35px;
+
+  margin-top:
+    40px;
+}
+
+
+.ve-primary-button {
+  display:
+    inline-flex;
+
+  align-items:
+    center;
+
+  gap:
+    14px;
+
+  padding:
+    5px
+    5px
+    5px
+    20px;
+
+  border:
+    1px solid var(--ve-border-strong);
+
+  border-radius:
+    100px;
+
+  background:
+    var(--ve-surface);
+
+  color:
+    var(--ve-text);
+
+  font-size:
+    8px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.05em;
+
+  box-shadow:
+    0 20px 60px rgba(20, 20, 30, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.ve-primary-button:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(128, 53, 214, 0.4);
+}
+
+
+.ve-primary-button i {
+  width:
+    38px;
+
+  height:
+    38px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border-radius:
+    50%;
+
+  background:
+    var(--ve-purple);
+
+  color:
+    white;
+
+  font-size:
+    7px;
+
+  font-style:
+    normal;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.ve-hero-stats {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    15px;
+}
+
+
+.ve-hero-stats > div:not(.ve-stat-divider) {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    4px;
+}
+
+
+.ve-hero-stats strong {
+  font-size:
+    14px;
+
+  letter-spacing:
+    -0.04em;
+}
+
+
+.ve-hero-stats span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.ve-stat-divider {
+  width:
+    1px;
+
+  height:
+    27px;
+
+  background:
+    var(--ve-border-strong);
+}
+
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
+.ve-hero-visual {
+  position:
+    relative;
+
+  height:
+    610px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+}
+
+
+.ve-visual-number {
+  position:
+    absolute;
+
+  top:
+    -20px;
+
+  right:
+    -10px;
+
+  color:
+    rgba(128, 53, 214, 0.06);
+
+  font-size:
+    230px;
+
+  line-height:
+    1;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.12em;
+}
+
+
+/* =========================================================
+   EDITOR WINDOW
+   ========================================================= */
+
+.ve-editor-window {
+  position:
+    relative;
+
+  width:
+    470px;
+
+  height:
+    500px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  background:
+    linear-gradient(
+      145deg,
+      #202026,
+      #07070a
+    );
+
+  box-shadow:
+    0 55px 120px rgba(0, 0, 0, 0.28);
+
+  transform:
+    perspective(1400px)
+    rotateY(-7deg);
+
+  transition:
+    transform 0.7s ease;
+}
+
+
+.ve-editor-window:hover {
+  transform:
+    perspective(1400px)
+    rotateY(0deg)
+    translateY(-8px);
+}
+
+
+/* =========================================================
+   WINDOW TOP
+   ========================================================= */
+
+.ve-window-top {
+  height:
+    45px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  padding:
+    0 18px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.17em;
+}
+
+
+.ve-window-top div {
+  display:
+    flex;
+
+  gap:
+    5px;
+}
+
+
+.ve-window-top i {
+  width:
+    5px;
+
+  height:
+    5px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(255, 255, 255, 0.22);
+}
+
+
+/* =========================================================
+   WINDOW CONTENT
+   ========================================================= */
+
+.ve-window-content {
+  position:
+    relative;
+
+  height:
+    calc(100% - 82px);
+}
+
+
+/* =========================================================
+   PREVIEW
+   ========================================================= */
+
+.ve-preview-screen {
+  position:
+    absolute;
+
+  top:
+    22px;
+
+  left:
+    22px;
+
+  right:
+    22px;
+
+  height:
+    285px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(128, 53, 214, 0.42),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #18181e,
+      #050507
+    );
+}
+
+
+.ve-preview-grid {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.045) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    45px 45px;
+}
+
+
+.ve-preview-center {
+  position:
+    absolute;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    12px;
+}
+
+
+.ve-preview-center > span {
+  color:
+    rgba(255,255,255,0.35);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.2em;
+}
+
+
+.ve-play-circle {
+  width:
+    58px;
+
+  height:
+    58px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid rgba(255,255,255,0.25);
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  color:
+    white;
+
+  font-size:
+    9px;
+}
+
+
+.ve-preview-rec {
+  position:
+    absolute;
+
+  top:
+    13px;
+
+  left:
+    14px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    6px;
+
+  color:
+    rgba(255,255,255,0.45);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.13em;
+}
+
+
+.ve-preview-rec i {
+  width:
+    5px;
+
+  height:
+    5px;
+
+  border-radius:
+    50%;
+
+  background:
+    #ff435b;
+
+  box-shadow:
+    0 0 10px #ff435b;
+}
+
+
+.ve-preview-time {
+  position:
+    absolute;
+
+  right:
+    14px;
+
+  bottom:
+    13px;
+
+  color:
+    rgba(255,255,255,0.3);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.13em;
+}
+
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.ve-timeline {
+  position:
+    absolute;
+
+  left:
+    22px;
+
+  right:
+    22px;
+
+  bottom:
+    18px;
+
+  height:
+    105px;
+
+  border:
+    1px solid rgba(255,255,255,0.07);
+
+  background:
+    rgba(255,255,255,0.025);
+}
+
+
+.ve-timeline-ruler {
+  height:
+    19px;
+
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-around;
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.06);
+}
+
+
+.ve-timeline-ruler span {
+  width:
+    1px;
+
+  height:
+    5px;
+
+  background:
+    rgba(255,255,255,0.18);
+}
+
+
+.ve-track {
+  position:
+    relative;
+
+  height:
+    32px;
+
+  display:
+    flex;
+
+  gap:
+    5px;
+
+  padding:
+    5px;
+}
+
+
+.ve-track-second {
+  border-top:
+    1px solid rgba(255,255,255,0.04);
+}
+
+
+.ve-clip {
+  height:
+    21px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  padding:
+    0 10px;
+
+  color:
+    rgba(255,255,255,0.48);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.1em;
+
+  background:
+    rgba(128,53,214,0.35);
+
+  border:
+    1px solid rgba(128,53,214,0.25);
+}
+
+
+.ve-clip-one {
+  width:
+    38%;
+}
+
+
+.ve-clip-two {
+  width:
+    27%;
+
+  background:
+    rgba(255,255,255,0.08);
+}
+
+
+.ve-audio {
+  width:
+    55%;
+
+  background:
+    rgba(255,255,255,0.07);
+}
+
+
+.ve-playhead {
+  position:
+    absolute;
+
+  top:
+    0;
+
+  bottom:
+    0;
+
+  left:
+    43%;
+
+  width:
+    1px;
+
+  background:
+    var(--ve-purple);
+
+  box-shadow:
+    0 0 10px rgba(128,53,214,0.8);
+}
+
+
+/* =========================================================
+   WINDOW BOTTOM
+   ========================================================= */
+
+.ve-window-bottom {
+  height:
+    37px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  padding:
+    0 18px;
+
+  border-top:
+    1px solid rgba(255,255,255,0.07);
+
+  color:
+    rgba(255,255,255,0.3);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+   ========================================================= */
+
+.ve-floating-card {
+  position:
+    absolute;
+
+  z-index:
+    7;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    4px;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid var(--ve-border);
+
+  background:
+    rgba(255,255,255,0.72);
+
+  backdrop-filter:
+    blur(18px);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,0.09);
+}
+
+
+html[data-theme="dark"] .ve-floating-card {
+  background:
+    rgba(13,13,17,0.72);
+}
+
+
+.ve-floating-card span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-floating-card strong {
+  font-size:
+    10px;
+
+  letter-spacing:
+    0.08em;
+}
+
+
+.ve-floating-one {
+  left:
+    -35px;
+
+  bottom:
+    75px;
+}
+
+
+.ve-floating-two {
+  right:
+    -25px;
+
+  top:
+    110px;
+}
+
+
+/* =========================================================
+   HERO BOTTOM
+   ========================================================= */
+
+.ve-hero-bottom {
+  position:
+    absolute;
+
+  left:
+    0;
+
+  right:
+    0;
+
+  bottom:
+    28px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    17px;
+
+  color:
+    var(--ve-muted);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-hero-bottom span:last-child {
+  margin-left:
+    auto;
+}
+
+
+.ve-scroll-line {
+  width:
+    100px;
+
+  height:
+    1px;
+
+  background:
+    var(--ve-border-strong);
+}
+
+
+.ve-scroll-line span {
+  display:
+    block;
+
+  width:
+    35%;
+
+  height:
+    1px;
+
+  background:
+    var(--ve-purple);
+}
+
+
+/* =========================================================
+   CURRICULUM
+   ========================================================= */
+
+.ve-curriculum {
+  position:
+    relative;
+
+  padding:
+    150px 0 160px;
+
+  border-top:
+    1px solid var(--ve-border);
+
+  background:
+    var(--ve-bg);
+}
+
+
+/* =========================================================
+   CURRICULUM HEADER
+   ========================================================= */
+
+.ve-curriculum-header {
+  display:
+    flex;
+
+  align-items:
+    flex-end;
+
+  justify-content:
+    space-between;
+
+  padding-bottom:
+    65px;
+
+  border-bottom:
+    1px solid var(--ve-border);
+}
+
+
+.ve-section-number {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.2em;
+}
+
+
+.ve-curriculum-header h2 {
+  margin:
+    25px 0 0;
+
+  font-size:
+    clamp(72px, 8vw, 112px);
+
+  line-height:
+    0.77;
+
+  letter-spacing:
+    -0.105em;
+}
+
+
+.ve-curriculum-header h2 span {
+  display:
+    block;
+
+  color:
+    transparent;
+
+  -webkit-text-stroke:
+    1px var(--ve-text);
+}
+
+
+.ve-curriculum-description {
+  width:
+    245px;
+}
+
+
+.ve-curriculum-description > span {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-curriculum-description p {
+  margin:
+    13px 0 0;
+
+  color:
+    var(--ve-text-soft);
+
+  font-size:
+    10px;
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.ve-card-grid {
+  display:
+    grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap:
+    18px;
+
+  margin-top:
+    42px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.ve-course-card {
+  position:
+    relative;
+
+  min-height:
+    375px;
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    flex-start;
+
+  padding:
+    27px;
+
+  overflow:
+    hidden;
+
+  border:
+    1px solid var(--ve-border);
+
+  border-radius:
+    25px;
+
+  background:
+    var(--ve-surface);
+
+  color:
+    var(--ve-text);
+
+  text-align:
+    left;
+
+  cursor:
+    pointer;
+
+  box-shadow:
+    0 20px 60px rgba(20,20,30,0.045);
+
+  transition:
+    transform 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+
+.ve-course-card:hover {
+  transform:
+    translateY(-8px);
+
+  border-color:
+    rgba(128,53,214,0.3);
+
+  box-shadow:
+    0 35px 80px rgba(128,53,214,0.09);
+}
+
+
+.ve-course-card::before {
+  content:
+    "";
+
+  position:
+    absolute;
+
+  left:
+    0;
+
+  top:
+    0;
+
+  width:
+    2px;
+
+  height:
+    0;
+
+  background:
+    var(--ve-purple);
+
+  transition:
+    height 0.45s ease;
+}
+
+
+.ve-course-card:hover::before {
+  height:
+    100%;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+   ========================================================= */
+
+.ve-card-bg-number {
+  position:
+    absolute;
+
+  right:
+    -18px;
+
+  bottom:
+    -35px;
+
+  color:
+    rgba(128,53,214,0.045);
+
+  font-size:
+    155px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.12em;
+
+  pointer-events:
+    none;
+
+  transition:
+    transform 0.4s ease,
+    color 0.4s ease;
+}
+
+
+.ve-course-card:hover .ve-card-bg-number {
+  color:
+    rgba(128,53,214,0.09);
+
+  transform:
+    translateY(-8px);
+}
+
+
+/* =========================================================
+   CARD TOP
+   ========================================================= */
+
+.ve-card-top {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    100%;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+}
+
+
+.ve-card-number {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    10px;
+
+  font-weight:
+    700;
+}
+
+
+.ve-card-category {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    6px;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-card-arrow {
+  width:
+    34px;
+
+  height:
+    34px;
+
+  margin-left:
+    auto;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid var(--ve-border);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--ve-text-soft);
+
+  font-size:
+    7px;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+.ve-course-card:hover .ve-card-arrow {
+  background:
+    var(--ve-purple);
+
+  border-color:
+    var(--ve-purple);
+
+  color:
+    white;
+
+  transform:
+    rotate(-45deg);
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.ve-card-icon {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    48px;
+
+  height:
+    48px;
+
+  margin-top:
+    58px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid var(--ve-border);
+
+  border-radius:
+    15px;
+
+  background:
+    var(--ve-surface-2);
+
+  color:
+    var(--ve-purple);
+
+  font-size:
+    13px;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease;
+}
+
+
+.ve-course-card:hover .ve-card-icon {
+  transform:
+    translateY(-5px);
+
+  background:
+    rgba(128,53,214,0.08);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.ve-card-body {
+  position:
+    relative;
+
+  z-index:
+    2;
+}
+
+
+.ve-card-body h3 {
+  max-width:
+    320px;
+
+  margin:
+    24px 0 0;
+
+  font-size:
+    23px;
+
+  line-height:
+    1;
+
+  letter-spacing:
+    -0.055em;
+}
+
+
+.ve-card-body p {
+  max-width:
+    320px;
+
+  margin:
+    14px 0 0;
+
+  color:
+    var(--ve-text-soft);
+
+  font-size:
+    9px;
+
+  line-height:
+    1.8;
+}
+
+
+/* =========================================================
+   CARD BOTTOM
+   ========================================================= */
+
+.ve-card-bottom {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  width:
+    100%;
+
+  margin-top:
+    auto;
+}
+
+
+.ve-card-bottom > span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-card-line {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin-top:
+    13px;
+
+  background:
+    var(--ve-border);
+}
+
+
+.ve-card-line span {
+  display:
+    block;
+
+  width:
+    15%;
+
+  height:
+    1px;
+
+  background:
+    var(--ve-purple);
+
+  transition:
+    width 0.45s ease;
+}
+
+
+.ve-course-card:hover .ve-card-line span {
+  width:
+    100%;
+}
+
+
+/* =========================================================
+   FORWARD OVERLAY
+   ========================================================= */
+
+.ve-card-overlay {
+  position:
+    fixed;
+
+  z-index:
+    9999;
+
+  inset:
+    0;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    30px;
+
+  background:
+    rgba(5,5,8,0.48);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  animation:
+    veOverlayIn 0.3s ease both;
+}
+
+
+@keyframes veOverlayIn {
+
+  from {
+    opacity:
+      0;
+  }
+
+  to {
+    opacity:
+      1;
+  }
+
+}
+
+
+/* =========================================================
+   ACTIVE CARD
+   ========================================================= */
+
+.ve-active-card {
+  position:
+    relative;
+
+  width:
+    min(620px, 100%);
+
+  max-height:
+    min(720px, calc(100vh - 60px));
+
+  overflow:
+    auto;
+
+  padding:
+    42px;
+
+  border:
+    1px solid rgba(128,53,214,0.35);
+
+  border-radius:
+    30px;
+
+  background:
+    var(--ve-surface);
+
+  box-shadow:
+    0 50px 150px rgba(0,0,0,0.35),
+    0 0 100px rgba(128,53,214,0.12);
+
+  animation:
+    veCardForward 0.48s
+    cubic-bezier(0.2,0.85,0.25,1)
+    both;
+}
+
+
+@keyframes veCardForward {
+
+  from {
+    opacity:
+      0;
+
+    transform:
+      perspective(1200px)
+      translateY(70px)
+      scale(0.76)
+      rotateX(8deg);
+  }
+
+  to {
+    opacity:
+      1;
+
+    transform:
+      perspective(1200px)
+      translateY(0)
+      scale(1)
+      rotateX(0);
+  }
+
+}
+
+
+.ve-active-glow {
+  position:
+    absolute;
+
+  width:
+    300px;
+
+  height:
+    300px;
+
+  right:
+    -130px;
+
+  top:
+    -140px;
+
+  border-radius:
+    50%;
+
+  background:
+    rgba(128,53,214,0.12);
+
+  filter:
+    blur(80px);
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   CLOSE
+   ========================================================= */
+
+.ve-close-button {
+  position:
+    absolute;
+
+  z-index:
+    10;
+
+  top:
+    20px;
+
+  right:
+    20px;
+
+  width:
+    38px;
+
+  height:
+    38px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid var(--ve-border);
+
+  border-radius:
+    50%;
+
+  background:
+    var(--ve-surface-2);
+
+  color:
+    var(--ve-text);
+
+  font-size:
+    10px;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.ve-close-button:hover {
+  background:
+    var(--ve-purple);
+
+  border-color:
+    var(--ve-purple);
+
+  color:
+    white;
+
+  transform:
+    rotate(90deg);
+}
+
+
+/* =========================================================
+   ACTIVE TOP
+   ========================================================= */
+
+.ve-active-top {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+}
+
+
+.ve-active-top > span {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    7px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.2em;
+}
+
+
+.ve-active-icon {
+  width:
+    48px;
+
+  height:
+    48px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid rgba(128,53,214,0.2);
+
+  border-radius:
+    14px;
+
+  background:
+    rgba(128,53,214,0.07);
+
+  color:
+    var(--ve-purple);
+
+  font-size:
+    12px;
+}
+
+
+/* =========================================================
+   ACTIVE NUMBER
+   ========================================================= */
+
+.ve-active-number {
+  position:
+    absolute;
+
+  right:
+    35px;
+
+  top:
+    55px;
+
+  color:
+    rgba(128,53,214,0.045);
+
+  font-size:
+    150px;
+
+  line-height:
+    1;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    -0.12em;
+
+  pointer-events:
+    none;
+}
+
+
+/* =========================================================
+   ACTIVE CONTENT
+   ========================================================= */
+
+.ve-active-content {
+  position:
+    relative;
+
+  z-index:
+    2;
+
+  margin-top:
+    45px;
+}
+
+
+.ve-active-content h3 {
+  margin:
+    0;
+
+  max-width:
+    470px;
+
+  font-size:
+    clamp(35px,5vw,54px);
+
+  line-height:
+    0.94;
+
+  letter-spacing:
+    -0.07em;
+}
+
+
+.ve-active-content p {
+  max-width:
+    500px;
+
+  margin:
+    22px 0 0;
+
+  color:
+    var(--ve-text-soft);
+
+  font-size:
+    11px;
+
+  line-height:
+    1.9;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.ve-active-divider {
+  width:
+    100%;
+
+  height:
+    1px;
+
+  margin:
+    32px 0;
+
+  background:
+    var(--ve-border);
+}
+
+
+/* =========================================================
+   TOPICS
+   ========================================================= */
+
+.ve-active-learning > span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.18em;
+}
+
+
+.ve-active-topics {
+  margin-top:
+    14px;
+
+  border-top:
+    1px solid var(--ve-border);
+}
+
+
+.ve-active-topic {
+  display:
+    grid;
+
+  grid-template-columns:
+    35px 1fr 20px;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  min-height:
+    48px;
+
+  border-bottom:
+    1px solid var(--ve-border);
+}
+
+
+.ve-active-topic > span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    7px;
+}
+
+
+.ve-active-topic strong {
+  font-size:
+    10px;
+
+  font-weight:
+    500;
+}
+
+
+.ve-active-topic svg {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    8px;
+}
+
+
+/* =========================================================
+   ACTIVE FOOTER
+   ========================================================= */
+
+.ve-active-footer {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    15px;
+
+  margin-top:
+    28px;
+
+  padding:
+    14px;
+
+  border:
+    1px solid rgba(128,53,214,0.14);
+
+  background:
+    rgba(128,53,214,0.045);
+}
+
+
+.ve-active-footer > div {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    4px;
+}
+
+
+.ve-active-footer span {
+  color:
+    var(--ve-muted);
+
+  font-size:
+    5px;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.ve-active-footer strong {
+  font-size:
+    9px;
+
+  font-weight:
+    500;
+}
+
+
+.ve-active-footer > svg {
+  margin-left:
+    auto;
+
+  color:
+    var(--ve-purple);
+
+  font-size:
+    9px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.ve-curriculum-footer {
+  display:
+    grid;
+
+  grid-template-columns:
+    1fr auto auto;
+
+  align-items:
+    center;
+
+  gap:
+    25px;
+
+  margin-top:
+    70px;
+}
+
+
+.ve-footer-line {
+  height:
+    1px;
+
+  background:
+    var(--ve-border);
+}
+
+
+.ve-footer-line span {
+  display:
+    block;
+
+  width:
+    35%;
+
+  height:
+    1px;
+
+  background:
+    var(--ve-purple);
+}
+
+
+.ve-footer-info {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    20px;
+}
+
+
+.ve-footer-info span {
+  color:
+    var(--ve-purple);
+
+  font-size:
+    6px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    0.15em;
+}
+
+
+.ve-footer-info strong {
+  font-size:
+    8px;
+
+  letter-spacing:
+    0.1em;
+}
+
+
+.ve-footer-arrow {
+  width:
+    36px;
+
+  height:
+    36px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  border:
+    1px solid var(--ve-border);
+
+  border-radius:
+    50%;
+
+  color:
+    var(--ve-purple);
+
+  font-size:
+    7px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+  .ve-hero {
+    min-height:
+      auto;
+
+    padding:
+      130px 0 100px;
+  }
+
+
+  .ve-hero-main {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      60px;
+  }
+
+
+  .ve-hero-left {
+    max-width:
+      760px;
+  }
+
+
+  .ve-hero-visual {
+    height:
+      560px;
+  }
+
+
+  .ve-card-grid {
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .ve-container {
+    width:
+      calc(100% - 32px);
+  }
+
+
+  .ve-hero {
+    padding:
+      100px 0 80px;
+  }
+
+
+  .ve-hero-top {
+    top:
+      23px;
+
+    grid-template-columns:
+      1fr auto;
+
+    font-size:
+      6px;
+  }
+
+
+  .ve-hero-top-center {
+    display:
+      none;
+  }
+
+
+  .ve-hero-left h1 {
+    font-size:
+      clamp(61px,17vw,88px);
+  }
+
+
+  .ve-hero-description {
+    margin-top:
+      30px;
+
+    font-size:
+      12px;
+  }
+
+
+  .ve-hero-actions {
+    flex-direction:
+      column;
+
+    align-items:
+      flex-start;
+
+    gap:
+      25px;
+  }
+
+
+  .ve-hero-visual {
+    height:
+      440px;
+  }
+
+
+  .ve-editor-window {
+    width:
+      285px;
+
+    height:
+      360px;
+
+    transform:
+      perspective(1000px)
+      rotateY(-4deg);
+  }
+
+
+  .ve-editor-window:hover {
+    transform:
+      perspective(1000px)
+      rotateY(0)
+      translateY(-5px);
+  }
+
+
+  .ve-preview-screen {
+    top:
+      16px;
+
+    left:
+      16px;
+
+    right:
+      16px;
+
+    height:
+      205px;
+  }
+
+
+  .ve-timeline {
+    left:
+      16px;
+
+    right:
+      16px;
+
+    bottom:
+      15px;
+
+    height:
+      85px;
+  }
+
+
+  .ve-floating-one {
+    left:
+      -5px;
+
+    bottom:
+      40px;
+  }
+
+
+  .ve-floating-two {
+    right:
+      -5px;
+
+    top:
+      40px;
+  }
+
+
+  .ve-visual-number {
+    right:
+      0;
+
+    top:
+      0;
+
+    font-size:
+      130px;
+  }
+
+
+  .ve-hero-bottom {
+    display:
+      none;
+  }
+
+
+  /* CURRICULUM */
+
+  .ve-curriculum {
+    padding:
+      90px 0 100px;
+  }
+
+
+  .ve-curriculum-header {
+    display:
+      block;
+
+    padding-bottom:
+      45px;
+  }
+
+
+  .ve-curriculum-header h2 {
+    font-size:
+      clamp(59px,16vw,85px);
+  }
+
+
+  .ve-curriculum-description {
+    width:
+      100%;
+
+    margin-top:
+      30px;
+  }
+
+
+  .ve-card-grid {
+    grid-template-columns:
+      1fr;
+
+    gap:
+      14px;
+
+    margin-top:
+      30px;
+  }
+
+
+  .ve-course-card {
+    min-height:
+      345px;
+
+    padding:
+      23px;
+  }
+
+
+  .ve-card-icon {
+    margin-top:
+      45px;
+  }
+
+
+  .ve-card-body h3 {
+    font-size:
+      24px;
+  }
+
+
+  /* MODAL */
+
+  .ve-card-overlay {
+    padding:
+      16px;
+  }
+
+
+  .ve-active-card {
+    max-height:
+      calc(100vh - 32px);
+
+    padding:
+      28px 23px;
+
+    border-radius:
+      24px;
+  }
+
+
+  .ve-active-number {
+    right:
+      15px;
+
+    top:
+      50px;
+
+    font-size:
+      110px;
+  }
+
+
+  .ve-active-content {
+    margin-top:
+      35px;
+  }
+
+
+  .ve-active-content h3 {
+    font-size:
+      36px;
+  }
+
+
+  .ve-active-content p {
+    font-size:
+      10px;
+  }
+
+
+  .ve-active-divider {
+    margin:
+      25px 0;
+  }
+
+
+  .ve-active-topic {
+    min-height:
+      45px;
+
+    grid-template-columns:
+      28px 1fr 15px;
+  }
+
+
+  .ve-active-topic strong {
+    font-size:
+      9px;
+  }
+
+
+  .ve-curriculum-footer {
+    grid-template-columns:
+      1fr auto;
+
+    margin-top:
+      50px;
+  }
+
+
+  .ve-footer-line {
+    grid-column:
+      1 / -1;
+  }
+
+
+  .ve-footer-info {
+    display:
+      block;
+  }
+
+
+  .ve-footer-info strong {
+    display:
+      block;
+
+    margin-top:
+      5px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .ve-hero-left h1 {
+    font-size:
+      58px;
+  }
+
+
+  .ve-editor-window {
+    width:
+      255px;
+
+    height:
+      325px;
+  }
+
+
+  .ve-hero-visual {
+    height:
+      395px;
+  }
+
+
+  .ve-floating-card {
+    padding:
+      10px 13px;
+  }
+
+
+  .ve-curriculum-header h2 {
+    font-size:
+      56px;
+  }
+
+
+  .ve-course-card {
+    min-height:
+      325px;
+  }
+
+
+  .ve-active-content h3 {
+    font-size:
+      31px;
+  }
+
+}
+
+
+/* =========================================================
+   MODAL BODY LOCK
+   ========================================================= */
+
+body.ve-modal-open {
+  overflow:
+    hidden;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ve-page *,
+  .ve-page *::before,
+  .ve-page *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+
+}
