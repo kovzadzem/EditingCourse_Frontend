@@ -1385,3 +1385,400 @@ body.dark .floating-card {
     font-size: 13px;
   }
 }
+
+
+/* =====================================================
+   PREMIUM COLLABORATION CARD
+===================================================== */
+
+.collaboration-section {
+  width: 100%;
+  padding: 35px 40px 90px;
+  background: var(--bg);
+}
+
+.collaboration-card {
+  position: relative;
+  isolation: isolate;
+
+  width: min(100%, 1380px);
+  min-height: 500px;
+
+  margin: 0 auto;
+  padding: 45px 48px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(139, 69, 232, 0.18);
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 69, 232, 0.08),
+      transparent 45%
+    ),
+    var(--surface);
+
+  box-shadow:
+    0 35px 80px rgba(20, 10, 40, 0.08);
+}
+
+.collaboration-card-glow {
+  position: absolute;
+
+  width: 420px;
+  height: 420px;
+
+  top: -240px;
+  right: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(139, 69, 232, 0.14);
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+.collaboration-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.collaboration-eyebrow {
+  color: var(--purple);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: 0.2em;
+}
+
+.collaboration-number {
+  color: var(--text-muted);
+
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+}
+
+.collaboration-main {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.3fr)
+    minmax(280px, 0.7fr);
+
+  gap: 70px;
+
+  padding: 58px 0 52px;
+}
+
+.collaboration-title-wrap h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 700;
+
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.collaboration-title-wrap h2 span {
+  color: var(--purple);
+}
+
+.collaboration-description {
+  align-self: end;
+
+  max-width: 390px;
+}
+
+.collaboration-description p {
+  margin: 0 0 16px;
+
+  color: var(--text-soft);
+
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.collaboration-description p:last-child {
+  margin-bottom: 0;
+}
+
+.collaboration-options {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.collaboration-option {
+  min-height: 145px;
+
+  padding: 24px 25px;
+
+  border-right: 1px solid var(--border);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.collaboration-option:last-child {
+  border-right: 0;
+}
+
+.collaboration-option:hover {
+  background: rgba(139, 69, 232, 0.045);
+}
+
+.option-number {
+  display: block;
+
+  margin-bottom: 22px;
+
+  color: var(--purple);
+
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.collaboration-option h3 {
+  margin: 0 0 8px;
+
+  color: var(--text);
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.collaboration-option p {
+  max-width: 250px;
+
+  margin: 0;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.collaboration-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding-top: 28px;
+}
+
+.collaboration-bottom-text {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text-soft);
+
+  font-size: 13px;
+}
+
+.collaboration-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--purple);
+
+  box-shadow:
+    0 0 0 5px rgba(139, 69, 232, 0.08);
+}
+
+.collaboration-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 22px;
+
+  min-height: 50px;
+
+  padding: 0 23px;
+
+  border: 1px solid rgba(139, 69, 232, 0.25);
+  border-radius: 13px;
+
+  color: var(--text);
+
+  background: transparent;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.collaboration-contact-btn span {
+  color: var(--purple);
+
+  font-size: 19px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+.collaboration-contact-btn:hover {
+  color: #fff;
+
+  background: var(--purple);
+
+  border-color: var(--purple);
+
+  transform: translateY(-2px);
+}
+
+.collaboration-contact-btn:hover span {
+  color: #fff;
+
+  transform: translate(2px, -2px);
+}
+
+.dark .collaboration-card,
+[data-theme="dark"] .collaboration-card,
+body.dark .collaboration-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 69, 232, 0.11),
+      transparent 48%
+    ),
+    var(--surface);
+
+  border-color: rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.28);
+}
+
+@media (max-width: 900px) {
+  .collaboration-section {
+    padding: 25px 30px 70px;
+  }
+
+  .collaboration-card {
+    padding: 38px 35px;
+  }
+
+  .collaboration-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 45px 0;
+  }
+
+  .collaboration-description {
+    max-width: 600px;
+  }
+
+  .collaboration-options {
+    grid-template-columns: 1fr;
+  }
+
+  .collaboration-option {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .collaboration-option:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .collaboration-section {
+    padding: 20px 15px 55px;
+  }
+
+  .collaboration-card {
+    min-height: auto;
+    padding: 27px 21px;
+    border-radius: 21px;
+  }
+
+  .collaboration-top {
+    padding-bottom: 20px;
+  }
+
+  .collaboration-eyebrow {
+    font-size: 8px;
+  }
+
+  .collaboration-number {
+    font-size: 9px;
+  }
+
+  .collaboration-main {
+    padding: 35px 0 32px;
+    gap: 25px;
+  }
+
+  .collaboration-title-wrap h2 {
+    font-size: clamp(36px, 11vw, 52px);
+    line-height: 1.05;
+  }
+
+  .collaboration-description p {
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+
+  .collaboration-option {
+    min-height: auto;
+    padding: 20px 5px;
+  }
+
+  .option-number {
+    margin-bottom: 14px;
+  }
+
+  .collaboration-option h3 {
+    font-size: 14px;
+  }
+
+  .collaboration-option p {
+    font-size: 11px;
+  }
+
+  .collaboration-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding-top: 24px;
+  }
+
+  .collaboration-bottom-text {
+    font-size: 12px;
+  }
+
+  .collaboration-contact-btn {
+    width: 100%;
+  }
+}
