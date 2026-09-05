@@ -872,6 +872,98 @@ export default function Home() {
       <section id="pricing">
         <Pricing />
       </section>
+
+      {/* =====================================================
+          PREMIUM COLLABORATION
+      ===================================================== */}
+      <section className="collaboration-section">
+        <div className="collaboration-card">
+          <div className="collaboration-card-glow" />
+
+          <div className="collaboration-top">
+            <span className="collaboration-eyebrow">
+              COLLABORATION
+            </span>
+
+            <span className="collaboration-number">
+              04
+            </span>
+          </div>
+
+          <div className="collaboration-main">
+            <div className="collaboration-title-wrap">
+              <h2>
+                დაგვიმეგობრდი!
+              </h2>
+            </div>
+
+            <div className="collaboration-description">
+              <p>
+                ჩვენ ღია ვართ ახალი იდეების, პროექტებისა და
+                პარტნიორობისთვის.
+              </p>
+
+              <p>
+                თუ გსურს შენი გუნდის განვითარება, კორპორატიული
+                სწავლება ან საინტერესო პროექტის ერთად შექმნა - 
+                მოდი, ვითანამშრომლოთ.
+              </p>
+            </div>
+          </div>
+
+          <div className="collaboration-options">
+            <div className="collaboration-option">
+              <span className="option-number">01</span>
+
+              <div>
+                <h3>კორპორატიული სწავლება</h3>
+                <p>
+                  გუნდებისთვის მორგებული სასწავლო პროგრამები.
+                </p>
+              </div>
+            </div>
+
+            <div className="collaboration-option">
+              <span className="option-number">02</span>
+
+              <div>
+                <h3>კრეატიული პროექტები</h3>
+                <p>
+                  ვიდეოპროდუქცია, მონტაჟი და კრეატიული
+                  თანამშრომლობა.
+                </p>
+              </div>
+            </div>
+
+            <div className="collaboration-option">
+              <span className="option-number">03</span>
+
+              <div>
+                <h3>ინდივიდუალური პროგრამები</h3>
+                <p>
+                  კონკრეტულ მიზნებზე მორგებული სწავლება.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="collaboration-bottom">
+            <div className="collaboration-bottom-text">
+              <span className="collaboration-dot" />
+              <span>გაქვს თანამშრომლობის იდეა?</span>
+            </div>
+
+            <Link
+              to="/contact"
+              className="collaboration-contact-btn"
+            >
+              დაგვიკავშირდი
+              <span>↗</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
