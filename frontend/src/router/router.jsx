@@ -13,14 +13,6 @@ import Gallery from "../pages/Gallery/gallery";
 import Contact from "../pages/Contact/contact";
 import ForgotPassword from "../pages/Login/forgot-password";
 
-import Dashboard from "../pages/Dashboard/dashboard";
-import Courses from "../pages/Dashboard/courses";
-import Calendar from "../pages/Dashboard/calendar";
-import OfflineCourse from "../pages/Dashboard/offlinecourse";
-import Recordings from "../pages/recordings/recordings";
-import Students from "../pages/Dashboard/students";
-import Payments from "../pages/Dashboard/payments";
-
 import VideoEditingCurriculum from "../pages/Curriculum/VideoEditing/VideoEditing";
 import VideographyCurriculum from "../pages/Curriculum/Videography/Videography";
 
