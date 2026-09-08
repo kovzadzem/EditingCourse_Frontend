@@ -1,9 +1,30 @@
+/* =========================================================
+   VIDEOGRAPHY PAGE
+========================================================= */
+
 .videography-page {
+  --vg-bg: #ffffff;
+  --vg-bg-secondary: #f8f8fa;
+  --vg-card: #ffffff;
+  --vg-card-soft: #f7f7f8;
+  --vg-text: #171717;
+  --vg-text-secondary: #777777;
+  --vg-text-muted: #999999;
+  --vg-border: #e7e7e7;
+  --vg-border-soft: #eeeeee;
+  --vg-purple: #8035d6;
+  --vg-purple-soft: #f0e6ff;
+  --vg-purple-light: #f1e7ff;
+  --vg-shadow: rgba(0, 0, 0, 0.07);
+
   width: 100%;
   min-height: 100vh;
-  background: #ffffff;
-  color: #171717;
+  background: var(--vg-bg);
+  color: var(--vg-text);
   overflow: hidden;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
 .videography-container {
@@ -11,76 +32,113 @@
   margin: 0 auto;
 }
 
-/* =========================
+
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .videography-hero {
   position: relative;
   min-height: 720px;
+
   display: flex;
   align-items: center;
+
   background:
-    linear-gradient(135deg, #111111 0%, #24143d 50%, #8035d6 100%);
+    linear-gradient(
+      135deg,
+      #111111 0%,
+      #24143d 50%,
+      #8035d6 100%
+    );
+
   isolation: isolate;
 }
 
 .videography-hero::before {
   content: "";
+
   position: absolute;
+
   width: 550px;
   height: 550px;
+
   right: -180px;
   top: -180px;
+
   border-radius: 50%;
+
   background: rgba(255, 255, 255, 0.08);
+
   filter: blur(5px);
+
   z-index: -1;
 }
 
 .videography-hero::after {
   content: "";
+
   position: absolute;
+
   width: 400px;
   height: 400px;
+
   left: -150px;
   bottom: -180px;
+
   border-radius: 50%;
+
   background: rgba(128, 53, 214, 0.35);
+
   filter: blur(50px);
+
   z-index: -1;
 }
 
 .videography-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5),
-    rgba(0, 0, 0, 0.1)
-  );
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.1)
+    );
+
   z-index: -1;
 }
 
 .videography-hero-content {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
+
   padding: 100px 0;
-  color: white;
+
+  color: #ffffff;
 }
 
 .videography-badge {
   width: fit-content;
+
   display: flex;
   align-items: center;
+
   gap: 9px;
+
   padding: 9px 15px;
+
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 999px;
+
   background: rgba(255, 255, 255, 0.09);
+
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   font-size: 12px;
   font-weight: 700;
+
   letter-spacing: 1.5px;
 }
 
@@ -90,9 +148,13 @@
 
 .videography-hero h1 {
   margin: 25px 0 18px;
+
   font-size: clamp(48px, 7vw, 88px);
+
   line-height: 0.98;
+
   letter-spacing: -3px;
+
   font-weight: 800;
 }
 
@@ -102,29 +164,45 @@
 
 .videography-hero p {
   max-width: 650px;
+
   margin: 0;
+
   font-size: 18px;
+
   line-height: 1.7;
+
   color: rgba(255, 255, 255, 0.78);
 }
 
 .videography-features {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 12px;
+
   margin-top: 35px;
 }
 
 .videography-feature {
   display: flex;
   align-items: center;
+
   gap: 9px;
+
   padding: 11px 15px;
+
   border: 1px solid rgba(255, 255, 255, 0.15);
+
   border-radius: 12px;
+
   background: rgba(255, 255, 255, 0.07);
+
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
   font-size: 14px;
+
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -134,352 +212,527 @@
 
 .videography-hero-button {
   width: fit-content;
+
   display: inline-flex;
   align-items: center;
+
   gap: 12px;
+
   margin-top: 35px;
+
   padding: 15px 22px;
+
   border-radius: 13px;
-  background: white;
+
+  background: #ffffff;
+
   color: #171717;
+
   text-decoration: none;
+
   font-weight: 700;
-  transition: 0.25s ease;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .videography-hero-button:hover {
   transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
 }
 
-/* =========================
+
+/* =========================================================
    SECTION HEADING
-========================= */
+========================================================= */
 
 .videography-section-heading {
   max-width: 700px;
+
   margin-bottom: 45px;
 }
 
 .videography-section-heading.center {
   margin-left: auto;
   margin-right: auto;
+
   text-align: center;
 }
 
 .videography-section-heading > span {
-  color: #8035d6;
+  color: var(--vg-purple);
+
   font-size: 12px;
+
   font-weight: 800;
+
   letter-spacing: 2px;
 }
 
 .videography-section-heading h2 {
   margin: 10px 0 14px;
+
   font-size: clamp(32px, 5vw, 50px);
+
   line-height: 1.1;
+
   letter-spacing: -1.5px;
 }
 
 .videography-section-heading p {
   margin: 0;
-  color: #777;
+
+  color: var(--vg-text-secondary);
+
   line-height: 1.7;
+
   font-size: 16px;
+
+  transition: color 0.3s ease;
 }
 
-/* =========================
+
+/* =========================================================
    ABOUT
-========================= */
+========================================================= */
 
 .videography-about {
   padding: 110px 0;
+
+  background: var(--vg-bg);
+
+  transition: background 0.3s ease;
 }
 
 .videography-learning-grid {
   display: grid;
+
   grid-template-columns: repeat(4, 1fr);
+
   gap: 18px;
 }
 
 .videography-learning-card {
   padding: 28px;
-  border: 1px solid #e9e9e9;
+
+  border: 1px solid var(--vg-border);
+
   border-radius: 22px;
-  background: #fff;
-  transition: 0.25s ease;
+
+  background: var(--vg-card);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .videography-learning-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
+
+  box-shadow:
+    0 18px 45px var(--vg-shadow);
 }
 
 .learning-icon {
   width: 48px;
   height: 48px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin-bottom: 22px;
+
   border-radius: 14px;
-  background: #f1e7ff;
-  color: #8035d6;
+
+  background: var(--vg-purple-light);
+
+  color: var(--vg-purple);
+
   font-size: 20px;
 }
 
 .videography-learning-card h3 {
   margin: 0 0 10px;
+
   font-size: 19px;
 }
 
 .videography-learning-card p {
   margin: 0;
-  color: #777;
+
+  color: var(--vg-text-secondary);
+
   line-height: 1.6;
+
   font-size: 14px;
 }
 
-/* =========================
+
+/* =========================================================
    MENTOR
-========================= */
+========================================================= */
 
 .videography-mentor-section {
   padding: 20px 0 110px;
+
+  background: var(--vg-bg);
 }
 
 .videography-mentor-card {
   display: grid;
+
   grid-template-columns: 400px 1fr;
+
   min-height: 430px;
+
   overflow: hidden;
+
   border-radius: 30px;
-  background: #f7f7f8;
+
+  background: var(--vg-card-soft);
+
+  transition:
+    background 0.3s ease;
 }
 
 .videography-mentor-image-wrapper {
   height: 100%;
+
   min-height: 430px;
 }
 
 .videography-mentor-image {
   width: 100%;
   height: 100%;
+
   display: block;
+
   object-fit: cover;
 }
 
 .videography-mentor-info {
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
+
   padding: 55px;
 }
 
 .mentor-label {
-  color: #8035d6;
+  color: var(--vg-purple);
+
   font-size: 12px;
+
   font-weight: 800;
+
   letter-spacing: 2px;
 }
 
 .videography-mentor-info h2 {
   margin: 12px 0 5px;
+
   font-size: 40px;
+
   letter-spacing: -1px;
 }
 
 .mentor-role {
   margin: 0;
-  color: #777;
+
+  color: var(--vg-text-secondary);
 }
 
 .mentor-stats {
   display: flex;
+
   gap: 45px;
+
   margin: 35px 0;
 }
 
 .mentor-stats div {
   display: flex;
+
   flex-direction: column;
+
   gap: 4px;
 }
 
 .mentor-stats strong {
   font-size: 27px;
-  color: #8035d6;
+
+  color: var(--vg-purple);
 }
 
 .mentor-stats span {
-  color: #777;
+  color: var(--vg-text-secondary);
+
   font-size: 13px;
 }
 
 .mentor-more-button {
   width: fit-content;
+
   display: flex;
   align-items: center;
+
   gap: 10px;
+
   border: 0;
+
   padding: 13px 19px;
+
   border-radius: 12px;
-  background: #8035d6;
-  color: white;
+
+  background: var(--vg-purple);
+
+  color: #ffffff;
+
   font-weight: 700;
+
   cursor: pointer;
-  transition: 0.25s ease;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 
 .mentor-more-button:hover {
   transform: translateY(-2px);
+
+  opacity: 0.92;
 }
 
-/* =========================
+
+/* =========================================================
    GROUPS
-========================= */
+========================================================= */
 
 .videography-groups-section {
   padding: 110px 0;
-  background: #f8f8fa;
+
+  background: var(--vg-bg-secondary);
+
+  transition: background 0.3s ease;
 }
 
 .videography-groups-grid {
   display: grid;
+
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 24px;
+
   max-width: 850px;
+
   margin: 0 auto;
 }
 
 .videography-group-card {
   position: relative;
+
   padding: 35px;
-  border: 1px solid #e7e7e7;
+
+  border: 1px solid var(--vg-border);
+
   border-radius: 26px;
-  background: white;
-  transition: 0.25s ease;
+
+  background: var(--vg-card);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .videography-group-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 20px 50px var(--vg-shadow);
 }
 
 .videography-group-card.featured {
-  border: 2px solid #8035d6;
+  border: 2px solid var(--vg-purple);
 }
 
 .popular-badge {
   position: absolute;
+
   right: 22px;
   top: 22px;
+
   padding: 7px 11px;
+
   border-radius: 999px;
-  background: #eee3ff;
-  color: #8035d6;
+
+  background: var(--vg-purple-soft);
+
+  color: var(--vg-purple);
+
   font-size: 11px;
+
   font-weight: 800;
 }
 
 .group-icon {
   width: 52px;
   height: 52px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   margin-bottom: 20px;
+
   border-radius: 15px;
-  background: #f0e6ff;
-  color: #8035d6;
+
+  background: var(--vg-purple-soft);
+
+  color: var(--vg-purple);
 }
 
 .videography-group-card h3 {
   margin: 0 0 4px;
+
   font-size: 25px;
 }
 
 .group-subtitle {
-  color: #888;
+  color: var(--vg-text-muted);
+
   font-size: 14px;
 }
 
 .group-price {
   margin: 25px 0;
+
   font-size: 42px;
+
   font-weight: 800;
+
   letter-spacing: -1px;
 }
 
 .group-details {
   display: flex;
+
   flex-direction: column;
+
   gap: 13px;
+
   padding: 20px 0;
-  border-top: 1px solid #eee;
+
+  border-top: 1px solid var(--vg-border-soft);
 }
 
 .group-details div {
   display: flex;
   align-items: center;
+
   gap: 11px;
-  color: #666;
+
+  color: var(--vg-text-secondary);
+
   font-size: 14px;
 }
 
 .group-details svg {
-  color: #8035d6;
+  color: var(--vg-purple);
 }
 
 .group-button {
   width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 10px;
+
   border: 0;
+
   padding: 15px;
+
   border-radius: 13px;
-  background: #8035d6;
-  color: white;
+
+  background: var(--vg-purple);
+
+  color: #ffffff;
+
   font-size: 15px;
+
   font-weight: 700;
+
   cursor: pointer;
-  transition: 0.25s ease;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .group-button:hover {
   opacity: 0.9;
+
   transform: translateY(-2px);
 }
 
-/* =========================
+
+/* =========================================================
    LOCATION
-========================= */
+========================================================= */
 
 .videography-location {
   padding: 90px 0;
+
+  background: var(--vg-bg);
 }
 
 .location-card {
   display: flex;
+
   align-items: center;
+
   gap: 25px;
+
   padding: 35px;
-  border: 1px solid #e7e7e7;
+
+  border: 1px solid var(--vg-border);
+
   border-radius: 25px;
-  background: white;
+
+  background: var(--vg-card);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .location-icon {
   width: 60px;
   height: 60px;
+
   flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border-radius: 18px;
-  background: #f0e6ff;
-  color: #8035d6;
+
+  background: var(--vg-purple-soft);
+
+  color: var(--vg-purple);
+
   font-size: 22px;
 }
 
@@ -488,84 +741,137 @@
 }
 
 .location-content > span {
-  color: #8035d6;
+  color: var(--vg-purple);
+
   font-size: 11px;
+
   font-weight: 800;
+
   letter-spacing: 2px;
 }
 
 .location-content h2 {
   margin: 6px 0;
+
   font-size: 23px;
 }
 
 .location-content p {
   margin: 0;
-  color: #777;
+
+  color: var(--vg-text-secondary);
+
   font-size: 14px;
+
   line-height: 1.5;
 }
 
 .location-button {
   display: flex;
   align-items: center;
+
   gap: 9px;
+
   padding: 13px 17px;
+
   border-radius: 12px;
-  background: #111;
-  color: white;
+
+  background: var(--vg-text);
+
+  color: var(--vg-bg);
+
   text-decoration: none;
+
   font-size: 14px;
+
   font-weight: 700;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* =========================
+.location-button:hover {
+  opacity: 0.85;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
    MODAL
-========================= */
+========================================================= */
 
 .videography-modal {
   position: fixed;
+
   inset: 0;
+
   z-index: 9999;
+
   display: flex;
+
   align-items: center;
   justify-content: center;
+
   padding: 25px;
+
   background: rgba(0, 0, 0, 0.65);
+
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .videography-modal-content {
   position: relative;
+
   width: min(850px, 100%);
+
   display: grid;
+
   grid-template-columns: 300px 1fr;
+
   overflow: hidden;
+
   border-radius: 25px;
-  background: white;
+
+  background: var(--vg-card);
+
+  transition: background 0.3s ease;
 }
 
 .videography-modal-content > img {
   width: 100%;
   height: 100%;
+
   min-height: 430px;
+
   object-fit: cover;
 }
 
 .videography-modal-close {
   position: absolute;
+
   top: 15px;
   right: 15px;
+
   z-index: 2;
+
   width: 40px;
   height: 40px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0;
+
   border-radius: 50%;
+
   background: rgba(255, 255, 255, 0.9);
-  color: #222;
+
+  color: #222222;
+
   cursor: pointer;
 }
 
@@ -574,120 +880,109 @@
 }
 
 .modal-info > span {
-  color: #8035d6;
+  color: var(--vg-purple);
+
   font-size: 11px;
+
   font-weight: 800;
+
   letter-spacing: 2px;
 }
 
 .modal-info h2 {
   margin: 10px 0 5px;
+
   font-size: 32px;
 }
 
 .modal-role {
   margin: 0 0 25px;
-  color: #8035d6;
+
+  color: var(--vg-purple);
 }
 
 .modal-info > p:not(.modal-role) {
-  color: #666;
+  color: var(--vg-text-secondary);
+
   line-height: 1.7;
 }
 
 .modal-stats {
   display: flex;
+
   gap: 30px;
+
   margin-top: 30px;
 }
 
 .modal-stats div {
   display: flex;
+
   flex-direction: column;
+
   gap: 4px;
 }
 
 .modal-stats strong {
-  color: #8035d6;
+  color: var(--vg-purple);
+
   font-size: 23px;
 }
 
 .modal-stats span {
-  color: #777;
+  color: var(--vg-text-secondary);
+
   font-size: 11px;
 }
 
-/* =========================
-   DARK MODE
-========================= */
+
+/* =========================================================
+   MANUAL DARK MODE
+   თუ Header body.dark-ს იყენებს
+========================================================= */
 
 body.dark .videography-page {
-  background: #0f0f11;
-  color: #f5f5f5;
+  --vg-bg: #0f0f11;
+  --vg-bg-secondary: #141416;
+  --vg-card: #18181b;
+  --vg-card-soft: #18181b;
+  --vg-text: #f5f5f5;
+  --vg-text-secondary: #aaaaaa;
+  --vg-text-muted: #888888;
+  --vg-border: #29292d;
+  --vg-border-soft: #29292d;
+  --vg-purple-soft: #26183a;
+  --vg-purple-light: #26183a;
+  --vg-shadow: rgba(0, 0, 0, 0.35);
 }
 
-body.dark .videography-about {
-  background: #0f0f11;
+
+/* =========================================================
+   SYSTEM DARK MODE
+   თუ სისტემური Dark Modeა ჩართული
+========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  .videography-page {
+    --vg-bg: #0f0f11;
+    --vg-bg-secondary: #141416;
+    --vg-card: #18181b;
+    --vg-card-soft: #18181b;
+    --vg-text: #f5f5f5;
+    --vg-text-secondary: #aaaaaa;
+    --vg-text-muted: #888888;
+    --vg-border: #29292d;
+    --vg-border-soft: #29292d;
+    --vg-purple-soft: #26183a;
+    --vg-purple-light: #26183a;
+    --vg-shadow: rgba(0, 0, 0, 0.35);
+  }
 }
 
-body.dark .videography-section-heading p {
-  color: #aaa;
-}
 
-body.dark .videography-learning-card {
-  background: #18181b;
-  border-color: #29292d;
-}
-
-body.dark .videography-learning-card p {
-  color: #aaa;
-}
-
-body.dark .videography-mentor-card {
-  background: #18181b;
-}
-
-body.dark .videography-groups-section {
-  background: #141416;
-}
-
-body.dark .videography-group-card {
-  background: #18181b;
-  border-color: #29292d;
-}
-
-body.dark .group-details {
-  border-color: #29292d;
-}
-
-body.dark .group-details div {
-  color: #aaa;
-}
-
-body.dark .videography-location {
-  background: #0f0f11;
-}
-
-body.dark .location-card {
-  background: #18181b;
-  border-color: #29292d;
-}
-
-body.dark .location-content p {
-  color: #aaa;
-}
-
-body.dark .videography-modal-content {
-  background: #18181b;
-}
-
-body.dark .modal-info > p:not(.modal-role) {
-  color: #aaa;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
+/* =========================================================
+   RESPONSIVE — 900px
+========================================================= */
 
 @media (max-width: 900px) {
   .videography-learning-grid {
@@ -703,6 +998,11 @@ body.dark .modal-info > p:not(.modal-role) {
   }
 }
 
+
+/* =========================================================
+   RESPONSIVE — 700px
+========================================================= */
+
 @media (max-width: 700px) {
   .videography-hero {
     min-height: 680px;
@@ -714,6 +1014,7 @@ body.dark .modal-info > p:not(.modal-role) {
 
   .videography-hero h1 {
     font-size: 53px;
+
     letter-spacing: -2px;
   }
 
@@ -723,6 +1024,7 @@ body.dark .modal-info > p:not(.modal-role) {
 
   .videography-features {
     flex-direction: column;
+
     align-items: flex-start;
   }
 
@@ -757,6 +1059,7 @@ body.dark .modal-info > p:not(.modal-role) {
 
   .mentor-stats {
     gap: 25px;
+
     flex-wrap: wrap;
   }
 
@@ -766,22 +1069,27 @@ body.dark .modal-info > p:not(.modal-role) {
 
   .location-card {
     flex-direction: column;
+
     align-items: flex-start;
   }
 
   .location-button {
     width: 100%;
+
     justify-content: center;
   }
 
   .videography-modal-content {
     display: block;
+
     max-height: 90vh;
+
     overflow-y: auto;
   }
 
   .videography-modal-content > img {
     height: 280px;
+
     min-height: 280px;
   }
 
@@ -793,6 +1101,11 @@ body.dark .modal-info > p:not(.modal-role) {
     flex-wrap: wrap;
   }
 }
+
+
+/* =========================================================
+   RESPONSIVE — 450px
+========================================================= */
 
 @media (max-width: 450px) {
   .videography-container,

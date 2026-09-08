@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 
 import Pricing from "../Pricing/Pricing";
-import "./Home.css";
+import "./home.css";
 
 /* =====================================================
    ICONS

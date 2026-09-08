@@ -81,44 +81,6 @@ export const router = createBrowserRouter([
         element: <Contact />,
       },
 
-      /* =====================================================
-         DASHBOARD
-      ===================================================== */
-
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
-
-      {
-        path: "courses",
-        element: <Courses />,
-      },
-
-      {
-        path: "calendar",
-        element: <Calendar />,
-      },
-
-      {
-        path: "offlinecourse",
-        element: <OfflineCourse />,
-      },
-
-      {
-        path: "recordings",
-        element: <Recordings />,
-      },
-
-      {
-        path: "students",
-        element: <Students />,
-      },
-
-      {
-        path: "payments",
-        element: <Payments />,
-      },
 
       /* =====================================================
          OTHER PAGES
