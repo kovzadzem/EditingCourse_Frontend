@@ -155,10 +155,9 @@ const Footer = () => {
               გალერეა
             </NavLink>
 
-            <NavLink to="/contact">
-              კონტაქტი
-            </NavLink>
-
+           <NavLink to="/about">
+  კონტაქტი
+</NavLink>
           </div>
 
 
