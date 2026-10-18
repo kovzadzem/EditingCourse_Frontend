@@ -18,14 +18,14 @@ const studentWorks = Array.from({ length: 6 }, (_, i) => ({
   id: `student-${i + 1}`,
   title: `სტუდენტის ნამუშევარი ${i + 1}`,
   category: "სტუდენტის პროექტი",
-  video: `public/videos/student-${i + 1}.mp4`,
+  video: `/Videos/student-${i + 1}.mp4`,
 }));
 
 const mentorWorks = Array.from({ length: 6 }, (_, i) => ({
   id: `mentor-${i + 1}`,
   title: `მენტორის ნამუშევარი ${i + 1}`,
   category: "მენტორის პროექტი",
-  video: `public/videos/mentor-${i + 1}.mp4`,
+  video: `/Videos/mentor-${i + 1}.mp4`,
 }));
 
 function Portfolio() {
@@ -125,7 +125,7 @@ function Portfolio() {
               onClick={() =>
                 setSelectedVideo({
                   title: "მენტორის ნამუშევარი",
-                  video: "public/videos/mentor-1.mp4",
+                  video: "/Videos/mentor-1.mp4",
                   id: "mentor-1",
                 })
               }
@@ -133,7 +133,7 @@ function Portfolio() {
             >
               <video
                 className="hero-background-video"
-                src="/videos/mentor-1.mp4"
+                src="/Videos/mentor-1.mp4"
                 muted
                 autoPlay
                 loop
