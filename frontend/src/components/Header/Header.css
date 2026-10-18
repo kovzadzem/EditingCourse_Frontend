@@ -1,3 +1,4 @@
+
 /* =========================================================
    HEADER
 ========================================================= */
@@ -7,39 +8,29 @@
   top: 0;
   left: 0;
   right: 0;
-
   width: 100%;
   margin: 0;
   padding: 0;
-
   z-index: 9999;
-
   background: transparent;
 }
 
-/* =========================================================
-   HEADER WRAPPER
-========================================================= */
+/* HEADER WRAPPER */
 
 .home-header-wrapper {
   width: 100%;
   height: 82px;
-
   margin: 0;
   padding: 0 42px;
 
   display: flex;
   align-items: center;
-
   gap: 35px;
 
   background: var(--header-bg);
-
   border-bottom: 1px solid var(--border);
 
-  box-shadow:
-    0 8px 35px rgba(0, 0, 0, 0.04);
-
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 
@@ -49,28 +40,24 @@
     box-shadow 0.3s ease;
 }
 
-[data-theme="dark"] .home-header-wrapper {
-  box-shadow:
-    0 8px 35px rgba(0, 0, 0, 0.35);
+html[data-theme="dark"] .home-header-wrapper {
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* LOGO */
 
 .home-header .logo {
   flex-shrink: 0;
-
   color: var(--text);
 
   font-family: "MSRing", Inter, sans-serif;
   font-size: 31px;
   font-weight: 800;
-
   letter-spacing: -1px;
   line-height: 1;
-
   white-space: nowrap;
+
+  text-decoration: none;
 
   transition:
     transform 0.25s ease,
@@ -85,22 +72,17 @@
   transform: translateY(-1px);
 }
 
-/* =========================================================
-   DESKTOP NAV
-========================================================= */
+/* DESKTOP NAV */
 
 .desktop-nav {
   flex: 1;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 30px;
 }
 
-.desktop-nav > a,
-.nav-dropdown-trigger {
+.desktop-nav > a {
   position: relative;
 
   display: flex;
@@ -113,21 +95,18 @@
   font-family: "MSRing", Inter, sans-serif;
   font-size: 14px;
   font-weight: 500;
-
   white-space: nowrap;
 
   cursor: pointer;
+  text-decoration: none;
 
-  transition:
-    color 0.25s ease;
+  transition: color 0.25s ease;
 }
 
-.desktop-nav > a::after,
-.nav-dropdown-trigger::after {
+.desktop-nav > a::after {
   content: "";
 
   position: absolute;
-
   left: 0;
   bottom: 22px;
 
@@ -135,216 +114,41 @@
   height: 2px;
 
   border-radius: 10px;
-
   background: #8035d6;
 
-  transition:
-    width 0.25s ease;
+  transition: width 0.25s ease;
 }
 
 .desktop-nav > a:hover,
-.desktop-nav > a.active,
-.nav-dropdown:hover .nav-dropdown-trigger {
+.desktop-nav > a.active {
   color: var(--text);
 }
 
 .desktop-nav > a:hover::after,
-.desktop-nav > a.active::after,
-.nav-dropdown:hover .nav-dropdown-trigger::after {
+.desktop-nav > a.active::after {
   width: 100%;
 }
 
-/* =========================================================
-   DROPDOWN
-========================================================= */
-
-.nav-dropdown {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  height: 100%;
-}
-
-/* Invisible bridge between nav and dropdown */
-
-.nav-dropdown::after {
-  content: "";
-
-  position: absolute;
-
-  top: 100%;
-  left: -20px;
-
-  width: calc(100% + 40px);
-  height: 18px;
-}
-
-/* =========================================================
-   DROPDOWN MENU
-========================================================= */
-
-.nav-dropdown-menu {
-  position: absolute;
-
-  top: calc(100% + 17px);
-  left: 50%;
-
-  width: 285px;
-
-  padding: 10px;
-
-  background: var(--card);
-
-  border: 1px solid var(--border);
-  border-radius: 20px;
-
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.12);
-
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transform:
-    translate(-50%, -8px)
-    scale(0.97);
-
-  transform-origin: top center;
-
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease,
-    transform 0.2s ease;
-}
-
-/* Hover opens */
-
-.nav-dropdown:hover .nav-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-
-  transform:
-    translate(-50%, 0)
-    scale(1);
-}
-
-/* =========================================================
-   DROPDOWN ITEMS
-========================================================= */
-
-.nav-dropdown-menu a {
-  display: flex;
-  align-items: center;
-
-  gap: 13px;
-
-  width: 100%;
-
-  padding: 12px;
-
-  border-radius: 14px;
-
-  color: var(--text);
-
-  text-decoration: none;
-
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.nav-dropdown-menu a:hover {
-  background: var(--surface);
-
-  transform: translateX(3px);
-}
-
-/* =========================================================
-   DROPDOWN ICON
-========================================================= */
-
-.dropdown-item-icon {
-  width: 44px;
-  height: 44px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 13px;
-
-  background: var(--surface);
-
-  font-size: 19px;
-
-  transition:
-    transform 0.2s ease;
-}
-
-.nav-dropdown-menu a:hover .dropdown-item-icon {
-  transform: scale(1.08);
-}
-
-/* =========================================================
-   DROPDOWN TEXT
-========================================================= */
-
-.dropdown-item-content {
-  display: flex;
-  flex-direction: column;
-
-  gap: 4px;
-}
-
-.dropdown-item-content strong {
-  color: var(--text);
-
-  font-family: "MSRing", Inter, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.dropdown-item-content span {
-  color: var(--text-secondary);
-
-  font-family: "MSRing", Inter, sans-serif;
-  font-size: 10px;
-
-  line-height: 1.3;
-}
-
-/* =========================================================
-   RIGHT SIDE
-========================================================= */
+/* RIGHT SIDE */
 
 .home-header-right {
   display: flex;
   align-items: center;
-
   gap: 10px;
-
   flex-shrink: 0;
 }
 
-/* =========================================================
-   THEME
-========================================================= */
+/* THEME BUTTON */
 
 .home-theme-btn {
   width: 44px;
   height: 44px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  padding: 10px;
 
   border: 1px solid var(--border);
   border-radius: 14px;
@@ -357,19 +161,17 @@
   transition:
     transform 0.25s ease,
     background-color 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .home-theme-btn span {
   font-size: 19px;
-
-  transition:
-    transform 0.35s ease;
+  transition: transform 0.35s ease;
 }
 
 .home-theme-btn:hover {
   transform: translateY(-2px);
-
   background: var(--surface-hover);
 }
 
@@ -377,9 +179,16 @@
   transform: rotate(15deg);
 }
 
-/* =========================================================
-   REGISTER / PROFILE
-========================================================= */
+.home-theme-btn:active {
+  transform: scale(0.96);
+}
+
+.home-theme-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* REGISTER / PROFILE */
 
 .home-register-btn,
 .home-profile-btn {
@@ -390,7 +199,6 @@
   justify-content: center;
 
   padding: 0 22px;
-
   border-radius: 14px;
 
   background: var(--button-bg);
@@ -399,8 +207,8 @@
   font-family: "MSRing", Inter, sans-serif;
   font-size: 13px;
   font-weight: 600;
-
   white-space: nowrap;
+  text-decoration: none;
 
   transition:
     transform 0.25s ease,
@@ -413,9 +221,7 @@
   opacity: 0.88;
 }
 
-/* =========================================================
-   BURGER
-========================================================= */
+/* BURGER */
 
 .burger {
   display: none;
@@ -426,13 +232,13 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
   gap: 5px;
 
   padding: 0;
+  border: none;
+  border-radius: 10px;
 
   background: transparent;
-
   cursor: pointer;
 }
 
@@ -441,7 +247,6 @@
   height: 2px;
 
   border-radius: 20px;
-
   background: var(--text);
 
   transition:
@@ -461,9 +266,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* =========================================================
-   MOBILE MENU
-========================================================= */
+/* MOBILE MENU */
 
 .mobile-menu {
   position: fixed;
@@ -476,6 +279,10 @@
 
   display: flex;
   flex-direction: column;
+  gap: 2px;
+
+  max-height: calc(100vh - 115px);
+  overflow-y: auto;
 
   padding: 10px;
 
@@ -484,8 +291,7 @@
 
   background: var(--header-bg);
 
-  box-shadow:
-    0 25px 70px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
 
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
@@ -510,19 +316,15 @@
   transform: translateY(0) scale(1);
 }
 
-/* =========================================================
-   MOBILE LINKS
-========================================================= */
+/* MOBILE LINKS */
 
-.mobile-menu > a,
-.mobile-dropdown-title {
+.mobile-menu > a {
   min-height: 48px;
 
   display: flex;
   align-items: center;
 
   padding: 0 14px;
-
   border-radius: 12px;
 
   color: var(--text);
@@ -533,73 +335,32 @@
   text-decoration: none;
 
   transition:
-    background-color 0.2s ease;
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .mobile-menu > a:hover {
   background: var(--surface);
 }
 
-/* =========================================================
-   MOBILE DROPDOWN
-========================================================= */
-
-.mobile-dropdown {
-  display: flex;
-  flex-direction: column;
+.mobile-menu > a.active {
+  color: #8035d6;
 }
 
-.mobile-dropdown-title {
-  font-weight: 600;
-}
-
-.mobile-dropdown a {
-  min-height: 44px;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
-  padding: 0 14px 0 28px;
-
-  border-radius: 12px;
-
-  color: var(--text);
-
-  font-family: "MSRing", Inter, sans-serif;
-  font-size: 13px;
-
-  text-decoration: none;
-
-  transition:
-    background-color 0.2s ease;
-}
-
-.mobile-dropdown a:hover {
-  background: var(--surface);
-}
-
-/* =========================================================
-   DIVIDER
-========================================================= */
+/* DIVIDER */
 
 .mobile-menu-divider {
   width: 100%;
   height: 1px;
 
   margin: 8px 0;
-
   background: var(--border);
 }
 
-/* =========================================================
-   OVERLAY
-========================================================= */
+/* OVERLAY */
 
 .mobile-overlay {
   position: fixed;
-
   inset: 0;
 
   z-index: 9997;
@@ -621,15 +382,48 @@
   pointer-events: auto;
 }
 
-/* =========================================================
-   TABLET
-========================================================= */
+/* GLOBAL HEADER THEME */
+
+header,
+.home-header,
+.navbar {
+  color: var(--text);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+header a,
+.home-header a,
+.navbar a {
+  text-decoration: none;
+}
+
+html[data-theme="dark"] header,
+html[data-theme="dark"] .home-header,
+html[data-theme="dark"] .navbar,
+body.dark header,
+body.dark .home-header,
+body.dark .navbar {
+  color: #f1f5f9;
+  border-bottom-color: #334155;
+}
+
+/* DARK THEME BUTTON */
+
+html[data-theme="dark"] .home-theme-btn,
+body.dark .home-theme-btn {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+/* TABLET */
 
 @media (max-width: 1100px) {
-
   .home-header-wrapper {
     padding: 0 28px;
-
     gap: 22px;
   }
 
@@ -637,26 +431,20 @@
     gap: 20px;
   }
 
-  .desktop-nav > a,
-  .nav-dropdown-trigger {
+  .desktop-nav > a {
     font-size: 13px;
   }
 
   .home-header .logo {
     font-size: 28px;
   }
-
 }
 
-/* =========================================================
-   MOBILE / TABLET
-========================================================= */
+/* MOBILE / TABLET */
 
 @media (max-width: 900px) {
-
   .home-header-wrapper {
     height: 72px;
-
     padding: 0 24px;
   }
 
@@ -676,20 +464,14 @@
   .home-header .logo {
     font-size: 27px;
   }
-
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
-
   .home-header-wrapper {
     height: 64px;
-
     padding: 0 17px;
-
     gap: 8px;
   }
 
@@ -709,19 +491,15 @@
 
   .mobile-menu {
     top: 76px;
-
     left: 10px;
     right: 10px;
+    max-height: calc(100vh - 90px);
   }
-
 }
 
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
+/* SMALL MOBILE */
 
 @media (max-width: 380px) {
-
   .home-header-wrapper {
     padding: 0 12px;
   }
@@ -730,14 +508,19 @@
     font-size: 20px;
   }
 
-  .home-theme-btn {
-    width: 36px;
-    height: 36px;
-  }
-
+  .home-theme-btn,
   .burger {
     width: 36px;
     height: 36px;
   }
+}
 
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-header *,
+  .mobile-menu,
+  .mobile-overlay {
+    transition: none !important;
+  }
 }

@@ -1,3 +1,4 @@
+
 /* =====================================================
    PRICING — BOOK STYLE
 ===================================================== */
@@ -7,6 +8,7 @@
   src: url("./assets/fonts/MS RING-44480510007.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
@@ -14,21 +16,26 @@ body {
 }
 
 /* =====================================================
-   PRICING
+   PRICING — LIGHT MODE
+   HOME PAGE COLORS
 ===================================================== */
 
 .pricing {
-  --pricing-primary: var(--primary, #6d3cc9);
-  --pricing-bg: var(--bg, #ffffff);
-  --pricing-text: var(--text, #171717);
-  --pricing-muted: var(--muted, #777777);
-  --pricing-card: var(--card, #ffffff);
-  --pricing-border: var(
-    --border,
-    rgba(109, 60, 201, 0.16)
-  );
+  --pricing-primary: #8b45e8;
+
+  --pricing-bg: #f7f7f9;
+  --pricing-text: #111114;
+  --pricing-muted: #66666f;
+  --pricing-card: #ffffff;
+
+  --pricing-border: rgba(20, 20, 25, 0.09);
+  --pricing-border-soft: rgba(20, 20, 25, 0.06);
+
+  --pricing-surface-soft: #f0f0f4;
 
   position: relative;
+  isolation: isolate;
+
   width: 100%;
   padding: 100px 24px 90px;
   overflow: hidden;
@@ -39,6 +46,28 @@ body {
   transition:
     background 0.3s ease,
     color 0.3s ease;
+}
+
+/* =====================================================
+   DARK MODE — HOME PAGE COLORS
+===================================================== */
+
+.dark .pricing,
+[data-theme="dark"] .pricing,
+body.dark .pricing,
+.pricing.dark,
+.pricing[data-theme="dark"] {
+  --pricing-primary: #a77beb;
+
+  --pricing-bg: #09090d;
+  --pricing-text: #ffffff;
+  --pricing-muted: #b8b8c2;
+  --pricing-card: #111116;
+
+  --pricing-border: rgba(255, 255, 255, 0.1);
+  --pricing-border-soft: rgba(255, 255, 255, 0.06);
+
+  --pricing-surface-soft: #19191f;
 }
 
 /* =====================================================
@@ -58,6 +87,7 @@ body {
 
 .pricing-eyebrow {
   color: var(--pricing-primary);
+
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -129,7 +159,7 @@ body {
 }
 
 /* =====================================================
-   PAGE COLORS
+   PAGE COLORS — LIGHT MODE
 ===================================================== */
 
 /* 01 — LIVE */
@@ -157,6 +187,40 @@ body {
 }
 
 /* =====================================================
+   PAGE COLORS — DARK MODE
+===================================================== */
+
+.dark .pricing-page-1,
+[data-theme="dark"] .pricing-page-1,
+body.dark .pricing-page-1,
+.pricing.dark .pricing-page-1,
+.pricing[data-theme="dark"] .pricing-page-1 {
+  --page-color: #a77beb;
+  --page-soft: rgba(167, 123, 235, 0.13);
+  --page-border: rgba(167, 123, 235, 0.3);
+}
+
+.dark .pricing-page-2,
+[data-theme="dark"] .pricing-page-2,
+body.dark .pricing-page-2,
+.pricing.dark .pricing-page-2,
+.pricing[data-theme="dark"] .pricing-page-2 {
+  --page-color: #d477e7;
+  --page-soft: rgba(212, 119, 231, 0.13);
+  --page-border: rgba(212, 119, 231, 0.3);
+}
+
+.dark .pricing-page-3,
+[data-theme="dark"] .pricing-page-3,
+body.dark .pricing-page-3,
+.pricing.dark .pricing-page-3,
+.pricing[data-theme="dark"] .pricing-page-3 {
+  --page-color: #45b8c5;
+  --page-soft: rgba(69, 184, 197, 0.13);
+  --page-border: rgba(69, 184, 197, 0.3);
+}
+
+/* =====================================================
    ALL PAGES
 ===================================================== */
 
@@ -174,7 +238,6 @@ body {
   transition:
     transform 0.75s cubic-bezier(0.2, 0.75, 0.2, 1);
 
-  /* NO BLUR */
   filter: none !important;
 }
 
@@ -236,7 +299,6 @@ body {
 
   background: var(--pricing-card);
 
-  /* REMOVED SHADOW */
   box-shadow: none !important;
 
   transform: translateZ(-12px);
@@ -290,7 +352,6 @@ body {
 
   background: var(--pricing-card);
 
-  /* REMOVED SHADOW */
   box-shadow: none !important;
 
   transform: translateZ(4px);
@@ -680,7 +741,6 @@ body {
 
 .pricing-page .plan-button:hover {
   transform: translateY(-3px);
-
   filter: brightness(1.08);
 }
 
@@ -705,7 +765,6 @@ body {
 
   font-size: 16px;
 
-  /* NO SHADOW */
   box-shadow: none !important;
 
   transition:
@@ -715,7 +774,6 @@ body {
 
 .pricing-page .plan-button:hover .button-icon {
   transform: translateX(2px);
-
   background: rgba(255, 255, 255, 0.26);
 }
 
@@ -725,8 +783,6 @@ body {
 
 .pricing-page-2 .page-face {
   border-color: rgba(168, 63, 194, 0.3);
-
-  /* NO SHADOW */
   box-shadow: none !important;
 }
 
@@ -785,7 +841,6 @@ body {
 
 .pricing-bottom p span {
   color: var(--pricing-primary);
-
   font-weight: 800;
 }
 
@@ -793,7 +848,6 @@ body {
   color: var(--pricing-primary);
 
   font-weight: 600;
-
   text-decoration: none;
 
   transition:
@@ -822,51 +876,6 @@ body {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.16em;
-}
-
-/* =====================================================
-   DARK MODE
-===================================================== */
-
-[data-theme="dark"] .pricing {
-  --pricing-primary: #a77beb;
-  --pricing-bg: #0f0d14;
-  --pricing-text: #f5f2fa;
-  --pricing-muted: #aaa3b5;
-  --pricing-card: #18151f;
-  --pricing-border: rgba(167, 123, 235, 0.2);
-}
-
-[data-theme="dark"] .pricing-page-1 {
-  --page-color: #a77beb;
-  --page-soft: rgba(167, 123, 235, 0.13);
-  --page-border: rgba(167, 123, 235, 0.3);
-}
-
-[data-theme="dark"] .pricing-page-2 {
-  --page-color: #d477e7;
-  --page-soft: rgba(212, 119, 231, 0.13);
-  --page-border: rgba(212, 119, 231, 0.3);
-}
-
-[data-theme="dark"] .pricing-page-3 {
-  --page-color: #45b8c5;
-  --page-soft: rgba(69, 184, 197, 0.13);
-  --page-border: rgba(69, 184, 197, 0.3);
-}
-
-[data-theme="dark"] .pricing-page .page-face {
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .pricing-page-2 .page-face {
-  border-color: rgba(212, 119, 231, 0.35);
-
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .book-cover {
-  box-shadow: none !important;
 }
 
 /* =====================================================
@@ -916,9 +925,7 @@ body {
 
   .book-area {
     height: auto;
-
     margin-top: 40px;
-
     perspective: none;
   }
 
@@ -928,7 +935,6 @@ body {
 
     display: flex;
     flex-direction: column;
-
     gap: 20px;
 
     transform: none !important;
@@ -1005,7 +1011,6 @@ body {
 
   .price-extra {
     max-width: 145px;
-
     font-size: 8px;
   }
 
@@ -1029,7 +1034,7 @@ body {
 
 /* =====================================================
    FINAL BLUR RESET
-   ყველაფრისგან მოხსნილია blur / shadow
+   ORIGINAL EFFECTS PRESERVED
 ===================================================== */
 
 .pricing,

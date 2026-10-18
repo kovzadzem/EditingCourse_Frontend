@@ -1,3 +1,4 @@
+
 /* =====================================================
    FONT
 ===================================================== */
@@ -47,14 +48,16 @@
 
 .dark .home-page,
 [data-theme="dark"] .home-page,
-body.dark .home-page {
+body.dark .home-page,
+.home-page.dark,
+.home-page[data-theme="dark"] {
   --bg: #09090d;
   --surface: #111116;
   --surface-soft: #19191f;
 
   --text: #ffffff;
   --text-soft: #b8b8c2;
-  --text-muted: #777780;
+  --text-muted: #92929d;
 
   --border: rgba(255, 255, 255, 0.1);
   --border-soft: rgba(255, 255, 255, 0.06);
@@ -210,22 +213,16 @@ body.dark .home-page {
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
+
 .hero-title-main {
   display: block;
-  color: #08080b;
+  color: var(--text);
 }
 
 .hero-title-main > span {
   display: block;
   white-space: nowrap;
-  color: #08080b !important;
-}
-
-/* DARK MODE */
-.dark .hero-title-main > span,
-[data-theme="dark"] .hero-title-main > span,
-body.dark .hero-title-main > span {
-  color: #ffffff !important;
+  color: var(--text);
 }
 
 /* =====================================================
@@ -782,28 +779,18 @@ body.dark .hero-title-main > span {
 
   border-radius: 16px;
 
-  background: rgba(255, 255, 255, 0.96);
+  background: var(--surface);
 
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
 
   box-shadow:
     0 22px 50px rgba(20, 10, 40, 0.14);
 
-  color: #16161b;
+  color: var(--text);
 
   /* No backdrop blur */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-}
-
-.dark .floating-card,
-[data-theme="dark"] .floating-card,
-body.dark .floating-card {
-  background: rgba(24, 24, 31, 0.96);
-
-  border-color: rgba(255, 255, 255, 0.1);
-
-  color: #fff;
 }
 
 .floating-card-top {
@@ -1386,7 +1373,6 @@ body.dark .floating-card {
   }
 }
 
-
 /* =====================================================
    PREMIUM COLLABORATION CARD
 ===================================================== */
@@ -1664,7 +1650,9 @@ body.dark .floating-card {
 
 .dark .collaboration-card,
 [data-theme="dark"] .collaboration-card,
-body.dark .collaboration-card {
+body.dark .collaboration-card,
+.home-page.dark .collaboration-card,
+.home-page[data-theme="dark"] .collaboration-card {
   background:
     linear-gradient(
       135deg,
@@ -1781,4 +1769,56 @@ body.dark .collaboration-card {
   .collaboration-contact-btn {
     width: 100%;
   }
+}
+
+/* =====================================================
+   FIX PAGE BACKGROUND — LIGHT & DARK MODE
+===================================================== */
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: #f7f7f9;
+}
+
+.home-page {
+  min-height: 100vh;
+  background: var(--bg, #f7f7f9);
+  color: var(--text, #111114);
+}
+
+.home-page .collaboration-section {
+  background: var(--bg, #f7f7f9);
+}
+
+/* Dark mode */
+.dark,
+[data-theme="dark"],
+body.dark {
+  background: #09090d;
+}
+
+.dark body,
+[data-theme="dark"] body,
+body.dark #root,
+.dark #root,
+[data-theme="dark"] #root {
+  background: #09090d;
+}
+
+.dark .home-page,
+[data-theme="dark"] .home-page,
+body.dark .home-page,
+.home-page.dark,
+.home-page[data-theme="dark"] {
+  background: var(--bg, #09090d);
+  color: var(--text, #ffffff);
+}
+
+.dark .home-page .collaboration-section,
+[data-theme="dark"] .home-page .collaboration-section,
+body.dark .home-page .collaboration-section {
+  background: var(--bg, #09090d);
 }

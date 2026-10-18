@@ -15,7 +15,7 @@ import ForgotPassword from "../pages/Login/forgot-password";
 
 import VideoEditingCurriculum from "../pages/Curriculum/VideoEditing/VideoEditing";
 import VideographyCurriculum from "../pages/Curriculum/Videography/Videography";
-
+import Recordings from "../pages/recordings/recordings";
 import About from "../pages/About/about";
 import Portfolio from "../pages/Portfolio/Portfolio";
 import Profile from "../pages/Profile/profile";
@@ -47,7 +47,6 @@ export const router = createBrowserRouter([
         path: "livecourses/videography",
         element: <Videography />,
       },
-
       /* =====================================================
          AUTH
       ===================================================== */
@@ -94,6 +93,11 @@ export const router = createBrowserRouter([
 {
   path: "curriculum/videography",
   element: <VideographyCurriculum />,
+},
+
+{
+  path: "recordings",
+  element: <Recordings />,
 },
 
       {

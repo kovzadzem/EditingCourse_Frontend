@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
@@ -19,52 +20,45 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  /* =========================================================
-     AUTH
-  ========================================================= */
+  /* AUTH */
 
   useEffect(() => {
+    let mounted = true;
+
     const checkSession = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
 
-      setIsLoggedIn(!!session);
+      if (mounted) {
+        setIsLoggedIn(!!session);
+      }
     };
 
     checkSession();
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setIsLoggedIn(!!session);
-      }
-    );
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session);
+    });
 
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
   }, []);
 
-  /* =========================================================
-     THEME
-  ========================================================= */
+  /* THEME */
 
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
 
-    document.documentElement.setAttribute(
-      "data-theme",
-      theme
-    );
-
+    document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
-  /* =========================================================
-     SYSTEM THEME
-  ========================================================= */
+  /* SYSTEM THEME */
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
@@ -79,44 +73,29 @@ const Header = () => {
       }
     };
 
-    mediaQuery.addEventListener(
-      "change",
-      handleSystemTheme
-    );
+    mediaQuery.addEventListener("change", handleSystemTheme);
 
     return () => {
-      mediaQuery.removeEventListener(
-        "change",
-        handleSystemTheme
-      );
+      mediaQuery.removeEventListener("change", handleSystemTheme);
     };
   }, []);
 
-  /* =========================================================
-     SCROLL
-  ========================================================= */
+  /* SCROLL */
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
 
-    window.addEventListener(
-      "scroll",
-      handleScroll
-    );
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     return () => {
-      window.removeEventListener(
-        "scroll",
-        handleScroll
-      );
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  /* =========================================================
-     RESIZE
-  ========================================================= */
+  /* RESIZE */
 
   useEffect(() => {
     const handleResize = () => {
@@ -125,22 +104,14 @@ const Header = () => {
       }
     };
 
-    window.addEventListener(
-      "resize",
-      handleResize
-    );
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener(
-        "resize",
-        handleResize
-      );
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  /* =========================================================
-     ESCAPE
-  ========================================================= */
+  /* ESCAPE */
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -149,16 +120,10 @@ const Header = () => {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
 
@@ -171,14 +136,10 @@ const Header = () => {
 
   return (
     <>
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
+      {/* HEADER */}
 
       <header
-        className={`home-header ${
-          scrolled ? "scrolled" : ""
-        }`}
+        className={`home-header ${scrolled ? "scrolled" : ""}`}
       >
         <div className="home-header-wrapper">
 
@@ -192,66 +153,23 @@ const Header = () => {
             Edit<span>Ologia</span>
           </NavLink>
 
-          {/* =================================================
-              DESKTOP NAV
-          ================================================= */}
+          {/* DESKTOP NAV */}
 
           <nav className="desktop-nav">
 
             {/* LIVE COURSES */}
 
-            <div className="nav-dropdown">
-
-              <span className="nav-dropdown-trigger">
-                Live Courses
-              </span>
-
-              <div className="nav-dropdown-menu">
-
-                {/* VIDEO EDITING */}
-
-                <NavLink
-                  to="/livecourses/video-editing"
-                  onClick={closeMenu}
-                >
-                  <div className="dropdown-item-icon">
-                    🎬
-                  </div>
-
-                  <div className="dropdown-item-content">
-                    <strong>
-                      ვიდეო ედითინგი
-                    </strong>
-
-                    <span>
-                      ვიდეო მონტაჟის კურსი
-                    </span>
-                  </div>
-                </NavLink>
-
-                {/* VIDEOGRAPHY */}
-
-                <NavLink
-                  to="/livecourses/videography"
-                  onClick={closeMenu}
-                >
-                  <div className="dropdown-item-icon">
-                    🎥
-                  </div>
-
-                  <div className="dropdown-item-content">
-                    <strong>
-                      ვიდეოგრაფია
-                    </strong>
-
-                    <span>
-                      ვიდეოგრაფიის კურსი
-                    </span>
-                  </div>
-                </NavLink>
-
-              </div>
-            </div>
+            <NavLink
+              to="/livecourses/video-editing"
+              className={({ isActive }) =>
+                `nav-dropdown-trigger ${
+                  isActive ? "active" : ""
+                }`
+              }
+              onClick={closeMenu}
+            >
+              Live Courses
+            </NavLink>
 
             {/* RECORDINGS */}
 
@@ -263,58 +181,19 @@ const Header = () => {
               ჩანაწერები
             </NavLink>
 
-            {/* =================================================
-                SYLLABUS
-            ================================================= */}
+            {/* SYLLABUS */}
 
-            <div className="nav-dropdown">
-
-              <span className="nav-dropdown-trigger">
-                სილაბუსი
-              </span>
-
-              <div className="nav-dropdown-menu">
-
-                <NavLink
-                  to="/curriculum/video-editing"
-                  onClick={closeMenu}
-                >
-                  <div className="dropdown-item-icon">
-                    🎬
-                  </div>
-
-                  <div className="dropdown-item-content">
-                    <strong>
-                      ვიდეო ედითინგი
-                    </strong>
-
-                    <span>
-                      სასწავლო პროგრამა
-                    </span>
-                  </div>
-                </NavLink>
-
-                <NavLink
-                  to="/curriculum/videography"
-                  onClick={closeMenu}
-                >
-                  <div className="dropdown-item-icon">
-                    🎥
-                  </div>
-
-                  <div className="dropdown-item-content">
-                    <strong>
-                      ვიდეოგრაფია
-                    </strong>
-
-                    <span>
-                      სასწავლო პროგრამა
-                    </span>
-                  </div>
-                </NavLink>
-
-              </div>
-            </div>
+            <NavLink
+              to="/curriculum/video-editing"
+              className={({ isActive }) =>
+                `nav-dropdown-trigger ${
+                  isActive ? "active" : ""
+                }`
+              }
+              onClick={closeMenu}
+            >
+              სილაბუსი
+            </NavLink>
 
             {/* ABOUT */}
 
@@ -338,9 +217,7 @@ const Header = () => {
 
           </nav>
 
-          {/* =================================================
-              RIGHT
-          ================================================= */}
+          {/* RIGHT SIDE */}
 
           <div className="home-header-right">
 
@@ -349,16 +226,14 @@ const Header = () => {
             <button
               type="button"
               className="home-theme-btn"
-              onClick={() =>
-                setDarkMode(
-                  (prev) => !prev
-                )
+              onClick={() => setDarkMode((prev) => !prev)}
+              aria-label={
+                darkMode
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
               }
-              aria-label="Toggle theme"
             >
-              <span>
-                {darkMode ? "☀" : "☾"}
-              </span>
+              <span>{darkMode ? "☀" : "☾"}</span>
             </button>
 
             {/* AUTH */}
@@ -385,20 +260,13 @@ const Header = () => {
 
             <button
               type="button"
-              className={`burger ${
-                menuOpen ? "active" : ""
-              }`}
-              onClick={() =>
-                setMenuOpen(
-                  (prev) => !prev
-                )
-              }
+              className={`burger ${menuOpen ? "active" : ""}`}
+              onClick={() => setMenuOpen((prev) => !prev)}
               aria-label={
-                menuOpen
-                  ? "Close menu"
-                  : "Open menu"
+                menuOpen ? "Close menu" : "Open menu"
               }
               aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
             >
               <span />
               <span />
@@ -409,45 +277,24 @@ const Header = () => {
         </div>
       </header>
 
-      {/* =====================================================
-          MOBILE MENU
-      ===================================================== */}
+      {/* MOBILE MENU */}
 
-      <div
-        className={`mobile-menu ${
-          menuOpen ? "show" : ""
-        }`}
+      <nav
+        id="mobile-navigation"
+        className={`mobile-menu ${menuOpen ? "show" : ""}`}
+        aria-hidden={!menuOpen}
       >
 
         {/* LIVE COURSES */}
 
-        <div className="mobile-dropdown">
-
-          <div className="mobile-dropdown-title">
-            Live Courses
-          </div>
-
-          {/* VIDEO EDITING */}
-
-          <NavLink
-            to="/livecourses/video-editing"
-            onClick={closeMenu}
-          >
-            🎬
-            <span>ვიდეო ედითინგი</span>
-          </NavLink>
-
-          {/* VIDEOGRAPHY */}
-
-          <NavLink
-            to="/livecourses/videography"
-            onClick={closeMenu}
-          >
-            🎥
-            <span>ვიდეოგრაფია</span>
-          </NavLink>
-
-        </div>
+        <NavLink
+          to="/livecourses/video-editing"
+          className={navLinkClass}
+          onClick={closeMenu}
+          tabIndex={menuOpen ? 0 : -1}
+        >
+          Live Courses
+        </NavLink>
 
         {/* RECORDINGS */}
 
@@ -455,35 +302,21 @@ const Header = () => {
           to="/recordings"
           className={navLinkClass}
           onClick={closeMenu}
+          tabIndex={menuOpen ? 0 : -1}
         >
           ჩანაწერები
         </NavLink>
 
         {/* SYLLABUS */}
 
-        <div className="mobile-dropdown">
-
-          <div className="mobile-dropdown-title">
-            სილაბუსი
-          </div>
-
-          <NavLink
-            to="/curriculum/video-editing"
-            onClick={closeMenu}
-          >
-            🎬
-            <span>ვიდეო ედითინგი</span>
-          </NavLink>
-
-          <NavLink
-            to="/curriculum/videography"
-            onClick={closeMenu}
-          >
-            🎥
-            <span>ვიდეოგრაფია</span>
-          </NavLink>
-
-        </div>
+        <NavLink
+          to="/curriculum/video-editing"
+          className={navLinkClass}
+          onClick={closeMenu}
+          tabIndex={menuOpen ? 0 : -1}
+        >
+          სილაბუსი
+        </NavLink>
 
         {/* ABOUT */}
 
@@ -491,6 +324,7 @@ const Header = () => {
           to="/about"
           className={navLinkClass}
           onClick={closeMenu}
+          tabIndex={menuOpen ? 0 : -1}
         >
           ჩვენს შესახებ
         </NavLink>
@@ -501,6 +335,7 @@ const Header = () => {
           to="/Portfolio"
           className={navLinkClass}
           onClick={closeMenu}
+          tabIndex={menuOpen ? 0 : -1}
         >
           პორტფოლიო
         </NavLink>
@@ -513,6 +348,7 @@ const Header = () => {
           <NavLink
             to="/profile"
             onClick={closeMenu}
+            tabIndex={menuOpen ? 0 : -1}
           >
             პროფილი
           </NavLink>
@@ -520,22 +356,21 @@ const Header = () => {
           <NavLink
             to="/register"
             onClick={closeMenu}
+            tabIndex={menuOpen ? 0 : -1}
           >
             რეგისტრაცია
           </NavLink>
         )}
 
-      </div>
+      </nav>
 
       {/* OVERLAY */}
 
       <div
-        className={`mobile-overlay ${
-          menuOpen ? "show" : ""
-        }`}
+        className={`mobile-overlay ${menuOpen ? "show" : ""}`}
         onClick={closeMenu}
+        aria-hidden="true"
       />
-
     </>
   );
 };
