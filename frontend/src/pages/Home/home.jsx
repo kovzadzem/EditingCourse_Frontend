@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -795,6 +796,7 @@ export default function Home() {
               თითოეულ დავალებაზე.
             </motion.p>
 
+            {/* ღილაკები — მხოლოდ ბმულები შეიცვალა */}
             <motion.div
               className="hero-buttons"
               initial={{
@@ -810,17 +812,16 @@ export default function Home() {
                 delay: 0.35,
               }}
             >
-              <Link
-                to="/pricing"
+              <a
+                href="#pricing"
                 className="primary-btn"
               >
                 კურსის ნახვა
-
                 <span>→</span>
-              </Link>
+              </a>
 
               <Link
-                to="/live-courses"
+                to="/livecourses/video-editing"
                 className="secondary-btn"
               >
                 Live კურსები
@@ -963,7 +964,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
