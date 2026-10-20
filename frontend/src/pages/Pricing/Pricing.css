@@ -17,25 +17,20 @@ body {
 
 /* =====================================================
    PRICING — LIGHT MODE
-   HOME PAGE COLORS
 ===================================================== */
 
 .pricing {
   --pricing-primary: #8b45e8;
-
   --pricing-bg: #f7f7f9;
   --pricing-text: #111114;
   --pricing-muted: #66666f;
   --pricing-card: #ffffff;
-
   --pricing-border: rgba(20, 20, 25, 0.09);
   --pricing-border-soft: rgba(20, 20, 25, 0.06);
-
   --pricing-surface-soft: #f0f0f4;
 
   position: relative;
   isolation: isolate;
-
   width: 100%;
   padding: 100px 24px 90px;
   overflow: hidden;
@@ -43,13 +38,19 @@ body {
   background: var(--pricing-bg);
   color: var(--pricing-text);
 
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-shadow: none !important;
+
   transition:
     background 0.3s ease,
     color 0.3s ease;
 }
 
 /* =====================================================
-   DARK MODE — HOME PAGE COLORS
+   DARK MODE
 ===================================================== */
 
 .dark .pricing,
@@ -58,15 +59,12 @@ body.dark .pricing,
 .pricing.dark,
 .pricing[data-theme="dark"] {
   --pricing-primary: #a77beb;
-
   --pricing-bg: #09090d;
   --pricing-text: #ffffff;
   --pricing-muted: #b8b8c2;
   --pricing-card: #111116;
-
   --pricing-border: rgba(255, 255, 255, 0.1);
   --pricing-border-soft: rgba(255, 255, 255, 0.06);
-
   --pricing-surface-soft: #19191f;
 }
 
@@ -81,23 +79,21 @@ body.dark .pricing,
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
+
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 .pricing-eyebrow {
   color: var(--pricing-primary);
-
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.18em;
-
-  transition: color 0.3s ease;
 }
 
 .pricing-title {
   margin: 17px 0 0;
-
   color: var(--pricing-text);
 
   font-size: clamp(44px, 5vw, 68px);
@@ -105,24 +101,22 @@ body.dark .pricing,
   font-weight: 750;
   letter-spacing: -0.06em;
 
+  filter: none !important;
+  -webkit-filter: none !important;
+
   transition: color 0.3s ease;
 }
 
 .pricing-title span {
   color: var(--pricing-primary);
-
   transition: color 0.3s ease;
 }
 
 .pricing-intro {
   margin: 22px 0 0;
-
   color: var(--pricing-muted);
-
   font-size: 13px;
   line-height: 1.7;
-
-  transition: color 0.3s ease;
 }
 
 /* =====================================================
@@ -131,18 +125,21 @@ body.dark .pricing,
 
 .book-area {
   position: relative;
-
   width: 100%;
   max-width: 1280px;
   height: 680px;
-
   margin: 42px auto 0;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  perspective: 1800px;
+  perspective: none;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* =====================================================
@@ -151,18 +148,18 @@ body.dark .pricing,
 
 .pricing-book {
   position: relative;
-
   width: 1190px;
   height: 590px;
 
-  transform-style: preserve-3d;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* =====================================================
    PAGE COLORS — LIGHT MODE
 ===================================================== */
-
-/* 01 — LIVE */
 
 .pricing-page-1 {
   --page-color: #6d3cc9;
@@ -170,15 +167,11 @@ body.dark .pricing,
   --page-border: rgba(109, 60, 201, 0.25);
 }
 
-/* 02 — INDIVIDUAL */
-
 .pricing-page-2 {
   --page-color: #a83fc2;
   --page-soft: rgba(168, 63, 194, 0.1);
   --page-border: rgba(168, 63, 194, 0.25);
 }
-
-/* 03 — SELF-PACED */
 
 .pricing-page-3 {
   --page-color: #168c9b;
@@ -224,65 +217,60 @@ body.dark .pricing-page-3,
    ALL PAGES
 ===================================================== */
 
-.pricing-page {
+.pricing .pricing-page {
   position: absolute;
-
   top: 50%;
 
   width: 390px;
   height: 505px;
 
-  transform-style: preserve-3d;
   transform-origin: center center;
 
   transition:
-    transform 0.75s cubic-bezier(0.2, 0.75, 0.2, 1);
+    transform 0.3s ease,
+    border-color 0.3s ease;
 
   filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-shadow: none !important;
 }
 
 /* =====================================================
    LEFT PAGE
 ===================================================== */
 
-.pricing-page-1 {
+.pricing .pricing-page-1 {
   left: 25px;
   z-index: 2;
 
-  transform:
-    translateY(-50%)
-    rotateY(12deg)
-    rotateZ(-4deg);
+  transform: translateY(-50%) rotate(-4deg);
 }
 
 /* =====================================================
    CENTER PAGE
 ===================================================== */
 
-.pricing-page-2 {
+.pricing .pricing-page-2 {
   left: 385px;
   z-index: 5;
 
   width: 420px;
   height: 560px;
 
-  transform:
-    translateY(-50%)
-    translateZ(75px);
+  transform: translateY(-50%);
 }
 
 /* =====================================================
    RIGHT PAGE
 ===================================================== */
 
-.pricing-page-3 {
+.pricing .pricing-page-3 {
   left: 775px;
   z-index: 2;
 
-  transform:
-    translateY(-50%)
-    rotateY(-12deg)
-    rotateZ(4deg);
+  transform: translateY(-50%) rotate(4deg);
 }
 
 /* =====================================================
@@ -300,10 +288,12 @@ body.dark .pricing-page-3,
   background: var(--pricing-card);
 
   box-shadow: none !important;
-
-  transform: translateZ(-12px);
-
   pointer-events: none;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 
   transition:
     background 0.3s ease,
@@ -312,12 +302,10 @@ body.dark .pricing-page-3,
 
 .cover-number {
   position: absolute;
-
   top: 24px;
   left: 24px;
 
   color: var(--pricing-muted);
-
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -325,13 +313,11 @@ body.dark .pricing-page-3,
 
 .cover-line {
   position: absolute;
-
   left: 24px;
   right: 24px;
   bottom: 24px;
 
   height: 1px;
-
   background: var(--pricing-border);
 }
 
@@ -341,7 +327,6 @@ body.dark .pricing-page-3,
 
 .page-face {
   position: relative;
-
   width: 100%;
   height: 100%;
 
@@ -354,9 +339,11 @@ body.dark .pricing-page-3,
 
   box-shadow: none !important;
 
-  transform: translateZ(4px);
-
-  backface-visibility: hidden;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-shadow: none !important;
 
   transition:
     background 0.3s ease,
@@ -373,11 +360,15 @@ body.dark .pricing-page-3,
 
   width: 100%;
   height: 100%;
-
   padding: 38px 34px 32px;
 
   display: flex;
   flex-direction: column;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* =====================================================
@@ -392,7 +383,6 @@ body.dark .pricing-page-3,
 
 .plan-number {
   color: var(--page-color);
-
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -400,7 +390,6 @@ body.dark .pricing-page-3,
 
 .plan-subtitle {
   padding: 7px 11px;
-
   border-radius: 999px;
 
   background: var(--page-soft);
@@ -409,7 +398,6 @@ body.dark .pricing-page-3,
   font-size: 8px;
   font-weight: 800;
   letter-spacing: 0.08em;
-
   text-transform: uppercase;
 }
 
@@ -419,13 +407,16 @@ body.dark .pricing-page-3,
 
 .plan-title {
   margin: 35px 0 0;
-
   color: var(--pricing-text);
 
   font-size: 37px;
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.055em;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  text-shadow: none !important;
 
   transition: color 0.3s ease;
 }
@@ -439,11 +430,14 @@ body.dark .pricing-page-3,
   min-height: 62px;
 
   margin: 17px 0 0;
-
   color: var(--pricing-muted);
 
   font-size: 11px;
   line-height: 1.65;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  text-shadow: none !important;
 
   transition: color 0.3s ease;
 }
@@ -468,7 +462,6 @@ body.dark .pricing-page-3,
 
 .price-option {
   min-height: 61px;
-
   padding: 8px 13px;
 
   display: flex;
@@ -491,29 +484,22 @@ body.dark .pricing-page-3,
   display: flex;
   flex-direction: column;
   gap: 5px;
-
   min-width: 0;
 }
 
 .price-label {
   color: var(--pricing-text);
-
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.1em;
-
-  transition: color 0.3s ease;
 }
 
 .price-extra {
   max-width: 190px;
-
   color: var(--pricing-muted);
 
   font-size: 8.5px;
   line-height: 1.4;
-
-  transition: color 0.3s ease;
 }
 
 .price-value {
@@ -525,10 +511,14 @@ body.dark .pricing-page-3,
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.045em;
+
+  filter: none !important;
+  -webkit-filter: none !important;
+  text-shadow: none !important;
 }
 
 /* =====================================================
-   INFORMATION
+   FEATURES
 ===================================================== */
 
 .plan-features {
@@ -550,18 +540,14 @@ body.dark .pricing-page-3,
 
 .plan-feature {
   min-height: 22px;
-
   color: var(--pricing-text);
 
   font-size: 10px;
   line-height: 1.45;
-
-  transition: color 0.3s ease;
 }
 
 .extra-feature {
   opacity: 0;
-
   transform: translateY(-6px);
 
   transition:
@@ -580,7 +566,6 @@ body.dark .pricing-page-3,
 
 .more-button {
   width: fit-content;
-
   margin-top: 11px;
   padding: 3px 0;
 
@@ -589,7 +574,6 @@ body.dark .pricing-page-3,
   gap: 8px;
 
   border: 0;
-
   background: transparent;
   color: var(--page-color);
 
@@ -612,7 +596,6 @@ body.dark .pricing-page-3,
   place-items: center;
 
   border-radius: 50%;
-
   background: var(--page-soft);
 
   transition: transform 0.3s ease;
@@ -638,6 +621,9 @@ body.dark .pricing-page-3,
   align-items: center;
   justify-content: space-between;
 
+  position: relative;
+  overflow: hidden;
+
   border: 0;
   border-radius: 18px;
 
@@ -649,8 +635,12 @@ body.dark .pricing-page-3,
 
   cursor: pointer;
 
-  position: relative;
-  overflow: hidden;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
 
   transition:
     transform 0.3s ease,
@@ -658,7 +648,7 @@ body.dark .pricing-page-3,
 }
 
 /* =====================================================
-   01 — DEEP PURPLE
+   BUTTON COLORS
 ===================================================== */
 
 .pricing-page-1 .plan-button {
@@ -672,10 +662,6 @@ body.dark .pricing-page-3,
   );
 }
 
-/* =====================================================
-   02 — DEEP VIOLET / PINK
-===================================================== */
-
 .pricing-page-2 .plan-button {
   background: linear-gradient(
     115deg,
@@ -686,10 +672,6 @@ body.dark .pricing-page-3,
     #d94ce5 100%
   );
 }
-
-/* =====================================================
-   03 — DEEP TURQUOISE
-===================================================== */
 
 .pricing-page-3 .plan-button {
   background: linear-gradient(
@@ -710,7 +692,6 @@ body.dark .pricing-page-3,
   content: "";
 
   position: absolute;
-
   top: 0;
   left: -100%;
 
@@ -725,7 +706,6 @@ body.dark .pricing-page-3,
   );
 
   transform: skewX(-20deg);
-
   transition: left 0.6s ease;
 
   pointer-events: none;
@@ -741,31 +721,31 @@ body.dark .pricing-page-3,
 
 .pricing-page .plan-button:hover {
   transform: translateY(-3px);
-  filter: brightness(1.08);
+  filter: brightness(1.08) !important;
 }
 
 /* =====================================================
-   ICON
+   BUTTON ICON
 ===================================================== */
 
 .pricing-page .button-icon {
   width: 46px;
   height: 46px;
-
   flex: 0 0 46px;
 
   display: grid;
   place-items: center;
 
   border-radius: 14px;
-
   background: rgba(0, 0, 0, 0.16);
 
   color: #ffffff;
-
   font-size: 16px;
 
   box-shadow: none !important;
+
+  filter: none !important;
+  -webkit-filter: none !important;
 
   transition:
     transform 0.3s ease,
@@ -787,32 +767,21 @@ body.dark .pricing-page-3,
 }
 
 /* =====================================================
-   HOVER — BOOK OPENS
+   SMOOTH CARD HOVER
 ===================================================== */
 
-.book-area:hover .pricing-page-1 {
-  transform:
-    translateY(-50%)
-    translateX(-40px)
-    rotateY(28deg)
-    rotateZ(-3deg)
-    translateZ(15px);
-}
+@media (hover: hover) and (pointer: fine) {
+  .pricing-page-1:hover {
+    transform: translateY(calc(-50% - 8px)) rotate(-4deg);
+  }
 
-.book-area:hover .pricing-page-2 {
-  transform:
-    translateY(-50%)
-    translateZ(105px)
-    scale(1.015);
-}
+  .pricing-page-2:hover {
+    transform: translateY(calc(-50% - 12px)) scale(1.025);
+  }
 
-.book-area:hover .pricing-page-3 {
-  transform:
-    translateY(-50%)
-    translateX(40px)
-    rotateY(-28deg)
-    rotateZ(3deg)
-    translateZ(15px);
+  .pricing-page-3:hover {
+    transform: translateY(calc(-50% - 8px)) rotate(4deg);
+  }
 }
 
 /* =====================================================
@@ -824,13 +793,11 @@ body.dark .pricing-page-3,
   z-index: 5;
 
   margin-top: 10px;
-
   text-align: center;
 }
 
 .pricing-bottom p {
   margin: 0;
-
   color: var(--pricing-muted);
 
   font-size: 11px;
@@ -846,13 +813,10 @@ body.dark .pricing-page-3,
 
 .pricing-bottom p a {
   color: var(--pricing-primary);
-
   font-weight: 600;
   text-decoration: none;
 
-  transition:
-    opacity 0.2s ease,
-    color 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .pricing-bottom p a:hover {
@@ -866,8 +830,6 @@ body.dark .pricing-page-3,
   margin: 17px auto;
 
   background: var(--pricing-border);
-
-  transition: background 0.3s ease;
 }
 
 .pricing-bottom strong {
@@ -882,9 +844,10 @@ body.dark .pricing-page-3,
    TABLET
 ===================================================== */
 
-@media (max-width: 1200px) {
+@media (max-width: 1200px) and (min-width: 951px) {
   .pricing-book {
     transform: scale(0.9);
+    transform-origin: center center;
   }
 }
 
@@ -892,13 +855,15 @@ body.dark .pricing-page-3,
    SMALL TABLET
 ===================================================== */
 
-@media (max-width: 950px) {
+@media (max-width: 950px) and (min-width: 701px) {
   .book-area {
     height: 610px;
+    overflow: visible;
   }
 
   .pricing-book {
     transform: scale(0.78);
+    transform-origin: center center;
   }
 }
 
@@ -927,6 +892,7 @@ body.dark .pricing-page-3,
     height: auto;
     margin-top: 40px;
     perspective: none;
+    overflow: visible;
   }
 
   .pricing-book {
@@ -940,12 +906,11 @@ body.dark .pricing-page-3,
     transform: none !important;
   }
 
-  .pricing-page,
-  .pricing-page-1,
-  .pricing-page-2,
-  .pricing-page-3 {
+  .pricing .pricing-page,
+  .pricing .pricing-page-1,
+  .pricing .pricing-page-2,
+  .pricing .pricing-page-3 {
     position: relative;
-
     top: auto;
     left: auto;
 
@@ -955,7 +920,7 @@ body.dark .pricing-page-3,
     transform: none !important;
   }
 
-  .pricing-page-2 {
+  .pricing .pricing-page-2 {
     width: 100%;
     height: 550px;
   }
@@ -972,9 +937,10 @@ body.dark .pricing-page-3,
     font-size: 23px;
   }
 
-  .book-area:hover .pricing-page-1,
-  .book-area:hover .pricing-page-2,
-  .book-area:hover .pricing-page-3 {
+  .pricing-page:hover,
+  .pricing-page-1:hover,
+  .pricing-page-2:hover,
+  .pricing-page-3:hover {
     transform: none !important;
   }
 }
@@ -993,14 +959,14 @@ body.dark .pricing-page-3,
     font-size: 37px;
   }
 
-  .pricing-page,
-  .pricing-page-1,
-  .pricing-page-2,
-  .pricing-page-3 {
+  .pricing .pricing-page,
+  .pricing .pricing-page-1,
+  .pricing .pricing-page-2,
+  .pricing .pricing-page-3 {
     height: 510px;
   }
 
-  .pricing-page-2 {
+  .pricing .pricing-page-2 {
     height: 540px;
   }
 
@@ -1028,30 +994,62 @@ body.dark .pricing-page-3,
   .plan-button,
   .price-option,
   .more-icon {
-    transition: none;
+    transition: none !important;
   }
 }
 
 /* =====================================================
    FINAL BLUR RESET
-   ORIGINAL EFFECTS PRESERVED
+   Does not change the original color palette
 ===================================================== */
 
 .pricing,
-.pricing *,
-.pricing *::before,
-.pricing *::after {
-  filter: none !important;
+.pricing .pricing-page,
+.pricing .page-face,
+.pricing .book-cover,
+.pricing .page-inner,
+.pricing .plan-top,
+.pricing .plan-title,
+.pricing .plan-description,
+.pricing .price-option,
+.pricing .price-value,
+.pricing .plan-feature,
+.pricing .plan-button,
+.pricing .button-icon {
+  -webkit-filter: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   text-shadow: none !important;
+  box-shadow: none !important;
 }
 
-.pricing-page,
-.page-face,
-.book-cover,
-.pricing-page-2 .page-face,
-.plan-button,
-.button-icon {
-  box-shadow: none !important;
+/* =========================================
+   CRISP PRICING TEXT
+========================================= */
+
+.pricing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.pricing .pricing-page,
+.pricing .page-face,
+.pricing .page-inner {
+  filter: none;
+  -webkit-filter: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.pricing .plan-title,
+.pricing .plan-description,
+.pricing .plan-number,
+.pricing .plan-subtitle,
+.pricing .price-label,
+.pricing .price-extra,
+.pricing .price-value,
+.pricing .plan-feature,
+.pricing .plan-button {
+  text-shadow: none;
 }

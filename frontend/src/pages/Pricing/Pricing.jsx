@@ -1,5 +1,8 @@
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Pricing.css";
+import { supabase } from "../../supabase";
 
 const plans = [
   {
@@ -28,8 +31,6 @@ const plans = [
       "პერსონალური დახმარება",
     ],
   },
-
-  
   {
     type: "live",
     number: "01",
@@ -56,7 +57,6 @@ const plans = [
       "ონლაინ ან აუდიტორიაში დასწრება",
     ],
   },
-
   {
     type: "საკუთარი ტემპით",
     number: "03",
@@ -87,81 +87,68 @@ const plans = [
 
 function PricingCard({ plan, index }) {
   const [expanded, setExpanded] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChooseCourse = async () => {
+    try {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (error) {
+        throw error;
+      }
+
+      if (session) {
+        navigate("/profile");
+      } else {
+        navigate("/register");
+      }
+    } catch (error) {
+      console.error("სესიის შემოწმება ვერ მოხერხდა:", error);
+      navigate("/login");
+    }
+  };
 
   return (
     <article
       className={`pricing-page pricing-page-${index + 1} ${plan.type}`}
     >
-      {/* BACK COVER */}
       <div className="book-cover">
-        <span className="cover-number">
-          {plan.number}
-        </span>
-
+        <span className="cover-number">{plan.number}</span>
         <div className="cover-line" />
       </div>
 
-      {/* FRONT PAGE */}
       <div className="page-face">
         <div className="page-inner">
-
-          {/* TOP */}
           <div className="plan-top">
-            <span className="plan-number">
-              {plan.number}
-            </span>
-
-            <span className="plan-subtitle">
-              {plan.subtitle}
-            </span>
+            <span className="plan-number">{plan.number}</span>
+            <span className="plan-subtitle">{plan.subtitle}</span>
           </div>
 
-          {/* TITLE */}
-          <h3 className="plan-title">
-            {plan.title}
-          </h3>
+          <h3 className="plan-title">{plan.title}</h3>
 
-          {/* DESCRIPTION */}
-          <p className="plan-description">
-            {plan.description}
-          </p>
+          <p className="plan-description">{plan.description}</p>
 
-          {/* PRICES */}
           <div className="price-options">
             {plan.prices.map((item) => (
-              <div
-                className="price-option"
-                key={item.label}
-              >
+              <div className="price-option" key={item.label}>
                 <div className="price-option-content">
-                  <span className="price-label">
-                    {item.label}
-                  </span>
-
-                  <span className="price-extra">
-                    {item.text}
-                  </span>
+                  <span className="price-label">{item.label}</span>
+                  <span className="price-extra">{item.text}</span>
                 </div>
 
-                <strong className="price-value">
-                  {item.price}
-                </strong>
+                <strong className="price-value">{item.price}</strong>
               </div>
             ))}
           </div>
 
-          {/* SHORT INFORMATION */}
-          <div
-            className={`plan-features ${
-              expanded ? "expanded" : ""
-            }`}
-          >
+          <div className={`plan-features ${expanded ? "expanded" : ""}`}>
             {plan.features.map((feature, featureIndex) => (
               <div
                 className={`plan-feature ${
-                  featureIndex > 1
-                    ? "extra-feature"
-                    : ""
+                  featureIndex > 1 ? "extra-feature" : ""
                 }`}
                 key={feature}
               >
@@ -170,29 +157,21 @@ function PricingCard({ plan, index }) {
             ))}
           </div>
 
-          {/* MORE */}
           <button
             type="button"
             className="more-button"
             onClick={() => setExpanded(!expanded)}
-          >
-            
-          </button>
+            aria-label={expanded ? "ნაკლების ნახვა" : "მეტის ნახვა"}
+          />
 
-          {/* CTA */}
           <button
             type="button"
             className="plan-button"
+            onClick={handleChooseCourse}
           >
-            <span>
-              აირჩიე კურსი
-            </span>
-
-            <span className="button-icon">
-              →
-            </span>
+            <span>აირჩიე კურსი</span>
+            <span className="button-icon">→</span>
           </button>
-
         </div>
       </div>
     </article>
@@ -201,27 +180,20 @@ function PricingCard({ plan, index }) {
 
 function Pricing() {
   return (
-    <section
-      className="pricing"
-      id="pricing"
-    >
-      {/* HEADER */}
+    <section className="pricing" id="pricing">
       <div className="pricing-top">
-  <div className="pricing-label">
-    <span className="pricing-label-line"></span>
+        <div className="pricing-label">
+          <span className="pricing-label-line"></span>
+          <span className="pricing-label-line"></span>
+        </div>
 
-    <span className="pricing-label-line"></span>
-  </div>
+        <h2 className="pricing-title">
+          იპოვე შენი <span>სწავლის ფორმატი</span>
+        </h2>
 
-  <h2 className="pricing-title">
-    იპოვე შენი <span>სწავლის ფორმატი</span>
-  </h2>
+        <p className="pricing-intro"></p>
+      </div>
 
-  <p className="pricing-intro">
-  </p>
-</div>
-
-      {/* BOOK */}
       <div className="book-area">
         <div className="pricing-book">
           {plans.map((plan, index) => (
@@ -234,19 +206,22 @@ function Pricing() {
         </div>
       </div>
 
-     {/* BOTTOM */}
-<div className="pricing-bottom">
-  <p>
-    ვერ გადაწყვიტე რომელი ფორმატი აირჩიო?
-    <a href="https://www.instagram.com/editologia0?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="> დაგვიკავშირდი.</a>
-  </p>
+      <div className="pricing-bottom">
+        <p>
+          ვერ გადაწყვიტე რომელი ფორმატი აირჩიო?
+          <a
+            href="https://www.instagram.com/editologia0/?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}დაგვიკავშირდი.
+          </a>
+        </p>
 
-  <div className="pricing-divider" />
+        <div className="pricing-divider" />
 
-  <strong>
-    START LEARNING
-  </strong>
-</div>
+        <strong>START LEARNING</strong>
+      </div>
     </section>
   );
 }
