@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./register.css";
+import { supabase } from "../../supabase";
 
 import {
   FaUser,
@@ -12,10 +14,6 @@ import {
   FaGoogle,
   FaFacebook,
 } from "react-icons/fa";
-
-const API_URL = (
-  import.meta.env.VITE_API_URL || "http://localhost:3000"
-).replace(/\/+$/, "");
 
 function Register() {
   const navigate = useNavigate();
@@ -43,10 +41,6 @@ function Register() {
     }));
   };
 
-  // =========================
-  // EMAIL REGISTRATION
-  // =========================
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,22 +51,23 @@ function Register() {
     const email = formData.email.trim().toLowerCase();
     const phone = formData.phone.trim();
     const password = formData.password;
+    const confirmPassword = formData.confirmPassword;
 
-    // FIRST NAME
     if (firstName.length < 2) {
       alert("სახელი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს.");
       return;
     }
 
-    // LAST NAME
     if (lastName.length < 2) {
       alert("გვარი უნდა შეიცავდეს მინიმუმ 2 სიმბოლოს.");
       return;
     }
 
-    // PASSWORD VALIDATION
-    // მინიმუმ 10 სიმბოლო, ერთი ასო, ერთი ციფრი,
-    // ერთი სპეციალური სიმბოლო და არ უნდა შეიცავდეს გამოტოვებებს.
+    if (!phone) {
+      alert("გთხოვ, შეიყვანე ტელეფონის ნომერი.");
+      return;
+    }
+
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s])\S{10,}$/;
 
@@ -80,15 +75,15 @@ function Register() {
       alert(
         "პაროლი უნდა შეიცავდეს:\n\n" +
           "• მინიმუმ 10 სიმბოლოს\n" +
-          "• მინიმუმ ერთ ასოს\n" +
+          "• მინიმუმ ერთ ლათინურ ასოს\n" +
           "• მინიმუმ ერთ ციფრს\n" +
-          "• მინიმუმ ერთ სპეციალურ სიმბოლოს (!, @, #)"
+          "• მინიმუმ ერთ სპეციალურ სიმბოლოს (!, @, #)\n" +
+          "• არ უნდა შეიცავდეს გამოტოვებებს."
       );
       return;
     }
 
-    // CONFIRM PASSWORD
-    if (password !== formData.confirmPassword) {
+    if (password !== confirmPassword) {
       alert("პაროლები არ ემთხვევა!");
       return;
     }
@@ -96,62 +91,69 @@ function Register() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            first_name: firstName,
+            last_name: lastName,
+            phone,
+          },
         },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          phone,
-          password,
-        }),
       });
 
-      const data = await response.json().catch(() => ({}));
+      if (error) throw error;
 
-      if (!response.ok) {
-        throw new Error(
-          data.message || "რეგისტრაცია ვერ მოხერხდა."
-        );
+      if (!data.user) {
+        throw new Error("მომხმარებლის შექმნა ვერ მოხერხდა.");
       }
 
-      alert(
-        data.message ||
-          "რეგისტრაცია წარმატებით დასრულდა!\n\n" +
-            "შეამოწმე ელფოსტა და დაადასტურე ანგარიში."
-      );
+      // Confirm email გამორთული უნდა იყოს Supabase-ში.
+      // თუ სესია შეიქმნა, მომხმარებელი უკვე შესულია.
+      if (data.session) {
+        alert("რეგისტრაცია წარმატებით დასრულდა!");
 
-      navigate("/login", { replace: true });
+        navigate("/profile", {
+          replace: true,
+        });
+      } else {
+        // თუ სესია არ შეიქმნა, შესვლა ავტომატურად ვერ მოხერხდა.
+        alert(
+          "ანგარიში შეიქმნა, მაგრამ აქტიური სესია არ დაბრუნებულა. " +
+            "შეამოწმე Supabase-ის Email confirmation პარამეტრი."
+        );
+
+        navigate("/login", {
+          replace: true,
+        });
+      }
     } catch (error) {
       console.error("REGISTER ERROR:", error);
 
       const message = (error.message || "").toLowerCase();
 
       if (
-        message.includes("password must contain") ||
-        message.includes("password must be at least")
-      ) {
-        alert(
-          "პაროლი არ აკმაყოფილებს მოთხოვნებს.\n\n" +
-            "გამოიყენე მინიმუმ 10 სიმბოლო, ასო, ციფრი " +
-            "და სპეციალური სიმბოლო."
-        );
-      } else if (
         message.includes("already registered") ||
         message.includes("already exists") ||
         message.includes("already in use")
       ) {
         alert("ეს ელფოსტა უკვე რეგისტრირებულია.");
       } else if (
-        message.includes("failed to fetch") ||
-        message.includes("networkerror")
+        message.includes("password") ||
+        message.includes("weak")
       ) {
         alert(
-          "სერვერთან დაკავშირება ვერ მოხერხდა.\n" +
-            "შეამოწმე, მუშაობს თუ არა ბექენდი."
+          "პაროლი არ აკმაყოფილებს მოთხოვნებს. " +
+            "შეამოწმე მისი სიგრძე და სიმბოლოები."
+        );
+      } else if (
+        message.includes("fetch") ||
+        message.includes("network")
+      ) {
+        alert(
+          "Supabase-ს ვერ დავუკავშირდით. " +
+            "შეამოწმე .env ფაილი და ინტერნეტი."
         );
       } else {
         alert(error.message || "რეგისტრაცია ვერ მოხერხდა.");
@@ -161,38 +163,41 @@ function Register() {
     }
   };
 
-  // =========================
-  // GOOGLE REGISTRATION
-  // =========================
+  const handleOAuth = async (provider) => {
+    if (loading) return;
 
-  const handleGoogleRegister = () => {
-    window.location.href = `${API_URL}/auth/google`;
-  };
+    setLoading(true);
 
-  // =========================
-  // FACEBOOK REGISTRATION
-  // =========================
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider,
+        options: {
+          redirectTo: `${window.location.origin}/profile`,
+        },
+      });
 
-  const handleFacebookRegister = () => {
-    window.location.href = `${API_URL}/auth/facebook`;
+      if (error) throw error;
+    } catch (error) {
+      console.error(`${provider.toUpperCase()} ERROR:`, error);
+
+      alert(error.message || "ავტორიზაცია ვერ მოხერხდა.");
+      setLoading(false);
+    }
   };
 
   return (
     <div className="register-page">
       <div className="register-card">
         <h1>რეგისტრაცია</h1>
-
         <p>შექმენი ახალი ანგარიში</p>
 
         <form onSubmit={handleSubmit}>
-          {/* FIRST NAME */}
           <div className="input-group">
-            <label>სახელი</label>
-
+            <label htmlFor="firstName">სახელი</label>
             <div className="input-box">
               <FaUser />
-
               <input
+                id="firstName"
                 type="text"
                 name="firstName"
                 placeholder="შეიყვანე სახელი"
@@ -205,14 +210,12 @@ function Register() {
             </div>
           </div>
 
-          {/* LAST NAME */}
           <div className="input-group">
-            <label>გვარი</label>
-
+            <label htmlFor="lastName">გვარი</label>
             <div className="input-box">
               <FaUser />
-
               <input
+                id="lastName"
                 type="text"
                 name="lastName"
                 placeholder="შეიყვანე გვარი"
@@ -225,14 +228,12 @@ function Register() {
             </div>
           </div>
 
-          {/* EMAIL */}
           <div className="input-group">
-            <label>ელ. ფოსტა</label>
-
+            <label htmlFor="email">ელ. ფოსტა</label>
             <div className="input-box">
               <FaEnvelope />
-
               <input
+                id="email"
                 type="email"
                 name="email"
                 placeholder="example@email.com"
@@ -244,14 +245,12 @@ function Register() {
             </div>
           </div>
 
-          {/* PHONE */}
           <div className="input-group">
-            <label>ტელეფონის ნომერი</label>
-
+            <label htmlFor="phone">ტელეფონის ნომერი</label>
             <div className="input-box">
               <FaPhone />
-
               <input
+                id="phone"
                 type="tel"
                 name="phone"
                 placeholder="+995 555 12 34 56"
@@ -263,14 +262,12 @@ function Register() {
             </div>
           </div>
 
-          {/* PASSWORD */}
           <div className="input-group">
-            <label>პაროლი</label>
-
+            <label htmlFor="password">პაროლი</label>
             <div className="input-box">
               <FaLock />
-
               <input
+                id="password"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="შექმენი პაროლი"
@@ -284,9 +281,13 @@ function Register() {
               <button
                 type="button"
                 className="eye-btn"
-                onClick={() => setShowPassword((prev) => !prev)}
+                onClick={() =>
+                  setShowPassword((prev) => !prev)
+                }
                 aria-label={
-                  showPassword ? "პაროლის დამალვა" : "პაროლის ჩვენება"
+                  showPassword
+                    ? "პაროლის დამალვა"
+                    : "პაროლის ჩვენება"
                 }
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -294,14 +295,14 @@ function Register() {
             </div>
           </div>
 
-          {/* CONFIRM PASSWORD */}
           <div className="input-group">
-            <label>გაიმეორე პაროლი</label>
-
+            <label htmlFor="confirmPassword">
+              გაიმეორე პაროლი
+            </label>
             <div className="input-box">
               <FaLock />
-
               <input
+                id="confirmPassword"
                 type={
                   showConfirmPassword ? "text" : "password"
                 }
@@ -335,24 +336,18 @@ function Register() {
             </div>
           </div>
 
-          {/* TERMS */}
           <div className="terms">
             <input
               type="checkbox"
               id="accept-terms"
               required
             />
-
             <label htmlFor="accept-terms">
-              ვეთანხმები{" "}
-              <Link to="/">წესებს</Link> და{" "}
-              <Link to="/">
-                კონფიდენციალურობის პოლიტიკას
-              </Link>
+              ვეთანხმები <Link to="/">წესებს</Link> და{" "}
+              <Link to="/">კონფიდენციალურობის პოლიტიკას</Link>
             </label>
           </div>
 
-          {/* REGISTER */}
           <button
             type="submit"
             className="register-btn"
@@ -361,34 +356,32 @@ function Register() {
             {loading ? "რეგისტრაცია..." : "რეგისტრაცია"}
           </button>
 
-          {/* DIVIDER */}
           <div className="divider">
             <span></span>
             <p>ან</p>
             <span></span>
           </div>
 
-          {/* GOOGLE */}
           <button
             type="button"
             className="social-btn"
-            onClick={handleGoogleRegister}
+            onClick={() => handleOAuth("google")}
+            disabled={loading}
           >
             <FaGoogle />
             Google-ით რეგისტრაცია
           </button>
 
-          {/* FACEBOOK */}
           <button
             type="button"
             className="social-btn"
-            onClick={handleFacebookRegister}
+            onClick={() => handleOAuth("facebook")}
+            disabled={loading}
           >
             <FaFacebook />
             Facebook-ით რეგისტრაცია
           </button>
 
-          {/* LOGIN */}
           <div className="login-link">
             უკვე გაქვს ანგარიში?
             <Link to="/login"> შესვლა</Link>

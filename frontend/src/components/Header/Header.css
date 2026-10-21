@@ -524,3 +524,87 @@ body.dark .home-theme-btn {
     transition: none !important;
   }
 }
+/* =========================================================
+   LIGHT MODE — HEADER TEXT FIX
+========================================================= */
+
+html[data-theme="light"] .home-header,
+html[data-theme="light"] .home-header-wrapper {
+  color: #171717;
+}
+
+html[data-theme="light"] .home-header .logo {
+  color: #171717;
+}
+
+html[data-theme="light"] .desktop-nav > a {
+  color: #52525b;
+}
+
+html[data-theme="light"] .desktop-nav > a:hover,
+html[data-theme="light"] .desktop-nav > a.active {
+  color: #171717;
+}
+
+html[data-theme="light"] .home-theme-btn {
+  color: #27272a;
+  background: #ffffff;
+  border-color: #e4e4e7;
+}
+
+html[data-theme="light"] .home-register-btn,
+html[data-theme="light"] .home-profile-btn {
+  color: #ffffff;
+  background: #8035d6;
+}
+
+html[data-theme="light"] .burger span {
+  background: #18181b;
+}
+
+html[data-theme="light"] .mobile-menu {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: #e4e4e7;
+}
+
+html[data-theme="light"] .mobile-menu > a {
+  color: #27272a;
+}
+
+html[data-theme="light"] .mobile-menu > a:hover {
+  background: #f4f4f5;
+  color: #171717;
+}
+
+html[data-theme="light"] .mobile-menu > a.active {
+  color: #8035d6;
+}
+
+html[data-theme="light"] .mobile-menu-divider {
+  background: #e4e4e7;
+}
+
+/* Light mode — readable links and controls */
+
+html[data-theme="light"] .home-header a {
+  text-decoration: none;
+}
+
+html[data-theme="light"] .home-header .logo span {
+  color: #8035d6;
+}
+
+/* =========================================================
+   FALLBACK — IF LIGHT THEME USES data-theme="light"
+========================================================= */
+
+html[data-theme="light"] {
+  --text: #171717;
+  --text-secondary: #52525b;
+  --border: #e4e4e7;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5;
+  --header-bg: rgba(255, 255, 255, 0.94);
+  --button-bg: #8035d6;
+  --button-text: #ffffff;
+}

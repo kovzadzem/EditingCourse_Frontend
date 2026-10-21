@@ -20,8 +20,9 @@ import About from "../pages/About/about";
 import Portfolio from "../pages/Portfolio/Portfolio";
 import Profile from "../pages/Profile/profile";
 import Partnership from "../pages/Partnership/partnership";
-
 import ResetPassword from "../pages/ResetPassword/reset-password";
+import RoleRoute from "../components/RoleRoute";
+import Admin from "../pages/Admin/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -123,6 +124,41 @@ export const router = createBrowserRouter([
       {
         path: "partnership",
         element: <Partnership />,
+      },
+       {
+        path: "RoleRoute",
+        element: <components />,
+      },
+       {
+        path: "Admin",
+        element: <Admin />,
+      },
+           // =====================================================
+      // STUDENT PROFILE
+      // მხოლოდ student როლის მქონე მომხმარებელი
+      // =====================================================
+
+      {
+        path: "profile",
+        element: (
+          <RoleRoute allowedRole="student">
+            <Profile />
+          </RoleRoute>
+        ),
+      },
+
+      // =====================================================
+      // ADMIN PANEL
+      // მხოლოდ admin როლის მქონე მომხმარებელი
+      // =====================================================
+
+      {
+        path: "admin",
+        element: (
+          <RoleRoute allowedRole="admin">
+            <Admin />
+          </RoleRoute>
+        ),
       },
     ],
   },
