@@ -492,7 +492,7 @@ export default function Footer() {
                 +995 595 036 986
               </a>
 
-              <NavLink to="/contact" className="footer-contact-link">
+              <NavLink to="/about" className="footer-contact-link">
                 დაგვიკავშირდი <FaArrowRight />
               </NavLink>
             </div>

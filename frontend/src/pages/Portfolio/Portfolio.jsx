@@ -69,8 +69,8 @@ function Portfolio() {
 
             <p className="portfolio-hero-description">
               აღმოაჩინე ჩვენი სტუდენტებისა და მენტორის ნამუშევრები.
-              რეალური პროექტები, კრეატიული ხედვა და ვიდეომონტაჟის
-              შესაძლებლობები ერთ სივრცეში.
+              რეალური პროექტები, კრეატიული ხედვა და 
+              შესაძლებლობები ერთ სივრცეში
             </p>
 
             <div className="portfolio-hero-actions">
@@ -155,7 +155,7 @@ function Portfolio() {
 
               <span className="hero-video-bottom">
                 <span>
-                  <small>EDIT ACADEMY</small>
+                  <small>EDITOLOGIA</small>
                   <strong>კრეატიულობა კადრში</strong>
                 </span>
                 <span className="hero-video-arrow">
@@ -184,7 +184,7 @@ function Portfolio() {
             </span>
             <h2>ბრენდები, რომლებთანაც ვთანამშრომლობთ</h2>
             <p>
-              ვიზუალური ისტორიები, განსხვავებული სტილი და კრეატიული იდეები.
+              ვიზუალური ისტორიები, განსხვავებული სტილი და კრეატიული იდეები
             </p>
           </div>
 
@@ -230,10 +230,10 @@ function Portfolio() {
                 SELECTED PROJECTS
               </span>
               <h2>
-                ნამუშევრები<span>.</span>
+                ნამუშევრები
               </h2>
               <p>
-                თითოეული კადრის უკან დგას იდეა, შრომა და განვითარება.
+                თითოეული კადრის უკან დგას იდეა, შრომა და განვითარება
               </p>
             </div>
 
@@ -357,7 +357,7 @@ function Portfolio() {
               preload="auto"
               onError={() => handleVideoError(selectedVideo.id)}
             >
-              თქვენი ბრაუზერი ვიდეოს დაკვრას ვერ ახერხებს.
+              თქვენი ბრაუზერი ვიდეოს დაკვრას ვერ ახერხებს
             </video>
           </div>
         </div>
