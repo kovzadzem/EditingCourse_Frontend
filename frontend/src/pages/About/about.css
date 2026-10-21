@@ -605,10 +605,18 @@
   letter-spacing: -0.085em;
 }
 
-.why-card-main h3 span {
-  color: var(--purple);
+/* დაშორება WHY CARD-ის სათაურის სიტყვებს შორის */
+.why-card-main h3 {
+  word-spacing: 0.16em !important;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
+.why-card-main h3 span {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--purple);
+}
 
 /* =========================================================
    WHY CARD BOTTOM
@@ -1421,10 +1429,17 @@
       rotate(-3deg)
       scale(0.91);
   }
+.why-card-main h3 {
+  margin: 0;
 
-  .why-card-main h3 {
-    font-size: 53px;
-  }
+  font-size: clamp(58px, 7vw, 88px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.045em;
+
+  word-spacing: 0.08em;
+}
 
   .why-card-icon {
     width: 45px;
@@ -1634,4 +1649,259 @@
     width: 28px;
     height: 28px;
   }
+}/* CONTACT — დეკორატიული დეტალი სათაურის ზემოთ */
+
+.contact-left {
+  position: relative;
+}
+
+.contact-left::before {
+  content: "";
+  display: block;
+
+  width: 54px;
+  height: 4px;
+
+  margin-bottom: 24px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    var(--purple) 0%,
+    var(--purple-light) 65%,
+    transparent 100%
+  );
+}
+
+.contact-left::after {
+  content: "EDITOLOGIA  /  LET’S CONNECT";
+
+  display: block;
+
+  margin-top: 28px;
+
+  color: var(--text-secondary);
+
+  font-size: 9px;
+  letter-spacing: 0.14em;
+
+  opacity: 0.7;
+}
+/* CONTACT — დეკორატიული დეტალი ორივე თემისთვის */
+
+.contact-left::before {
+  content: "";
+  display: block;
+
+  width: 54px;
+  height: 4px;
+
+  margin-bottom: 24px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #8035d6,
+    #a56be8,
+    transparent
+  );
+}
+
+.contact-left::after {
+  content: "EDITOLOGIA  /  LET’S CONNECT";
+
+  display: block;
+
+  margin-top: 28px;
+
+  color: var(--text);
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+
+  opacity: 0.8;
+}
+
+/* თეთრი რეჟიმი */
+html[data-theme="light"] .contact-left::after,
+html:not([data-theme="dark"]) .contact-left::after {
+  color: #55505e;
+}
+
+/* მუქი რეჟიმი */
+html[data-theme="dark"] .contact-left::after {
+  color: #c8c0d3;
+}
+/* =====================================================
+   FAQ — ტექსტის ხილვადობა თეთრ და მუქ რეჟიმში
+===================================================== */
+
+/* თეთრი რეჟიმი */
+html[data-theme="light"] .about-page .faq-card-title,
+html[data-theme="light"] .about-page .faq-answer-inner p,
+html[data-theme="light"] .about-page .faq-heading-badge small,
+html[data-theme="light"] .about-page .faq-card-number {
+  color: #514b5b;
+}
+
+html[data-theme="light"] .about-page .faq-card {
+  background-color: #ffffff;
+  border-color: #e8e2ef;
+}
+
+html[data-theme="light"] .about-page .faq-card-open {
+  background-color: #faf7ff;
+  border-color: #d5b9f5;
+}
+
+html[data-theme="light"] .about-page .faq-card-plus {
+  color: #8035d6;
+  border-color: #e1d5ef;
+}
+
+/* მუქი რეჟიმი */
+html[data-theme="dark"] .about-page .faq-card-title,
+html[data-theme="dark"] .about-page .faq-answer-inner p {
+  color: #e5deed;
+}
+
+html[data-theme="dark"] .about-page .faq-card {
+  background-color: var(--surface);
+}
+
+html[data-theme="dark"] .about-page .faq-card-plus {
+  color: #c8a5f2;
+}/* =====================================================
+   WHY CARDS — WHITE MODE TEXT FIX
+===================================================== */
+
+html[data-theme="light"] .about-page .why-card-top,
+html[data-theme="light"] .about-page .why-card-bottom p,
+html[data-theme="light"] .about-page .why-card-points span,
+html[data-theme="light"] .about-page .why-card-navigation button {
+  color: #514b5b;
+}
+
+html[data-theme="light"] .about-page .why-card-main h3 {
+  color: #211a2b;
+}
+
+html[data-theme="light"] .about-page .why-card-main h3 span,
+html[data-theme="light"] .about-page .why-card-top > span:first-child,
+html[data-theme="light"] .about-page .why-card-points svg {
+  color: #8035d6;
+}
+
+html[data-theme="light"] .about-page .why-card {
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(128, 53, 214, 0.09),
+      transparent 35%
+    ),
+    #ffffff;
+
+  border-color: #e8e2ef;
+}
+
+html[data-theme="light"] .about-page .why-card-points span,
+html[data-theme="light"] .about-page .why-card-navigation button {
+  border-color: #e5dced;
+}
+
+html[data-theme="light"] .about-page .why-card-navigation button.active {
+  background: #8035d6;
+  border-color: #8035d6;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .about-page .why-card-navigation button.active span {
+  color: #ffffff;
+}/* =====================================================
+   ABOUT HERO — LIGHT MODE
+===================================================== */
+
+html[data-theme="light"] .about-page .about-small-label {
+  color: #8035d6;
+}
+
+html[data-theme="light"] .about-page .about-hero-text h1 {
+  color: #211a2b;
+}
+
+html[data-theme="light"] .about-page .about-hero-text p {
+  color: #625b6c;
+}
+
+html[data-theme="light"] .about-page .about-mini-logo {
+  color: #211a2b;
+}
+
+html[data-theme="light"] .about-page .about-mini-logo span {
+  color: #8035d6;
+}
+
+html[data-theme="light"] .about-page .about-hero-tag {
+  color: #625b6c;
+}
+
+html[data-theme="light"] .about-page .about-hero-top {
+  border-bottom-color: #e8e2ef;
+}
+
+/* კურსების ნახვა */
+html[data-theme="light"] .about-page .about-main-button {
+  background: #8035d6;
+  color: #ffffff;
+}
+
+/* ხშირად დასმული კითხვები */
+html[data-theme="light"] .about-page .about-faq-button {
+  color: #514b5b;
+  border-color: #e0d8e9;
+  background: transparent;
+}
+
+html[data-theme="light"] .about-page .about-faq-button span {
+  color: #8035d6;
+}
+
+/* =====================================================
+   ABOUT HERO — DARK MODE
+===================================================== */
+
+html[data-theme="dark"] .about-page .about-hero-text h1 {
+  color: #f5f1fa;
+}
+
+html[data-theme="dark"] .about-page .about-hero-text p {
+  color: #c0b8cc;
+}
+
+html[data-theme="dark"] .about-page .about-mini-logo,
+html[data-theme="dark"] .about-page .about-hero-tag {
+  color: #c0b8cc;
+}
+
+html[data-theme="dark"] .about-page .about-faq-button {
+  color: #e5deed;
+  border-color: #39313f;
+}
+
+html[data-theme="dark"] .about-page .about-faq-button:hover {
+  background: var(--surface);
+  border-color: #8035d6;
+}
+.about-page .about-hero-text h1 {
+  line-height: 1.05;
+  letter-spacing: -0.06em;
+}.about-page .about-hero-text h1 {
+  color: var(--text-primary, #ffffff);
+}
+
+.about-page .about-hero-text h1 span {
+  color: #8035d6;
 }
