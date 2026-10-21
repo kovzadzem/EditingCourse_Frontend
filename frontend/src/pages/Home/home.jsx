@@ -1,6 +1,5 @@
-
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   motion,
   useMotionValue,
@@ -18,13 +17,7 @@ import "./home.css";
 
 function PlayIcon({ size = 20 }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path
         d="M8 5.9C8 5.1 8.9 4.6 9.6 5.05L19 11.3C19.65 11.73 19.65 12.67 19 13.1L9.6 19.35C8.9 19.8 8 19.3 8 18.5V5.9Z"
         fill="currentColor"
@@ -35,46 +28,17 @@ function PlayIcon({ size = 20 }) {
 
 function PauseIcon({ size = 20 }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect
-        x="7"
-        y="5"
-        width="3.5"
-        height="14"
-        rx="1.5"
-        fill="currentColor"
-      />
-      <rect
-        x="13.5"
-        y="5"
-        width="3.5"
-        height="14"
-        rx="1.5"
-        fill="currentColor"
-      />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="7" y="5" width="3.5" height="14" rx="1.5" fill="currentColor" />
+      <rect x="13.5" y="5" width="3.5" height="14" rx="1.5" fill="currentColor" />
     </svg>
   );
 }
 
 function VolumeIcon({ size = 20 }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z"
-        fill="currentColor"
-      />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z" fill="currentColor" />
       <path
         d="M16 8C17.35 9.1 18 10.45 18 12C18 13.55 17.35 14.9 16 16"
         stroke="currentColor"
@@ -93,29 +57,10 @@ function VolumeIcon({ size = 20 }) {
 
 function MuteIcon({ size = 20 }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path
-        d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z"
-        fill="currentColor"
-      />
-      <path
-        d="M16 9L21 15"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M21 9L16 15"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 9.5V14.5H8L13 19V5L8 9.5H4Z" fill="currentColor" />
+      <path d="M16 9L21 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M21 9L16 15" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }
@@ -131,9 +76,7 @@ function AnimatedNumber({ value, duration = 1.2 }) {
     const controls = animate(0, value, {
       duration,
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (latest) => {
-        setDisplayValue(Math.round(latest));
-      },
+      onUpdate: (latest) => setDisplayValue(Math.round(latest)),
     });
 
     return () => controls.stop();
@@ -146,55 +89,33 @@ function AnimatedNumber({ value, duration = 1.2 }) {
    STAT CARD
 ===================================================== */
 
-function StatCard({
-  number,
-  label,
-  description,
-  type,
-}) {
+function StatCard({ number, label, description, type }) {
   return (
     <motion.div
       className={`stat-card stat-card-${type}`}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,
-        amount: 0.4,
-      }}
-      transition={{
-        duration: 0.7,
-        ease: [0.16, 1, 0.3, 1],
-      }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
     >
-      <span className="stat-card-label">
-        {label}
-      </span>
+      <span className="stat-card-label">{label}</span>
 
       <strong className="stat-card-number">
         {type === "level" ? (
           <>
             <span>0</span>
-            <span className="stat-card-arrow">
-              →
-            </span>
-            <span className="stat-card-pro">
-              PRO
-            </span>
+            <span className="stat-card-arrow">→</span>
+            <span className="stat-card-pro">PRO</span>
           </>
         ) : (
           <>
             <AnimatedNumber value={number} />
-
-            {(type === "lessons" ||
-              type === "students") &&
-              "+"}
+            {(type === "lessons" || type === "students") && "+"}
           </>
         )}
       </strong>
 
-      <small className="stat-card-desc">
-        {description}
-      </small>
+      <small className="stat-card-desc">{description}</small>
 
       <div className="stat-card-bar">
         <motion.span
@@ -211,11 +132,7 @@ function StatCard({
             }%`,
           }}
           viewport={{ once: true }}
-          transition={{
-            duration: 1.2,
-            delay: 0.3,
-            ease: [0.16, 1, 0.3, 1],
-          }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
     </motion.div>
@@ -226,28 +143,18 @@ function StatCard({
    FLOATING CARD
 ===================================================== */
 
-function FloatingCard({
-  title,
-  value,
-  type,
-  position,
-  index,
-}) {
+function FloatingCard({ title, value, type, position, index }) {
   return (
     <motion.div
       className={`floating-card ${position}`}
-      animate={{
-        y: [0, -7, 0],
-      }}
+      animate={{ y: [0, -7, 0] }}
       transition={{
         duration: 5 + index * 0.5,
         repeat: Infinity,
         ease: "easeInOut",
         delay: index * 0.35,
       }}
-      whileHover={{
-        scale: 1.04,
-      }}
+      whileHover={{ scale: 1.04 }}
     >
       <div className="floating-card-top">
         <span>{title}</span>
@@ -293,17 +200,12 @@ function FloatingCard({
 ===================================================== */
 
 function formatTime(seconds) {
-  if (!Number.isFinite(seconds)) {
-    return "00:00";
-  }
+  if (!Number.isFinite(seconds)) return "00:00";
 
   const minutes = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
 
-  return `${String(minutes).padStart(
-    2,
-    "0"
-  )}:${String(secs).padStart(2, "0")}`;
+  return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
 /* =====================================================
@@ -313,21 +215,13 @@ function formatTime(seconds) {
 function VideoPlayer() {
   const videoRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] =
-    useState(false);
-
-  const [currentTime, setCurrentTime] =
-    useState(0);
-
-  const [duration, setDuration] =
-    useState(0);
-
-  const [isMuted, setIsMuted] =
-    useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
 
   const togglePlay = async () => {
     const video = videoRef.current;
-
     if (!video) return;
 
     if (video.paused) {
@@ -335,10 +229,7 @@ function VideoPlayer() {
         await video.play();
         setIsPlaying(true);
       } catch (error) {
-        console.log(
-          "Video could not play:",
-          error
-        );
+        console.log("Video could not play:", error);
       }
     } else {
       video.pause();
@@ -348,111 +239,64 @@ function VideoPlayer() {
 
   const toggleMute = () => {
     const video = videoRef.current;
-
     if (!video) return;
 
     video.muted = !video.muted;
-
     setIsMuted(video.muted);
   };
 
   const handleSeek = (event) => {
     const video = videoRef.current;
-
     if (!video) return;
 
-    const newTime = Number(
-      event.target.value
-    );
-
+    const newTime = Number(event.target.value);
     video.currentTime = newTime;
-
     setCurrentTime(newTime);
   };
 
   return (
     <div className="dashboard-video-wrapper">
-      <div
-        className="dashboard-video"
-        onClick={togglePlay}
-      >
+      <div className="dashboard-video" onClick={togglePlay}>
         <video
           ref={videoRef}
           className="hero-video"
           muted={isMuted}
           playsInline
           preload="metadata"
-          onLoadedMetadata={(event) =>
-            setDuration(
-              event.currentTarget.duration
-            )
-          }
-          onTimeUpdate={(event) =>
-            setCurrentTime(
-              event.currentTarget.currentTime
-            )
-          }
+          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         >
-          <source
-            src="/Videos/hero-video.mp4"
-            type="video/mp4"
-          />
-
-          Your browser does not support the
-          video element.
+          <source src="/Videos/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video element.
         </video>
 
         <div className="video-overlay" />
 
         <motion.button
           type="button"
-          className={`video-play ${
-            isPlaying ? "playing" : ""
-          }`}
+          className={`video-play ${isPlaying ? "playing" : ""}`}
           onClick={(event) => {
             event.stopPropagation();
             togglePlay();
           }}
-          whileHover={{
-            scale: 1.08,
-          }}
-          whileTap={{
-            scale: 0.94,
-          }}
-          aria-label={
-            isPlaying
-              ? "Pause video"
-              : "Play video"
-          }
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.94 }}
+          aria-label={isPlaying ? "Pause video" : "Play video"}
         >
-          {isPlaying ? (
-            <PauseIcon size={24} />
-          ) : (
-            <PlayIcon size={24} />
-          )}
+          {isPlaying ? <PauseIcon size={24} /> : <PlayIcon size={24} />}
         </motion.button>
 
         <div className="video-label">
           <span>PREMIERE PRO</span>
-
-          <strong>
-            ვიდეო მონტაჟის საფუძვლები
-          </strong>
+          <strong>ვიდეო მონტაჟის საფუძვლები</strong>
         </div>
 
-        <div className="video-duration">
-          {formatTime(duration)}
-        </div>
+        <div className="video-duration">{formatTime(duration)}</div>
       </div>
 
-      <div
-        className="video-controls"
-        onClick={(event) =>
-          event.stopPropagation()
-        }
-      >
+      <div className="video-controls" onClick={(event) => event.stopPropagation()}>
         <input
           className="video-progress"
           type="range"
@@ -463,12 +307,7 @@ function VideoPlayer() {
           onChange={handleSeek}
           style={{
             "--progress":
-              duration > 0
-                ? `${
-                    (currentTime / duration) *
-                    100
-                  }%`
-                : "0%",
+              duration > 0 ? `${(currentTime / duration) * 100}%` : "0%",
           }}
           aria-label="Video progress"
         />
@@ -479,22 +318,13 @@ function VideoPlayer() {
               type="button"
               className="control-button"
               onClick={togglePlay}
-              aria-label={
-                isPlaying
-                  ? "Pause video"
-                  : "Play video"
-              }
+              aria-label={isPlaying ? "Pause video" : "Play video"}
             >
-              {isPlaying ? (
-                <PauseIcon size={17} />
-              ) : (
-                <PlayIcon size={17} />
-              )}
+              {isPlaying ? <PauseIcon size={17} /> : <PlayIcon size={17} />}
             </button>
 
             <span className="video-time">
-              {formatTime(currentTime)} /{" "}
-              {formatTime(duration)}
+              {formatTime(currentTime)} / {formatTime(duration)}
             </span>
           </div>
 
@@ -502,17 +332,9 @@ function VideoPlayer() {
             type="button"
             className="control-button"
             onClick={toggleMute}
-            aria-label={
-              isMuted
-                ? "Unmute video"
-                : "Mute video"
-            }
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
           >
-            {isMuted ? (
-              <MuteIcon size={17} />
-            ) : (
-              <VolumeIcon size={17} />
-            )}
+            {isMuted ? <MuteIcon size={17} /> : <VolumeIcon size={17} />}
           </button>
         </div>
       </div>
@@ -528,43 +350,17 @@ function HeroVisual() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const smoothX = useSpring(mouseX, {
-    stiffness: 80,
-    damping: 20,
-  });
+  const smoothX = useSpring(mouseX, { stiffness: 80, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 80, damping: 20 });
 
-  const smoothY = useSpring(mouseY, {
-    stiffness: 80,
-    damping: 20,
-  });
-
-  const rotateX = useTransform(
-    smoothY,
-    [-0.5, 0.5],
-    [4, -4]
-  );
-
-  const rotateY = useTransform(
-    smoothX,
-    [-0.5, 0.5],
-    [-6, 6]
-  );
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [4, -4]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-6, 6]);
 
   const handleMouseMove = (event) => {
-    const rect =
-      event.currentTarget.getBoundingClientRect();
+    const rect = event.currentTarget.getBoundingClientRect();
 
-    mouseX.set(
-      (event.clientX - rect.left) /
-        rect.width -
-        0.5
-    );
-
-    mouseY.set(
-      (event.clientY - rect.top) /
-        rect.height -
-        0.5
-    );
+    mouseX.set((event.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((event.clientY - rect.top) / rect.height - 0.5);
   };
 
   const resetMouse = () => {
@@ -573,58 +369,23 @@ function HeroVisual() {
   };
 
   const cards = [
-    {
-      title: "12+ ლექცია",
-      type: "lessons",
-      position: "card-top-left",
-    },
-    {
-      title: "8+ წლის გამოცდილება",
-      type: "students",
-      position: "card-top-right",
-    },
-    {
-      title: "1 წელი წვდომა",
-      type: "progress",
-      position: "card-bottom-left",
-    },
-    {
-      title: "Live კურსი",
-      type: "status",
-      position: "card-bottom-right",
-    },
+    { title: "12+ ლექცია", type: "lessons", position: "card-top-left" },
+    { title: "8+ წლის გამოცდილება", type: "students", position: "card-top-right" },
+    { title: "1 წელი წვდომა", type: "progress", position: "card-bottom-left" },
+    { title: "Live კურსი", type: "status", position: "card-bottom-right" },
   ];
 
   return (
-    <div
-      className="hero-visual"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetMouse}
-    >
+    <div className="hero-visual" onMouseMove={handleMouseMove} onMouseLeave={resetMouse}>
       <div className="hero-glow" />
-
       <div className="hero-glow-secondary" />
 
       <motion.div
         className="hero-dashboard"
-        style={{
-          rotateX,
-          rotateY,
-        }}
-        initial={{
-          opacity: 0,
-          scale: 0.94,
-          y: 30,
-        }}
-        animate={{
-          opacity: 1,
-          scale: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.9,
-          ease: "easeOut",
-        }}
+        style={{ rotateX, rotateY }}
+        initial={{ opacity: 0, scale: 0.94, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
       >
         <div className="dashboard-header">
           <div className="dashboard-dots">
@@ -633,26 +394,16 @@ function HeroVisual() {
             <span />
           </div>
 
-          <div className="dashboard-title">
-            VIDEO EDITING
-          </div>
-
-          <div className="dashboard-number">
-            01 / 12
-          </div>
+          <div className="dashboard-title">VIDEO EDITING</div>
+          <div className="dashboard-number">01 / 12</div>
         </div>
 
         <VideoPlayer />
 
         <div className="dashboard-footer">
           <div>
-            <small>
-              მიმდინარე გაკვეთილი
-            </small>
-
-            <strong>
-              შესავალი Premiere Pro-ში
-            </strong>
+            <small>მიმდინარე გაკვეთილი</small>
+            <strong>შესავალი Premiere Pro-ში</strong>
           </div>
 
           <span>→</span>
@@ -660,12 +411,137 @@ function HeroVisual() {
       </motion.div>
 
       {cards.map((card, index) => (
-        <FloatingCard
-          key={card.title}
-          {...card}
-          index={index}
-        />
+        <FloatingCard key={card.title} {...card} index={index} />
       ))}
+    </div>
+  );
+}
+
+/* =====================================================
+   PARTNERSHIP MODAL
+===================================================== */
+
+function PartnershipModal({ partner, onClose }) {
+  useEffect(() => {
+    if (!partner) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [partner, onClose]);
+
+  if (!partner) return null;
+
+  const isHuman = partner === "human";
+
+  return (
+    <div
+      className="partner-modal-overlay"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <motion.div
+        className="partner-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="partner-modal-title"
+        initial={{ opacity: 0, y: 18, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 10 }}
+        transition={{ duration: 0.22 }}
+      >
+        <button
+          type="button"
+          className="partner-modal-close"
+          onClick={onClose}
+          aria-label="ფანჯრის დახურვა"
+        >
+          ×
+        </button>
+
+        <div className="partner-modal-logo">
+          <img
+            src={isHuman ? "/images/human-kako.jpg" : "/images/quick.jpg"}
+            alt={isHuman ? "HUMAN KAKO ლოგო" : "Quick-ის ლოგო"}
+          />
+        </div>
+
+        <span className="partner-modal-eyebrow">
+          {isHuman ? "CREATIVE CONTENT" : "DIGITAL MARKETING"}
+        </span>
+
+        <h2 id="partner-modal-title">
+          {isHuman ? "HUMAN KAKO" : "ქუიქი (Quick)"}
+        </h2>
+
+        {isHuman ? (
+          <>
+            <p>
+              Editologia დაუპარტნიორდა HUMAN KAKO-ს, რათა
+              სტუდენტებს სწავლის პარალელურად რეალურ კრეატიულ
+              გარემოში განვითარების შესაძლებლობა ჰქონდეთ.
+            </p>
+
+            <p>
+              თითოეული ჯგუფის დასრულების შემდეგ საუკეთესო
+              საფინალო ნამუშევრების მიხედვით შეირჩევა ორი
+              სტუდენტი ანაზღაურებად სტაჟირებაზე Kako-ს გუნდში.
+            </p>
+
+            <p>
+              სტაჟირების განმავლობაში სტუდენტებს შესაძლებლობა
+              ექნებათ, იმუშაონ Kako-ს კონტენტსა და Dopamine-ის
+              სოციალურ ქსელებზე, გაიღრმაონ პრაქტიკული ცოდნა და
+              პროფესიული პორტფოლიო განავითარონ.
+            </p>
+
+            <div className="partner-modal-highlight">
+              <span>ანაზღაურებადი სტაჟირება</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <p>
+              Editologia დაპარტნიორდა ციფრული მარკეტინგის
+              სააგენტო ქუიქთან (Quick), რათა სტუდენტებს
+              კურსის დასრულების შემდეგ პრაქტიკული გამოცდილების
+              მიღების შესაძლებლობა ჰქონდეთ.
+            </p>
+
+            <p>
+              თითოეული ჯგუფის დასრულების შემდეგ ერთი სტუდენტი
+              შეირჩევა ქუიქში სტაჟირებისთვის.
+            </p>
+
+            <p>
+              შერჩეულ სტუდენტს ექნება შესაძლებლობა, იმუშაოს
+              რეალურ პროექტებზე, გამოიყენოს კურსის განმავლობაში
+              მიღებული ცოდნა, განავითაროს პროფესიული უნარები
+              და გაამდიდროს საკუთარი პორტფოლიო.
+            </p>
+
+            <div className="partner-modal-highlight">
+             
+              <span>პრაქტიკული გამოცდილება</span>
+            </div>
+          </>
+        )}
+
+        <button type="button" className="partner-modal-done" onClick={onClose}>
+          დახურვა
+        </button>
+      </motion.div>
     </div>
   );
 }
@@ -683,16 +559,14 @@ export default function Home() {
     "აუდიტორიაში",
   ];
 
-  const [wordIndex, setWordIndex] =
-    useState(0);
+  const [wordIndex, setWordIndex] = useState(0);
+  const [activePartner, setActivePartner] = useState(null);
 
+  const closePartnerModal = () => setActivePartner(null);
+const navigate = useNavigate();
   useEffect(() => {
     const interval = setInterval(() => {
-      setWordIndex(
-        (current) =>
-          (current + 1) %
-          rotatingWords.length
-      );
+      setWordIndex((current) => (current + 1) % rotatingWords.length);
     }, 2200);
 
     return () => clearInterval(interval);
@@ -700,50 +574,31 @@ export default function Home() {
 
   return (
     <main className="home-page">
+      {/* HERO */}
       <section className="hero">
         <div className="hero-background-glow hero-background-glow-one" />
-
         <div className="hero-background-glow hero-background-glow-two" />
 
         <div className="hero-inner">
           <div className="hero-content">
             <motion.span
               className="hero-label"
-              initial={{
-                opacity: 0,
-                y: 10,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.6,
-              }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
               <span className="hero-label-bar" />
-
               VIDEO EDITING ACADEMY
             </motion.span>
 
             <motion.h1
               className="hero-title"
-              initial={{
-                opacity: 0,
-                y: 24,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.8,
-                delay: 0.1,
-              }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
               <span className="hero-title-main">
                 <span>ისწავლე ვიდეო</span>
-
                 <span>მონტაჟი</span>
               </span>
 
@@ -751,23 +606,9 @@ export default function Home() {
                 <motion.span
                   key={wordIndex}
                   className="rotating-word"
-                  initial={{
-                    opacity: 0,
-                    y: 10,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    ease: [
-                      0.16,
-                      1,
-                      0.3,
-                      1,
-                    ],
-                  }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {rotatingWords[wordIndex]}
                 </motion.span>
@@ -776,64 +617,34 @@ export default function Home() {
 
             <motion.p
               className="hero-description"
-              initial={{
-                opacity: 0,
-                y: 16,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.25,
-              }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25 }}
             >
-              ისწავლე ვიდეო მონტაჟი 0-დან
-              პროფესიონალურ დონემდე, Offline
-              ან Online დასწრებით, პრაქტიკული
-              დავალებებით და ლექტორის ფიდბექით
-              თითოეულ დავალებაზე.
+              ისწავლე ვიდეო მონტაჟი 0-დან პროფესიონალურ დონემდე,
+              Offline ან Online დასწრებით, პრაქტიკული დავალებებით
+              და ლექტორის ფიდბექით თითოეულ დავალებაზე.
             </motion.p>
 
-            {/* ღილაკები — მხოლოდ ბმულები შეიცვალა */}
             <motion.div
               className="hero-buttons"
-              initial={{
-                opacity: 0,
-                y: 16,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.7,
-                delay: 0.35,
-              }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
             >
-              <a
-                href="#pricing"
-                className="primary-btn"
-              >
+              <a href="#pricing" className="primary-btn">
                 კურსის ნახვა
                 <span>→</span>
               </a>
 
-              <Link
-                to="/livecourses/video-editing"
-                className="secondary-btn"
-              >
+              <Link to="/livecourses/video-editing" className="secondary-btn">
                 Live კურსები
               </Link>
             </motion.div>
 
             <div className="hero-note">
               <span className="hero-note-dot" />
-
-              <span>
-                დაიწყე სწავლა დღესვე
-              </span>
+              <span>დაიწყე სწავლა დღესვე</span>
             </div>
           </div>
 
@@ -841,6 +652,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* STATS */}
       <section className="stats-strip">
         <StatCard
           number={12}
@@ -870,32 +682,157 @@ export default function Home() {
         />
       </section>
 
+      {/* PRICING */}
       <section id="pricing">
         <Pricing />
       </section>
 
       {/* =====================================================
-          PREMIUM COLLABORATION
+          PARTNERSHIPS — AFTER PRICING
+      ===================================================== */}
+      <section className="partnerships-section" id="partnerships">
+        <div className="partnerships-inner">
+          <div className="partnerships-heading">
+            <span className="partnerships-eyebrow">OUR PARTNERSHIPS</span>
+
+            <h2>
+              ცოდნა, რომელიც <span>შესაძლებლობებს ქმნის.</span>
+            </h2>
+
+            <p>
+              Editologia თანამშრომლობს კომპანიებთან, რათა
+              სტუდენტებს სწავლის დასრულების შემდეგ რეალურ
+              პროექტებსა და პროფესიულ განვითარებაზე ჰქონდეთ წვდომა.
+            </p>
+          </div>
+
+          <div className="partnerships-grid">
+            {/* HUMAN KAKO */}
+            <button
+              type="button"
+              className="partnership-card partnership-clickable"
+              onClick={() => setActivePartner("human")}
+              aria-label="HUMAN KAKO პარტნიორობის შესახებ ვრცლად"
+            >
+              <div className="partnership-card-top">
+                <span className="partnership-tag">
+                  <span className="partnership-dot" />
+                  პარტნიორობა
+                </span>
+
+                <span className="partnership-number">01</span>
+              </div>
+
+              <div className="partnership-card-main">
+                <div className="partnership-logo">
+                  <img
+                    src="/images/human-kako.jpg"
+                    alt="HUMAN KAKO ლოგო"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="partnership-card-content">
+                  <span className="partnership-category">CREATIVE CONTENT</span>
+                  <h3>HUMAN KAKO</h3>
+
+                  <p>
+                    საუკეთესო სტუდენტებისთვის ანაზღაურებადი
+                    სტაჟირების შესაძლებლობა Kako-ს გუნდში.
+                  </p>
+
+                  <span className="partnership-read-more">
+                    ვრცლად
+                    <span aria-hidden="true">↗</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="partnership-card-footer">
+                <span>2 სტუდენტი</span>
+                <span className="partnership-footer-divider" />
+                <span>ანაზღაურებადი სტაჟირება</span>
+              </div>
+            </button>
+
+            {/* QUICK */}
+            <button
+              type="button"
+              className="partnership-card partnership-clickable"
+              onClick={() => setActivePartner("quick")}
+              aria-label="QUICK პარტნიორობის შესახებ ვრცლად"
+            >
+              <div className="partnership-card-top">
+                <span className="partnership-tag">
+                  <span className="partnership-dot" />
+                  პარტნიორობა
+                </span>
+
+                <span className="partnership-number">02</span>
+              </div>
+
+              <div className="partnership-card-main">
+                <div className="partnership-logo">
+                  <img
+                    src="/images/quick.jpg"
+                    alt="Quick-ის ლოგო"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="partnership-card-content">
+                  <span className="partnership-category">DIGITAL MARKETING</span>
+                  <h3>ქუიქი (Quick)</h3>
+
+                  <p>
+                    ერთი სტუდენტისთვის სტაჟირება, რეალურ
+                    პროექტებზე მუშაობა და პორტფოლიოს განვითარება.
+                  </p>
+
+                  <span className="partnership-read-more">
+                    ვრცლად
+                    <span aria-hidden="true">↗</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="partnership-card-footer">
+                <span>1 სტუდენტი</span>
+                <span className="partnership-footer-divider" />
+                <span>პრაქტიკული გამოცდილება</span>
+              </div>
+            </button>
+          </div>
+
+          <div className="partnerships-bottom">
+            <p>
+              <span className="partnerships-bottom-dot" />
+              ვქმნით შესაძლებლობებს, რომლებიც სწავლის შემდეგაც გრძელდება.
+            </p>
+
+            <Link to="/about" className="partnerships-contact">
+              გახდი ჩვენი პარტნიორი
+              <span>↗</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================
+          COLLABORATION — AT THE END
       ===================================================== */}
       <section className="collaboration-section">
         <div className="collaboration-card">
           <div className="collaboration-card-glow" />
 
           <div className="collaboration-top">
-            <span className="collaboration-eyebrow">
-              COLLABORATION
-            </span>
-
-            <span className="collaboration-number">
-              04
-            </span>
+            <span className="collaboration-eyebrow">COLLABORATION</span>
+            <span className="collaboration-number">04</span>
           </div>
 
           <div className="collaboration-main">
             <div className="collaboration-title-wrap">
-              <h2>
-                დაგვიმეგობრდი!
-              </h2>
+              <h2>დაგვიმეგობრდი!</h2>
             </div>
 
             <div className="collaboration-description">
@@ -906,7 +843,7 @@ export default function Home() {
 
               <p>
                 თუ გსურს შენი გუნდის განვითარება, კორპორატიული
-                სწავლება ან საინტერესო პროექტის ერთად შექმნა - 
+                სწავლება ან საინტერესო პროექტის ერთად შექმნა -
                 მოდი, ვითანამშრომლოთ.
               </p>
             </div>
@@ -915,35 +852,25 @@ export default function Home() {
           <div className="collaboration-options">
             <div className="collaboration-option">
               <span className="option-number">01</span>
-
               <div>
                 <h3>კორპორატიული სწავლება</h3>
-                <p>
-                  გუნდებისთვის მორგებული სასწავლო პროგრამები.
-                </p>
+                <p>გუნდებისთვის მორგებული სასწავლო პროგრამები.</p>
               </div>
             </div>
 
             <div className="collaboration-option">
               <span className="option-number">02</span>
-
               <div>
                 <h3>კრეატიული პროექტები</h3>
-                <p>
-                  ვიდეოპროდუქცია, მონტაჟი და კრეატიული
-                  თანამშრომლობა.
-                </p>
+                <p>ვიდეოპროდუქცია, მონტაჟი და კრეატიული თანამშრომლობა.</p>
               </div>
             </div>
 
             <div className="collaboration-option">
               <span className="option-number">03</span>
-
               <div>
                 <h3>ინდივიდუალური პროგრამები</h3>
-                <p>
-                  კონკრეტულ მიზნებზე მორგებული სწავლება.
-                </p>
+                <p>კონკრეტულ მიზნებზე მორგებული სწავლება.</p>
               </div>
             </div>
           </div>
@@ -954,16 +881,18 @@ export default function Home() {
               <span>გაქვს თანამშრომლობის იდეა?</span>
             </div>
 
-            <Link
-              to="/contact"
-              className="collaboration-contact-btn"
-            >
-              დაგვიკავშირდი
-              <span>↗</span>
-            </Link>
+           <Link to="/about" className="შენი-ძველი-className">
+  დაგვიმეგობრდი
+</Link>
           </div>
         </div>
       </section>
+
+      {/* PARTNER MODAL */}
+      <PartnershipModal
+        partner={activePartner}
+        onClose={closePartnerModal}
+      />
     </main>
   );
 }
