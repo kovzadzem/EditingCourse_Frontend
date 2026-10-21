@@ -64,7 +64,7 @@ function Portfolio() {
               <br />
               <span>შთამბეჭდავ</span>
               <br />
-              ვიდეომდე.
+              ვიდეომდე
             </h1>
 
             <p className="portfolio-hero-description">
@@ -182,7 +182,7 @@ function Portfolio() {
             <span className="portfolio-section-kicker">
               OUR CREATIVE WORLD
             </span>
-            <h2>ბრენდები, რომლებიც გვაინსპირებს</h2>
+            <h2>ბრენდები, რომლებთანაც ვთანამშრომლობთ</h2>
             <p>
               ვიზუალური ისტორიები, განსხვავებული სტილი და კრეატიული იდეები.
             </p>

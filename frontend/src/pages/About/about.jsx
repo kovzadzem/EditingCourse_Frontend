@@ -1,4 +1,6 @@
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   FaArrowRight,
   FaCheck,
@@ -63,7 +65,7 @@ const faqData = [
   {
     question: "რა ღირს კურსი?",
     answer:
-      "კურსის მიმდინარე ღირებულებისა და გადახდის პირობების შესახებ ინფორმაცია შეგიძლია იხილო კურსის გვერდზე.",
+      "კურსის მიმდინარე ღირებულებისა და გადახდის პირობების შესახებ ინფორმაცია შეგიძლია იხილო კურსების გვერდზე, ფასების სექციაში.",
   },
   {
     question: "გამოცდილება საჭიროა?",
@@ -76,15 +78,24 @@ const faqData = [
       "კურსი გაძლევს პრაქტიკულ ცოდნასა და უნარებს, რომლებიც დაგეხმარება პროფესიულ განვითარებასა და პირველი სამუშაო შესაძლებლობების მოძიებაში.",
   },
   {
-    question: "სერთიფიკატს გასცემთ?",
+    question: "სერტიფიკატს გასცემთ?",
     answer:
-      "დიახ. კურსის წარმატებით დასრულების შემდეგ მიიღებ სერთიფიკატს.",
+      "დიახ. კურსის წარმატებით დასრულების შემდეგ მიიღებ სერტიფიკატს.",
   },
 ];
 
 const About = () => {
+  const navigate = useNavigate();
+
   const [activeWhy, setActiveWhy] = useState(0);
   const [openFaq, setOpenFaq] = useState(null);
+
+  // მთავარი გვერდის ფასების სექციაზე გადასვლა
+  const handleCoursesClick = (event) => {
+    event.preventDefault();
+
+    navigate("/#pricing");
+  };
 
   const toggleFaq = (index) => {
     setOpenFaq((current) =>
@@ -94,15 +105,12 @@ const About = () => {
 
   return (
     <main className="about-page">
-
       {/* =====================================================
           HERO
       ===================================================== */}
 
       <section className="about-hero">
-
         <div className="about-hero-top">
-
           <div className="about-mini-logo">
             EDIT<span>ACADEMY</span>
           </div>
@@ -110,14 +118,10 @@ const About = () => {
           <div className="about-hero-tag">
             CREATIVE EDUCATION
           </div>
-
         </div>
 
-
         <div className="about-hero-content">
-
           <div className="about-hero-text">
-
             <span className="about-small-label">
               VIDEO EDITING ACADEMY
             </span>
@@ -136,12 +140,11 @@ const About = () => {
               შენი იდეები რეალურ ნამუშევრებად.
             </p>
 
-
             <div className="about-hero-actions">
-
               <a
-                href="/livecourses"
+                href="/#pricing"
                 className="about-main-button"
+                onClick={handleCoursesClick}
               >
                 <span>კურსების ნახვა</span>
 
@@ -150,25 +153,18 @@ const About = () => {
                 </i>
               </a>
 
-
               <a
                 href="#faq"
                 className="about-faq-button"
               >
                 ხშირად დასმული კითხვები
-
                 <span>↓</span>
               </a>
-
             </div>
-
           </div>
 
-
           <div className="about-hero-media">
-
             <div className="about-video">
-
               <video
                 src="/Videos/hero.mp4"
                 autoPlay
@@ -188,26 +184,18 @@ const About = () => {
                 <span>CREATE</span>
                 <strong>YOUR STORY.</strong>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           WHY EDIT ACADEMY
       ===================================================== */}
 
       <section className="why-section">
-
         <div className="why-heading">
-
           <div>
-
             <span className="section-label">
               WHY EDIT ACADEMY
             </span>
@@ -219,9 +207,7 @@ const About = () => {
               <br />
               <span>განვითარდი.</span>
             </h2>
-
           </div>
-
 
           <p>
             ჩვენ არ გვინდა უბრალოდ ვიდეო
@@ -229,16 +215,11 @@ const About = () => {
             რეალურად შეგიქმნათ შესაძლებლობა
             შექმნათ საკუთარი გზა.
           </p>
-
         </div>
 
-
         <div className="why-card-area">
-
           <div className="why-card-stack">
-
             {whyCards.map((card, index) => {
-
               const position =
                 (index - activeWhy + whyCards.length) %
                 whyCards.length;
@@ -249,22 +230,12 @@ const About = () => {
                   className={`why-card why-card-${position}`}
                   onClick={() => setActiveWhy(index)}
                 >
-
                   <div className="why-card-top">
-
-                    <span>
-                      {card.number}
-                    </span>
-
-                    <span>
-                      {card.label}
-                    </span>
-
+                    <span>{card.number}</span>
+                    <span>{card.label}</span>
                   </div>
 
-
                   <div className="why-card-main">
-
                     <div className="why-card-icon">
                       <FaArrowRight />
                     </div>
@@ -272,73 +243,48 @@ const About = () => {
                     <h3>
                       {card.title}
                       <br />
-                      <span>
-                        {card.highlight}
-                      </span>
+                      <span>{card.highlight}</span>
                     </h3>
-
                   </div>
 
-
                   <div className="why-card-bottom">
-
-                    <p>
-                      {card.text}
-                    </p>
+                    <p>{card.text}</p>
 
                     <div className="why-card-points">
-
                       {card.points.map((point) => (
-
                         <span key={point}>
                           <FaCheck />
                           {point}
                         </span>
-
                       ))}
-
                     </div>
-
                   </div>
-
                 </article>
               );
             })}
-
           </div>
 
-
           <div className="why-card-navigation">
-
             {whyCards.map((card, index) => (
-
               <button
                 key={card.id}
                 type="button"
                 className={
-                  activeWhy === index
-                    ? "active"
-                    : ""
+                  activeWhy === index ? "active" : ""
                 }
                 onClick={() => setActiveWhy(index)}
+                aria-pressed={activeWhy === index}
               >
-
                 <span>
                   0{index + 1}
                 </span>
 
                 {card.label}
-
               </button>
-
             ))}
-
           </div>
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           FAQ
@@ -348,11 +294,8 @@ const About = () => {
         className="faq-section"
         id="faq"
       >
-
         <div className="faq-heading">
-
           <div>
-
             <span className="section-label">
               FREQUENTLY ASKED
             </span>
@@ -360,51 +303,37 @@ const About = () => {
             <h2>
               კითხვები?
               <br />
-              <span>
-              
-              </span>
+              <span>პასუხები.</span>
             </h2>
-
           </div>
 
-
           <div className="faq-heading-badge">
-
             <span>FAQ</span>
 
             <small>
               ყველაზე ხშირად
               დასმული კითხვები
             </small>
-
           </div>
-
         </div>
 
-
         <div className="faq-cards">
-
           {faqData.map((faq, index) => {
-
             const isOpen = openFaq === index;
 
             return (
               <article
                 className={`faq-card ${
-                  isOpen
-                    ? "faq-card-open"
-                    : ""
+                  isOpen ? "faq-card-open" : ""
                 }`}
                 key={faq.question}
               >
-
                 <button
                   type="button"
                   className="faq-card-question"
                   onClick={() => toggleFaq(index)}
                   aria-expanded={isOpen}
                 >
-
                   <span className="faq-card-number">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -416,121 +345,75 @@ const About = () => {
                   <span className="faq-card-plus">
                     <FaPlus />
                   </span>
-
                 </button>
 
-
                 <div className="faq-card-answer">
-
                   <div className="faq-answer-inner">
-
                     <div className="faq-answer-line" />
 
-                    <p>
-                      {faq.answer}
-                    </p>
-
+                    <p>{faq.answer}</p>
                   </div>
-
                 </div>
-
               </article>
             );
-
           })}
-
         </div>
-
       </section>
-
 
       {/* =====================================================
           CONTACT
       ===================================================== */}
 
       <section className="contact-section">
-
         <div className="contact-card">
-
           <div className="contact-left">
-
             <span className="section-label">
               CONTACT
             </span>
 
-            <h2>
-              დაგვიკავშირდი
-            </h2>
+            <h2>დაგვიკავშირდი</h2>
 
             <p>
               გაქვს კითხვა კურსზე ან გინდა
               სწავლა დაიწყო? მოგვწერე.
             </p>
-
           </div>
 
-
           <div className="contact-right">
-
             <div className="contact-links">
-
               {/* EMAIL */}
 
-              <a
-                href="mailto:Amashukelinika5@gmail.com"
-              >
-
+              <a href="mailto:Amashukelinika5@gmail.com">
                 <div className="contact-link-icon">
                   @
                 </div>
 
                 <div className="contact-link-content">
-
-                  <span>
-                    EMAIL
-                  </span>
+                  <span>EMAIL</span>
 
                   <strong>
                     Amashukelinika5@gmail.com
                   </strong>
-
                 </div>
 
-                <b>
-                  ↗
-                </b>
-
+                <b>↗</b>
               </a>
-
 
               {/* PHONE */}
 
-              <a
-                href="tel:+995595036986"
-              >
-
+              <a href="tel:+995595036986">
                 <div className="contact-link-icon">
                   ☎
                 </div>
 
                 <div className="contact-link-content">
+                  <span>PHONE</span>
 
-                  <span>
-                    PHONE
-                  </span>
-
-                  <strong>
-                    595 03 69 86
-                  </strong>
-
+                  <strong>595 03 69 86</strong>
                 </div>
 
-                <b>
-                  ↗
-                </b>
-
+                <b>↗</b>
               </a>
-
 
               {/* INSTAGRAM */}
 
@@ -539,29 +422,18 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-
                 <div className="contact-link-icon">
                   ◎
                 </div>
 
                 <div className="contact-link-content">
+                  <span>INSTAGRAM</span>
 
-                  <span>
-                    INSTAGRAM
-                  </span>
-
-                  <strong>
-                    @editologia0
-                  </strong>
-
+                  <strong>@editologia0</strong>
                 </div>
 
-                <b>
-                  ↗
-                </b>
-
+                <b>↗</b>
               </a>
-
 
               {/* FACEBOOK */}
 
@@ -570,37 +442,22 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-
                 <div className="contact-link-icon">
                   f
                 </div>
 
                 <div className="contact-link-content">
+                  <span>FACEBOOK</span>
 
-                  <span>
-                    FACEBOOK
-                  </span>
-
-                  <strong>
-                    Editologia
-                  </strong>
-
+                  <strong>Editologia</strong>
                 </div>
 
-                <b>
-                  ↗
-                </b>
-
+                <b>↗</b>
               </a>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
-
     </main>
   );
 };
