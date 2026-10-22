@@ -22,9 +22,11 @@
   height: 82px;
   margin: 0;
   padding: 0 42px;
+  box-sizing: border-box;
 
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 35px;
 
   background: var(--header-bg);
@@ -40,14 +42,19 @@
     box-shadow 0.3s ease;
 }
 
-html[data-theme="dark"] .home-header-wrapper {
+html[data-theme="dark"] .home-header-wrapper,
+body.dark .home-header-wrapper {
   box-shadow: 0 8px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* LOGO */
+/* =========================================================
+   LOGO — ALWAYS LEFT
+========================================================= */
 
 .home-header .logo {
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  margin-right: 0;
+
   color: var(--text);
 
   font-family: "MSRing", Inter, sans-serif;
@@ -72,10 +79,14 @@ html[data-theme="dark"] .home-header-wrapper {
   transform: translateY(-1px);
 }
 
-/* DESKTOP NAV */
+/* =========================================================
+   DESKTOP NAVIGATION
+========================================================= */
 
 .desktop-nav {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,25 +140,35 @@ html[data-theme="dark"] .home-header-wrapper {
   width: 100%;
 }
 
-/* RIGHT SIDE */
+/* =========================================================
+   RIGHT SIDE — THEME + REGISTER + BURGER
+========================================================= */
 
 .home-header-right {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
-  flex-shrink: 0;
+
+  flex: 0 0 auto;
+  min-width: max-content;
+  margin-left: auto;
 }
 
-/* THEME BUTTON */
+/* =========================================================
+   THEME BUTTON
+========================================================= */
 
 .home-theme-btn {
   width: 44px;
   height: 44px;
+  box-sizing: border-box;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
+  flex: 0 0 auto;
   padding: 10px;
 
   border: 1px solid var(--border);
@@ -167,6 +188,8 @@ html[data-theme="dark"] .home-header-wrapper {
 
 .home-theme-btn span {
   font-size: 19px;
+  line-height: 1;
+
   transition: transform 0.35s ease;
 }
 
@@ -188,16 +211,20 @@ html[data-theme="dark"] .home-header-wrapper {
   outline-offset: 3px;
 }
 
-/* REGISTER / PROFILE */
+/* =========================================================
+   REGISTER / PROFILE
+========================================================= */
 
 .home-register-btn,
 .home-profile-btn {
   min-height: 44px;
+  box-sizing: border-box;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
+  flex: 0 0 auto;
   padding: 0 22px;
   border-radius: 14px;
 
@@ -221,20 +248,25 @@ html[data-theme="dark"] .home-header-wrapper {
   opacity: 0.88;
 }
 
-/* BURGER */
+/* =========================================================
+   BURGER BUTTON
+========================================================= */
 
 .burger {
   display: none;
 
   width: 42px;
   height: 42px;
+  box-sizing: border-box;
 
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 5px;
 
+  flex: 0 0 auto;
   padding: 0;
+
   border: none;
   border-radius: 10px;
 
@@ -243,6 +275,7 @@ html[data-theme="dark"] .home-header-wrapper {
 }
 
 .burger span {
+  display: block;
   width: 21px;
   height: 2px;
 
@@ -266,7 +299,9 @@ html[data-theme="dark"] .home-header-wrapper {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* MOBILE MENU */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
 .mobile-menu {
   position: fixed;
@@ -283,8 +318,10 @@ html[data-theme="dark"] .home-header-wrapper {
 
   max-height: calc(100vh - 115px);
   overflow-y: auto;
+  overscroll-behavior: contain;
 
   padding: 10px;
+  box-sizing: border-box;
 
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -301,6 +338,7 @@ html[data-theme="dark"] .home-header-wrapper {
   pointer-events: none;
 
   transform: translateY(-10px) scale(0.98);
+  transform-origin: top center;
 
   transition:
     opacity 0.25s ease,
@@ -316,7 +354,9 @@ html[data-theme="dark"] .home-header-wrapper {
   transform: translateY(0) scale(1);
 }
 
-/* MOBILE LINKS */
+/* =========================================================
+   MOBILE LINKS
+========================================================= */
 
 .mobile-menu > a {
   min-height: 48px;
@@ -347,17 +387,23 @@ html[data-theme="dark"] .home-header-wrapper {
   color: #8035d6;
 }
 
-/* DIVIDER */
+/* =========================================================
+   MOBILE MENU DIVIDER
+========================================================= */
 
 .mobile-menu-divider {
   width: 100%;
   height: 1px;
 
+  flex: 0 0 auto;
   margin: 8px 0;
+
   background: var(--border);
 }
 
-/* OVERLAY */
+/* =========================================================
+   MOBILE OVERLAY
+========================================================= */
 
 .mobile-overlay {
   position: fixed;
@@ -382,12 +428,15 @@ html[data-theme="dark"] .home-header-wrapper {
   pointer-events: auto;
 }
 
-/* GLOBAL HEADER THEME */
+/* =========================================================
+   GLOBAL HEADER THEME
+========================================================= */
 
 header,
 .home-header,
 .navbar {
   color: var(--text);
+
   transition:
     background-color 0.25s ease,
     color 0.25s ease,
@@ -419,11 +468,14 @@ body.dark .home-theme-btn {
   border-color: #475569;
 }
 
-/* TABLET */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 1100px) {
   .home-header-wrapper {
-    padding: 0 28px;
+    padding-left: 28px;
+    padding-right: 28px;
     gap: 22px;
   }
 
@@ -440,16 +492,49 @@ body.dark .home-theme-btn {
   }
 }
 
-/* MOBILE / TABLET */
+/* =========================================================
+   MOBILE / TABLET — LOGO LEFT, CONTROLS RIGHT
+========================================================= */
 
 @media (max-width: 900px) {
   .home-header-wrapper {
     height: 72px;
-    padding: 0 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
   }
 
+  /* ლოგო მარცხენა მხარეს რჩება */
+  .home-header .logo {
+    flex: 0 0 auto;
+    margin-right: auto;
+    font-size: 27px;
+  }
+
+  /* დესკტოპის ნავიგაცია იმალება */
   .desktop-nav {
     display: none;
+  }
+
+  /* მარჯვენა მხარეს არსებული კონტროლები */
+  .home-header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    flex: 0 0 auto;
+    min-width: 0;
+    margin-left: auto;
+    gap: 8px;
+  }
+
+  .home-theme-btn,
+  .burger {
+    flex: 0 0 auto;
   }
 
   .home-register-btn,
@@ -460,18 +545,17 @@ body.dark .home-theme-btn {
   .burger {
     display: flex;
   }
-
-  .home-header .logo {
-    font-size: 27px;
-  }
 }
 
-/* MOBILE */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
   .home-header-wrapper {
     height: 64px;
-    padding: 0 17px;
+    padding-left: 17px;
+    padding-right: 17px;
     gap: 8px;
   }
 
@@ -479,9 +563,18 @@ body.dark .home-theme-btn {
     font-size: 23px;
   }
 
+  .home-header-right {
+    gap: 7px;
+  }
+
   .home-theme-btn {
     width: 39px;
     height: 39px;
+    padding: 8px;
+  }
+
+  .home-theme-btn span {
+    font-size: 18px;
   }
 
   .burger {
@@ -497,15 +590,24 @@ body.dark .home-theme-btn {
   }
 }
 
-/* SMALL MOBILE */
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
 
 @media (max-width: 380px) {
   .home-header-wrapper {
-    padding: 0 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 5px;
   }
 
   .home-header .logo {
     font-size: 20px;
+    letter-spacing: -0.7px;
+  }
+
+  .home-header-right {
+    gap: 5px;
   }
 
   .home-theme-btn,
@@ -513,20 +615,39 @@ body.dark .home-theme-btn {
     width: 36px;
     height: 36px;
   }
-}
 
-/* ACCESSIBILITY */
+  .home-theme-btn {
+    padding: 6px;
+  }
 
-@media (prefers-reduced-motion: reduce) {
-  .home-header *,
-  .mobile-menu,
-  .mobile-overlay {
-    transition: none !important;
+  .home-theme-btn span {
+    font-size: 17px;
+  }
+
+  .burger span {
+    width: 19px;
+  }
+
+  .mobile-menu {
+    left: 8px;
+    right: 8px;
   }
 }
+
 /* =========================================================
-   LIGHT MODE — HEADER TEXT FIX
+   LIGHT MODE
 ========================================================= */
+
+html[data-theme="light"] {
+  --text: #171717;
+  --text-secondary: #52525b;
+  --border: #e4e4e7;
+  --surface: #ffffff;
+  --surface-hover: #f4f4f5;
+  --header-bg: rgba(255, 255, 255, 0.94);
+  --button-bg: #8035d6;
+  --button-text: #ffffff;
+}
 
 html[data-theme="light"] .home-header,
 html[data-theme="light"] .home-header-wrapper {
@@ -535,6 +656,10 @@ html[data-theme="light"] .home-header-wrapper {
 
 html[data-theme="light"] .home-header .logo {
   color: #171717;
+}
+
+html[data-theme="light"] .home-header .logo span {
+  color: #8035d6;
 }
 
 html[data-theme="light"] .desktop-nav > a {
@@ -584,27 +709,151 @@ html[data-theme="light"] .mobile-menu-divider {
   background: #e4e4e7;
 }
 
-/* Light mode — readable links and controls */
+/* =========================================================
+   DARK MODE
+========================================================= */
 
-html[data-theme="light"] .home-header a {
-  text-decoration: none;
+html[data-theme="dark"] .home-header,
+html[data-theme="dark"] .home-header-wrapper,
+body.dark .home-header,
+body.dark .home-header-wrapper {
+  color: #f1f5f9;
 }
 
-html[data-theme="light"] .home-header .logo span {
-  color: #8035d6;
+html[data-theme="dark"] .home-header .logo,
+body.dark .home-header .logo {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .home-header .logo span,
+body.dark .home-header .logo span {
+  color: #a875ef;
+}
+
+html[data-theme="dark"] .desktop-nav > a,
+body.dark .desktop-nav > a {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .desktop-nav > a:hover,
+html[data-theme="dark"] .desktop-nav > a.active,
+body.dark .desktop-nav > a:hover,
+body.dark .desktop-nav > a.active {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .home-theme-btn,
+body.dark .home-theme-btn {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+html[data-theme="dark"] .burger span,
+body.dark .burger span {
+  background: #f1f5f9;
+}
+
+html[data-theme="dark"] .mobile-menu,
+body.dark .mobile-menu {
+  background: rgba(15, 23, 42, 0.97);
+  border-color: #334155;
+}
+
+html[data-theme="dark"] .mobile-menu > a,
+body.dark .mobile-menu > a {
+  color: #f1f5f9;
+}
+
+html[data-theme="dark"] .mobile-menu > a:hover,
+body.dark .mobile-menu > a:hover {
+  background: #1e293b;
+}
+
+html[data-theme="dark"] .mobile-menu > a.active,
+body.dark .mobile-menu > a.active {
+  color: #a875ef;
+}
+
+html[data-theme="dark"] .mobile-menu-divider,
+body.dark .mobile-menu-divider {
+  background: #334155;
 }
 
 /* =========================================================
-   FALLBACK — IF LIGHT THEME USES data-theme="light"
+   ACCESSIBILITY
 ========================================================= */
 
-html[data-theme="light"] {
-  --text: #171717;
-  --text-secondary: #52525b;
-  --border: #e4e4e7;
-  --surface: #ffffff;
-  --surface-hover: #f4f4f5;
-  --header-bg: rgba(255, 255, 255, 0.94);
-  --button-bg: #8035d6;
-  --button-text: #ffffff;
+@media (prefers-reduced-motion: reduce) {
+  .home-header *,
+  .mobile-menu,
+  .mobile-overlay {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* FIX: Keep theme toggle and burger on the RIGHT */
+
+@media (max-width: 900px) {
+  .home-header .home-header-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100%;
+  }
+
+  .home-header .home-header-wrapper > .logo {
+    order: 0 !important;
+    margin-right: auto !important;
+    flex: 0 0 auto !important;
+  }
+
+  .home-header .desktop-nav {
+    display: none !important;
+  }
+
+  .home-header .home-header-right {
+    order: 1 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+
+  .home-header .home-theme-btn {
+    order: 0 !important;
+    position: static !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .home-header .home-profile-btn,
+  .home-header .home-register-btn {
+    order: 1 !important;
+    position: static !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  .home-header .burger {
+    order: 2 !important;
+    position: static !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+    inset: auto !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-header .home-header-right {
+    gap: 6px !important;
+  }
 }

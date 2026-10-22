@@ -1,173 +1,424 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-:root {
-  --primary: #8035D6;
-  --primary-hover: #6d28d9;
 
-  --background: #f5f6fa;
+/* =====================================================
+   EDITOLOGIA — REGISTER PAGE
+   Premium Light / Dark Theme
+===================================================== */
+
+:root {
+  color-scheme: light;
+
+  --primary: #8035d6;
+  --primary-hover: #6d28c3;
+  --primary-light: #f2e9ff;
+  --primary-border: #e1d0f6;
+
+  --background: #f7f5fb;
   --card: #ffffff;
-  --text: #222;
-  --text-secondary: #666;
-  --border: #ddd;
-  --input: #ffffff;
+  --text: #241b30;
+  --text-secondary: #766d81;
+  --border: #e5ddec;
+  --input: #fbfaff;
+  --placeholder: #9a91a5;
+
+  --shadow:
+    0 24px 70px rgba(46, 24, 72, 0.09),
+    0 4px 14px rgba(46, 24, 72, 0.04);
+
+  --focus-ring: rgba(128, 53, 214, 0.13);
 }
+
+/* =====================================================
+   DARK THEME
+===================================================== */
 
 html[data-theme="dark"] {
-  --background: #0f172a;
-  --card: #1e293b;
-  --text: #ffffff;
-  --text-secondary: #cbd5e1;
-  --border: #334155;
-  --input: #273449;
+  color-scheme: dark;
+
+  --primary: #b58aff;
+  --primary-hover: #c6a7ff;
+  --primary-light: #30213f;
+  --primary-border: #49345f;
+
+  --background: #100d16;
+  --card: #1b1624;
+  --text: #f6f0fc;
+  --text-secondary: #b7aabd;
+  --border: #3a3045;
+  --input: #15111d;
+  --placeholder: #91859e;
+
+  --shadow:
+    0 24px 70px rgba(0, 0, 0, 0.3),
+    0 4px 14px rgba(0, 0, 0, 0.16);
+
+  --focus-ring: rgba(181, 138, 255, 0.16);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --card: #1e293b;
-    --text: #ffffff;
-    --text-secondary: #cbd5e1;
-    --border: #334155;
-    --input: #273449;
-  }
-}
+/* =====================================================
+   GLOBAL
+===================================================== */
 
-body {
-  background: var(--background);
-  color: var(--text);
-  transition: background-color .3s, color .3s;
+.register-page *,
+.register-page *::before,
+.register-page *::after {
+  box-sizing: border-box;
 }
 
 .register-page {
+  position: relative;
+  isolation: isolate;
+
   min-height: 100vh;
+  min-height: 100dvh;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 15px;
+
+  padding: 45px 20px;
+
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(128, 53, 214, 0.09),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 90% 90%,
+      rgba(161, 111, 225, 0.08),
+      transparent 35%
+    ),
+    var(--background);
+
+  color: var(--text);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
+
+html[data-theme="dark"] .register-page {
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(128, 53, 214, 0.15),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 90% 90%,
+      rgba(101, 61, 145, 0.12),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+/* =====================================================
+   REGISTER CARD
+===================================================== */
 
 .register-card {
-  width: 100%;
-  max-width: 520px;
-  background: var(--card);
-  border-radius: 22px;
-  padding: 35px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
-  transition: .3s;
-}
+  position: relative;
 
+  width: 100%;
+  max-width: 490px;
+
+  padding: 40px;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background: var(--card);
+  color: var(--text);
+
+  box-shadow: var(--shadow);
+
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
 
 .register-card h1 {
-  text-align: center;
+  margin: 0 0 10px;
+
   color: var(--text);
-  font-size: 34px;
-  margin-bottom: 8px;
+
+  text-align: center;
+  font-size: clamp(28px, 4vw, 35px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
 }
 
-.register-card p {
-  text-align: center;
+.register-card > p {
+  margin: 0 0 30px;
+
   color: var(--text-secondary);
-  margin-bottom: 28px;
+
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
 }
+
+/* =====================================================
+   INPUT GROUP
+===================================================== */
 
 .input-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  min-width: 0;
 }
 
 .input-group label {
   display: block;
-  margin-bottom: 8px;
+
+  margin-bottom: 9px;
+
   color: var(--text);
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 .input-box {
   display: flex;
   align-items: center;
-  background: var(--input);
+  gap: 11px;
+
+  width: 100%;
+  min-height: 51px;
+
+  padding: 0 15px;
+
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 13px 15px;
-  transition: .3s;
+
+  background: var(--input);
+  color: var(--text);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.3s ease;
+}
+
+.input-box:hover {
+  border-color: var(--primary-border);
 }
 
 .input-box:focus-within {
   border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--focus-ring);
 }
 
 .input-box svg {
+  flex-shrink: 0;
   color: var(--text-secondary);
+  font-size: 17px;
+  transition: color 0.2s ease;
+}
+
+.input-box:focus-within svg {
+  color: var(--primary);
 }
 
 .input-box input {
   flex: 1;
+  width: 0;
+  min-width: 0;
+  min-height: 48px;
+
+  margin: 0;
+  padding: 0;
+
   border: none;
   outline: none;
+
   background: transparent;
-  margin-left: 10px;
   color: var(--text);
-  font-size: 15px;
+
+  font: inherit;
+  font-size: 14px;
+
+  box-shadow: none;
 }
 
 .input-box input::placeholder {
-  color: #999;
+  color: var(--placeholder);
+  opacity: 1;
 }
 
-.eye-btn {
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  color: var(--text-secondary);
+.input-box input:-webkit-autofill,
+.input-box input:-webkit-autofill:hover,
+.input-box input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text);
+  box-shadow: 0 0 0 1000px var(--input) inset;
+  transition: background-color 9999s ease-in-out 0s;
 }
+
+/* =====================================================
+   PASSWORD VISIBILITY BUTTON
+===================================================== */
+
+.eye-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.eye-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.eye-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   TERMS AND CONDITIONS
+===================================================== */
 
 .terms {
   display: flex;
-  gap: 10px;
   align-items: flex-start;
-  margin: 20px 0;
+  gap: 11px;
+
+  margin: 22px 0;
+
+  min-width: 0;
 }
 
 .terms input {
+  flex-shrink: 0;
+
+  width: 16px;
+  height: 16px;
+
   margin-top: 3px;
+
+  accent-color: var(--primary);
+  cursor: pointer;
 }
 
 .terms label {
   color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
 }
 
-.terms a {
+.terms a,
+.login-link a {
   color: var(--primary);
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 600;
+  transition: color 0.2s ease;
 }
+
+.terms a:hover,
+.login-link a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =====================================================
+   REGISTER BUTTON
+===================================================== */
 
 .register-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
   width: 100%;
-  padding: 15px;
-  border: none;
+  min-height: 51px;
+
+  padding: 14px 18px;
+
+  border: 1px solid transparent;
   border-radius: 12px;
-  background: var(--primary);
-  color: white;
-  font-size: 17px;
-  font-weight: 600;
+
+  background: linear-gradient(135deg, #8b45e8, #7130c6);
+  color: #ffffff;
+
+  font: inherit;
+  font-size: 15px;
+  font-weight: 750;
+
   cursor: pointer;
-  transition: .3s;
+
+  box-shadow: 0 6px 16px rgba(128, 53, 214, 0.2);
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+html[data-theme="dark"] .register-btn {
+  background: linear-gradient(135deg, #a66aee, #8042cf);
+  color: #ffffff;
 }
 
 .register-btn:hover {
-  background: var(--primary-hover);
+  background: linear-gradient(135deg, #7932cf, #6225b0);
+  box-shadow: 0 9px 22px rgba(128, 53, 214, 0.28);
+  transform: translateY(-1px);
 }
+
+html[data-theme="dark"] .register-btn:hover {
+  background: linear-gradient(135deg, #b78aff, #9458e2);
+}
+
+.register-btn:active {
+  transform: translateY(0);
+}
+
+.register-btn:focus-visible,
+.social-btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.register-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =====================================================
+   DIVIDER
+===================================================== */
 
 .divider {
   display: flex;
   align-items: center;
-  margin: 25px 0;
+  gap: 14px;
+
+  margin: 27px 0;
 }
 
 .divider span {
@@ -177,123 +428,220 @@ body {
 }
 
 .divider p {
-  margin: 0 15px;
+  flex-shrink: 0;
+
+  margin: 0;
+
   color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
+/* =====================================================
+   SOCIAL LOGIN
+===================================================== */
+
 .social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+
   width: 100%;
-  padding: 14px;
-  border-radius: 12px;
+  min-height: 49px;
+
+  margin-bottom: 12px;
+  padding: 13px 16px;
+
   border: 1px solid var(--border);
+  border-radius: 12px;
+
   background: var(--card);
   color: var(--text);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+
   cursor: pointer;
-  margin-bottom: 12px;
-  transition: .3s;
-  font-size: 15px;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .social-btn:hover {
   border-color: var(--primary);
+  background: var(--primary-light);
+  transform: translateY(-1px);
 }
 
 .social-btn svg {
+  flex-shrink: 0;
   font-size: 18px;
 }
 
+/* =====================================================
+   LOGIN LINK
+===================================================== */
+
 .login-link {
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
+
   color: var(--text-secondary);
+
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
 }
 
-.login-link a {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
+/* =====================================================
+   LIGHT THEME EXPLICIT OVERRIDES
+===================================================== */
+
+html[data-theme="light"] .register-page {
+  color: #241b30;
 }
 
-.login-link a:hover,
-.terms a:hover {
-  text-decoration: underline;
+html[data-theme="light"] .register-card,
+html[data-theme="light"] .register-card h1,
+html[data-theme="light"] .input-group label {
+  color: #241b30;
 }
 
-/* ---------- Tablet ---------- */
+html[data-theme="light"] .register-card > p,
+html[data-theme="light"] .terms label,
+html[data-theme="light"] .login-link,
+html[data-theme="light"] .divider p {
+  color: #766d81;
+}
 
-@media (max-width:768px) {
+html[data-theme="light"] .input-box input {
+  color: #241b30;
+}
+
+html[data-theme="light"] .social-btn {
+  color: #241b30;
+  background: #ffffff;
+}
+
+/* =====================================================
+   SMALL SCREEN
+===================================================== */
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 32px 18px;
+  }
+
   .register-card {
-    max-width: 470px;
-    padding: 30px;
+    max-width: 460px;
+    padding: 32px;
   }
 }
 
-/* ---------- Mobile ---------- */
-
-@media (max-width:480px) {
-
+@media (max-width: 480px) {
   .register-page {
-    padding: 15px;
+    align-items: flex-start;
+    padding: 24px 14px;
   }
 
   .register-card {
     max-width: 100%;
-    padding: 22px;
-    border-radius: 18px;
+    padding: 25px 20px;
+    border-radius: 19px;
   }
 
   .register-card h1 {
     font-size: 28px;
+    letter-spacing: -0.5px;
   }
 
-  .register-card p {
-    font-size: 14px;
+  .register-card > p {
+    margin-bottom: 25px;
+    font-size: 13px;
+  }
+
+  .input-group {
+    margin-bottom: 17px;
   }
 
   .input-box {
-    padding: 12px;
+    min-height: 48px;
+    padding: 0 12px;
   }
 
-  .register-btn,
-  .social-btn {
-    padding: 13px;
-    font-size: 15px;
+  .input-box input {
+    min-height: 46px;
+    font-size: 14px;
   }
 
   .terms {
-    font-size: 13px;
+    gap: 9px;
+    margin: 19px 0;
+  }
+
+  .terms label {
+    font-size: 11px;
+  }
+
+  .register-btn {
+    min-height: 48px;
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  .social-btn {
+    min-height: 46px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .divider {
+    margin: 23px 0;
+  }
+
+  .login-link {
+    margin-top: 20px;
+    font-size: 12px;
   }
 }
 
-/* ---------- Small Phones ---------- */
-
-@media (max-width:360px) {
+@media (max-width: 360px) {
+  .register-page {
+    padding: 18px 10px;
+  }
 
   .register-card {
-    padding: 18px;
+    padding: 22px 16px;
   }
 
   .register-card h1 {
-    font-size: 24px;
+    font-size: 25px;
   }
 
+  .input-box {
+    gap: 8px;
+    padding: 0 10px;
+  }
+
+  .input-box svg {
+    font-size: 15px;
+  }
 }
 
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
 
-.register-page {
-  background: var(--background);
-}
-
-.register-card,
-.input-box,
-.register-btn,
-.social-btn {
-  transition:
-    background-color .3s,
-    color .3s,
-    border-color .3s;
+@media (prefers-reduced-motion: reduce) {
+  .register-page *,
+  .register-page *::before,
+  .register-page *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -1,8 +1,62 @@
 
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./Header.css";
 import { supabase } from "../../supabase";
+import "./Header.css";
+
+/* =========================================================
+   SVG ICONS
+========================================================= */
+
+function SunIcon({ size = 20 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+      <path
+        d="M12 2V4M12 20V22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M2 12H4M20 12H22M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function MoonIcon({ size = 20 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M20.2 15.4A8.5 8.5 0 0 1 8.6 3.8 8.5 8.5 0 1 0 20.2 15.4Z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -127,23 +181,20 @@ const Header = () => {
     };
   }, []);
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  /* HELPERS */
+
+  const closeMenu = () => setMenuOpen(false);
 
   const navLinkClass = ({ isActive }) =>
     isActive ? "active" : "";
 
   return (
     <>
-      {/* HEADER */}
-
       <header
         className={`home-header ${scrolled ? "scrolled" : ""}`}
       >
         <div className="home-header-wrapper">
-
-          {/* LOGO */}
+          {/* LOGO — LEFT */}
 
           <NavLink
             to="/"
@@ -156,22 +207,15 @@ const Header = () => {
           {/* DESKTOP NAV */}
 
           <nav className="desktop-nav">
-
-            {/* LIVE COURSES */}
-
             <NavLink
               to="/livecourses/video-editing"
               className={({ isActive }) =>
-                `nav-dropdown-trigger ${
-                  isActive ? "active" : ""
-                }`
+                `nav-dropdown-trigger ${isActive ? "active" : ""}`
               }
               onClick={closeMenu}
             >
               Live Courses
             </NavLink>
-
-            {/* RECORDINGS */}
 
             <NavLink
               to="/recordings"
@@ -181,21 +225,15 @@ const Header = () => {
               ჩანაწერები
             </NavLink>
 
-            {/* SYLLABUS */}
-
             <NavLink
               to="/curriculum/video-editing"
               className={({ isActive }) =>
-                `nav-dropdown-trigger ${
-                  isActive ? "active" : ""
-                }`
+                `nav-dropdown-trigger ${isActive ? "active" : ""}`
               }
               onClick={closeMenu}
             >
               სილაბუსი
             </NavLink>
-
-            {/* ABOUT */}
 
             <NavLink
               to="/about"
@@ -205,8 +243,6 @@ const Header = () => {
               ჩვენს შესახებ
             </NavLink>
 
-            {/* PORTFOLIO */}
-
             <NavLink
               to="/Portfolio"
               className={navLinkClass}
@@ -214,15 +250,11 @@ const Header = () => {
             >
               პორტფოლიო
             </NavLink>
-
           </nav>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT SIDE — THEME + AUTH + BURGER */}
 
           <div className="home-header-right">
-
-            {/* THEME */}
-
             <button
               type="button"
               className="home-theme-btn"
@@ -232,11 +264,20 @@ const Header = () => {
                   ? "Switch to light theme"
                   : "Switch to dark theme"
               }
+              title={
+                darkMode
+                  ? "Light mode"
+                  : "Dark mode"
+              }
             >
-              <span>{darkMode ? "☀" : "☾"}</span>
+              <span className="theme-icon">
+                {darkMode ? (
+                  <SunIcon size={20} />
+                ) : (
+                  <MoonIcon size={20} />
+                )}
+              </span>
             </button>
-
-            {/* AUTH */}
 
             {isLoggedIn ? (
               <NavLink
@@ -256,15 +297,11 @@ const Header = () => {
               </NavLink>
             )}
 
-            {/* BURGER */}
-
             <button
               type="button"
               className={`burger ${menuOpen ? "active" : ""}`}
               onClick={() => setMenuOpen((prev) => !prev)}
-              aria-label={
-                menuOpen ? "Close menu" : "Open menu"
-              }
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               aria-controls="mobile-navigation"
             >
@@ -272,7 +309,6 @@ const Header = () => {
               <span />
               <span />
             </button>
-
           </div>
         </div>
       </header>
@@ -283,85 +319,59 @@ const Header = () => {
         id="mobile-navigation"
         className={`mobile-menu ${menuOpen ? "show" : ""}`}
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
       >
-
-        {/* LIVE COURSES */}
-
         <NavLink
           to="/livecourses/video-editing"
           className={navLinkClass}
           onClick={closeMenu}
-          tabIndex={menuOpen ? 0 : -1}
         >
           Live Courses
         </NavLink>
-
-        {/* RECORDINGS */}
 
         <NavLink
           to="/recordings"
           className={navLinkClass}
           onClick={closeMenu}
-          tabIndex={menuOpen ? 0 : -1}
         >
           ჩანაწერები
         </NavLink>
-
-        {/* SYLLABUS */}
 
         <NavLink
           to="/curriculum/video-editing"
           className={navLinkClass}
           onClick={closeMenu}
-          tabIndex={menuOpen ? 0 : -1}
         >
           სილაბუსი
         </NavLink>
-
-        {/* ABOUT */}
 
         <NavLink
           to="/about"
           className={navLinkClass}
           onClick={closeMenu}
-          tabIndex={menuOpen ? 0 : -1}
         >
           ჩვენს შესახებ
         </NavLink>
-
-        {/* PORTFOLIO */}
 
         <NavLink
           to="/Portfolio"
           className={navLinkClass}
           onClick={closeMenu}
-          tabIndex={menuOpen ? 0 : -1}
         >
           პორტფოლიო
         </NavLink>
 
         <div className="mobile-menu-divider" />
 
-        {/* AUTH */}
-
         {isLoggedIn ? (
-          <NavLink
-            to="/profile"
-            onClick={closeMenu}
-            tabIndex={menuOpen ? 0 : -1}
-          >
+          <NavLink to="/profile" onClick={closeMenu}>
             პროფილი
           </NavLink>
         ) : (
-          <NavLink
-            to="/register"
-            onClick={closeMenu}
-            tabIndex={menuOpen ? 0 : -1}
-          >
+          <NavLink to="/register" onClick={closeMenu}>
             რეგისტრაცია
           </NavLink>
         )}
-
       </nav>
 
       {/* OVERLAY */}

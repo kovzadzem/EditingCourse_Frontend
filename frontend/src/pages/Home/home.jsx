@@ -1,5 +1,6 @@
+
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   motion,
   useMotionValue,
@@ -12,7 +13,7 @@ import Pricing from "../Pricing/Pricing";
 import "./home.css";
 
 /* =====================================================
-   ICONS
+   SVG ICONS
 ===================================================== */
 
 function PlayIcon({ size = 20 }) {
@@ -65,6 +66,48 @@ function MuteIcon({ size = 20 }) {
   );
 }
 
+function ArrowRightIcon({ size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M5 12H19M12 5L19 12L12 19"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ArrowUpRightIcon({ size = 16 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M7 17L17 7M8 7H17V16"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 /* =====================================================
    ANIMATED NUMBER
 ===================================================== */
@@ -104,7 +147,9 @@ function StatCard({ number, label, description, type }) {
         {type === "level" ? (
           <>
             <span>0</span>
-            <span className="stat-card-arrow">→</span>
+            <span className="stat-card-arrow">
+              <ArrowRightIcon size={18} />
+            </span>
             <span className="stat-card-pro">PRO</span>
           </>
         ) : (
@@ -132,7 +177,11 @@ function StatCard({ number, label, description, type }) {
             }%`,
           }}
           viewport={{ once: true }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: 1.2,
+            delay: 0.3,
+            ease: [0.16, 1, 0.3, 1],
+          }}
         />
       </div>
     </motion.div>
@@ -263,8 +312,12 @@ function VideoPlayer() {
           muted={isMuted}
           playsInline
           preload="metadata"
-          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+          onLoadedMetadata={(event) =>
+            setDuration(event.currentTarget.duration)
+          }
+          onTimeUpdate={(event) =>
+            setCurrentTime(event.currentTarget.currentTime)
+          }
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
         >
@@ -296,7 +349,10 @@ function VideoPlayer() {
         <div className="video-duration">{formatTime(duration)}</div>
       </div>
 
-      <div className="video-controls" onClick={(event) => event.stopPropagation()}>
+      <div
+        className="video-controls"
+        onClick={(event) => event.stopPropagation()}
+      >
         <input
           className="video-progress"
           type="range"
@@ -307,7 +363,9 @@ function VideoPlayer() {
           onChange={handleSeek}
           style={{
             "--progress":
-              duration > 0 ? `${(currentTime / duration) * 100}%` : "0%",
+              duration > 0
+                ? `${(currentTime / duration) * 100}%`
+                : "0%",
           }}
           aria-label="Video progress"
         />
@@ -350,8 +408,15 @@ function HeroVisual() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const smoothX = useSpring(mouseX, { stiffness: 80, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 80, damping: 20 });
+  const smoothX = useSpring(mouseX, {
+    stiffness: 80,
+    damping: 20,
+  });
+
+  const smoothY = useSpring(mouseY, {
+    stiffness: 80,
+    damping: 20,
+  });
 
   const rotateX = useTransform(smoothY, [-0.5, 0.5], [4, -4]);
   const rotateY = useTransform(smoothX, [-0.5, 0.5], [-6, 6]);
@@ -369,14 +434,34 @@ function HeroVisual() {
   };
 
   const cards = [
-    { title: "12+ ლექცია", type: "lessons", position: "card-top-left" },
-    { title: "8+ წლის გამოცდილება", type: "students", position: "card-top-right" },
-    { title: "1 წელი წვდომა", type: "progress", position: "card-bottom-left" },
-    { title: "Live კურსი", type: "status", position: "card-bottom-right" },
+    {
+      title: "12+ ლექცია",
+      type: "lessons",
+      position: "card-top-left",
+    },
+    {
+      title: "8+ წლის გამოცდილება",
+      type: "students",
+      position: "card-top-right",
+    },
+    {
+      title: "1 წელი წვდომა",
+      type: "progress",
+      position: "card-bottom-left",
+    },
+    {
+      title: "Live კურსი",
+      type: "status",
+      position: "card-bottom-right",
+    },
   ];
 
   return (
-    <div className="hero-visual" onMouseMove={handleMouseMove} onMouseLeave={resetMouse}>
+    <div
+      className="hero-visual"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={resetMouse}
+    >
       <div className="hero-glow" />
       <div className="hero-glow-secondary" />
 
@@ -406,7 +491,9 @@ function HeroVisual() {
             <strong>შესავალი Premiere Pro-ში</strong>
           </div>
 
-          <span>→</span>
+          <span className="inline-icon">
+            <ArrowRightIcon size={18} />
+          </span>
         </div>
       </motion.div>
 
@@ -472,7 +559,11 @@ function PartnershipModal({ partner, onClose }) {
 
         <div className="partner-modal-logo">
           <img
-            src={isHuman ? "/images/human-kako.jpg" : "/images/quick.jpg"}
+            src={
+              isHuman
+                ? "/images/human-kako.jpg"
+                : "/images/quick.jpg"
+            }
             alt={isHuman ? "HUMAN KAKO ლოგო" : "Quick-ის ლოგო"}
           />
         </div>
@@ -532,13 +623,16 @@ function PartnershipModal({ partner, onClose }) {
             </p>
 
             <div className="partner-modal-highlight">
-             
               <span>პრაქტიკული გამოცდილება</span>
             </div>
           </>
         )}
 
-        <button type="button" className="partner-modal-done" onClick={onClose}>
+        <button
+          type="button"
+          className="partner-modal-done"
+          onClick={onClose}
+        >
           დახურვა
         </button>
       </motion.div>
@@ -563,10 +657,12 @@ export default function Home() {
   const [activePartner, setActivePartner] = useState(null);
 
   const closePartnerModal = () => setActivePartner(null);
-const navigate = useNavigate();
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setWordIndex((current) => (current + 1) % rotatingWords.length);
+      setWordIndex(
+        (current) => (current + 1) % rotatingWords.length
+      );
     }, 2200);
 
     return () => clearInterval(interval);
@@ -575,6 +671,7 @@ const navigate = useNavigate();
   return (
     <main className="home-page">
       {/* HERO */}
+
       <section className="hero">
         <div className="hero-background-glow hero-background-glow-one" />
         <div className="hero-background-glow hero-background-glow-two" />
@@ -608,7 +705,10 @@ const navigate = useNavigate();
                   className="rotating-word"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
                 >
                   {rotatingWords[wordIndex]}
                 </motion.span>
@@ -634,10 +734,15 @@ const navigate = useNavigate();
             >
               <a href="#pricing" className="primary-btn">
                 კურსის ნახვა
-                <span>→</span>
+                <span className="inline-icon">
+                  <ArrowRightIcon size={18} />
+                </span>
               </a>
 
-              <Link to="/livecourses/video-editing" className="secondary-btn">
+              <Link
+                to="/livecourses/video-editing"
+                className="secondary-btn"
+              >
                 Live კურსები
               </Link>
             </motion.div>
@@ -653,6 +758,7 @@ const navigate = useNavigate();
       </section>
 
       {/* STATS */}
+
       <section className="stats-strip">
         <StatCard
           number={12}
@@ -683,17 +789,19 @@ const navigate = useNavigate();
       </section>
 
       {/* PRICING */}
+
       <section id="pricing">
         <Pricing />
       </section>
 
-      {/* =====================================================
-          PARTNERSHIPS — AFTER PRICING
-      ===================================================== */}
+      {/* PARTNERSHIPS */}
+
       <section className="partnerships-section" id="partnerships">
         <div className="partnerships-inner">
           <div className="partnerships-heading">
-            <span className="partnerships-eyebrow">OUR PARTNERSHIPS</span>
+            <span className="partnerships-eyebrow">
+              OUR PARTNERSHIPS
+            </span>
 
             <h2>
               ცოდნა, რომელიც <span>შესაძლებლობებს ქმნის.</span>
@@ -708,6 +816,7 @@ const navigate = useNavigate();
 
           <div className="partnerships-grid">
             {/* HUMAN KAKO */}
+
             <button
               type="button"
               className="partnership-card partnership-clickable"
@@ -733,7 +842,10 @@ const navigate = useNavigate();
                 </div>
 
                 <div className="partnership-card-content">
-                  <span className="partnership-category">CREATIVE CONTENT</span>
+                  <span className="partnership-category">
+                    CREATIVE CONTENT
+                  </span>
+
                   <h3>HUMAN KAKO</h3>
 
                   <p>
@@ -743,7 +855,9 @@ const navigate = useNavigate();
 
                   <span className="partnership-read-more">
                     ვრცლად
-                    <span aria-hidden="true">↗</span>
+                    <span aria-hidden="true" className="inline-icon">
+                      <ArrowUpRightIcon size={16} />
+                    </span>
                   </span>
                 </div>
               </div>
@@ -756,6 +870,7 @@ const navigate = useNavigate();
             </button>
 
             {/* QUICK */}
+
             <button
               type="button"
               className="partnership-card partnership-clickable"
@@ -781,7 +896,10 @@ const navigate = useNavigate();
                 </div>
 
                 <div className="partnership-card-content">
-                  <span className="partnership-category">DIGITAL MARKETING</span>
+                  <span className="partnership-category">
+                    DIGITAL MARKETING
+                  </span>
+
                   <h3>ქუიქი (Quick)</h3>
 
                   <p>
@@ -791,7 +909,9 @@ const navigate = useNavigate();
 
                   <span className="partnership-read-more">
                     ვრცლად
-                    <span aria-hidden="true">↗</span>
+                    <span aria-hidden="true" className="inline-icon">
+                      <ArrowUpRightIcon size={16} />
+                    </span>
                   </span>
                 </div>
               </div>
@@ -812,21 +932,25 @@ const navigate = useNavigate();
 
             <Link to="/about" className="partnerships-contact">
               გახდი ჩვენი პარტნიორი
-              <span>↗</span>
+              <span className="inline-icon">
+                <ArrowUpRightIcon size={16} />
+              </span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* =====================================================
-          COLLABORATION — AT THE END
-      ===================================================== */}
+      {/* COLLABORATION */}
+
       <section className="collaboration-section">
         <div className="collaboration-card">
           <div className="collaboration-card-glow" />
 
           <div className="collaboration-top">
-            <span className="collaboration-eyebrow">COLLABORATION</span>
+            <span className="collaboration-eyebrow">
+              COLLABORATION
+            </span>
+
             <span className="collaboration-number">04</span>
           </div>
 
@@ -852,6 +976,7 @@ const navigate = useNavigate();
           <div className="collaboration-options">
             <div className="collaboration-option">
               <span className="option-number">01</span>
+
               <div>
                 <h3>კორპორატიული სწავლება</h3>
                 <p>გუნდებისთვის მორგებული სასწავლო პროგრამები.</p>
@@ -860,6 +985,7 @@ const navigate = useNavigate();
 
             <div className="collaboration-option">
               <span className="option-number">02</span>
+
               <div>
                 <h3>კრეატიული პროექტები</h3>
                 <p>ვიდეოპროდუქცია, მონტაჟი და კრეატიული თანამშრომლობა.</p>
@@ -868,6 +994,7 @@ const navigate = useNavigate();
 
             <div className="collaboration-option">
               <span className="option-number">03</span>
+
               <div>
                 <h3>ინდივიდუალური პროგრამები</h3>
                 <p>კონკრეტულ მიზნებზე მორგებული სწავლება.</p>
@@ -881,14 +1008,18 @@ const navigate = useNavigate();
               <span>გაქვს თანამშრომლობის იდეა?</span>
             </div>
 
-           <Link to="/about" className="შენი-ძველი-className">
-  დაგვიმეგობრდი
-</Link>
+            <Link
+              to="/about"
+              className="შენი-ძველი-className"
+            >
+              დაგვიმეგობრდი
+            </Link>
           </div>
         </div>
       </section>
 
       {/* PARTNER MODAL */}
+
       <PartnershipModal
         partner={activePartner}
         onClose={closePartnerModal}

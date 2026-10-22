@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
@@ -23,6 +22,10 @@ import {
   FaSyncAlt,
   FaCamera,
   FaTrashAlt,
+  FaLock,
+  FaArrowRight,
+  FaPlayCircle,
+  FaNewspaper,
 } from "react-icons/fa";
 
 const paymentLabels = {
@@ -37,18 +40,49 @@ const statusLabels = {
   completed: "დასრულებული",
 };
 
+const requestStatusLabels = {
+  pending: "მოთხოვნა განხილვის პროცესშია",
+  approved: "მოთხოვნა დადასტურებულია",
+  rejected: "მოთხოვნა უარყოფილია",
+};
+
+const offeringTypeLabels = {
+  individual: "ინდივიდუალური",
+  live: "Live კურსი",
+  recordings: "ჩანაწერები",
+};
+
+const offeringFormatLabels = {
+  online: "ონლაინ",
+  classroom: "აუდიტორიაში",
+  self_paced: "თვითსწავლით",
+  support: "მენტორის მხარდაჭერით",
+};
+
 const formatDate = (value) => {
   if (!value) return "არ არის მითითებული";
 
-  const date = new Date(`${value}T00:00:00`);
+  const date = new Date(value);
 
-  if (Number.isNaN(date.getTime())) return "არ არის მითითებული";
+  if (Number.isNaN(date.getTime())) {
+    return "არ არის მითითებული";
+  }
 
   return date.toLocaleDateString("ka-GE", {
     day: "2-digit",
     month: "long",
     year: "numeric",
   });
+};
+
+const formatPrice = (price) => {
+  const value = Number(price);
+
+  if (!Number.isFinite(value)) {
+    return "ფასი მითითებული არ არის";
+  }
+
+  return `${value.toLocaleString("ka-GE")} ₾`;
 };
 
 function Profile() {
@@ -74,14 +108,33 @@ function Profile() {
   const [enrollmentLoading, setEnrollmentLoading] = useState(true);
   const [enrollmentError, setEnrollmentError] = useState("");
 
+  const [offerings, setOfferings] = useState([]);
+  const [offeringCourses, setOfferingCourses] = useState({});
+  const [courseRequests, setCourseRequests] = useState([]);
+  const [offeringsLoading, setOfferingsLoading] = useState(true);
+  const [requestingOfferingId, setRequestingOfferingId] = useState(null);
+  const [offeringsError, setOfferingsError] = useState("");
+
+  // NEWS
+  const [news, setNews] = useState([]);
+  const [newsLoading, setNewsLoading] = useState(true);
+  const [newsError, setNewsError] = useState("");
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     phone: "",
   });
 
+  // =====================================================
+  // MY COURSES
+  // =====================================================
+
   const loadEnrollments = useCallback(async (studentId) => {
-    if (!studentId) return;
+    if (!studentId) {
+      setEnrollmentLoading(false);
+      return;
+    }
 
     setEnrollmentLoading(true);
     setEnrollmentError("");
@@ -145,6 +198,7 @@ function Profile() {
       }
     } catch (error) {
       console.error("ENROLLMENTS LOAD ERROR:", error);
+
       setEnrollmentError(
         error.message || "კურსების ჩატვირთვა ვერ მოხერხდა."
       );
@@ -152,6 +206,127 @@ function Profile() {
       setEnrollmentLoading(false);
     }
   }, []);
+
+  // =====================================================
+  // COURSE OFFERINGS AND REQUESTS
+  // =====================================================
+
+  const loadOfferings = useCallback(async (studentId) => {
+    if (!studentId) {
+      setOfferingsLoading(false);
+      return;
+    }
+
+    setOfferingsLoading(true);
+    setOfferingsError("");
+
+    try {
+      const [
+        { data: offeringData, error: offeringError },
+        { data: requestData, error: requestError },
+      ] = await Promise.all([
+        supabase
+          .from("course_offerings")
+          .select(
+            "id, course_id, name, offering_type, format, price, is_active"
+          )
+          .eq("is_active", true)
+          .order("price", { ascending: true }),
+
+        supabase
+          .from("course_requests")
+          .select("id, course_offering_id, status, created_at")
+          .eq("student_id", studentId)
+          .order("created_at", { ascending: false }),
+      ]);
+
+      if (offeringError) throw offeringError;
+      if (requestError) throw requestError;
+
+      const activeOfferings = offeringData || [];
+      const requests = requestData || [];
+
+      setCourseRequests(requests);
+
+      const courseIds = [
+        ...new Set(
+          activeOfferings.map((item) => item.course_id).filter(Boolean)
+        ),
+      ];
+
+      if (!courseIds.length) {
+        setOfferings([]);
+        setOfferingCourses({});
+        return;
+      }
+
+      const { data: courseData, error: courseError } = await supabase
+        .from("courses")
+        .select("id, title, description, duration_weeks, is_active")
+        .in("id", courseIds)
+        .eq("is_active", true);
+
+      if (courseError) throw courseError;
+
+      const courseMap = Object.fromEntries(
+        (courseData || []).map((course) => [course.id, course])
+      );
+
+      setOfferingCourses(courseMap);
+
+      setOfferings(
+        activeOfferings.filter((item) => Boolean(courseMap[item.course_id]))
+      );
+    } catch (error) {
+      console.error("OFFERINGS LOAD ERROR:", error);
+
+      setOfferingsError(
+        error.message || "შეთავაზებების ჩატვირთვა ვერ მოხერხდა."
+      );
+    } finally {
+      setOfferingsLoading(false);
+    }
+  }, []);
+
+  // =====================================================
+  // NEWS
+  // ადმინისტრატორის მიერ გამოქვეყნებული სიახლეები
+  // =====================================================
+
+  const loadNews = useCallback(async () => {
+    setNewsLoading(true);
+    setNewsError("");
+
+    try {
+      const { data, error } = await supabase
+        .from("news_posts")
+        .select(
+          "id, title, slug, excerpt, content, image_url, is_published, published_at, created_at, updated_at"
+        )
+        .eq("is_published", true)
+        .order("published_at", {
+          ascending: false,
+          nullsFirst: false,
+        });
+
+      if (error) throw error;
+
+      setNews(data || []);
+    } catch (error) {
+      console.error("NEWS LOAD ERROR:", error);
+
+      setNewsError(
+        error.message ||
+          "სიახლეების ჩატვირთვა ვერ მოხერხდა. შეამოწმე Supabase-ის RLS პოლიტიკები."
+      );
+    } finally {
+      setNewsLoading(false);
+    }
+  }, []);
+
+  // =====================================================
+  // LOAD PROFILE
+  // =====================================================
 
   const loadProfile = useCallback(async () => {
     setLoading(true);
@@ -174,9 +349,7 @@ function Profile() {
 
       const { data, error } = await supabase
         .from("profiles")
-        .select(
-          "id, first_name, last_name, phone, role, avatar_url"
-        )
+        .select("id, first_name, last_name, phone, role, avatar_url")
         .eq("id", currentUser.id)
         .maybeSingle();
 
@@ -196,14 +369,21 @@ function Profile() {
         phone: data.phone || "",
       });
 
-      await loadEnrollments(currentUser.id);
+      await Promise.all([
+        loadEnrollments(currentUser.id),
+        loadOfferings(currentUser.id),
+        loadNews(),
+      ]);
     } catch (error) {
       console.error("PROFILE LOAD ERROR:", error);
-      setErrorMessage(error.message || "პროფილის ჩატვირთვა ვერ მოხერხდა.");
+
+      setErrorMessage(
+        error.message || "პროფილის ჩატვირთვა ვერ მოხერხდა."
+      );
     } finally {
       setLoading(false);
     }
-  }, [navigate, loadEnrollments]);
+  }, [navigate, loadEnrollments, loadOfferings, loadNews]);
 
   useEffect(() => {
     loadProfile();
@@ -218,6 +398,10 @@ function Profile() {
 
     return () => subscription.unsubscribe();
   }, [loadProfile, navigate]);
+
+  // =====================================================
+  // PROFILE FORM
+  // =====================================================
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -241,7 +425,9 @@ function Profile() {
     const phone = formData.phone.trim();
 
     if (firstName.length < 2 || lastName.length < 2) {
-      setErrorMessage("სახელი და გვარი მინიმუმ 2 სიმბოლოს უნდა შეიცავდეს.");
+      setErrorMessage(
+        "სახელი და გვარი მინიმუმ 2 სიმბოლოს უნდა შეიცავდეს."
+      );
       return;
     }
 
@@ -264,6 +450,7 @@ function Profile() {
       if (error) throw error;
 
       setProfile(data);
+
       setFormData({
         first_name: data.first_name || "",
         last_name: data.last_name || "",
@@ -274,6 +461,7 @@ function Profile() {
       setSuccessMessage("ცვლილებები წარმატებით შეინახა.");
     } catch (error) {
       console.error("PROFILE SAVE ERROR:", error);
+
       setErrorMessage(error.message || "შენახვა ვერ მოხერხდა.");
     } finally {
       setSaving(false);
@@ -292,10 +480,33 @@ function Profile() {
     setSuccessMessage("");
   };
 
+  const startEditing = () => {
+    setFormData({
+      first_name: profile?.first_name || "",
+      last_name: profile?.last_name || "",
+      phone: profile?.phone || "",
+    });
+
+    setEditing(true);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    window.setTimeout(() => {
+      document
+        .getElementById("profile-personal-information")
+        ?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+    }, 50);
+  };
+
+  // =====================================================
+  // AVATAR UPLOAD
+  // =====================================================
+
   const handleAvatarUpload = async (event) => {
     const file = event.target.files?.[0];
-
-    // ერთი და იმავე ფაილის ხელახლა არჩევაც შესაძლებელი იყოს.
     event.target.value = "";
 
     if (!file || !user || uploadingAvatar) return;
@@ -313,8 +524,6 @@ function Profile() {
       return;
     }
 
-    setUploadingAvatar(true);
-
     const extensionByType = {
       "image/jpeg": "jpg",
       "image/png": "png",
@@ -326,9 +535,10 @@ function Profile() {
 
     if (!extension) {
       setErrorMessage("გამოიყენე JPG, PNG, WEBP ან GIF ფორმატი.");
-      setUploadingAvatar(false);
       return;
     }
+
+    setUploadingAvatar(true);
 
     const filePath = `${user.id}/avatar.${extension}`;
 
@@ -349,12 +559,15 @@ function Profile() {
 
       const avatarUrl = `${data.publicUrl}?t=${Date.now()}`;
 
-      const { data: updatedProfile, error: updateError } = await supabase
-        .from("profiles")
-        .update({ avatar_url: avatarUrl })
-        .eq("id", user.id)
-        .select("id, first_name, last_name, phone, role, avatar_url")
-        .single();
+      const { data: updatedProfile, error: updateError } =
+        await supabase
+          .from("profiles")
+          .update({ avatar_url: avatarUrl })
+          .eq("id", user.id)
+          .select(
+            "id, first_name, last_name, phone, role, avatar_url"
+          )
+          .single();
 
       if (updateError) throw updateError;
 
@@ -362,6 +575,7 @@ function Profile() {
       setSuccessMessage("პროფილის ფოტო წარმატებით განახლდა.");
     } catch (error) {
       console.error("AVATAR UPLOAD ERROR:", error);
+
       setErrorMessage(
         error.message ||
           "ფოტოს ატვირთვა ვერ მოხერხდა. შეამოწმე avatars bucket-ის პარამეტრები."
@@ -371,21 +585,22 @@ function Profile() {
     }
   };
 
+  // =====================================================
+  // AVATAR DELETE
+  // =====================================================
+
   const handleAvatarDelete = async () => {
     if (!user || !profile?.avatar_url || deletingAvatar) return;
 
-    const confirmed = window.confirm(
-      "ნამდვილად გსურს პროფილის ფოტოს წაშლა?"
-    );
-
-    if (!confirmed) return;
+    if (!window.confirm("ნამდვილად გსურს პროფილის ფოტოს წაშლა?")) {
+      return;
+    }
 
     setDeletingAvatar(true);
     setErrorMessage("");
     setSuccessMessage("");
 
     try {
-      // Storage-ის ობიექტის მისამართიდან ვიღებთ ფაილის გზას.
       const publicMarker = "/storage/v1/object/public/avatars/";
       const urlWithoutQuery = profile.avatar_url.split("?")[0];
       const markerIndex = urlWithoutQuery.indexOf(publicMarker);
@@ -417,13 +632,16 @@ function Profile() {
       setSuccessMessage("პროფილის ფოტო წაიშალა.");
     } catch (error) {
       console.error("AVATAR DELETE ERROR:", error);
-      setErrorMessage(
-        error.message || "ფოტოს წაშლა ვერ მოხერხდა."
-      );
+
+      setErrorMessage(error.message || "ფოტოს წაშლა ვერ მოხერხდა.");
     } finally {
       setDeletingAvatar(false);
     }
   };
+
+  // =====================================================
+  // LOGOUT
+  // =====================================================
 
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
@@ -439,6 +657,151 @@ function Profile() {
     navigate("/login", { replace: true });
   };
 
+  // =====================================================
+  // COURSE REQUEST
+  // =====================================================
+
+  const requestCourse = async (offering) => {
+    if (!user || requestingOfferingId !== null) return;
+
+    setRequestingOfferingId(offering.id);
+    setErrorMessage("");
+    setSuccessMessage("");
+
+    try {
+      const { data: requests, error: fetchError } = await supabase
+        .from("course_requests")
+        .select("id, course_offering_id, status, created_at")
+        .eq("student_id", user.id)
+        .eq("course_offering_id", offering.id)
+        .order("created_at", { ascending: false });
+
+      if (fetchError) throw fetchError;
+
+      const existingRequest = requests?.[0] || null;
+
+      if (existingRequest?.status === "pending") {
+        setCourseRequests((previous) => [
+          existingRequest,
+          ...previous.filter(
+            (item) => item.id !== existingRequest.id
+          ),
+        ]);
+
+        setErrorMessage(
+          "ამ კურსზე მოთხოვნა უკვე გაგზავნილია და განხილვას ელოდება."
+        );
+        return;
+      }
+
+      if (existingRequest?.status === "approved") {
+        setCourseRequests((previous) => [
+          existingRequest,
+          ...previous.filter(
+            (item) => item.id !== existingRequest.id
+          ),
+        ]);
+
+        setErrorMessage(
+          "მოთხოვნა უკვე დადასტურებულია. შეგიძლია გადახდის ეტაპზე გადასვლა."
+        );
+        return;
+      }
+
+      let savedRequest;
+
+      if (existingRequest?.status === "rejected") {
+        const { data, error } = await supabase
+          .from("course_requests")
+          .update({
+            status: "pending",
+            created_at: new Date().toISOString(),
+          })
+          .eq("id", existingRequest.id)
+          .eq("student_id", user.id)
+          .select("id, course_offering_id, status, created_at")
+          .single();
+
+        if (error) throw error;
+
+        savedRequest = data;
+      } else {
+        const { data, error } = await supabase
+          .from("course_requests")
+          .insert({
+            student_id: user.id,
+            course_offering_id: offering.id,
+            status: "pending",
+          })
+          .select("id, course_offering_id, status, created_at")
+          .single();
+
+        if (error) throw error;
+
+        savedRequest = data;
+      }
+
+      setCourseRequests((previous) => [
+        savedRequest,
+        ...previous.filter(
+          (item) => item.course_offering_id !== offering.id
+        ),
+      ]);
+
+      setSuccessMessage(
+        existingRequest?.status === "rejected"
+          ? "მოთხოვნა ხელახლა გაიგზავნა. ადმინისტრატორის პასუხს ამ გვერდზე ნახავ."
+          : "მოთხოვნა წარმატებით გაიგზავნა. ადმინისტრატორის პასუხს ამ გვერდზე ნახავ."
+      );
+    } catch (error) {
+      console.error("COURSE REQUEST ERROR:", error);
+
+      if (error.code === "42501") {
+        setErrorMessage(
+          "მოთხოვნის განახლების უფლება არ გაქვს. საჭიროა Supabase-ის RLS პოლიტიკის შემოწმება."
+        );
+      } else if (error.code === "23505") {
+        setErrorMessage(
+          "ამ კურსზე მოთხოვნა უკვე არსებობს. განაახლე გვერდი და სცადე ხელახლა."
+        );
+      } else {
+        setErrorMessage(
+          error.message ||
+            "მოთხოვნის გაგზავნა ვერ მოხერხდა. სცადე მოგვიანებით."
+        );
+      }
+    } finally {
+      setRequestingOfferingId(null);
+    }
+  };
+
+  // =====================================================
+  // CHECKOUT NAVIGATION
+  // =====================================================
+
+  const handleBuyCourse = (offering) => {
+    const request = courseRequests.find(
+      (item) => item.course_offering_id === offering.id
+    );
+
+    if (request?.status !== "approved") {
+      setErrorMessage(
+        "კურსის შეძენამდე ადმინისტრატორმა მოთხოვნა უნდა დაადასტუროს."
+      );
+      return;
+    }
+
+    navigate("/checkout", {
+      state: {
+        offeringId: offering.id,
+      },
+    });
+  };
+
+  // =====================================================
+  // LOADING
+  // =====================================================
+
   if (loading) {
     return (
       <main className="profile-page">
@@ -450,14 +813,20 @@ function Profile() {
     );
   }
 
+  // =====================================================
+  // PROFILE ERROR
+  // =====================================================
+
   if (!user || !profile) {
     return (
       <main className="profile-page">
         <section className="profile-card profile-error-card">
           <h1>პროფილის ჩატვირთვა ვერ მოხერხდა</h1>
+
           <p className="profile-message profile-message--error">
             {errorMessage || "მონაცემები ვერ მოიძებნა."}
           </p>
+
           <button
             type="button"
             className="profile-primary-btn"
@@ -475,10 +844,391 @@ function Profile() {
     "მომხმარებელი";
 
   const initials =
-    `${profile.first_name?.[0] || ""}${profile.last_name?.[0] || ""}`
-      .toUpperCase() || "E";
+    `${profile.first_name?.[0] || ""}${
+      profile.last_name?.[0] || ""
+    }`.toUpperCase() || "E";
 
   const isAdmin = profile.role === "admin";
+
+  // =====================================================
+  // MY COURSES PANEL
+  // =====================================================
+
+  const enrolledCoursesPanel = (
+    <section className="profile-card profile-details profile-my-courses-panel">
+      <div className="profile-section-heading">
+        <div>
+          <span className="profile-eyebrow">MY LEARNING</span>
+          <h2>ჩემი კურსები</h2>
+          <p>
+            აქ გამოჩნდება მინიჭებული კურსები, გადახდის სტატუსი
+            და სწავლის პროგრესი.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="profile-refresh-btn"
+          onClick={() => loadEnrollments(user.id)}
+          disabled={enrollmentLoading}
+          aria-label="კურსების განახლება"
+          title="კურსების განახლება"
+        >
+          <FaSyncAlt
+            className={
+              enrollmentLoading ? "profile-refresh-spin" : ""
+            }
+          />
+        </button>
+      </div>
+
+      {enrollmentLoading ? (
+        <div className="profile-course-empty">
+          <span className="profile-spinner" />
+          <p>კურსების მონაცემები იტვირთება...</p>
+        </div>
+      ) : enrollmentError ? (
+        <div className="profile-message profile-message--error">
+          <p>{enrollmentError}</p>
+
+          <button
+            type="button"
+            className="profile-secondary-btn"
+            onClick={() => loadEnrollments(user.id)}
+          >
+            ხელახლა ცდა
+          </button>
+        </div>
+      ) : enrollments.length === 0 ? (
+        <div className="profile-course-empty">
+          <FaBookOpen />
+          <h3>კურსი ჯერ არ გაქვს მინიჭებული</h3>
+          <p>
+            ადმინისტრატორის მიერ კურსის მინიჭების შემდეგ
+            ინფორმაცია აქ გამოჩნდება.
+          </p>
+        </div>
+      ) : (
+        <div className="profile-course-list">
+          {enrollments.map((enrollment) => {
+            const course = coursesById[enrollment.course_id];
+            const batch = batchesById[enrollment.batch_id];
+
+            const progress = Math.min(
+              100,
+              Math.max(0, Number(enrollment.progress) || 0)
+            );
+
+            const isPaid = enrollment.payment_status === "paid";
+
+            return (
+              <article
+                className="profile-course-card"
+                key={enrollment.id}
+              >
+                <div className="profile-course-top">
+                  <div className="profile-course-icon">
+                    {isPaid ? <FaGraduationCap /> : <FaLock />}
+                  </div>
+
+                  <div className="profile-course-title">
+                    <h3>{course?.title || "კურსი"}</h3>
+                    <p>
+                      {course?.description ||
+                        "სასწავლო კურსი Editologia-ში"}
+                    </p>
+                  </div>
+
+                  <span
+                    className={`profile-course-status profile-course-status--${
+                      enrollment.status || "active"
+                    }`}
+                  >
+                    {statusLabels[enrollment.status] ||
+                      enrollment.status ||
+                      "აქტიური"}
+                  </span>
+                </div>
+
+                <div className="profile-course-meta">
+                  <div>
+                    <FaBookOpen />
+                    <span>
+                      ნაკადი:{" "}
+                      {batch
+                        ? `#${batch.batch_number}`
+                        : "არ არის მითითებული"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <FaCalendarAlt />
+                    <span>
+                      ფორმატი:{" "}
+                      {batch?.format === "online"
+                        ? "ონლაინ"
+                        : batch?.format === "classroom"
+                          ? "აუდიტორია"
+                          : "არ არის მითითებული"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <FaClock />
+                    <span>
+                      დაწყება:{" "}
+                      {formatDate(
+                        enrollment.start_date || batch?.start_date
+                      )}
+                    </span>
+                  </div>
+
+                  <div>
+                    <FaCalendarAlt />
+                    <span>
+                      დასრულება: {formatDate(batch?.end_date)}
+                    </span>
+                  </div>
+
+                  <div>
+                    <FaCreditCard />
+                    <span>
+                      გადახდა:{" "}
+                      {paymentLabels[enrollment.payment_status] ||
+                        enrollment.payment_status ||
+                        "არ არის მითითებული"}
+                    </span>
+                  </div>
+
+                  <div>
+                    <FaCheckCircle />
+                    <span>
+                      ხანგრძლივობა:{" "}
+                      {course?.duration_weeks
+                        ? `${course.duration_weeks} კვირა`
+                        : "არ არის მითითებული"}
+                    </span>
+                  </div>
+                </div>
+
+                {!isPaid ? (
+                  <div className="profile-locked-course">
+                    <div className="profile-locked-course-icon">
+                      <FaLock />
+                    </div>
+
+                    <div>
+                      <strong>კურსზე წვდომა შეზღუდულია</strong>
+                      <p>
+                        {enrollment.payment_status === "refunded"
+                          ? "თანხა დაბრუნებულია. წვდომისთვის დაუკავშირდი ადმინისტრატორს."
+                          : "კურსის მასალები გაიხსნება მხოლოდ გადახდის წარმატებით დადასტურების შემდეგ."}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="profile-progress-section">
+                    <div className="profile-progress-heading">
+                      <span>
+                        <FaChartLine />
+                        სწავლის პროგრესი
+                      </span>
+                      <strong>{progress}%</strong>
+                    </div>
+
+                    <div
+                      className="profile-progress-track"
+                      role="progressbar"
+                      aria-label={`${course?.title || "კურსის"} პროგრესი`}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-valuenow={progress}
+                    >
+                      <div
+                        className="profile-progress-fill"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+
+                    <p>
+                      {progress === 100
+                        ? "გილოცავ! კურსის პროგრესი დასრულებულია."
+                        : progress === 0
+                          ? "პროგრესი ჯერ არ განახლებულა."
+                          : "პროგრესი ასახავს შენს სასწავლო შედეგს."}
+                    </p>
+
+                    <div className="profile-course-access-note">
+                      <FaPlayCircle />
+                      <span>
+                        გადახდა დადასტურებულია. შენი კურსი აქტიურია.
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+
+  // =====================================================
+  // PERSONAL INFORMATION PANEL
+  // =====================================================
+
+  const personalInformationPanel = (
+    <section
+      className="profile-card profile-details"
+      id="profile-personal-information"
+    >
+      <div className="profile-section-heading">
+        <div>
+          <span className="profile-eyebrow">PERSONAL INFORMATION</span>
+          <h2>პირადი ინფორმაცია</h2>
+          <p>
+            მართე შენი სახელისა და საკონტაქტო მონაცემების ინფორმაცია.
+          </p>
+        </div>
+
+        <span className="profile-editing-label">
+          <FaEdit />
+          რედაქტირების რეჟიმი
+        </span>
+      </div>
+
+      {errorMessage && (
+        <div
+          className="profile-message profile-message--error"
+          role="alert"
+        >
+          {errorMessage}
+        </div>
+      )}
+
+      {successMessage && (
+        <div
+          className="profile-message profile-message--success"
+          role="status"
+        >
+          {successMessage}
+        </div>
+      )}
+
+      <form onSubmit={handleSave}>
+        <div className="profile-form-grid">
+          <div className="profile-form-field">
+            <label htmlFor="profile-first-name">სახელი</label>
+
+            <div className="profile-input-wrap">
+              <FaUser />
+
+              <input
+                id="profile-first-name"
+                name="first_name"
+                value={formData.first_name}
+                onChange={handleChange}
+                disabled={saving}
+                autoComplete="given-name"
+                required
+                minLength={2}
+              />
+            </div>
+          </div>
+
+          <div className="profile-form-field">
+            <label htmlFor="profile-last-name">გვარი</label>
+
+            <div className="profile-input-wrap">
+              <FaUser />
+
+              <input
+                id="profile-last-name"
+                name="last_name"
+                value={formData.last_name}
+                onChange={handleChange}
+                disabled={saving}
+                autoComplete="family-name"
+                required
+                minLength={2}
+              />
+            </div>
+          </div>
+
+          <div className="profile-form-field profile-field-full">
+            <label htmlFor="profile-email">ელ. ფოსტა</label>
+
+            <div className="profile-input-wrap">
+              <FaEnvelope />
+
+              <input
+                id="profile-email"
+                type="email"
+                value={user.email || ""}
+                disabled
+                autoComplete="email"
+              />
+            </div>
+
+            <small>ელფოსტა ამ ფორმიდან არ იცვლება.</small>
+          </div>
+
+          <div className="profile-form-field profile-field-full">
+            <label htmlFor="profile-phone">ტელეფონის ნომერი</label>
+
+            <div className="profile-input-wrap">
+              <FaPhone />
+
+              <input
+                id="profile-phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                disabled={saving}
+                autoComplete="tel"
+                placeholder="+995 5XX XX XX XX"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="profile-form-actions">
+          <button
+            type="button"
+            className="profile-secondary-btn"
+            onClick={handleCancel}
+            disabled={saving}
+          >
+            <FaTimes />
+            გაუქმება
+          </button>
+
+          <button
+            type="submit"
+            className="profile-primary-btn"
+            disabled={saving}
+          >
+            <FaSave />
+            {saving ? "ინახება..." : "ცვლილებების შენახვა"}
+          </button>
+        </div>
+      </form>
+
+      <div className="profile-security-note">
+        <FaShieldAlt />
+        <p>
+          შენი მონაცემები დაკავშირებულია შენს ანგარიშთან და ინახება
+          Supabase-ში.
+        </p>
+      </div>
+    </section>
+  );
+
+  // =====================================================
+  // PAGE
+  // =====================================================
 
   return (
     <main className="profile-page">
@@ -488,7 +1238,8 @@ function Profile() {
             <span className="profile-eyebrow">EDITOLOGIA ACCOUNT</span>
             <h1>ჩემი პროფილი</h1>
             <p>
-              შენი სივრცე — პირადი ინფორმაცია, კურსები და სწავლის პროგრესი.
+              შენი სივრცე — პირადი ინფორმაცია, კურსები და სწავლის
+              პროგრესი.
             </p>
           </div>
 
@@ -558,6 +1309,7 @@ function Profile() {
             )}
 
             <h2>{fullName}</h2>
+
             <p className="profile-summary-email">{user.email}</p>
 
             <div className="profile-role">
@@ -572,6 +1324,20 @@ function Profile() {
               <span>ანგარიში აქტიურია</span>
             </div>
 
+            <button
+              type="button"
+              className="profile-edit-left-btn"
+              onClick={startEditing}
+              disabled={editing}
+            >
+              <FaEdit />
+              <span>
+                {editing
+                  ? "რედაქტირება მიმდინარეობს"
+                  : "პროფილის რედაქტირება"}
+              </span>
+            </button>
+
             {isAdmin && (
               <button
                 type="button"
@@ -583,206 +1349,108 @@ function Profile() {
             )}
           </aside>
 
-          <section className="profile-card profile-details">
-            <div className="profile-section-heading">
-              <div>
-                <span className="profile-eyebrow">PERSONAL INFORMATION</span>
-                <h2>პირადი ინფორმაცია</h2>
-                <p>მართე შენი სახელისა და საკონტაქტო მონაცემების ინფორმაცია.</p>
-              </div>
-
-              {!editing && (
-                <button
-                  type="button"
-                  className="profile-secondary-btn"
-                  onClick={() => {
-                    setEditing(true);
-                    setErrorMessage("");
-                    setSuccessMessage("");
-                  }}
-                >
-                  <FaEdit />
-                  <span>რედაქტირება</span>
-                </button>
-              )}
-            </div>
-
-            {errorMessage && (
-              <div className="profile-message profile-message--error" role="alert">
-                {errorMessage}
-              </div>
-            )}
-
-            {successMessage && (
-              <div className="profile-message profile-message--success" role="status">
-                {successMessage}
-              </div>
-            )}
-
-            <form onSubmit={handleSave}>
-              <div className="profile-form-grid">
-                <div className="profile-form-field">
-                  <label htmlFor="profile-first-name">სახელი</label>
-                  <div className="profile-input-wrap">
-                    <FaUser />
-                    <input
-                      id="profile-first-name"
-                      name="first_name"
-                      value={formData.first_name}
-                      onChange={handleChange}
-                      disabled={!editing || saving}
-                      autoComplete="given-name"
-                      required
-                      minLength={2}
-                    />
-                  </div>
-                </div>
-
-                <div className="profile-form-field">
-                  <label htmlFor="profile-last-name">გვარი</label>
-                  <div className="profile-input-wrap">
-                    <FaUser />
-                    <input
-                      id="profile-last-name"
-                      name="last_name"
-                      value={formData.last_name}
-                      onChange={handleChange}
-                      disabled={!editing || saving}
-                      autoComplete="family-name"
-                      required
-                      minLength={2}
-                    />
-                  </div>
-                </div>
-
-                <div className="profile-form-field profile-field-full">
-                  <label htmlFor="profile-email">ელ. ფოსტა</label>
-                  <div className="profile-input-wrap">
-                    <FaEnvelope />
-                    <input
-                      id="profile-email"
-                      type="email"
-                      value={user.email || ""}
-                      disabled
-                      autoComplete="email"
-                    />
-                  </div>
-                  <small>ელფოსტა ამ ფორმიდან არ იცვლება.</small>
-                </div>
-
-                <div className="profile-form-field profile-field-full">
-                  <label htmlFor="profile-phone">ტელეფონის ნომერი</label>
-                  <div className="profile-input-wrap">
-                    <FaPhone />
-                    <input
-                      id="profile-phone"
-                      name="phone"
-                      type="tel"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      disabled={!editing || saving}
-                      autoComplete="tel"
-                      placeholder="+995 5XX XX XX XX"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {editing && (
-                <div className="profile-form-actions">
-                  <button
-                    type="button"
-                    className="profile-secondary-btn"
-                    onClick={handleCancel}
-                    disabled={saving}
-                  >
-                    <FaTimes />
-                    გაუქმება
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="profile-primary-btn"
-                    disabled={saving}
-                  >
-                    <FaSave />
-                    {saving ? "ინახება..." : "ცვლილებების შენახვა"}
-                  </button>
-                </div>
-              )}
-            </form>
-
-            <div className="profile-security-note">
-              <FaShieldAlt />
-              <p>
-                შენი მონაცემები დაკავშირებულია შენს ანგარიშთან და ინახება
-                Supabase-ში.
-              </p>
-            </div>
-          </section>
+          {editing ? personalInformationPanel : enrolledCoursesPanel}
         </div>
+
+        {successMessage && !editing && (
+          <div
+            className="profile-message profile-message--success profile-global-message"
+            role="status"
+          >
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && !editing && (
+          <div
+            className="profile-message profile-message--error profile-global-message"
+            role="alert"
+          >
+            {errorMessage}
+          </div>
+        )}
+
+        {/* =====================================================
+            COURSE OFFERINGS
+        ===================================================== */}
 
         <section className="profile-courses">
           <div className="profile-courses-heading">
             <div>
-              <span className="profile-eyebrow">MY LEARNING</span>
-              <h2>ჩემი კურსები</h2>
+              <span className="profile-eyebrow">EXPLORE COURSES</span>
+              <h2>აირჩიე შენი კურსი</h2>
               <p>
-                კურსების დეტალები, გადახდის სტატუსი და სწავლის პროგრესი.
+                შეარჩიე კურსი და ფორმატი. მოთხოვნის დადასტურების
+                შემდეგ შეძლებ გადახდის ეტაპზე გადასვლას.
               </p>
             </div>
 
             <button
               type="button"
               className="profile-refresh-btn"
-              onClick={() => loadEnrollments(user.id)}
-              disabled={enrollmentLoading}
+              onClick={() => loadOfferings(user.id)}
+              disabled={offeringsLoading}
             >
               <FaSyncAlt
-                className={enrollmentLoading ? "profile-refresh-spin" : ""}
+                className={
+                  offeringsLoading ? "profile-refresh-spin" : ""
+                }
               />
               <span>განახლება</span>
             </button>
           </div>
 
-          {enrollmentLoading ? (
-            <div className="profile-course-empty">
-              <span className="profile-spinner" />
-              <p>კურსების მონაცემები იტვირთება...</p>
-            </div>
-          ) : enrollmentError ? (
+          {offeringsError && (
             <div className="profile-message profile-message--error">
-              <p>{enrollmentError}</p>
+              <p>{offeringsError}</p>
+
               <button
                 type="button"
                 className="profile-secondary-btn"
-                onClick={() => loadEnrollments(user.id)}
+                onClick={() => loadOfferings(user.id)}
+                disabled={offeringsLoading}
               >
                 ხელახლა ცდა
               </button>
             </div>
-          ) : enrollments.length === 0 ? (
+          )}
+
+          {offeringsLoading ? (
+            <div className="profile-course-empty">
+              <span className="profile-spinner" />
+              <p>შეთავაზებები იტვირთება...</p>
+            </div>
+          ) : offerings.length === 0 ? (
             <div className="profile-course-empty">
               <FaBookOpen />
-              <h3>კურსი ჯერ არ გაქვს მინიჭებული</h3>
+              <h3>ამჟამად აქტიური შეთავაზებები არ არის</h3>
               <p>
-                როგორც კი ადმინისტრატორი კურსზე ჩაგრიცხავს, ინფორმაცია აქ
-                გამოჩნდება.
+                ახალი კურსების დამატების შემდეგ ისინი აქ გამოჩნდება.
               </p>
             </div>
           ) : (
             <div className="profile-course-list">
-              {enrollments.map((enrollment) => {
-                const course = coursesById[enrollment.course_id];
-                const batch = batchesById[enrollment.batch_id];
+              {offerings.map((offering) => {
+                const course = offeringCourses[offering.course_id];
 
-                const progress = Math.min(
-                  100,
-                  Math.max(0, Number(enrollment.progress) || 0)
+                const request = courseRequests.find(
+                  (item) => item.course_offering_id === offering.id
                 );
 
+                const isRequesting =
+                  requestingOfferingId === offering.id;
+
+                const hasApprovedRequest =
+                  request?.status === "approved";
+
+                const hasPendingRequest =
+                  request?.status === "pending";
+
                 return (
-                  <article className="profile-course-card" key={enrollment.id}>
+                  <article
+                    className="profile-course-card"
+                    key={offering.id}
+                  >
                     <div className="profile-course-top">
                       <div className="profile-course-icon">
                         <FaGraduationCap />
@@ -791,18 +1459,14 @@ function Profile() {
                       <div className="profile-course-title">
                         <h3>{course?.title || "კურსი"}</h3>
                         <p>
-                          {course?.description || "სასწავლო კურსი Editologia-ში"}
+                          {offering.name ||
+                            course?.description ||
+                            "სასწავლო შეთავაზება"}
                         </p>
                       </div>
 
-                      <span
-                        className={`profile-course-status profile-course-status--${
-                          enrollment.status || "active"
-                        }`}
-                      >
-                        {statusLabels[enrollment.status] ||
-                          enrollment.status ||
-                          "აქტიური"}
+                      <span className="profile-course-status profile-course-status--active">
+                        ხელმისაწვდომია
                       </span>
                     </div>
 
@@ -810,10 +1474,9 @@ function Profile() {
                       <div>
                         <FaBookOpen />
                         <span>
-                          ნაკადი:{" "}
-                          {batch
-                            ? `#${batch.batch_number}`
-                            : "არ არის მითითებული"}
+                          ტიპი:{" "}
+                          {offeringTypeLabels[offering.offering_type] ||
+                            offering.offering_type}
                         </span>
                       </div>
 
@@ -821,79 +1484,251 @@ function Profile() {
                         <FaCalendarAlt />
                         <span>
                           ფორმატი:{" "}
-                          {batch?.format === "online"
-                            ? "ონლაინ"
-                            : batch?.format === "classroom"
-                              ? "აუდიტორია"
-                              : "არ არის მითითებული"}
+                          {offeringFormatLabels[offering.format] ||
+                            offering.format}
                         </span>
                       </div>
 
-                      <div>
-                        <FaClock />
-                        <span>
-                          დაწყება:{" "}
-                          {formatDate(enrollment.start_date || batch?.start_date)}
-                        </span>
-                      </div>
-
-                      <div>
-                        <FaCalendarAlt />
-                        <span>დასრულება: {formatDate(batch?.end_date)}</span>
-                      </div>
-
-                      <div>
-                        <FaCreditCard />
-                        <span>
-                          გადახდა:{" "}
-                          {paymentLabels[enrollment.payment_status] ||
-                            enrollment.payment_status ||
-                            "არ არის მითითებული"}
-                        </span>
-                      </div>
-
-                      <div>
-                        <FaCheckCircle />
-                        <span>
-                          ხანგრძლივობა:{" "}
-                          {course?.duration_weeks
-                            ? `${course.duration_weeks} კვირა`
-                            : "არ არის მითითებული"}
-                        </span>
-                      </div>
+                      {course?.duration_weeks && (
+                        <div>
+                          <FaClock />
+                          <span>
+                            ხანგრძლივობა: {course.duration_weeks} კვირა
+                          </span>
+                        </div>
+                      )}
                     </div>
 
                     <div className="profile-progress-section">
                       <div className="profile-progress-heading">
                         <span>
-                          <FaChartLine />
-                          სწავლის პროგრესი
+                          <FaCreditCard />
+                          კურსის ღირებულება
                         </span>
-                        <strong>{progress}%</strong>
+                        <strong>{formatPrice(offering.price)}</strong>
                       </div>
 
-                      <div
-                        className="profile-progress-track"
-                        role="progressbar"
-                        aria-label={`${course?.title || "კურსის"} პროგრესი`}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                        aria-valuenow={progress}
-                      >
-                        <div
-                          className="profile-progress-fill"
-                          style={{ width: `${progress}%` }}
+                      {hasPendingRequest && (
+                        <div className="profile-request-status profile-request-status--pending">
+                          <FaClock />
+                          <div>
+                            <strong>
+                              მოთხოვნა განხილვის პროცესშია
+                            </strong>
+                            <span>
+                              პასუხს ამავე გვერდზე ნახავ.
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {hasApprovedRequest && (
+                        <div className="profile-request-status profile-request-status--approved">
+                          <FaCheckCircle />
+                          <div>
+                            <strong>მოთხოვნა დადასტურებულია</strong>
+                            <span>
+                              შემდეგი ეტაპია კურსის საფასურის გადახდა.
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {request?.status === "rejected" && (
+                        <div className="profile-request-status profile-request-status--rejected">
+                          <FaTimes />
+                          <div>
+                            <strong>მოთხოვნა უარყოფილია</strong>
+                            <span>
+                              შეგიძლია მოთხოვნა ხელახლა გაგზავნო.
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {!request && (
+                        <button
+                          type="button"
+                          className="profile-primary-btn profile-course-action"
+                          disabled={requestingOfferingId !== null}
+                          onClick={() => requestCourse(offering)}
+                        >
+                          {isRequesting
+                            ? "იგზავნება..."
+                            : "კურსის მოთხოვნა"}
+                          {!isRequesting && <FaArrowRight />}
+                        </button>
+                      )}
+
+                      {request?.status === "rejected" && (
+                        <button
+                          type="button"
+                          className="profile-primary-btn profile-course-action"
+                          disabled={requestingOfferingId !== null}
+                          onClick={() => requestCourse(offering)}
+                        >
+                          {isRequesting
+                            ? "იგზავნება..."
+                            : "ხელახლა მოთხოვნა"}
+                          {!isRequesting && <FaArrowRight />}
+                        </button>
+                      )}
+
+                      {hasApprovedRequest && (
+                        <>
+                          <button
+                            type="button"
+                            className="profile-primary-btn profile-course-action profile-buy-btn"
+                            onClick={() => handleBuyCourse(offering)}
+                          >
+                            <FaCreditCard />
+                            კურსის ყიდვა
+                            <span>{formatPrice(offering.price)}</span>
+                          </button>
+
+                          <div className="profile-locked-notice">
+                            <FaLock />
+                            <span>
+                              მოთხოვნის დადასტურება გადახდას არ ნიშნავს.
+                              კურსზე წვდომა გაიხსნება მხოლოდ წარმატებული
+                              გადახდის დადასტურების შემდეგ.
+                            </span>
+                          </div>
+                        </>
+                      )}
+
+                      {request && (
+                        <p className="profile-request-caption">
+                          <FaClock />
+                          {requestStatusLabels[request.status] ||
+                            request.status}
+                          {request.created_at
+                            ? ` · ${formatDate(request.created_at)}`
+                            : ""}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </section>
+
+        {/* =====================================================
+            NEWS
+            სიახლეები ადმინისტრატორის პანელიდან
+        ===================================================== */}
+
+        <section className="profile-courses profile-news-section">
+          <div className="profile-courses-heading">
+            <div>
+              <span className="profile-eyebrow">LATEST UPDATES</span>
+              <h2>სიახლეები და შეთავაზებები</h2>
+              <p>
+                ნახე Editologia-ს უახლესი სიახლეები და გამოქვეყნებული
+                ინფორმაცია.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              className="profile-refresh-btn"
+              onClick={loadNews}
+              disabled={newsLoading}
+              aria-label="სიახლეების განახლება"
+              title="სიახლეების განახლება"
+            >
+              <FaSyncAlt
+                className={newsLoading ? "profile-refresh-spin" : ""}
+              />
+              <span>განახლება</span>
+            </button>
+          </div>
+
+          {newsError && (
+            <div className="profile-message profile-message--error">
+              <p>{newsError}</p>
+
+              <button
+                type="button"
+                className="profile-secondary-btn"
+                onClick={loadNews}
+                disabled={newsLoading}
+              >
+                ხელახლა ცდა
+              </button>
+            </div>
+          )}
+
+          {newsLoading ? (
+            <div className="profile-course-empty">
+              <span className="profile-spinner" />
+              <p>სიახლეები იტვირთება...</p>
+            </div>
+          ) : news.length === 0 ? (
+            !newsError && (
+              <div className="profile-course-empty">
+                <FaNewspaper />
+                <h3>სიახლეები ჯერ არ არის</h3>
+                <p>
+                  ადმინისტრატორის მიერ გამოქვეყნებული სიახლეები აქ
+                  გამოჩნდება.
+                </p>
+              </div>
+            )
+          ) : (
+            <div className="profile-course-list profile-news-list">
+              {news.map((item) => {
+                const newsDate = item.published_at || item.created_at;
+
+                return (
+                  <article
+                    className="profile-course-card profile-news-card"
+                    key={item.id}
+                  >
+                    {item.image_url && (
+                      <div className="profile-news-image-wrap">
+                        <img
+                          className="profile-news-image"
+                          src={item.image_url}
+                          alt={item.title || "Editologia-ს სიახლე"}
+                          loading="lazy"
+                          onError={(event) => {
+                            event.currentTarget.style.display = "none";
+                          }}
                         />
                       </div>
+                    )}
 
-                      <p>
-                        {progress === 100
-                          ? "გილოცავ! კურსის პროგრესი დასრულებულია."
-                          : progress === 0
-                            ? "პროგრესი ჯერ არ განახლებულა."
-                            : "პროგრესს ადმინისტრატორის მიერ მითითებული მნიშვნელობა განსაზღვრავს."}
-                      </p>
+                    <div className="profile-course-top">
+                      <div className="profile-course-icon">
+                        <FaNewspaper />
+                      </div>
+
+                      <div className="profile-course-title">
+                        <h3>{item.title || "სიახლე"}</h3>
+
+                        {newsDate && (
+                          <p className="profile-news-date">
+                            <FaCalendarAlt />
+                            {formatDate(newsDate)}
+                          </p>
+                        )}
+                      </div>
                     </div>
+
+                    {item.excerpt && (
+                      <p className="profile-news-excerpt">
+                        {item.excerpt}
+                      </p>
+                    )}
+
+                    {item.content && (
+                      <div className="profile-news-content">
+                        {item.content}
+                      </div>
+                    )}
                   </article>
                 );
               })}

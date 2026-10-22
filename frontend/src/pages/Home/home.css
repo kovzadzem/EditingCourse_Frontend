@@ -3442,3 +3442,55 @@ body.dark .home-page .collaboration-option:hover {
     transition: none;
   }
 }
+
+/* =====================================================
+   SVG ICONS — CONSISTENT ON ALL DEVICES
+===================================================== */
+
+.inline-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.inline-icon svg {
+  display: block;
+  flex: 0 0 auto;
+  overflow: visible;
+}
+
+/* STAT CARD ARROW */
+
+.stat-card-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.stat-card-arrow svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* CTA ARROW */
+
+.primary-btn .inline-icon,
+.partnerships-contact .inline-icon,
+.partnership-read-more .inline-icon {
+  flex-shrink: 0;
+}
+
+/* MOBILE ICON SIZING */
+
+@media (max-width: 600px) {
+  .inline-icon svg {
+    max-width: 18px;
+    max-height: 18px;
+  }
+}
