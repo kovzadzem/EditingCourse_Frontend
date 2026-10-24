@@ -985,3 +985,264 @@ body.dark .admin-page .admin-alert-success {
     transition-duration: 0.01ms !important;
   }
 }
+/* =====================================================
+   VIDEO LESSONS — ADMIN DASHBOARD
+===================================================== */
+
+.admin-video-upload {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.admin-video-upload-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid var(--border-color, #e8e2ef);
+  border-radius: 16px;
+  background: var(--bg-primary, #faf9fc);
+}
+
+.admin-video-upload-card h3 {
+  margin: 0 0 8px;
+  color: var(--text-primary, #30233c);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.admin-video-upload-card > p {
+  margin: 0 0 22px;
+  color: var(--text-secondary, #777184);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.admin-video-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.admin-video-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  color: var(--text-primary, #30233c);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.admin-video-form .admin-video-full {
+  grid-column: 1 / -1;
+}
+
+.admin-video-form input,
+.admin-video-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 45px;
+  padding: 11px 13px;
+  border: 1px solid var(--border-color, #e1d8e9);
+  border-radius: 10px;
+  outline: none;
+  background: var(--bg-secondary, #fff);
+  color: var(--text-primary, #211b2b);
+  font: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-video-form textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.admin-video-form input:focus,
+.admin-video-form textarea:focus {
+  border-color: var(--admin-accent, #8035d6);
+  box-shadow: 0 0 0 3px rgb(128 53 214 / 11%);
+}
+
+.admin-video-form input[type="file"] {
+  padding: 9px;
+  cursor: pointer;
+}
+
+.admin-video-form input[type="file"]::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--admin-accent-soft, #f2e9ff);
+  color: var(--admin-accent, #8035d6);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.admin-video-publish {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 11px !important;
+  padding: 13px 14px;
+  border: 1px solid var(--border-color, #e8e2ef);
+  border-radius: 10px;
+  background: var(--bg-secondary, #fff);
+  cursor: pointer;
+}
+
+.admin-video-publish input {
+  width: 17px;
+  min-height: 17px;
+  accent-color: var(--admin-accent, #8035d6);
+}
+
+.admin-video-publish span {
+  line-height: 1.6;
+}
+
+.admin-video-form .admin-primary {
+  justify-self: start;
+}
+
+.admin-video-list {
+  margin-top: 28px;
+}
+
+.admin-video-list-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.admin-video-list-heading h3 {
+  margin: 0;
+  color: var(--text-primary, #30233c);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.admin-video-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 30px;
+  padding: 5px 10px;
+  border: 1px solid rgb(128 53 214 / 15%);
+  border-radius: 9px;
+  background: var(--admin-accent-soft, #f2e9ff);
+  color: var(--admin-accent, #8035d6);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.admin-video-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: var(--admin-accent-soft, #f2e9ff);
+  color: var(--admin-accent, #8035d6);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.admin-video-title {
+  min-width: 180px;
+  white-space: normal;
+}
+
+.admin-video-title strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.admin-video-title p {
+  margin: 0;
+  color: var(--text-secondary, #777184);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.admin-video-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.admin-video-status--published {
+  background: #dcf8e7;
+  color: #176b43;
+}
+
+.admin-video-status--draft {
+  background: #fff2cc;
+  color: #8a5b00;
+}
+
+html[data-theme="dark"] .admin-video-upload-card,
+html.dark .admin-video-upload-card,
+body.dark .admin-video-upload-card {
+  background: #18141f;
+  border-color: #393044;
+}
+
+html[data-theme="dark"] .admin-video-form input,
+html[data-theme="dark"] .admin-video-form textarea,
+html.dark .admin-video-form input,
+html.dark .admin-video-form textarea,
+body.dark .admin-video-form input,
+body.dark .admin-video-form textarea {
+  background: #201b29;
+  color: #f6f1fc;
+  border-color: #443650;
+}
+
+html[data-theme="dark"] .admin-video-publish,
+html.dark .admin-video-publish,
+body.dark .admin-video-publish {
+  background: #201b29;
+  border-color: #393044;
+}
+
+@media (max-width: 760px) {
+  .admin-video-upload {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .admin-video-upload-card {
+    padding: 18px 14px;
+  }
+
+  .admin-video-form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .admin-video-form .admin-video-full {
+    grid-column: auto;
+  }
+
+  .admin-video-form .admin-primary {
+    width: 100%;
+  }
+
+  .admin-video-list-heading {
+    align-items: flex-start;
+  }
+}
