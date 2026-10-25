@@ -3494,3 +3494,409 @@ body.dark .home-page .collaboration-option:hover {
     max-height: 18px;
   }
 }
+/* =========================================
+   EDITOLOGIA — PREMIUM RESPONSIVE HERO
+   Supports light and dark themes
+========================================= */
+
+/* Default theme variables */
+.home-page {
+  --hero-bg: #f5f3ee;
+  --hero-surface: #ffffff;
+  --hero-surface-soft: #eeece6;
+  --hero-text: #202020;
+  --hero-muted: #77756f;
+  --hero-border: rgba(32, 32, 32, 0.14);
+  --hero-accent:  #6423c2;
+  --hero-button-bg:  #6423c2;
+  --hero-button-text: #ffffff;
+  --hero-shadow: 0 24px 70px rgba(24, 22, 18, 0.12);
+  --hero-video-overlay: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.25)
+  );
+
+  color: var(--hero-text);
+  background: var(--hero-bg);
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+/* Dark theme */
+html[data-theme="dark"] .home-page,
+html.dark .home-page,
+body.dark .home-page,
+[data-theme="dark"] .home-page {
+  --hero-bg: #151517;
+  --hero-surface: #1d1d1f;
+  --hero-surface-soft: #242426;
+  --hero-text: #f1eee7;
+  --hero-muted: #aaa7a0;
+  --hero-border: rgba(241, 238, 231, 0.16);
+  --hero-accent: #d6c4ed;
+  --hero-button-bg:  #6423c2;
+  --hero-button-text: #171719;
+  --hero-shadow: 0 28px 80px rgba(0, 0, 0, 0.32);
+  --hero-video-overlay: linear-gradient(
+    180deg,
+    rgba(12, 12, 13, 0.04),
+    rgba(12, 12, 13, 0.35)
+  );
+}
+
+/* HERO */
+.home-page .hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: var(--hero-text) !important;
+  background: var(--hero-bg) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Remove old decorative purple glows */
+.home-page .hero-background-glow,
+.home-page .hero-glow,
+.home-page .hero-glow-secondary {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 0 !important;
+}
+
+/* Left side — preserve all text */
+.home-page .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.home-page .hero-label {
+  color: var(--hero-muted) !important;
+  letter-spacing: 2px;
+}
+
+.home-page .hero-label-bar {
+  background: var(--hero-accent) !important;
+}
+
+.home-page .hero-title,
+.home-page .hero-title-main,
+.home-page .hero-title-main span {
+  color: var(--hero-text) !important;
+}
+
+.home-page .rotating-line,
+.home-page .rotating-word {
+  color: var(--hero-accent) !important;
+}
+
+.home-page .hero-description {
+  color: var(--hero-muted) !important;
+  line-height: 1.9;
+}
+
+.home-page .hero-note {
+  color: var(--hero-muted) !important;
+}
+
+.home-page .hero-note-dot {
+  background: var(--hero-accent) !important;
+  box-shadow: none !important;
+}
+
+/* Primary button */
+.home-page .hero-buttons .primary-btn {
+  color: var(--hero-button-text) !important;
+  background: var(--hero-button-bg) !important;
+  border: 1px solid var(--hero-button-bg) !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.home-page .hero-buttons .primary-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.88;
+}
+
+/* Secondary button */
+.home-page .hero-buttons .secondary-btn {
+  color: var(--hero-text) !important;
+  background: transparent !important;
+  border: 1px solid var(--hero-border) !important;
+  box-shadow: none !important;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.home-page .hero-buttons .secondary-btn:hover {
+  background: var(--hero-surface-soft) !important;
+  border-color: var(--hero-text) !important;
+  transform: translateY(-2px);
+}
+
+/* VIDEO SHOWCASE */
+.home-page .hero-visual {
+  position: relative;
+  isolation: isolate;
+  perspective: 1200px;
+}
+
+/* Premium video frame */
+.home-page .hero-dashboard {
+  overflow: hidden;
+  color: var(--hero-text) !important;
+  background: var(--hero-surface) !important;
+  border: 1px solid var(--hero-border) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--hero-shadow) !important;
+  transform-style: preserve-3d;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Dashboard top bar */
+.home-page .dashboard-header {
+  color: var(--hero-text) !important;
+  background: var(--hero-surface) !important;
+  border-bottom: 1px solid var(--hero-border) !important;
+}
+
+.home-page .dashboard-title,
+.home-page .dashboard-number {
+  color: var(--hero-text) !important;
+}
+
+/* Small dashboard dots */
+.home-page .dashboard-dots span {
+  border: 1px solid var(--hero-border);
+}
+
+/* Video */
+.home-page .dashboard-video-wrapper,
+.home-page .dashboard-video {
+  position: relative;
+  overflow: hidden;
+  background: #111113 !important;
+  border-radius: 0 !important;
+}
+
+.home-page .hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-page .video-overlay {
+  background: var(--hero-video-overlay) !important;
+  pointer-events: none;
+}
+
+/* Play button */
+.home-page .video-play {
+  color: #202020 !important;
+  background: #f1eee7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: none !important;
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.home-page .video-play:hover {
+  transform: scale(1.06);
+  background: #ffffff !important;
+}
+
+/* Video labels */
+.home-page .video-label,
+.home-page .video-duration {
+  color: #f1eee7 !important;
+}
+
+/* Video controls */
+.home-page .video-controls {
+  color: var(--hero-text) !important;
+  background: var(--hero-surface) !important;
+  border-top: 1px solid var(--hero-border) !important;
+}
+
+.home-page .video-time,
+.home-page .control-button {
+  color: var(--hero-text) !important;
+}
+
+.home-page .control-button {
+  transition: opacity 0.2s ease;
+}
+
+.home-page .control-button:hover {
+  opacity: 0.65;
+}
+
+.home-page .video-progress {
+  accent-color: var(--hero-accent);
+}
+
+/* Dashboard footer */
+.home-page .dashboard-footer {
+  color: var(--hero-text) !important;
+  background: var(--hero-surface) !important;
+  border-top: 1px solid var(--hero-border) !important;
+}
+
+.home-page .dashboard-footer small {
+  color: var(--hero-muted) !important;
+}
+
+.home-page .dashboard-footer strong {
+  color: var(--hero-text) !important;
+}
+
+.home-page .dashboard-footer .inline-icon {
+  color: var(--hero-text) !important;
+}
+
+/* Floating statistic cards */
+.home-page .floating-card {
+  color: var(--hero-text) !important;
+  background: var(--hero-surface) !important;
+  border: 1px solid var(--hero-border) !important;
+  border-radius: 6px !important;
+  box-shadow: var(--hero-shadow) !important;
+  backdrop-filter: none !important;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.home-page .floating-card-top,
+.home-page .floating-card strong,
+.home-page .floating-card small {
+  color: var(--hero-text) !important;
+}
+
+.home-page .floating-lines span,
+.home-page .floating-progress span {
+  background: var(--hero-accent) !important;
+}
+
+.home-page .student-dots span {
+  background: var(--hero-muted) !important;
+}
+
+.home-page .status-indicator > span {
+  background: var(--hero-accent) !important;
+  box-shadow: none !important;
+}
+
+/* Stats section follows theme too */
+.home-page .stats-strip {
+  color: var(--hero-text);
+  background: var(--hero-bg);
+}
+
+.home-page .stat-card {
+  color: var(--hero-text);
+  border-color: var(--hero-border);
+}
+
+.home-page .stat-card-label,
+.home-page .stat-card-desc {
+  color: var(--hero-muted);
+}
+
+.home-page .stat-card-number {
+  color: var(--hero-text);
+}
+
+.home-page .stat-card-bar {
+  background: var(--hero-border);
+}
+
+.home-page .stat-card-bar span {
+  background: var(--hero-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home-page .hero-visual {
+    perspective: none;
+  }
+
+  .home-page .hero-dashboard {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page .hero,
+  .home-page .hero-dashboard,
+  .home-page .hero-buttons .primary-btn,
+  .home-page .hero-buttons .secondary-btn {
+    transition: none !important;
+  }
+}/* =========================================
+   EDITOLOGIA — MATCH PRICING DARK BACKGROUND
+   ვიდეოს დიზაინს არ ვეხებით
+========================================= */
+
+/* DARK MODE */
+html[data-theme="dark"] .home-page,
+html.dark .home-page,
+body.dark .home-page,
+[data-theme="dark"] .home-page {
+  --hero-bg: #09090d;
+  --hero-text: #ffffff;
+  --hero-muted: #b8b8c2;
+  --hero-border: rgba(255, 255, 255, 0.1);
+  --hero-surface: #111116;
+  --hero-surface-soft: #19191f;
+  --hero-accent: #a77beb;
+}
+
+/* მთლიანი Hero-ს ფონი */
+html[data-theme="dark"] .home-page .hero,
+html.dark .home-page .hero,
+body.dark .home-page .hero,
+[data-theme="dark"] .home-page .hero {
+  background: #09090d !important;
+}
+
+/* სტატისტიკის სექციის ფონი */
+html[data-theme="dark"] .home-page .stats-strip,
+html.dark .home-page .stats-strip,
+body.dark .home-page .stats-strip,
+[data-theme="dark"] .home-page .stats-strip {
+  background: #09090d !important;
+}
+
+/* სტატისტიკის ბარათები */
+html[data-theme="dark"] .home-page .stats-strip .stat-card,
+html.dark .home-page .stats-strip .stat-card,
+body.dark .home-page .stats-strip .stat-card,
+[data-theme="dark"] .home-page .stats-strip .stat-card {
+  background: #111116 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* შემდეგი სექციების ფონის შესათანხმებლად */
+html[data-theme="dark"] .home-page,
+html.dark .home-page,
+body.dark .home-page,
+[data-theme="dark"] .home-page {
+  background-color: #09090d !important;
+}
+
+/* LIGHT MODE — ცალკე ფერს ვინარჩუნებთ */
+html[data-theme="light"] .home-page,
+html[data-theme="light"] .home-page .hero,
+html[data-theme="light"] .home-page .stats-strip {
+  background-color: #f7f7f9 !important;
+}

@@ -873,16 +873,73 @@
 }
 
 /* =========================================================
-   DARK MODE
+   DARK MODE — BACKGROUND #09090d
 ========================================================= */
 
 body.dark .live-page {
-  --bg: #0d0d10;
+  --bg: #09090d;
   --surface: #151519;
   --card: #111115;
   --text: #f5f5f7;
   --muted: #a5a5b1;
   --border: #29292f;
+
+  background: #09090d;
+  color: #f5f5f7;
+}
+
+body.dark .live-hero,
+body.dark .groups-section,
+body.dark .location-section {
+  background: #09090d;
+}
+
+body.dark .group-card {
+  background: linear-gradient(
+    145deg,
+    #151519 0%,
+    #111115 100%
+  );
+  border-color: #29292f;
+}
+
+body.dark .group-card:hover {
+  border-color: rgba(128, 53, 214, 0.4);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .featured-group {
+  border-color: rgba(128, 53, 214, 0.38);
+  box-shadow: 0 20px 60px rgba(128, 53, 214, 0.09);
+}
+
+body.dark .group-availability {
+  background: #09090d;
+  border-color: #29292f;
+}
+
+body.dark .group-info-grid div {
+  background: #151519;
+}
+
+body.dark .availability-bar {
+  background: #292930;
+}
+
+body.dark .mentor-image-card {
+  border-color: #29292f;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .location-card {
+  background: #151519;
+  border-color: #29292f;
+}
+
+body.dark .location-button {
+  background: #09090d;
+  color: #f5f5f7;
+  border-color: #29292f;
 }
 
 body.dark .group-button {
@@ -892,19 +949,11 @@ body.dark .group-button {
 
 body.dark .group-button:hover {
   background: #8035d6;
-  color: white;
+  color: #ffffff;
 }
 
-body.dark .availability-bar {
-  background: #292930;
-}
-
-body.dark .mentor-image-card {
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-}
-
-body.dark .location-button {
-  background: #151519;
+body.dark .mentor-modal-card {
+  background: #09090d;
   color: #f5f5f7;
 }
 
