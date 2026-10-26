@@ -1406,3 +1406,518 @@ body.dark .portfolio-page .portfolio-modal-close,
   border-color: #4b3261 !important;
   color: #ffffff !important;
 }
+
+/* =========================================
+   EDITOLOGIA PORTFOLIO — REFERENCE CARDS
+========================================= */
+
+.portfolio-page .reference-works {
+  --reference-bg: #101010;
+  --reference-card: #171719;
+  --reference-border: #29292d;
+  --reference-white: #f2f0ed;
+  --reference-muted: #aaa6a0;
+
+  background: var(--reference-bg) !important;
+  color: var(--reference-white);
+  padding: 30px 0 70px;
+}
+
+.portfolio-page .reference-container {
+  width: min(100% - 72px, 1800px);
+  max-width: none;
+}
+
+.portfolio-page .reference-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 35px;
+  padding: 0;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0;
+}
+
+.portfolio-page .reference-filters button {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 7px;
+  min-height: 45px;
+  padding: 13px 17px;
+  border: 1px solid var(--reference-border);
+  border-radius: 5px;
+  background: transparent;
+  color: #aaa6a0;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.portfolio-page .reference-filters button sup {
+  position: relative;
+  top: -3px;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.portfolio-page .reference-filters button.active {
+  background: #f1eee8 !important;
+  border-color: #f1eee8 !important;
+  color: #171717 !important;
+  box-shadow: none !important;
+}
+
+.portfolio-page .reference-filters button:hover:not(.active) {
+  border-color: #666168;
+  color: #fff;
+}
+
+.portfolio-page .reference-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.portfolio-page .reference-project-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  width: 100%;
+  aspect-ratio: 0.80;
+  overflow: hidden;
+  padding: 32px;
+  border: 1px solid transparent;
+  border-radius: 29px;
+  background: var(--reference-card);
+  color: var(--reference-white);
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.portfolio-page .reference-project-card:hover {
+  transform: none;
+  border-color: #303034;
+  box-shadow: none;
+  background: #1b1b1e;
+}
+
+.portfolio-page .reference-card-number {
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 47px;
+  height: 35px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 20px;
+  background: #121214;
+  color: #efede9;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.portfolio-page .reference-card-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  width: 100%;
+  min-width: 0;
+}
+
+.portfolio-page .reference-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.4vw, 25px);
+  width: 100%;
+  min-width: 0;
+  min-height: 100px;
+  color: var(--reference-white);
+}
+
+.portfolio-page .reference-logo-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.portfolio-page .reference-editologia-logo,
+.portfolio-page .reference-production-logo {
+  color: #f4f0eb;
+  font-family: "MS RING", Impact, sans-serif;
+  font-size: clamp(22px, 2.1vw, 40px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -1.5px;
+  text-align: center;
+  text-shadow: 1px 1px 0 #b3a9a0;
+}
+
+.portfolio-page .reference-production-logo {
+  font-size: clamp(19px, 1.8vw, 35px);
+}
+
+.portfolio-page .reference-partner-logo,
+.portfolio-page .reference-symbol-logo {
+  display: block;
+  flex: 0 1 auto;
+  width: clamp(38px, 4.4vw, 80px);
+  max-width: 80px;
+  height: clamp(38px, 4.4vw, 80px);
+  object-fit: contain;
+}
+
+.portfolio-page .reference-cc-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(80px, 8vw, 145px);
+  height: clamp(48px, 4.5vw, 80px);
+  border: 7px solid #f1f0ef;
+  border-radius: 50px;
+  color: #f1f0ef;
+  font-family: Arial, sans-serif;
+  font-size: clamp(30px, 4vw, 67px);
+  font-weight: 700;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+
+.portfolio-page .reference-card-category {
+  color: #aaa6a0;
+  font-family: "MS RING", monospace, sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.portfolio-page .reference-card-play {
+  position: absolute;
+  right: 19px;
+  bottom: 19px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #353539;
+  border-radius: 50%;
+  background: #1c1c1f;
+  color: #f0eeeb;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.portfolio-page .reference-project-card:hover .reference-card-play {
+  opacity: 1;
+}
+
+.portfolio-page .reference-youtube-player {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  background: #090909;
+}
+
+.portfolio-page .reference-video-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 300px;
+  padding: 30px;
+  background: #111;
+  color: #f1eee8;
+  text-align: center;
+}
+
+.portfolio-page .reference-video-placeholder svg {
+  font-size: 30px;
+}
+
+.portfolio-page .reference-video-placeholder span {
+  color: #aaa6a0;
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .portfolio-page .reference-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .portfolio-page .reference-project-card {
+    aspect-ratio: 0.85;
+    padding: 24px;
+  }
+
+  .portfolio-page .reference-container {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-page .reference-works {
+    padding: 24px 0 45px;
+  }
+
+  .portfolio-page .reference-container {
+    width: calc(100% - 26px);
+  }
+
+  .portfolio-page .reference-filters {
+    gap: 7px;
+    margin-bottom: 22px;
+  }
+
+  .portfolio-page .reference-filters button {
+    min-height: 39px;
+    padding: 11px 10px;
+    gap: 5px;
+    font-size: 10px;
+    letter-spacing: 0.7px;
+  }
+
+  .portfolio-page .reference-card-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .portfolio-page .reference-project-card {
+    aspect-ratio: 1.05;
+    border-radius: 22px;
+    padding: 26px;
+  }
+
+  .portfolio-page .reference-card-number {
+    top: 15px;
+    left: 15px;
+    min-width: 42px;
+    height: 31px;
+    font-size: 11px;
+  }
+
+  .portfolio-page .reference-card-center {
+    gap: 20px;
+  }
+
+  .portfolio-page .reference-editologia-logo {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .portfolio-page .reference-production-logo {
+    font-size: clamp(23px, 6.5vw, 33px);
+  }
+
+  .portfolio-page .reference-partner-logo,
+  .portfolio-page .reference-symbol-logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .portfolio-page .reference-card-category {
+    font-size: 11px;
+  }
+
+  .portfolio-page .reference-card-play {
+    opacity: 1;
+  }
+}
+/* =========================================
+   EDITOLOGIA PORTFOLIO — THEME FIX
+   Supports global html[data-theme]
+========================================= */
+
+/* LIGHT MODE */
+.portfolio-page .reference-works {
+  --reference-bg: #f7f6f4;
+  --reference-card: #ffffff;
+  --reference-border: #e8e4df;
+  --reference-white: #191817;
+  --reference-muted: #77716b;
+
+  background: var(--reference-bg) !important;
+  color: var(--reference-white);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.portfolio-page .reference-project-card {
+  background: var(--reference-card);
+  border: 1px solid var(--reference-border);
+  color: var(--reference-white);
+  box-shadow: 0 4px 18px rgba(20, 15, 25, 0.025);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.portfolio-page .reference-project-card:hover {
+  background: #f0eeeb;
+  border-color: #c9c3bc;
+}
+
+.portfolio-page .reference-card-number {
+  background: #efede9;
+  color: #24211e;
+}
+
+.portfolio-page .reference-card-category {
+  color: var(--reference-muted);
+}
+
+.portfolio-page .reference-editologia-logo,
+.portfolio-page .reference-production-logo {
+  color: var(--reference-white);
+  text-shadow: none;
+}
+
+.portfolio-page .reference-cc-logo {
+  color: var(--reference-white);
+  border-color: var(--reference-white);
+}
+
+.portfolio-page .reference-card-play {
+  background: var(--reference-card);
+  border-color: var(--reference-border);
+  color: var(--reference-white);
+}
+
+/* DARK MODE — synchronizes with header theme */
+html[data-theme="dark"] .portfolio-page .reference-works,
+html.dark .portfolio-page .reference-works,
+body.dark .portfolio-page .reference-works,
+[data-theme="dark"] .portfolio-page .reference-works {
+  --reference-bg: #101010;
+  --reference-card: #171719;
+  --reference-border: #29292d;
+  --reference-white: #f2f0ed;
+  --reference-muted: #aaa6a0;
+
+  background: var(--reference-bg) !important;
+  color: var(--reference-white);
+}
+
+html[data-theme="dark"] .portfolio-page .reference-project-card,
+html.dark .portfolio-page .reference-project-card,
+body.dark .portfolio-page .reference-project-card,
+[data-theme="dark"] .portfolio-page .reference-project-card {
+  background: var(--reference-card);
+  border-color: transparent;
+  color: var(--reference-white);
+  box-shadow: none;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-project-card:hover,
+html.dark .portfolio-page .reference-project-card:hover,
+body.dark .portfolio-page .reference-project-card:hover,
+[data-theme="dark"] .portfolio-page .reference-project-card:hover {
+  background: #1b1b1e;
+  border-color: #353539;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-card-number,
+html.dark .portfolio-page .reference-card-number,
+body.dark .portfolio-page .reference-card-number,
+[data-theme="dark"] .portfolio-page .reference-card-number {
+  background: #121214;
+  color: #efede9;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-editologia-logo,
+html[data-theme="dark"] .portfolio-page .reference-production-logo,
+html.dark .portfolio-page .reference-editologia-logo,
+html.dark .portfolio-page .reference-production-logo,
+body.dark .portfolio-page .reference-editologia-logo,
+body.dark .portfolio-page .reference-production-logo,
+[data-theme="dark"] .portfolio-page .reference-editologia-logo,
+[data-theme="dark"] .portfolio-page .reference-production-logo {
+  color: #f4f0eb;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-cc-logo,
+html.dark .portfolio-page .reference-cc-logo,
+body.dark .portfolio-page .reference-cc-logo,
+[data-theme="dark"] .portfolio-page .reference-cc-logo {
+  color: #f1f0ef;
+  border-color: #f1f0ef;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-card-play,
+html.dark .portfolio-page .reference-card-play,
+body.dark .portfolio-page .reference-card-play,
+[data-theme="dark"] .portfolio-page .reference-card-play {
+  background: #1c1c1f;
+  border-color: #353539;
+  color: #f0eeeb;
+}
+
+/* Filters */
+.portfolio-page .reference-filters button {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-filters button.active,
+html.dark .portfolio-page .reference-filters button.active,
+body.dark .portfolio-page .reference-filters button.active,
+[data-theme="dark"] .portfolio-page .reference-filters button.active {
+  background: #f1eee8 !important;
+  border-color: #f1eee8 !important;
+  color: #171717 !important;
+}
+
+/* Accessibility */
+.portfolio-page .reference-project-card:focus-visible,
+.portfolio-page .reference-filters button:focus-visible {
+  outline: 2px solid #a66bea;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-page .reference-project-card,
+  .portfolio-page .reference-filters button {
+    transition: none;
+  }
+
+}/* ქარდების უკან — Hero-ს მუქი ფონი */
+html[data-theme="dark"] .portfolio-page .reference-works {
+  background: #100d16 !important;
+}html[data-theme="dark"] .portfolio-page .reference-works {
+  background:
+    radial-gradient(
+      circle at 80% 45%,
+      rgba(128, 53, 214, 0.075),
+      transparent 34%
+    ),
+    #100d16 !important;
+}
