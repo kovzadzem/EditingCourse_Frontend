@@ -1921,3 +1921,102 @@ html[data-theme="dark"] .portfolio-page .reference-works {
     ),
     #100d16 !important;
 }
+/* =========================================
+   PORTFOLIO — VERTICAL YOUTUBE SHORTS MODAL
+========================================= */
+
+/* მოდალის ფონი */
+.portfolio-page .portfolio-modal {
+  position: fixed;
+  z-index: 99999;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: none;
+}
+
+/* მოდალის კონტეინერი — ზედმეტი სივრცის გარეშე */
+.portfolio-page .portfolio-modal-content {
+  position: relative;
+  width: fit-content;
+  max-width: 96vw;
+  max-height: 96dvh;
+  overflow: hidden;
+  border: none;
+  border-radius: 14px;
+  background: #000;
+  box-shadow: none;
+}
+
+/* სათაური ვიდეოს ზემოთ */
+.portfolio-page .portfolio-modal-header {
+  width: 100%;
+  padding: 12px 14px;
+  background: #111;
+  color: #fff;
+}
+
+.portfolio-page .portfolio-modal-header h3 {
+  color: #fff;
+  font-size: 14px;
+}
+
+.portfolio-page .portfolio-modal-close {
+  flex-shrink: 0;
+  background: #252525;
+  color: #fff;
+  border: none;
+}
+
+/* ვერტიკალური ვიდეო — Shorts-ის მსგავსი */
+.portfolio-page .portfolio-modal-video,
+.portfolio-page .reference-youtube-player {
+  display: block;
+  width: min(430px, 88vw);
+  height: min(76dvh, 760px);
+  aspect-ratio: 9 / 16;
+  max-height: 76dvh;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+  object-fit: contain;
+}
+
+/* ვიდეოს ფანჯარა მთლიანად შავია მხოლოდ ვიდეოს გარშემო,
+   ხოლო iframe-ს ვერტიკალური ფორმატი აქვს */
+.portfolio-page .portfolio-modal-content:has(.reference-youtube-player) {
+  width: fit-content;
+  max-width: 96vw;
+  background: #000;
+}
+
+/* ტელეფონი */
+@media (max-width: 600px) {
+  .portfolio-page .portfolio-modal {
+    padding: 0;
+  }
+
+  .portfolio-page .portfolio-modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100dvh;
+    border-radius: 0;
+  }
+
+  .portfolio-page .portfolio-modal-header {
+    padding: 10px 14px;
+  }
+
+  .portfolio-page .portfolio-modal-video,
+  .portfolio-page .reference-youtube-player {
+    width: 100vw;
+    height: calc(100dvh - 58px);
+    max-height: calc(100dvh - 58px);
+    aspect-ratio: auto;
+  }
+}
