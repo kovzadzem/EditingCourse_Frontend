@@ -4,7 +4,9 @@
   background: var(--bg);
   color: var(--text);
 }
-
+* {
+  font-family: "FiraGO", sans-serif;
+}
 .page {
   width: 100%;
   min-height: 100vh;

@@ -220,9 +220,9 @@ export default function Recordings() {
             </div>
 
             <h1>
-              შენი ცოდნა.
+              შენი ცოდნა
               <br />
-              <span>შენი ტემპი.</span>
+              <span>შენი ტემპი</span>
             </h1>
 
             <p className="recordings-intro">
