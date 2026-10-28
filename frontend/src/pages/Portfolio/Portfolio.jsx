@@ -8,15 +8,6 @@ import {
 } from "react-icons/fa";
 import "./Portfolio.css";
 
-/*
-  ჩაანაცვლე YOUTUBE_ID_HERE შესაბამისი ვიდეოს ID-ით.
-  მაგალითად:
-  https://www.youtube.com/watch?v=ABC123
-  ID არის ABC123.
-
-  ლოგოები მოათავსე public/images/portfolio/ საქაღალდეში.
-*/
-
 const projects = [
   {
     id: 1,
@@ -44,7 +35,7 @@ const projects = [
     title: "Creative Production",
     logo: "CC",
     image: "/images/portfolio/tbc-bank.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/6QBqW4cso3c",
   },
   {
     id: 4,
@@ -53,7 +44,7 @@ const projects = [
     title: "Brand Project 02",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-2.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/jizqW-P9SlM",
   },
   {
     id: 5,
@@ -62,7 +53,7 @@ const projects = [
     title: "Brand Project 03",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-3.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/vnL-V-BGtL0",
   },
   {
     id: 6,
@@ -71,7 +62,7 @@ const projects = [
     title: "Brand Project 04",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-4.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/9GIDRrhqp04",
   },
   {
     id: 7,
@@ -80,7 +71,7 @@ const projects = [
     title: "Brand Project 05",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-5.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/sgDyefpkJ3g",
   },
   {
     id: 8,
@@ -89,7 +80,7 @@ const projects = [
     title: "Brand Project 06",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-6.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/UPK7e-gsWrM",
   },
   {
     id: 9,
@@ -98,7 +89,7 @@ const projects = [
     title: "Brand Project 07",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-7.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/rCrLT-20IiM",
   },
   {
     id: 10,
@@ -107,7 +98,7 @@ const projects = [
     title: "Brand Project 08",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/brand-8.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/71PXAWOEwAQ",
   },
   {
     id: 11,
@@ -116,7 +107,7 @@ const projects = [
     title: "Student Project",
     logo: "EDITOLOGIA",
     secondLine: "STUDENT PROJECT",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/rmydmTt2VfE",
   },
   {
     id: 12,
@@ -125,7 +116,7 @@ const projects = [
     title: "Behind The Scenes 02",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/backstage-2.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/EFOxdDOKEP4",
   },
   {
     id: 13,
@@ -134,7 +125,7 @@ const projects = [
     title: "Behind The Scenes 03",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/backstage-3.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/CPd6mPJYeTM",
   },
   {
     id: 14,
@@ -143,7 +134,7 @@ const projects = [
     title: "Behind The Scenes 04",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/backstage-4.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/watch?v=nhaz6w1VnuQ",
   },
   {
     id: 15,
@@ -152,7 +143,7 @@ const projects = [
     title: "Creative Event",
     logo: "EDITOLOGIA",
     image: "/images/portfolio/event.png",
-    video: "https://www.youtube.com/embed/YOUTUBE_ID_HERE",
+    video: "https://www.youtube.com/shorts/ZBpaJ46xEz4",
   },
 ];
 
@@ -167,24 +158,41 @@ const filters = [
 function getYoutubeEmbed(url) {
   if (!url) return "";
 
-  if (url.includes("/embed/")) {
-    return url;
-  }
-
   try {
     const parsed = new URL(url);
+    const hostname = parsed.hostname.replace(/^www\./, "");
 
-    if (parsed.hostname.includes("youtu.be")) {
-      return `https://www.youtube.com/embed/${parsed.pathname.slice(1)}`;
+    if (hostname === "youtu.be") {
+      const id = parsed.pathname.split("/").filter(Boolean)[0];
+      return id ? `https://www.youtube.com/embed/${id}` : "";
     }
 
-    const id = parsed.searchParams.get("v");
+    if (
+      hostname === "youtube.com" ||
+      hostname === "m.youtube.com" ||
+      hostname === "youtube-nocookie.com"
+    ) {
+      const segments = parsed.pathname.split("/").filter(Boolean);
 
-    if (id) {
-      return `https://www.youtube.com/embed/${id}`;
+      if (segments[0] === "embed" && segments[1]) {
+        return `https://www.youtube.com/embed/${segments[1]}`;
+      }
+
+      if (
+        (segments[0] === "shorts" || segments[0] === "live") &&
+        segments[1]
+      ) {
+        return `https://www.youtube.com/embed/${segments[1]}`;
+      }
+
+      const id = parsed.searchParams.get("v");
+
+      if (id) {
+        return `https://www.youtube.com/embed/${id}`;
+      }
     }
 
-    return url;
+    return "";
   } catch {
     return "";
   }
@@ -249,11 +257,17 @@ function Portfolio() {
 
   const counts = {
     all: projects.length,
-    brand: projects.filter((p) => p.category === "brand").length,
-    course: projects.filter((p) => p.category === "course").length,
-    backstage: projects.filter((p) => p.category === "backstage").length,
-    event: projects.filter((p) => p.category === "event").length,
+    brand: projects.filter((project) => project.category === "brand").length,
+    course: projects.filter((project) => project.category === "course").length,
+    backstage: projects.filter(
+      (project) => project.category === "backstage"
+    ).length,
+    event: projects.filter((project) => project.category === "event").length,
   };
+
+  const selectedVideo = selectedProject
+    ? getYoutubeEmbed(selectedProject.video)
+    : "";
 
   return (
     <main className="portfolio-page">
@@ -413,7 +427,9 @@ function Portfolio() {
           >
             <div className="portfolio-modal-header">
               <div>
-                <span>EDITOLOGIA · {selectedProject.label}</span>
+                <span>
+                  EDITOLOGIA · {selectedProject.label}
+                </span>
                 <h3>{selectedProject.title}</h3>
               </div>
 
@@ -427,26 +443,25 @@ function Portfolio() {
               </button>
             </div>
 
-            {getYoutubeEmbed(selectedProject.video).includes(
-              "YOUTUBE_ID_HERE"
-            ) || !getYoutubeEmbed(selectedProject.video) ? (
-              <div className="reference-video-placeholder">
-                <FaVideo />
-                <strong>YouTube ვიდეო ჯერ არ არის მითითებული</strong>
-                <span>
-                  შეცვალე YOUTUBE_ID_HERE შენი ვიდეოს ID-ით.
-                </span>
-              </div>
-            ) : (
+            {selectedVideo &&
+            !selectedVideo.includes("YOUTUBE_ID_HERE") ? (
               <iframe
                 key={selectedProject.id}
                 className="portfolio-modal-video reference-youtube-player"
-                src={`${getYoutubeEmbed(selectedProject.video)}?autoplay=1&rel=0`}
+                src={`${selectedVideo}?autoplay=1&rel=0`}
                 title={selectedProject.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
               />
+            ) : (
+              <div className="reference-video-placeholder">
+                <FaVideo />
+                <strong>YouTube ვიდეო ჯერ არ არის მითითებული</strong>
+                <span>
+                  ამ პროექტისთვის დაამატე YouTube ვიდეოს ბმული.
+                </span>
+              </div>
             )}
           </div>
         </div>
