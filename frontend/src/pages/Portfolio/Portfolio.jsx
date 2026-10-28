@@ -155,44 +155,49 @@ const filters = [
   { id: "event", label: "EVENT" },
 ];
 
+/* YouTube ბმულის გარდაქმნა embed ფორმატში */
 function getYoutubeEmbed(url) {
   if (!url) return "";
 
   try {
     const parsed = new URL(url);
     const hostname = parsed.hostname.replace(/^www\./, "");
+    let videoId = "";
 
     if (hostname === "youtu.be") {
-      const id = parsed.pathname.split("/").filter(Boolean)[0];
-      return id ? `https://www.youtube.com/embed/${id}` : "";
-    }
-
-    if (
-      hostname === "youtube.com" ||
-      hostname === "m.youtube.com" ||
-      hostname === "youtube-nocookie.com"
+      videoId = parsed.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (
+      [
+        "youtube.com",
+        "m.youtube.com",
+        "youtube-nocookie.com",
+      ].includes(hostname)
     ) {
       const segments = parsed.pathname.split("/").filter(Boolean);
 
-      if (segments[0] === "embed" && segments[1]) {
-        return `https://www.youtube.com/embed/${segments[1]}`;
-      }
-
       if (
-        (segments[0] === "shorts" || segments[0] === "live") &&
+        ["embed", "shorts", "live"].includes(segments[0]) &&
         segments[1]
       ) {
-        return `https://www.youtube.com/embed/${segments[1]}`;
-      }
-
-      const id = parsed.searchParams.get("v");
-
-      if (id) {
-        return `https://www.youtube.com/embed/${id}`;
+        videoId = segments[1];
+      } else {
+        videoId = parsed.searchParams.get("v") || "";
       }
     }
 
-    return "";
+    if (!videoId || videoId === "YOUTUBE_ID_HERE") {
+      return "";
+    }
+
+    const embedUrl = new URL(
+      `https://www.youtube.com/embed/${videoId}`
+    );
+
+    embedUrl.searchParams.set("autoplay", "1");
+    embedUrl.searchParams.set("rel", "0");
+    embedUrl.searchParams.set("playsinline", "1");
+
+    return embedUrl.toString();
   } catch {
     return "";
   }
@@ -257,12 +262,18 @@ function Portfolio() {
 
   const counts = {
     all: projects.length,
-    brand: projects.filter((project) => project.category === "brand").length,
-    course: projects.filter((project) => project.category === "course").length,
+    brand: projects.filter(
+      (project) => project.category === "brand"
+    ).length,
+    course: projects.filter(
+      (project) => project.category === "course"
+    ).length,
     backstage: projects.filter(
       (project) => project.category === "backstage"
     ).length,
-    event: projects.filter((project) => project.category === "event").length,
+    event: projects.filter(
+      (project) => project.category === "event"
+    ).length,
   };
 
   const selectedVideo = selectedProject
@@ -305,6 +316,7 @@ function Portfolio() {
                 <span className="portfolio-note-icon">
                   <FaVideo />
                 </span>
+
                 <span>
                   <strong>{projects.length} პროექტი</strong>
                   <small>სტუდენტები და მენტორი</small>
@@ -317,10 +329,12 @@ function Portfolio() {
                 <strong>08</strong>
                 <span>ბრენდი</span>
               </div>
+
               <div>
                 <strong>02</strong>
                 <span>კურსი</span>
               </div>
+
               <div>
                 <strong>05</strong>
                 <span>სხვა პროექტი</span>
@@ -351,6 +365,7 @@ function Portfolio() {
                   <small>EDITOLOGIA</small>
                   <strong>კრეატიულობა კადრში</strong>
                 </span>
+
                 <span className="hero-video-arrow">
                   <FaArrowRight />
                 </span>
@@ -398,6 +413,7 @@ function Portfolio() {
 
                 <span className="reference-card-center">
                   <ProjectLogo project={project} />
+
                   <span className="reference-card-category">
                     {project.label}
                   </span>
@@ -419,7 +435,9 @@ function Portfolio() {
           role="presentation"
         >
           <div
-            className="portfolio-modal-content"
+            className={`portfolio-modal-content ${
+              selectedVideo ? "has-youtube-video" : ""
+            }`}
             role="dialog"
             aria-modal="true"
             aria-label={selectedProject.title}
@@ -430,6 +448,7 @@ function Portfolio() {
                 <span>
                   EDITOLOGIA · {selectedProject.label}
                 </span>
+
                 <h3>{selectedProject.title}</h3>
               </div>
 
@@ -443,23 +462,28 @@ function Portfolio() {
               </button>
             </div>
 
-            {selectedVideo &&
-            !selectedVideo.includes("YOUTUBE_ID_HERE") ? (
-              <iframe
-                key={selectedProject.id}
-                className="portfolio-modal-video reference-youtube-player"
-                src={`${selectedVideo}?autoplay=1&rel=0`}
-                title={selectedProject.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              />
+            {selectedVideo ? (
+              <div className="portfolio-modal-player">
+                <iframe
+                  key={selectedProject.id}
+                  className="portfolio-modal-video reference-youtube-player"
+                  src={selectedVideo}
+                  title={selectedProject.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
             ) : (
               <div className="reference-video-placeholder">
                 <FaVideo />
-                <strong>YouTube ვიდეო ჯერ არ არის მითითებული</strong>
+
+                <strong>
+                  YouTube ვიდეო ჯერ არ არის მითითებული
+                </strong>
+
                 <span>
-                  ამ პროექტისთვის დაამატე YouTube ვიდეოს ბმული.
+                  ამ პროექტისთვის დაამატე YouTube ვიდეოს სწორი ბმული.
                 </span>
               </div>
             )}
