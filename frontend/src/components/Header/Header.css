@@ -717,38 +717,18 @@ body.dark .mobile-menu-divider {
     transition: none !important;
     animation: none !important;
   }
-}
-/* HEADER LOGO */
-.home-header .logo {
-  color: #FFF3B0 !important;
-}
+}/* HEADER LOGO — FOOTER COLORS */
 
-.home-header .logo span {
-  color: #9E2A2B !important;
-}
-
-/* LIGHT MODE */
-html[data-theme="light"] .home-header .logo {
-  color: #000000 !important;
-}
-
-html[data-theme="light"] .home-header .logo span {
-  color: #9E2A2B !important;
-}
-
-/* DARK MODE */
-html[data-theme="dark"] .home-header .logo,
-body.dark .home-header .logo {
-  color: #FFF3D0 !important;
-}
-
-html[data-theme="dark"] .home-header .logo span,
-body.dark .home-header .logo span {
-  color: #9E2A2B !important;
-}* HEADER LOGO — FOOTER COLORS */
 .home-header .logo,
 html[data-theme="light"] .home-header .logo,
 html[data-theme="dark"] .home-header .logo,
 body.dark .home-header .logo {
-  color: #FFF9E8 !important; /* EDIT — ღია ვანილა */
+  color: #FFF3B0 !important;
+}
+
+.home-header .logo span,
+html[data-theme="light"] .home-header .logo span,
+html[data-theme="dark"] .home-header .logo span,
+body.dark .home-header .logo span {
+  color: #B85A5B !important;
 }
