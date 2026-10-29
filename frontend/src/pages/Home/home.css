@@ -3899,4 +3899,462 @@ html[data-theme="light"] .home-page,
 html[data-theme="light"] .home-page .hero,
 html[data-theme="light"] .home-page .stats-strip {
   background-color: #f7f7f9 !important;
+}/* =========================================
+   EDITOLOGIA — NEW BRAND COLORS
+   Gold: #E09F3E
+   Cream: #FFF3B0
+========================================= */
+
+.home-page {
+  --purple: #E09F3E;
+  --purple-light: #FFF3B0;
+  --purple-deep: #C8872E;
+
+  --hero-accent: #E09F3E;
+  --hero-button-bg: #E09F3E;
+
+  --bg: #FFFDF5;
+  --surface: #FFFFFF;
+  --surface-soft: #FFF9E5;
+
+  --text: #211B12;
+  --text-soft: #6F6555;
+  --text-muted: #978B78;
+
+  --border: rgba(224, 159, 62, 0.18);
+  --border-soft: rgba(224, 159, 62, 0.10);
+
+  --hero-bg: #FFFDF5;
+  --hero-surface: #FFFFFF;
+  --hero-surface-soft: #FFF3B0;
+  --hero-text: #211B12;
+  --hero-muted: #6F6555;
+  --hero-border: rgba(224, 159, 62, 0.22);
+}
+
+html[data-theme="dark"] .home-page,
+html.dark .home-page,
+body.dark .home-page,
+[data-theme="dark"] .home-page,
+.home-page.dark,
+.home-page[data-theme="dark"] {
+  --bg: #09090D;
+  --surface: #111116;
+  --surface-soft: #19191F;
+
+  --text: #FFF9E8;
+  --text-soft: #D0C4A8;
+  --text-muted: #A89B80;
+
+  --border: rgba(255, 243, 176, 0.14);
+  --border-soft: rgba(255, 243, 176, 0.08);
+
+  --hero-bg: #09090D;
+  --hero-surface: #111116;
+  --hero-surface-soft: #19191F;
+  --hero-text: #FFF9E8;
+  --hero-muted: #D0C4A8;
+  --hero-border: rgba(255, 243, 176, 0.14);
+
+  --hero-accent: #E09F3E;
+  --hero-button-bg: #E09F3E;
+  --hero-button-text: #211B12;
+
+  --purple: #E09F3E;
+  --purple-light: #FFF3B0;
+  --purple-deep: #C8872E;
+}
+
+/* მთავარი გვერდის ფონი */
+
+html,
+body,
+#root {
+  background-color: #FFFDF5;
+}
+
+html[data-theme="dark"],
+html.dark,
+body.dark,
+html[data-theme="dark"] body,
+html.dark body,
+html[data-theme="dark"] #root,
+html.dark #root,
+body.dark #root {
+  background-color: #09090D;
+}
+
+/* ღილაკები და აქცენტები */
+
+.home-page .primary-btn,
+.home-page .hero-buttons .primary-btn,
+.home-page .collaboration-contact-btn,
+.home-page .partner-modal-done {
+  color: #211B12;
+  background: #E09F3E;
+  border-color: #E09F3E;
+}
+
+.home-page .primary-btn:hover,
+.home-page .collaboration-contact-btn:hover,
+.home-page .partner-modal-done:hover {
+  background: #C8872E;
+  border-color: #C8872E;
+}
+
+.home-page .rotating-word,
+.home-page .partnerships-eyebrow,
+.home-page .partnership-tag,
+.home-page .partnership-mini-label,
+.home-page .partnerships-contact,
+.home-page .partnership-read-more,
+.home-page .collaboration-eyebrow,
+.home-page .collaboration-contact-btn span,
+.home-page .stat-card-arrow,
+.home-page .stat-card-pro {
+  color: #E09F3E;
+}
+
+/* კრემისფერი აქცენტები */
+
+.home-page .hero-note-dot,
+.home-page .hero-label-bar,
+.home-page .collaboration-dot,
+.home-page .partnership-dot,
+.home-page .partnerships-bottom-dot {
+  background: #E09F3E;
+}
+
+.home-page .partnership-modal-highlight {
+  border-color: rgba(224, 159, 62, 0.3);
+  background: rgba(255, 243, 176, 0.12);
+}
+
+.home-page .option-number {
+  border-color: rgba(224, 159, 62, 0.3);
+  background: rgba(255, 243, 176, 0.22);
+  color: #C8872E;
+}
+
+/* სათაურის დეკორატიული ხაზი */
+
+.home-page .collaboration-card::before {
+  background: linear-gradient(
+    90deg,
+    #C8872E,
+    #E09F3E,
+    #FFF3B0
+  );
+}
+
+/* ფოკუსი და ხელმისაწვდომობა */
+
+.home-page .partner-mini-card:focus-visible {
+  outline-color: #E09F3E;
+}
+
+.home-page .partner-modal-close:hover {
+  border-color: #E09F3E;
+  color: #E09F3E;
+}
+
+/* ღია რეჟიმის ფონი */
+
+html[data-theme="light"] .home-page,
+html[data-theme="light"] .home-page .hero,
+html[data-theme="light"] .home-page .stats-strip {
+  background-color: #FFFDF5;
+}
+/* =========================================
+   LIVE COURSES — VANILLA + BURGUNDY CTA
+========================================= */
+
+.live-courses-page {
+  --live-bg: #FFFDF5;
+  --live-primary: #9E2A2B;
+  --live-primary-hover: #7F2021;
+
+  background: var(--live-bg) !important;
+  background-image: none !important;
+}
+
+/* Hero — vanilla */
+.live-courses-page .hero,
+.live-courses-page .hero-section,
+.live-courses-page .courses-hero,
+.live-courses-page .live-hero,
+.live-courses-page .live-courses-hero {
+  background: #FFFDF5 !important;
+  background-image: none !important;
+}
+
+/* სხვა სექციების ლურჯი ფონები */
+.live-courses-page .section,
+.live-courses-page .courses-section,
+.live-courses-page .course-section {
+  background-color: #FFFDF5 !important;
+}
+
+/* კურსის ბარათები */
+.live-courses-page .course-card,
+.live-courses-page .course-card-content,
+.live-courses-page .course-info,
+.live-courses-page .course-details {
+  background-color: #FFFDF5;
+}
+
+/* მთავარი CTA — burgundy */
+.live-courses-page .primary-btn,
+.live-courses-page .primary-cta,
+.live-courses-page .main-cta,
+.live-courses-page .hero-cta,
+.live-courses-page .cta-button,
+.live-courses-page a[class*="cta"],
+.live-courses-page button[class*="cta"] {
+  background: #9E2A2B !important;
+  border-color: #9E2A2B !important;
+  color: #FFFFFF !important;
+  box-shadow: none;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* CTA hover */
+.live-courses-page .primary-btn:hover,
+.live-courses-page .primary-cta:hover,
+.live-courses-page .main-cta:hover,
+.live-courses-page .hero-cta:hover,
+.live-courses-page .cta-button:hover,
+.live-courses-page a[class*="cta"]:hover,
+.live-courses-page button[class*="cta"]:hover {
+  background: #7F2021 !important;
+  border-color: #7F2021 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+}
+
+/* Dark mode — vanilla ფონი აქაც შენარჩუნდეს */
+html[data-theme="dark"] .live-courses-page,
+html.dark .live-courses-page,
+body.dark .live-courses-page,
+[data-theme="dark"] .live-courses-page {
+  background: #FFFDF5 !important;
+}
+
+html[data-theme="dark"] .live-courses-page .hero,
+html.dark .live-courses-page .hero,
+body.dark .live-courses-page .hero,
+[data-theme="dark"] .live-courses-page .hero {
+  background: #FFFDF5 !important;
+}
+
+/* ===== HERO — VANILLA BACKGROUND FIX ===== */
+
+html body .home-page .hero {
+  background: #FFFDF5 !important;
+  background-color: #FFFDF5 !important;
+  background-image: none !important;
+  color: #211B12 !important;
+}
+
+html body .home-page .hero::before,
+html body .home-page .hero::after {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html body .home-page .hero .hero-background-glow,
+html body .home-page .hero .hero-glow,
+html body .home-page .hero .hero-glow-secondary {
+  display: none !important;
+}
+
+/* სათაურები და ტექსტი */
+html body .home-page .hero h1,
+html body .home-page .hero h2,
+html body .home-page .hero p {
+  color: #211B12 !important;
+}
+
+/* ღილაკების ფერები */
+html body .home-page .hero .primary-btn,
+html body .home-page .hero .hero-btn-primary {
+  background: #9E2A2B !important;
+  color: #FFFFFF !important;
+}
+
+html body .home-page .hero .secondary-btn,
+html body .home-page .hero .hero-btn-secondary {
+  background: #335C67 !important;
+  color: #FFFFFF !important;
+}
+
+/* ===== EDITOLOGIA — UNIFIED VANILLA BACKGROUND ===== */
+
+html[data-theme="light"] body,
+html[data-theme="light"] #root,
+html[data-theme="light"] .home-page {
+  background: #FFFDF5 !important;
+  background-color: #FFFDF5 !important;
+}
+
+/* მთავარი სექციები */
+html[data-theme="light"] .home-page .hero,
+html[data-theme="light"] .home-page .stats-strip,
+html[data-theme="light"] .home-page .collaboration-section,
+html[data-theme="light"] .home-page .partnerships-section,
+html[data-theme="light"] .home-page .pricing-section,
+html[data-theme="light"] .home-page .faq-section,
+html[data-theme="light"] .home-page .about-section,
+html[data-theme="light"] .home-page section {
+  background: #FFFDF5 !important;
+  background-color: #FFFDF5 !important;
+  background-image: none !important;
+}
+
+/* ზედმეტი ფერადი ნათებები */
+html[data-theme="light"] .home-page .hero-background-glow,
+html[data-theme="light"] .home-page .hero-glow,
+html[data-theme="light"] .home-page .hero-glow-secondary {
+  display: none !important;
+}
+
+/* ტექსტები */
+html[data-theme="light"] .home-page .hero h1,
+html[data-theme="light"] .home-page .hero h2,
+html[data-theme="light"] .home-page section h2 {
+  color: #211B12;
+}
+
+/* ღილაკები უცვლელი ფერებით */
+html[data-theme="light"] .home-page .primary-btn,
+html[data-theme="light"] .home-page .hero-btn-primary {
+  background-color: #9E2A2B !important;
+  color: #FFFFFF !important;
+}
+
+html[data-theme="light"] .home-page .secondary-btn,
+html[data-theme="light"] .home-page .hero-btn-secondary {
+  background-color: #335C67 !important;
+  color: #FFFFFF !important;
+}
+/* ==========================================
+   EDITOLOGIA — DARK MODE TEXT FIX
+========================================== */
+
+html[data-theme="dark"] .home-page {
+  color: #FFF9E8;
+}
+
+/* მთავარი სათაურები */
+html[data-theme="dark"] .home-page h1,
+html[data-theme="dark"] .home-page h2,
+html[data-theme="dark"] .home-page h3,
+html[data-theme="dark"] .home-page h4 {
+  color: #FFF3D0 !important;
+}
+
+/* ჩვეულებრივი ტექსტები და აღწერები */
+html[data-theme="dark"] .home-page p,
+html[data-theme="dark"] .home-page li,
+html[data-theme="dark"] .home-page label {
+  color: #D8D2C5 !important;
+}
+
+/* ბარათების სათაურები */
+html[data-theme="dark"] .home-page .card h3,
+html[data-theme="dark"] .home-page .pricing-card h3,
+html[data-theme="dark"] .home-page .stat-item h3 {
+  color: #FFF3D0 !important;
+}
+
+/* სტატისტიკის რიცხვები და მნიშვნელოვანი ტექსტები */
+html[data-theme="dark"] .home-page .stat-number,
+html[data-theme="dark"] .home-page .highlight,
+html[data-theme="dark"] .home-page .accent-text {
+  color: #E09F3E !important;
+}
+
+/* ბმულები */
+html[data-theme="dark"] .home-page a:not(.primary-btn):not(.secondary-btn) {
+  color: #E8BE70;
+}
+
+html[data-theme="dark"] .home-page a:not(.primary-btn):not(.secondary-btn):hover {
+  color: #FFD98A;
+}
+
+/* ღილაკების წარწერები */
+html[data-theme="dark"] .home-page button,
+html[data-theme="dark"] .home-page .primary-btn,
+html[data-theme="dark"] .home-page .secondary-btn {
+  color: #FFFFFF;
+}
+
+/* FAQ და სხვა ჩამოსაშლელი სექციები */
+html[data-theme="dark"] .home-page summary,
+html[data-theme="dark"] .home-page .faq-question {
+  color: #FFF3D0 !important;
+}
+
+/* მეორეხარისხოვანი ტექსტები */
+html[data-theme="dark"] .home-page small,
+html[data-theme="dark"] .home-page .subtitle,
+html[data-theme="dark"] .home-page .section-description {
+  color: #C8C0B2 !important;
+}/* ==========================================
+   HERO — DARK MODE COLORS
+========================================== */
+
+/* მთავარი სათაური */
+html[data-theme="dark"] .home-page .hero h1 {
+  color: #FFF3B0 !important;
+}
+
+/* აღწერა სათაურის ქვემოთ */
+html[data-theme="dark"] .home-page .hero p {
+  color: #FFF3B0 !important;
+}
+
+
+
+/* პირველი ღილაკი — ბურგუნდისფერი */
+html[data-theme="dark"] .home-page .hero .primary-btn,
+html[data-theme="dark"] .home-page .hero .hero-btn-primary {
+  background: #9E2A2B !important;
+  color: #FFFDF5 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* პირველი ღილაკის hover */
+html[data-theme="dark"] .home-page .hero .primary-btn:hover,
+html[data-theme="dark"] .home-page .hero .hero-btn-primary:hover {
+  background: #7F2021 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* მეორე ღილაკი — ვანილისფერი */
+html[data-theme="dark"] .home-page .hero .secondary-btn,
+html[data-theme="dark"] .home-page .hero .hero-btn-secondary {
+  background: #FFFDF5 !important;
+  color: #211B12 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* მეორე ღილაკის hover */
+html[data-theme="dark"] .home-page .hero .secondary-btn:hover,
+html[data-theme="dark"] .home-page .hero .hero-btn-secondary:hover {
+  background: #FFF3B0 !important;
+  color: #211B12 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
