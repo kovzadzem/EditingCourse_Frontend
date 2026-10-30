@@ -1899,7 +1899,7 @@ export default function AssignmentCenter() {
                 <strong>ხელახლა ჩაბარება</strong>
                 <small>
                   შესწორების მოთხოვნის შემდეგ სტუდენტს ხელახლა გაგზავნა
-                  შეეძლება.
+                  შეეძლება
                 </small>
               </span>
             </label>

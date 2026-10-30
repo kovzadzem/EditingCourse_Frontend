@@ -1246,3 +1246,377 @@ body.dark .admin-video-publish {
     align-items: flex-start;
   }
 }
+/* =====================================================
+   EDITOLOGIA ADMIN DASHBOARD
+   BLACK / WHITE / BURGUNDY
+   COLOR OVERRIDES ONLY
+===================================================== */
+
+/* LIGHT THEME */
+html[data-theme="light"] .admin-page,
+.admin-page {
+  --admin-accent: #9E2A2B;
+  --admin-accent-hover: #741F25;
+  --admin-accent-soft: #f8eeee;
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
+  --text-primary: #171717;
+  --text-secondary: #666666;
+  --border-color: #e2e2e2;
+
+  background:
+    radial-gradient(ellipse at top left, rgb(158 42 43 / 6%), transparent 36%),
+    #ffffff;
+
+  color: #171717;
+}
+
+/* DARK THEME */
+html[data-theme="dark"] .admin-page,
+html.dark .admin-page,
+body.dark .admin-page {
+  --admin-accent: #c45a5b;
+  --admin-accent-hover: #df7778;
+  --admin-accent-soft: #382020;
+
+  --bg-primary: #151515;
+  --bg-secondary: #1b1b1b;
+  --text-primary: #ffffff;
+  --text-secondary: #b5b5b5;
+  --border-color: #383838;
+
+  background:
+    radial-gradient(ellipse at top left, rgb(158 42 43 / 12%), transparent 36%),
+    #111111;
+
+  color: #ffffff;
+}
+
+/* HEADINGS */
+html[data-theme="light"] .admin-page h1,
+html[data-theme="light"] .admin-page h2,
+html[data-theme="light"] .admin-page h3 {
+  color: #171717;
+}
+
+html[data-theme="dark"] .admin-page h1,
+html[data-theme="dark"] .admin-page h2,
+html[data-theme="dark"] .admin-page h3 {
+  color: #ffffff;
+}
+
+/* EYEBROW */
+.admin-eyebrow {
+  color: var(--admin-accent);
+}
+
+/* BUTTONS */
+.admin-primary {
+  border-color: #9E2A2B;
+  background: linear-gradient(135deg, #9E2A2B, #741F25);
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgb(158 42 43 / 18%);
+}
+
+.admin-primary:hover {
+  background: #741F25;
+  box-shadow: 0 7px 18px rgb(158 42 43 / 25%);
+}
+
+.admin-refresh:hover {
+  border-color: var(--admin-accent);
+  color: var(--admin-accent);
+}
+
+/* STATISTICS */
+.admin-stat::after {
+  background: var(--admin-accent);
+}
+
+.admin-stat strong {
+  color: var(--admin-accent);
+}
+
+.admin-stat:hover {
+  border-color: rgb(158 42 43 / 35%);
+}
+
+/* TABS */
+.admin-tabs button:hover,
+.admin-tabs button.active {
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+}
+
+.admin-tabs button.active {
+  border-color: rgb(158 42 43 / 15%);
+}
+
+/* FORMS */
+.admin-form input:focus,
+.admin-form select:focus,
+.admin-form textarea:focus,
+.admin-table input:focus,
+.admin-table select:focus,
+.admin-video-form input:focus,
+.admin-video-form textarea:focus {
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 3px rgb(158 42 43 / 11%);
+}
+
+/* TABLES */
+.admin-table th {
+  background: var(--admin-accent-soft);
+  color: #741F25;
+}
+
+.admin-table tbody tr:hover {
+  background: rgb(158 42 43 / 3%);
+}
+
+/* REQUEST SUMMARY */
+.admin-request-summary strong {
+  color: var(--admin-accent);
+}
+
+/* VIDEO ELEMENTS */
+.admin-video-count,
+.admin-video-number {
+  border-color: rgb(158 42 43 / 15%);
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+}
+
+.admin-video-form input[type="file"]::file-selector-button {
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
+}
+
+.admin-video-publish input {
+  accent-color: var(--admin-accent);
+}
+
+/* DARK MODE PANELS */
+html[data-theme="dark"] .admin-page .admin-panel,
+html.dark .admin-page .admin-panel,
+body.dark .admin-page .admin-panel,
+html[data-theme="dark"] .admin-page .admin-stat,
+html.dark .admin-page .admin-stat,
+body.dark .admin-page .admin-stat,
+html[data-theme="dark"] .admin-page .admin-tabs,
+html.dark .admin-page .admin-tabs,
+body.dark .admin-page .admin-tabs {
+  background: #1b1b1b;
+  border-color: #383838;
+}
+
+/* DARK MODE TABLES */
+html[data-theme="dark"] .admin-page .admin-table th,
+html.dark .admin-page .admin-table th,
+body.dark .admin-page .admin-table th {
+  background: #382020;
+  color: #e5a0a0;
+}
+
+html[data-theme="dark"] .admin-page .admin-table td,
+html.dark .admin-page .admin-table td,
+body.dark .admin-page .admin-table td {
+  color: #eeeeee;
+  border-bottom-color: #383838;
+}
+
+html[data-theme="dark"] .admin-page .admin-table tbody tr:hover,
+html.dark .admin-page .admin-table tbody tr:hover,
+body.dark .admin-page .admin-table tbody tr:hover {
+  background: rgb(196 90 91 / 6%);
+}
+
+/* DARK MODE INPUTS */
+html[data-theme="dark"] .admin-page .admin-form input,
+html[data-theme="dark"] .admin-page .admin-form select,
+html[data-theme="dark"] .admin-page .admin-form textarea,
+html[data-theme="dark"] .admin-page .admin-table input,
+html[data-theme="dark"] .admin-page .admin-table select,
+html.dark .admin-page .admin-form input,
+html.dark .admin-page .admin-form select,
+html.dark .admin-page .admin-form textarea,
+html.dark .admin-page .admin-table input,
+html.dark .admin-page .admin-table select,
+body.dark .admin-page .admin-form input,
+body.dark .admin-page .admin-form select,
+body.dark .admin-page .admin-form textarea,
+body.dark .admin-page .admin-table input,
+body.dark .admin-page .admin-table select {
+  background: #151515;
+  color: #ffffff;
+  border-color: #383838;
+}
+
+/* DARK MODE REFRESH BUTTON */
+html[data-theme="dark"] .admin-page .admin-refresh,
+html.dark .admin-page .admin-refresh,
+body.dark .admin-page .admin-refresh {
+  background: #242424;
+  color: #e5a0a0;
+  border-color: #493030;
+}
+
+html[data-theme="dark"] .admin-page .admin-refresh:hover,
+html.dark .admin-page .admin-refresh:hover,
+body.dark .admin-page .admin-refresh:hover {
+  background: #382020;
+  border-color: #c45a5b;
+  color: #ffffff;
+}
+
+/* VIDEO UPLOAD CARDS */
+.admin-video-upload-card {
+  background: #fafafa;
+  border-color: #e2e2e2;
+}
+
+.admin-video-upload-card h3,
+.admin-video-list-heading h3 {
+  color: #171717;
+}
+
+html[data-theme="dark"] .admin-video-upload-card,
+html.dark .admin-video-upload-card,
+body.dark .admin-video-upload-card {
+  background: #151515;
+  border-color: #383838;
+}
+
+html[data-theme="dark"] .admin-video-upload-card h3,
+html[data-theme="dark"] .admin-video-list-heading h3,
+html.dark .admin-video-upload-card h3,
+html.dark .admin-video-list-heading h3,
+body.dark .admin-video-upload-card h3,
+body.dark .admin-video-list-heading h3 {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .admin-video-form input,
+html[data-theme="dark"] .admin-video-form textarea,
+html.dark .admin-video-form input,
+html.dark .admin-video-form textarea,
+body.dark .admin-video-form input,
+body.dark .admin-video-form textarea {
+  background: #1b1b1b;
+  color: #ffffff;
+  border-color: #383838;
+}
+
+html[data-theme="dark"] .admin-video-publish,
+html.dark .admin-video-publish,
+body.dark .admin-video-publish {
+  background: #1b1b1b;
+  border-color: #383838;
+}
+
+/* KEEP SUCCESS AND DANGER STATUSES DISTINCT */
+.admin-request-approve {
+  background: #218653;
+}
+
+.admin-request-approve:hover {
+  background: #176b43;
+}
+
+.admin-request-reject {
+  background: #c93c3c;
+}
+
+.admin-request-reject:hover {
+  background: #a92b35;
+}/* =====================================================
+   ADMIN — PURE BLACK / WHITE THEME
+===================================================== */
+
+/* LIGHT MODE */
+html[data-theme="light"] .admin-page {
+  background: #ffffff !important;
+  color: #171717;
+}
+
+/* DARK MODE */
+html[data-theme="dark"] .admin-page {
+  background: #000000 !important;
+  color: #ffffff;
+  --bg: #000000;
+  --surface: #000000;
+  --card-bg: #000000;
+  --text: #ffffff;
+  --text-soft: #e5e5e5;
+  --text-muted: #aaaaaa;
+  --border: rgba(255, 255, 255, 0.13);
+}
+
+html[data-theme="dark"] .admin-page section,
+html[data-theme="dark"] .admin-page main,
+html[data-theme="dark"] .admin-page header,
+html[data-theme="dark"] .admin-page aside,
+html[data-theme="dark"] .admin-page .admin-card,
+html[data-theme="dark"] .admin-page .admin-sidebar,
+html[data-theme="dark"] .admin-page .admin-content,
+html[data-theme="dark"] .admin-page .admin-panel,
+html[data-theme="dark"] .admin-page .admin-table-container {
+  background-color: #000000 !important;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+html[data-theme="dark"] .admin-page h1,
+html[data-theme="dark"] .admin-page h2,
+html[data-theme="dark"] .admin-page h3,
+html[data-theme="dark"] .admin-page p,
+html[data-theme="dark"] .admin-page label {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .admin-page input,
+html[data-theme="dark"] .admin-page textarea,
+html[data-theme="dark"] .admin-page select {
+  background: #111111;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.admin-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 11px 20px;
+  border: 1px solid #9E2A2B;
+  border-radius: 11px;
+  background: #9E2A2B;
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.admin-logout:hover {
+  background: #741F25;
+  border-color: #741F25;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .admin-heading-actions {
+    width: 100%;
+  }
+
+  .admin-heading-actions button {
+    flex: 1;
+  }
+}

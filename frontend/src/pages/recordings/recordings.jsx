@@ -280,18 +280,18 @@ export default function Recordings() {
         )}
 
         {error && (
-          <div className="recordings-error" role="alert">
-            <div>
-              <strong>ჩატვირთვა ვერ მოხერხდა</strong>
-              <p>{error}</p>
-            </div>
-
-            <button type="button" onClick={loadRecordings}>
-              <FaRedoAlt />
-              ხელახლა ცდა
-            </button>
-          </div>
-        )}
+  <div className="recordings-error" role="alert">
+    <div>
+      <strong>ვიდეოგაკვეთილებზე წვდომა შეზღუდულია</strong>
+      <p>
+        ვიდეოგაკვეთილებზე წვდომა გაგეხსნება რეგისტრაციის
+        გავლისა და კურსის საფასურის გადახდის დადასტურების შემდეგ.
+        გადახდის დადასტურებისთანავე შეძლებ ყველა გამოქვეყნებული
+        გაკვეთილის ნახვას.
+      </p>
+    </div>
+  </div>
+)}
 
         {!error && lessons.length > 0 && (
           <>

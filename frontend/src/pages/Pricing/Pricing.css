@@ -1,6 +1,6 @@
-
 /* =====================================================
    PRICING — BOOK STYLE
+   COLORS: CREAM / BURGUNDY / GOLD / TEAL
 ===================================================== */
 
 @font-face {
@@ -20,14 +20,14 @@ body {
 ===================================================== */
 
 .pricing {
-  --pricing-primary: #8b45e8;
-  --pricing-bg: #f7f7f9;
-  --pricing-text: #111114;
-  --pricing-muted: #66666f;
-  --pricing-card: #ffffff;
-  --pricing-border: rgba(20, 20, 25, 0.09);
-  --pricing-border-soft: rgba(20, 20, 25, 0.06);
-  --pricing-surface-soft: #f0f0f4;
+  --pricing-primary: #9E2A2B;
+  --pricing-bg: #FFFFFF;
+  --pricing-text: #2B1714;
+  --pricing-muted: #76645D;
+  --pricing-card: #F5E7DA;
+  --pricing-border: rgba(43, 23, 20, 0.13);
+  --pricing-border-soft: rgba(43, 23, 20, 0.07);
+  --pricing-surface-soft: #F0DDD0;
 
   position: relative;
   isolation: isolate;
@@ -58,14 +58,14 @@ body {
 body.dark .pricing,
 .pricing.dark,
 .pricing[data-theme="dark"] {
-  --pricing-primary: #a77beb;
-  --pricing-bg: #09090d;
-  --pricing-text: #ffffff;
-  --pricing-muted: #b8b8c2;
-  --pricing-card: #111116;
-  --pricing-border: rgba(255, 255, 255, 0.1);
-  --pricing-border-soft: rgba(255, 255, 255, 0.06);
-  --pricing-surface-soft: #19191f;
+  --pricing-primary: #C98B83;
+  --pricing-bg: #09090D;
+  --pricing-text: #FFFFFF;
+  --pricing-muted: #B8B0AD;
+  --pricing-card: #171513;
+  --pricing-border: rgba(255, 255, 255, 0.12);
+  --pricing-border-soft: rgba(255, 255, 255, 0.07);
+  --pricing-surface-soft: #211C19;
 }
 
 /* =====================================================
@@ -161,22 +161,28 @@ body.dark .pricing,
    PAGE COLORS — LIGHT MODE
 ===================================================== */
 
+/* FIRST — BURGUNDY */
+
 .pricing-page-1 {
-  --page-color: #6d3cc9;
-  --page-soft: rgba(109, 60, 201, 0.1);
-  --page-border: rgba(109, 60, 201, 0.25);
+  --page-color: #9E2A2B;
+  --page-soft: rgba(158, 42, 43, 0.10);
+  --page-border: rgba(158, 42, 43, 0.25);
 }
+
+/* SECOND — GOLD */
 
 .pricing-page-2 {
-  --page-color: #a83fc2;
-  --page-soft: rgba(168, 63, 194, 0.1);
-  --page-border: rgba(168, 63, 194, 0.25);
+  --page-color: #B87922;
+  --page-soft: rgba(224, 159, 62, 0.16);
+  --page-border: rgba(184, 121, 34, 0.28);
 }
 
+/* THIRD — TEAL */
+
 .pricing-page-3 {
-  --page-color: #168c9b;
-  --page-soft: rgba(22, 140, 155, 0.1);
-  --page-border: rgba(22, 140, 155, 0.25);
+  --page-color: #335C67;
+  --page-soft: rgba(51, 92, 103, 0.10);
+  --page-border: rgba(51, 92, 103, 0.25);
 }
 
 /* =====================================================
@@ -188,9 +194,9 @@ body.dark .pricing,
 body.dark .pricing-page-1,
 .pricing.dark .pricing-page-1,
 .pricing[data-theme="dark"] .pricing-page-1 {
-  --page-color: #a77beb;
-  --page-soft: rgba(167, 123, 235, 0.13);
-  --page-border: rgba(167, 123, 235, 0.3);
+  --page-color: #D58B86;
+  --page-soft: rgba(213, 139, 134, 0.14);
+  --page-border: rgba(213, 139, 134, 0.30);
 }
 
 .dark .pricing-page-2,
@@ -198,9 +204,9 @@ body.dark .pricing-page-1,
 body.dark .pricing-page-2,
 .pricing.dark .pricing-page-2,
 .pricing[data-theme="dark"] .pricing-page-2 {
-  --page-color: #d477e7;
-  --page-soft: rgba(212, 119, 231, 0.13);
-  --page-border: rgba(212, 119, 231, 0.3);
+  --page-color: #E9B968;
+  --page-soft: rgba(233, 185, 104, 0.14);
+  --page-border: rgba(233, 185, 104, 0.30);
 }
 
 .dark .pricing-page-3,
@@ -208,9 +214,9 @@ body.dark .pricing-page-2,
 body.dark .pricing-page-3,
 .pricing.dark .pricing-page-3,
 .pricing[data-theme="dark"] .pricing-page-3 {
-  --page-color: #45b8c5;
-  --page-soft: rgba(69, 184, 197, 0.13);
-  --page-border: rgba(69, 184, 197, 0.3);
+  --page-color: #75B0B9;
+  --page-soft: rgba(117, 176, 185, 0.14);
+  --page-border: rgba(117, 176, 185, 0.30);
 }
 
 /* =====================================================
@@ -648,39 +654,42 @@ body.dark .pricing-page-3,
 }
 
 /* =====================================================
-   BUTTON COLORS
+   BUTTON COLORS — THREE DIFFERENT COLORS
 ===================================================== */
+
+/* FIRST — BURGUNDY */
 
 .pricing-page-1 .plan-button {
   background: linear-gradient(
     115deg,
-    #32106f 0%,
-    #4b1fa8 25%,
-    #6d3cc9 50%,
-    #7f3fe0 75%,
-    #9a55f2 100%
+    #64191B 0%,
+    #7F2022 25%,
+    #9E2A2B 55%,
+    #B33D3E 100%
   );
 }
+
+/* SECOND — GOLD */
 
 .pricing-page-2 .plan-button {
   background: linear-gradient(
     115deg,
-    #55106f 0%,
-    #7b1fa2 25%,
-    #a83fc2 50%,
-    #c13ed5 75%,
-    #d94ce5 100%
+    #98601C 0%,
+    #B87922 25%,
+    #D49336 55%,
+    #E09F3E 100%
   );
 }
+
+/* THIRD — TEAL */
 
 .pricing-page-3 .plan-button {
   background: linear-gradient(
     115deg,
-    #034c57 0%,
-    #056a78 25%,
-    #168c9b 50%,
-    #109eaf 75%,
-    #18b4c2 100%
+    #1D3F48 0%,
+    #28505B 25%,
+    #335C67 55%,
+    #467986 100%
   );
 }
 
@@ -762,7 +771,7 @@ body.dark .pricing-page-3,
 ===================================================== */
 
 .pricing-page-2 .page-face {
-  border-color: rgba(168, 63, 194, 0.3);
+  border-color: rgba(184, 121, 34, 0.3);
   box-shadow: none !important;
 }
 
@@ -1000,7 +1009,6 @@ body.dark .pricing-page-3,
 
 /* =====================================================
    FINAL BLUR RESET
-   Does not change the original color palette
 ===================================================== */
 
 .pricing,
@@ -1056,9 +1064,10 @@ body.dark .pricing-page-3,
 .pricing .plan-button {
   text-shadow: none;
 }
+
 /* =========================================
    COURSE SELECTION MODAL
-   არსებული Pricing დიზაინი უცვლელია
+   EXISTING DESIGN PRESERVED
 ========================================= */
 
 .pricing-selection-overlay {
@@ -1079,9 +1088,9 @@ body.dark .pricing-page-3,
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   padding: 36px;
-  background: var(--background, #fff);
-  color: var(--text, #20192b);
-  border: 1px solid rgba(128, 53, 214, 0.22);
+  background: var(--background, #F5E7DA);
+  color: var(--text, #2B1714);
+  border: 1px solid rgba(158, 42, 43, 0.22);
   border-radius: 8px;
   box-shadow: 0 24px 90px rgba(0, 0, 0, 0.24);
 }
@@ -1102,7 +1111,7 @@ body.dark .pricing-page-3,
 .pricing-selection-eyebrow {
   display: block;
   margin-bottom: 15px;
-  color: #8035d6;
+  color: #9E2A2B;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -1116,7 +1125,7 @@ body.dark .pricing-page-3,
 
 .pricing-selection-description {
   margin: 0 0 24px;
-  color: var(--muted, #77717f);
+  color: var(--muted, #76645D);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -1133,7 +1142,7 @@ body.dark .pricing-page-3,
   width: 100%;
   padding: 16px;
   text-align: left;
-  border: 1px solid rgba(128, 53, 214, 0.2);
+  border: 1px solid rgba(158, 42, 43, 0.2);
   border-radius: 6px;
   background: transparent;
   color: inherit;
@@ -1143,8 +1152,8 @@ body.dark .pricing-page-3,
 
 .pricing-selection-option:hover,
 .pricing-selection-option.selected {
-  border-color: #8035d6;
-  background: rgba(128, 53, 214, 0.06);
+  border-color: #9E2A2B;
+  background: rgba(158, 42, 43, 0.06);
 }
 
 .pricing-selection-radio {
@@ -1153,15 +1162,15 @@ body.dark .pricing-page-3,
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  border: 1px solid #b9a2d2;
+  border: 1px solid #B98A7D;
   border-radius: 50%;
   color: #fff;
   font-size: 12px;
 }
 
 .pricing-selection-option.selected .pricing-selection-radio {
-  border-color: #8035d6;
-  background: #8035d6;
+  border-color: #9E2A2B;
+  background: #9E2A2B;
 }
 
 .pricing-selection-option-copy {
@@ -1175,7 +1184,7 @@ body.dark .pricing-page-3,
 }
 
 .pricing-selection-option-copy span {
-  color: var(--muted, #77717f);
+  color: var(--muted, #76645D);
   font-size: 12px;
   line-height: 1.5;
 }
@@ -1202,7 +1211,7 @@ body.dark .pricing-page-3,
   align-items: center;
   gap: 12px;
   padding: 15px;
-  border: 1px solid rgba(128, 53, 214, 0.2);
+  border: 1px solid rgba(158, 42, 43, 0.2);
   border-radius: 6px;
 }
 
@@ -1216,12 +1225,12 @@ body.dark .pricing-page-3,
 }
 
 .pricing-selection-stream-value small {
-  color: var(--muted, #77717f);
+  color: var(--muted, #76645D);
   font-size: 12px;
 }
 
 .pricing-selection-stream-status {
-  color: #8035d6;
+  color: #9E2A2B;
   font-size: 11px;
   font-weight: 700;
 }
@@ -1233,11 +1242,11 @@ body.dark .pricing-page-3,
   gap: 12px;
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(128, 53, 214, 0.2);
+  border-top: 1px solid rgba(158, 42, 43, 0.2);
 }
 
 .pricing-selection-summary span {
-  color: var(--muted, #77717f);
+  color: var(--muted, #76645D);
   font-size: 13px;
 }
 
@@ -1255,7 +1264,7 @@ body.dark .pricing-page-3,
   padding: 16px 18px;
   border: 0;
   border-radius: 4px;
-  background: #8035d6;
+  background: #9E2A2B;
   color: #fff;
   font: inherit;
   font-weight: 700;
@@ -1264,7 +1273,7 @@ body.dark .pricing-page-3,
 }
 
 .pricing-selection-continue:hover {
-  background: #6e25c2;
+  background: #7F2022;
 }
 
 .pricing-selection-continue span {
@@ -1273,7 +1282,7 @@ body.dark .pricing-page-3,
 
 .pricing-selection-note {
   margin: 14px 0 0;
-  color: var(--muted, #77717f);
+  color: var(--muted, #76645D);
   font-size: 11px;
   line-height: 1.7;
   text-align: center;
@@ -1299,4 +1308,34 @@ body.dark .pricing-page-3,
   .pricing-selection-price {
     font-size: 14px;
   }
+}
+
+/* =========================================
+   FINAL LIGHT MODE COLORS
+========================================= */
+
+html[data-theme="light"] .pricing {
+  --pricing-bg: #FFFFFF;
+  --pricing-card: #F5E7DA;
+  background: #FFFFFF !important;
+}
+
+html[data-theme="light"] .pricing .page-face,
+html[data-theme="light"] .pricing .book-cover {
+  background: #F5E7DA;
+}
+
+/* =========================================
+   FINAL DARK MODE COLORS
+========================================= */
+
+html[data-theme="dark"] .pricing {
+  --pricing-bg: #09090D;
+  --pricing-card: #171513;
+  background: #09090D !important;
+}
+
+html[data-theme="dark"] .pricing .page-face,
+html[data-theme="dark"] .pricing .book-cover {
+  background: #171513;
 }

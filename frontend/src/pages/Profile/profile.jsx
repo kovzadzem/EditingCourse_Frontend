@@ -1197,23 +1197,8 @@ function Profile() {
           )}
         </section>
 
-        {/* ASSIGNMENTS */}
-        {!isAdmin && (
-          <section className="profile-courses profile-assignments-section">
-            <div className="profile-courses-heading">
-              <div>
-                <span className="profile-eyebrow">MY LEARNING</span>
-                <h2>ჩემი დავალებები</h2>
-                <p>
-                  ნახე ადმინისტრატორის მიერ გამოქვეყნებული დავალებები,
-                  გაეცანი ინსტრუქციას და ატვირთე შენი ნამუშევარი.
-                </p>
-              </div>
-            </div>
 
-            <AssignmentCenter mode="student" />
-          </section>
-        )}
+        <AssignmentCenter mode="student" />
       </div>
     </main>
   );

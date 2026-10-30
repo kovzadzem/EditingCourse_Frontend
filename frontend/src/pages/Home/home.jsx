@@ -1010,7 +1010,7 @@ export default function Home() {
 
             <Link
               to="/about"
-              className="შენი-ძველი-className"
+             className="collaboration-cta"
             >
               დაგვიმეგობრდი
             </Link>

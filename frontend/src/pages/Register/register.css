@@ -645,3 +645,182 @@ html[data-theme="light"] .social-btn {
     scroll-behavior: auto !important;
   }
 }
+/* =====================================================
+   EDITOLOGIA — REGISTER PAGE
+   BLACK / WHITE / BURGUNDY
+   COLOR OVERRIDES ONLY
+===================================================== */
+
+/* LIGHT THEME */
+:root {
+  color-scheme: light;
+
+  --primary: #9E2A2B;
+  --primary-hover: #741F25;
+  --primary-light: #f8eeee;
+  --primary-border: #e7c5c5;
+
+  --background: #ffffff;
+  --card: #ffffff;
+  --text: #171717;
+  --text-secondary: #666666;
+  --border: #e2e2e2;
+  --input: #fafafa;
+  --placeholder: #999999;
+
+  --shadow:
+    0 24px 70px rgba(0, 0, 0, 0.07),
+    0 4px 14px rgba(0, 0, 0, 0.03);
+
+  --focus-ring: rgba(158, 42, 43, 0.13);
+}
+
+/* DARK THEME */
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --primary: #c45a5b;
+  --primary-hover: #df7778;
+  --primary-light: #382020;
+  --primary-border: #633333;
+
+  --background: #111111;
+  --card: #1b1b1b;
+  --text: #ffffff;
+  --text-secondary: #b5b5b5;
+  --border: #383838;
+  --input: #151515;
+  --placeholder: #888888;
+
+  --shadow:
+    0 24px 70px rgba(0, 0, 0, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.2);
+
+  --focus-ring: rgba(196, 90, 91, 0.16);
+}
+
+/* PAGE BACKGROUND */
+.register-page {
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(158, 42, 43, 0.07),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 90% 90%,
+      rgba(158, 42, 43, 0.05),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+html[data-theme="dark"] .register-page {
+  background:
+    radial-gradient(
+      ellipse at 15% 10%,
+      rgba(158, 42, 43, 0.15),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 90% 90%,
+      rgba(116, 31, 37, 0.12),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+/* INPUTS */
+.input-box:hover {
+  border-color: var(--primary-border);
+}
+
+.input-box:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+.input-box:focus-within svg {
+  color: var(--primary);
+}
+
+/* PASSWORD VISIBILITY */
+.eye-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* TERMS */
+.terms input {
+  accent-color: var(--primary);
+}
+
+.terms a,
+.login-link a {
+  color: var(--primary);
+}
+
+.terms a:hover,
+.login-link a:hover {
+  color: var(--primary-hover);
+}
+
+/* REGISTER BUTTON */
+.register-btn {
+  background: linear-gradient(135deg, #9E2A2B, #741F25);
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(158, 42, 43, 0.2);
+}
+
+html[data-theme="dark"] .register-btn {
+  background: linear-gradient(135deg, #a83b3d, #741F25);
+  color: #ffffff;
+}
+
+.register-btn:hover {
+  background: linear-gradient(135deg, #852326, #5f191e);
+  box-shadow: 0 9px 22px rgba(158, 42, 43, 0.28);
+}
+
+html[data-theme="dark"] .register-btn:hover {
+  background: linear-gradient(135deg, #bd5153, #852326);
+}
+
+/* SOCIAL BUTTONS */
+.social-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ACCESSIBILITY */
+.register-btn:focus-visible,
+.social-btn:focus-visible {
+  outline-color: var(--primary);
+}
+
+/* LIGHT THEME TEXT */
+html[data-theme="light"] .register-page {
+  color: #171717;
+}
+
+html[data-theme="light"] .register-card,
+html[data-theme="light"] .register-card h1,
+html[data-theme="light"] .input-group label {
+  color: #171717;
+}
+
+html[data-theme="light"] .register-card > p,
+html[data-theme="light"] .terms label,
+html[data-theme="light"] .login-link,
+html[data-theme="light"] .divider p {
+  color: #666666;
+}
+
+html[data-theme="light"] .input-box input {
+  color: #171717;
+}
+
+html[data-theme="light"] .social-btn {
+  color: #171717;
+  background: #ffffff;
+}

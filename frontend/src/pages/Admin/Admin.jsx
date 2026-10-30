@@ -1,5 +1,6 @@
 ﻿
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase";
 import "./Admin.css";
 import AssignmentCenter from "../../components/AssignmentCenter";
@@ -46,6 +47,8 @@ const isValidHttpUrl = (value) => {
 };
 
 export default function Admin() {
+  const navigate = useNavigate();
+
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
   const [batches, setBatches] = useState([]);
@@ -74,6 +77,25 @@ export default function Admin() {
   const notify = (message) => {
     setSuccess(message);
     setError("");
+  };
+
+  // სისტემიდან გასვლა
+
+  const handleLogout = async () => {
+    setError("");
+    setSuccess("");
+
+    const { error: logoutError } = await supabase.auth.signOut();
+
+    if (logoutError) {
+      setError("სისტემიდან გასვლა ვერ მოხერხდა.");
+      return;
+    }
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    navigate("/login", { replace: true });
   };
 
   // მონაცემების ჩატვირთვა
@@ -713,9 +735,24 @@ export default function Admin() {
               სტუდენტები.
             </p>
           </div>
-          <button className="admin-refresh" type="button" onClick={loadData}>
-            განახლება
-          </button>
+
+          <div className="admin-heading-actions">
+            <button
+              className="admin-refresh"
+              type="button"
+              onClick={loadData}
+            >
+              განახლება
+            </button>
+
+            <button
+              className="admin-logout"
+              type="button"
+              onClick={handleLogout}
+            >
+              გასვლა
+            </button>
+          </div>
         </header>
 
         {error && <div className="admin-alert admin-alert-error">{error}</div>}

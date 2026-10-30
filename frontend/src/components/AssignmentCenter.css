@@ -2045,3 +2045,431 @@ html[data-theme="dark"] .assignment-loading-indicator {
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================================
+   EDITOLOGIA — ASSIGNMENT CENTER
+   BLACK / WHITE / BURGUNDY / GOLD
+   COLOR OVERRIDES ONLY
+========================================================= */
+
+/* LIGHT THEME */
+.assignment-center {
+  --ac-bg: #ffffff;
+  --ac-surface: #ffffff;
+  --ac-surface-soft: #f8f7f5;
+  --ac-text: #171717;
+  --ac-text-secondary: #666666;
+  --ac-muted: #929292;
+  --ac-border: #e5e1dc;
+
+  --ac-purple: #9E2A2B;
+  --ac-purple-dark: #741F25;
+  --ac-purple-soft: #f8eeee;
+
+  --ac-green: #16804a;
+  --ac-green-soft: #e8f8ee;
+  --ac-blue: #285bb5;
+  --ac-blue-soft: #eaf2ff;
+  --ac-orange: #a85b13;
+  --ac-orange-soft: #fff2e3;
+  --ac-red: #b93838;
+  --ac-red-soft: #fff0f0;
+}
+
+/* GOLD DETAILS */
+.assignment-eyebrow,
+.assignment-card__meta > span > span,
+.assignment-file-link__icon,
+.assignment-file-link__action {
+  color: #b38a3e;
+}
+
+.assignment-overview-card--accent {
+  border-color: #ead9b5;
+  background: #fcf8ef;
+}
+
+.assignment-overview-card--accent > strong {
+  color: #a77b2f;
+}
+
+.assignment-section-count {
+  border-color: #eadfc9;
+}
+
+.assignment-course-icon {
+  color: #b38a3e;
+}
+
+/* FOCUS */
+.assignment-center button:focus-visible,
+.assignment-center input:focus-visible,
+.assignment-center textarea:focus-visible,
+.assignment-center select:focus-visible,
+.assignment-center a:focus-visible {
+  outline-color: rgba(158, 42, 43, 0.3);
+}
+
+/* PRIMARY BUTTONS */
+.assignment-primary-button {
+  color: #ffffff;
+  background: #9E2A2B;
+  box-shadow: 0 4px 12px rgba(158, 42, 43, 0.13);
+}
+
+.assignment-primary-button:hover:not(:disabled) {
+  background: #741F25;
+  box-shadow: 0 6px 18px rgba(158, 42, 43, 0.2);
+}
+
+/* SECONDARY BUTTONS */
+.assignment-secondary-button:hover:not(:disabled),
+.assignment-icon-button:hover {
+  color: #9E2A2B;
+  border-color: #d8b8a0;
+  background: #f8eeee;
+}
+
+/* DANGER BUTTON */
+.assignment-danger-button {
+  color: #b93838;
+}
+
+/* OVERVIEW */
+.assignment-overview-card:hover {
+  border-color: #c9a85e;
+}
+
+.assignment-overview-card--accent:hover {
+  border-color: #c9a85e;
+}
+
+/* CARDS */
+.assignment-card:hover,
+.assignment-admin-submission:hover {
+  border-color: #c9a85e;
+}
+
+.assignment-card--expanded {
+  border-color: #b38a3e;
+  box-shadow: 0 8px 30px rgba(48, 26, 20, 0.055);
+}
+
+/* CARD CHEVRON */
+.assignment-card__chevron.is-open {
+  color: #a77b2f;
+  background: #fcf8ef;
+}
+
+/* ADMIN ACTIONS */
+.assignment-card__admin-actions > button:not(.assignment-danger-button):hover {
+  color: #9E2A2B;
+  border-color: #c9a85e;
+  background: #fcf8ef;
+}
+
+/* PUBLICATION */
+.assignment-publication.is-published {
+  color: #216b42;
+  background: #e9f8ef;
+}
+
+.assignment-publication.is-hidden {
+  color: #856126;
+  background: #fcf5e8;
+}
+
+/* STATUS BADGES */
+/* სტატუსების განსხვავებული ფერები შენარჩუნებულია */
+.assignment-status--reviewed {
+  color: #856126;
+  background: #fcf5e8;
+  border-color: #ead9b5;
+}
+
+/* INSTRUCTIONS */
+.assignment-instructions {
+  border-color: #eadfc9;
+  background: #fcfaf5;
+}
+
+/* FILE LINKS */
+.assignment-file-link:hover {
+  border-color: #c9a85e;
+  background: #fcf8ef;
+}
+
+.assignment-file-link__icon {
+  color: #a77b2f;
+  background: #fcf5e8;
+}
+
+.assignment-external-link {
+  color: #9E2A2B;
+}
+
+.assignment-external-link:hover {
+  color: #741F25;
+}
+
+/* SUBMISSION FORM */
+.assignment-submit {
+  border-color: #eadfc9;
+  background: #fcfaf5;
+}
+
+.assignment-field input:focus,
+.assignment-field textarea:focus,
+.assignment-field select:focus {
+  border-color: #9E2A2B;
+  box-shadow: 0 0 0 3px rgba(158, 42, 43, 0.08);
+}
+
+.assignment-checkbox > input {
+  accent-color: #9E2A2B;
+}
+
+/* GRADE */
+.assignment-grade {
+  border-color: #ead9b5;
+  background: #fcf8ef;
+}
+
+.assignment-grade > span {
+  color: #786747;
+}
+
+.assignment-grade > strong {
+  color: #a77b2f;
+}
+
+.assignment-grade > strong > small {
+  color: #a68b5d;
+}
+
+/* FEEDBACK */
+.assignment-feedback-item {
+  border-color: #eadfc9;
+  background: #fcfaf5;
+}
+
+/* ADMIN AVATAR */
+.assignment-admin-submission__avatar {
+  border-color: #ead9b5;
+  color: #a77b2f;
+  background: #fcf8ef;
+}
+
+/* REVIEW EDITOR */
+.assignment-review-editor {
+  border-color: #eadfc9;
+  background: #fcfaf5;
+}
+
+/* EMPTY STATES */
+.assignment-empty {
+  border-color: #dfd5c5;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.assignment-empty__icon {
+  color: #a77b2f;
+  background: #fcf5e8;
+}
+
+/* LOADING */
+.assignment-loading-indicator {
+  border-color: #eadfc9;
+  border-top-color: #9E2A2B;
+}
+
+/* =========================================================
+   DARK THEME
+========================================================= */
+
+html[data-theme="dark"] .assignment-center {
+  --ac-bg: #111111;
+  --ac-surface: #1b1b1b;
+  --ac-surface-soft: #222222;
+  --ac-text: #ffffff;
+  --ac-text-secondary: #b5b5b5;
+  --ac-muted: #929292;
+  --ac-border: #383838;
+
+  --ac-purple: #c45a5b;
+  --ac-purple-dark: #df7778;
+  --ac-purple-soft: #382020;
+
+  --ac-green: #8ed7aa;
+  --ac-green-soft: #20372a;
+  --ac-blue: #a3c2ff;
+  --ac-blue-soft: #222f48;
+  --ac-orange: #f2bd83;
+  --ac-orange-soft: #3b2d20;
+  --ac-red: #ffaaaa;
+  --ac-red-soft: #3c2326;
+}
+
+/* DARK GOLD DETAILS */
+html[data-theme="dark"] .assignment-eyebrow,
+html[data-theme="dark"] .assignment-card__meta > span > span,
+html[data-theme="dark"] .assignment-file-link__icon,
+html[data-theme="dark"] .assignment-file-link__action {
+  color: #d2ad65;
+}
+
+html[data-theme="dark"] .assignment-overview-card--accent {
+  background: #2b251b;
+  border-color: #5b492a;
+}
+
+html[data-theme="dark"] .assignment-overview-card--accent > strong {
+  color: #e0bd79;
+}
+
+html[data-theme="dark"] .assignment-section-count {
+  border-color: #5b492a;
+}
+
+/* DARK PRIMARY BUTTONS */
+html[data-theme="dark"] .assignment-primary-button {
+  color: #ffffff;
+  background: #9E2A2B;
+}
+
+html[data-theme="dark"] .assignment-primary-button:hover:not(:disabled) {
+  background: #741F25;
+}
+
+/* DARK SECONDARY BUTTONS */
+html[data-theme="dark"] .assignment-secondary-button:hover:not(:disabled),
+html[data-theme="dark"] .assignment-icon-button:hover {
+  color: #e0a0a0;
+  background: #382020;
+  border-color: #754044;
+}
+
+/* DARK CARDS */
+html[data-theme="dark"] .assignment-card:hover,
+html[data-theme="dark"] .assignment-card--expanded,
+html[data-theme="dark"] .assignment-admin-submission:hover {
+  border-color: #80663b;
+}
+
+/* DARK CHEVRON */
+html[data-theme="dark"] .assignment-card__chevron.is-open {
+  color: #e0bd79;
+  background: #382f20;
+}
+
+/* DARK ADMIN ACTIONS */
+html[data-theme="dark"] .assignment-card__admin-actions > button:not(.assignment-danger-button):hover {
+  color: #e0a0a0;
+  border-color: #754044;
+  background: #382020;
+}
+
+/* DARK PUBLICATION */
+html[data-theme="dark"] .assignment-publication.is-hidden {
+  color: #f2d18d;
+  background: #3b3020;
+}
+
+/* DARK REVIEWED STATUS */
+html[data-theme="dark"] .assignment-status--reviewed {
+  color: #e0bd79;
+  background: #382f20;
+  border-color: #5b492a;
+}
+
+/* DARK INSTRUCTIONS */
+html[data-theme="dark"] .assignment-instructions {
+  background: #211b1b;
+  border-color: #503637;
+}
+
+/* DARK FILE LINKS */
+html[data-theme="dark"] .assignment-file-link:hover {
+  background: #382020;
+  border-color: #754044;
+}
+
+html[data-theme="dark"] .assignment-file-link__icon {
+  color: #e0bd79;
+  background: #382f20;
+}
+
+/* DARK SUBMISSION */
+html[data-theme="dark"] .assignment-submit,
+html[data-theme="dark"] .assignment-review-editor {
+  background: #211b1b;
+  border-color: #503637;
+}
+
+/* DARK INPUTS */
+html[data-theme="dark"] .assignment-field input,
+html[data-theme="dark"] .assignment-field textarea,
+html[data-theme="dark"] .assignment-field select,
+html[data-theme="dark"] .assignment-search {
+  color: var(--ac-text);
+  background: #151515;
+  border-color: #454545;
+}
+
+html[data-theme="dark"] .assignment-field input:focus,
+html[data-theme="dark"] .assignment-field textarea:focus,
+html[data-theme="dark"] .assignment-field select:focus {
+  border-color: #c45a5b;
+  box-shadow: 0 0 0 3px rgba(196, 90, 91, 0.1);
+}
+
+/* DARK GRADE */
+html[data-theme="dark"] .assignment-grade {
+  background: #2b251b;
+  border-color: #5b492a;
+}
+
+html[data-theme="dark"] .assignment-grade > span {
+  color: #d5c29c;
+}
+
+html[data-theme="dark"] .assignment-grade > strong {
+  color: #e0bd79;
+}
+
+html[data-theme="dark"] .assignment-grade > strong > small {
+  color: #bca477;
+}
+
+/* DARK FEEDBACK */
+html[data-theme="dark"] .assignment-feedback-item {
+  background: #241e1e;
+  border-color: #503637;
+}
+
+/* DARK ADMIN AVATAR */
+html[data-theme="dark"] .assignment-admin-submission__avatar {
+  color: #e0bd79;
+  background: #382f20;
+  border-color: #5b492a;
+}
+
+/* DARK EMPTY */
+html[data-theme="dark"] .assignment-empty__icon {
+  color: #e0bd79;
+  background: #382f20;
+}
+
+/* DARK LOADING */
+html[data-theme="dark"] .assignment-loading-indicator {
+  border-color: #454545;
+  border-top-color: #c45a5b;
+}
+
+/* DARK FOCUS */
+html[data-theme="dark"] .assignment-center button:focus-visible,
+html[data-theme="dark"] .assignment-center input:focus-visible,
+html[data-theme="dark"] .assignment-center textarea:focus-visible,
+html[data-theme="dark"] .assignment-center select:focus-visible,
+html[data-theme="dark"] .assignment-center a:focus-visible {
+  outline-color: rgba(196, 90, 91, 0.4);
+}

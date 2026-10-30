@@ -267,15 +267,40 @@ html[data-theme="light"] .footer {
 /* =====================================================
    POLICY MODAL — THEME VARIABLES
 ===================================================== */
+/* DARK MODE — PURE BLACK */
 
-.footer-policy-overlay {
-  --policy-bg: #ffffff;
-  --policy-surface: #f8f6fb;
-  --policy-text: #201a29;
-  --policy-muted: #686171;
-  --policy-line: rgba(35, 20, 50, 0.1);
-  --policy-heading: #7130bf;
-  --policy-overlay-bg: rgba(20, 12, 29, 0.6);
+html[data-theme="dark"] .footer {
+  --footer-bg: #000000;
+  --footer-surface: #000000;
+  --footer-text: #ffffff;
+  --footer-muted: #b5b5b5;
+  --footer-line: rgba(255, 255, 255, 0.13);
+  --footer-purple: #9E2A2B;
+  --footer-purple-hover: #741F25;
+  --footer-link-hover: #c45a5b;
+
+  background: #000000 !important;
+}
+
+/* POLICY MODAL — DARK */
+
+html[data-theme="dark"] .footer-policy-overlay {
+  --policy-bg: #000000;
+  --policy-surface: #000000;
+  --policy-text: #ffffff;
+  --policy-muted: #b5b5b5;
+  --policy-line: rgba(255, 255, 255, 0.12);
+  --policy-heading: #c45a5b;
+  --policy-overlay-bg: rgba(0, 0, 0, 0.85);
+}
+
+html[data-theme="dark"] .footer-policy-modal {
+  background: #000000;
+}
+
+html[data-theme="dark"] .footer-policy-header,
+html[data-theme="dark"] .footer-policy-footer {
+  background: #000000;
 
   position: fixed;
   inset: 0;
@@ -659,4 +684,97 @@ html[data-theme="light"] .footer-policy-overlay {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+/* =====================================================
+   EDITOLOGIA FOOTER — BLACK / WHITE / BURGUNDY
+   COLORS ONLY
+===================================================== */
+
+/* LIGHT MODE */
+
+html[data-theme="light"] .footer {
+  --footer-bg: #ffffff;
+  --footer-surface: #f7f7f7;
+  --footer-text: #171717;
+  --footer-muted: #666666;
+  --footer-line: rgba(0, 0, 0, 0.12);
+  --footer-purple: #9E2A2B;
+  --footer-purple-hover: #741F25;
+  --footer-link-hover: #9E2A2B;
+}
+
+/* DARK MODE */
+
+html[data-theme="dark"] .footer {
+  --footer-bg: #111111;
+  --footer-surface: #1b1b1b;
+  --footer-text: #ffffff;
+  --footer-muted: #b5b5b5;
+  --footer-line: rgba(255, 255, 255, 0.13);
+  --footer-purple: #9E2A2B;
+  --footer-purple-hover: #741F25;
+  --footer-link-hover: #c45a5b;
+}
+
+/* LOGO */
+
+html[data-theme="light"] .footer-logo-main {
+  color: #171717;
+}
+
+html[data-theme="light"] .footer-logo-accent {
+  color: #9E2A2B;
+}
+
+html[data-theme="dark"] .footer-logo-main {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .footer-logo-accent {
+  color: #9E2A2B;
+}
+
+/* POLICY MODAL — LIGHT */
+
+html[data-theme="light"] .footer-policy-overlay {
+  --policy-bg: #ffffff;
+  --policy-surface: #f7f7f7;
+  --policy-text: #171717;
+  --policy-muted: #666666;
+  --policy-line: rgba(0, 0, 0, 0.12);
+  --policy-heading: #9E2A2B;
+  --policy-overlay-bg: rgba(0, 0, 0, 0.6);
+}
+
+/* POLICY MODAL — DARK */
+
+html[data-theme="dark"] .footer-policy-overlay {
+  --policy-bg: #151515;
+  --policy-surface: #1e1e1e;
+  --policy-text: #ffffff;
+  --policy-muted: #b5b5b5;
+  --policy-line: rgba(255, 255, 255, 0.12);
+  --policy-heading: #c45a5b;
+  --policy-overlay-bg: rgba(0, 0, 0, 0.8);
+}
+
+/* POLICY BUTTONS */
+
+html[data-theme="light"] .footer-policy-done {
+  color: #9E2A2B;
+  border-color: rgba(158, 42, 43, 0.35);
+  background: rgba(158, 42, 43, 0.07);
+}
+
+html[data-theme="dark"] .footer-policy-done {
+  color: #ffffff;
+  border-color: #9E2A2B;
+  background: #9E2A2B;
+}
+
+html[data-theme="light"] .footer-policy-done:hover,
+html[data-theme="dark"] .footer-policy-done:hover {
+  color: #ffffff;
+  background: #741F25;
+  border-color: #741F25;
 }

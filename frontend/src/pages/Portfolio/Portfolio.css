@@ -2128,4 +2128,803 @@ html[data-theme="dark"] .portfolio-page .reference-works {
     width: 100%;
     max-height: calc(100dvh - 58px);
   }
+}/* =========================================
+   EDITOLOGIA PORTFOLIO — NEW COLOR PALETTE
+   Cream / Burgundy / Gold
+========================================= */
+
+/* LIGHT MODE */
+.portfolio-page {
+  --portfolio-purple: #9E2A2B;
+  --portfolio-purple-dark: #7F2022;
+
+  --portfolio-text: #29201D;
+  --portfolio-muted: #77665D;
+
+  --portfolio-border: #E8D9BD;
+  --portfolio-bg: #FFFCF4;
+  --portfolio-card: #FFFFFF;
+  --portfolio-soft: #FFF3B0;
+  --portfolio-line: #EADFCB;
+}
+
+/* ძირითადი ფონი */
+.portfolio-page .portfolio-hero,
+.portfolio-page .portfolio-brands,
+.portfolio-page .portfolio-works {
+  background-color: #FFFCF4 !important;
+  color: #29201D;
+}
+
+/* Hero */
+.portfolio-page .portfolio-hero {
+  background:
+    radial-gradient(
+      circle at 80% 45%,
+      rgba(224, 159, 62, 0.13),
+      transparent 34%
+    ),
+    #FFFCF4 !important;
+}
+
+.portfolio-page .portfolio-hero h1,
+.portfolio-page .portfolio-works-heading h2,
+.portfolio-page .brands-heading h2 {
+  color: #29201D;
+}
+
+.portfolio-page .portfolio-hero h1 span,
+.portfolio-page .portfolio-works-heading h2 > span {
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-eyebrow,
+.portfolio-page .portfolio-section-kicker,
+.portfolio-page .portfolio-work-category {
+  color: #9E2A2B;
+}
+
+.portfolio-page .eyebrow-dot {
+  background: #E09F3E;
+  box-shadow: 0 0 0 5px rgba(224, 159, 62, 0.15);
+}
+
+.portfolio-page .portfolio-hero-description,
+.portfolio-page .brands-heading p,
+.portfolio-page .portfolio-works-heading p,
+.portfolio-page .portfolio-hero-stats span {
+  color: #77665D;
+}
+
+/* მთავარი ღილაკები */
+.portfolio-page .portfolio-primary-btn {
+  background: #9E2A2B;
+  border-color: #9E2A2B;
+  color: #FFFFFF;
+}
+
+.portfolio-page .portfolio-primary-btn:hover {
+  background: #7F2022;
+  border-color: #7F2022;
+  box-shadow: 0 9px 24px rgba(158, 42, 43, 0.2);
+}
+
+/* სტატისტიკა */
+.portfolio-page .portfolio-hero-stats {
+  border-color: #EADFCB;
+}
+
+.portfolio-page .portfolio-hero-stats strong {
+  color: #E09F3E;
+}
+
+/* Hero ვიდეო */
+.portfolio-page .hero-video-card {
+  background: #FFF3B0;
+  border-color: rgba(158, 42, 43, 0.45);
+  box-shadow:
+    0 22px 60px rgba(80, 40, 20, 0.10),
+    0 0 0 7px rgba(224, 159, 62, 0.07);
+}
+
+.portfolio-page .hero-background-video {
+  background: #FFF3B0;
+}
+
+.portfolio-page .hero-visual-glow {
+  background: rgba(224, 159, 62, 0.18);
+}
+
+.portfolio-page .hero-play-button {
+  background: rgba(158, 42, 43, 0.9);
+}
+
+.portfolio-page .hero-video-top-tag > span {
+  background: #E09F3E;
+}
+
+.portfolio-page .hero-video-bottom small {
+  color: #FFE0A3;
+}
+
+/* მცურავი ბარათები */
+.portfolio-page .hero-floating-label {
+  background: #FFFFFF;
+  border-color: #E8D9BD;
+}
+
+.portfolio-page .hero-label-icon,
+.portfolio-page .hero-label-check {
+  background: #FFF3B0;
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-note-icon {
+  border-color: #E8D9BD;
+  color: #9E2A2B;
+}
+
+/* ბრენდების სექცია */
+.portfolio-page .portfolio-brands {
+  border-color: #EADFCB;
+}
+
+.portfolio-page .brand-item {
+  background: #FFFFFF;
+  border-color: #E8D9BD;
+}
+
+.portfolio-page .brand-item:hover {
+  border-color: #E09F3E;
+  box-shadow: 0 5px 18px rgba(224, 159, 62, 0.12);
+}
+
+/* ტაბები */
+.portfolio-page .portfolio-tabs {
+  background: #FFF3B0;
+  border-color: #E8D9BD;
+}
+
+.portfolio-page .portfolio-tabs button {
+  color: #77665D;
+}
+
+.portfolio-page .portfolio-tabs button.active {
+  background: #FFFFFF;
+  border-color: #E09F3E;
+  color: #9E2A2B;
+}
+
+/* ვიდეოს ბარათები */
+.portfolio-page .portfolio-work-card,
+.portfolio-page .portfolio-work-info {
+  background: #FFFFFF;
+  border-color: #E8D9BD;
+}
+
+.portfolio-page .portfolio-work-card:hover {
+  border-color: #E09F3E;
+  box-shadow: 0 14px 36px rgba(80, 40, 20, 0.09);
+}
+
+.portfolio-page .portfolio-video-preview {
+  background: #FFF3B0;
+  border-color: #EADFCB;
+}
+
+.portfolio-page .portfolio-video-preview > video {
+  background: #FFF3B0;
+}
+
+.portfolio-page .portfolio-work-info h3 {
+  color: #29201D;
+}
+
+.portfolio-page .video-card-number,
+.portfolio-page .video-card-open {
+  background: #FFFCF4;
+  border-color: #E8D9BD;
+  color: #9E2A2B;
+}
+
+.portfolio-page .video-card-play {
+  border-color: rgba(158, 42, 43, 0.4);
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-work-card:hover .video-card-play {
+  background: #9E2A2B;
+  color: #FFFFFF;
+}
+
+.portfolio-page .work-info-arrow {
+  border-color: #E8D9BD;
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-work-card:hover .work-info-arrow {
+  background: #9E2A2B;
+  border-color: #9E2A2B;
+  color: #FFFFFF;
+}
+
+/* მოდალი */
+.portfolio-page .portfolio-modal-content {
+  background: #FFFCF4;
+  border-color: #E09F3E;
+}
+
+.portfolio-page .portfolio-modal-header h3 {
+  color: #29201D;
+}
+
+.portfolio-page .portfolio-modal-header > div > span {
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-modal-close {
+  background: #FFF3B0;
+  border-color: #E8D9BD;
+  color: #9E2A2B;
+}
+
+.portfolio-page .portfolio-modal-close:hover {
+  background: #9E2A2B;
+  color: #FFFFFF;
+}
+
+/* =========================================
+   REFERENCE CARDS — LIGHT MODE
+========================================= */
+
+.portfolio-page .reference-works {
+  --reference-bg: #FFF3B0;
+  --reference-card: #FFFCF4;
+  --reference-border: #E8D9BD;
+  --reference-white: #29201D;
+  --reference-muted: #77665D;
+
+  background: var(--reference-bg) !important;
+  color: var(--reference-white);
+}
+
+.portfolio-page .reference-project-card {
+  background: var(--reference-card);
+  border-color: var(--reference-border);
+  color: var(--reference-white);
+  box-shadow: 0 4px 18px rgba(80, 40, 20, 0.04);
+}
+
+.portfolio-page .reference-project-card:hover {
+  background: #FFFFFF;
+  border-color: #E09F3E;
+}
+
+.portfolio-page .reference-card-number {
+  background: #9E2A2B;
+  color: #FFFFFF;
+}
+
+.portfolio-page .reference-card-category {
+  color: #77665D;
+}
+
+.portfolio-page .reference-editologia-logo,
+.portfolio-page .reference-production-logo {
+  color: #9E2A2B;
+}
+
+.portfolio-page .reference-cc-logo {
+  color: #9E2A2B;
+  border-color: #9E2A2B;
+}
+
+.portfolio-page .reference-card-play {
+  background: #FFF3B0;
+  border-color: #E8D9BD;
+  color: #9E2A2B;
+}
+
+.portfolio-page .reference-filters button {
+  background: transparent;
+  border-color: #D9C59F;
+  color: #77665D;
+}
+
+.portfolio-page .reference-filters button.active {
+  background: #9E2A2B !important;
+  border-color: #9E2A2B !important;
+  color: #FFFFFF !important;
+}
+
+.portfolio-page .reference-filters button:hover:not(.active) {
+  border-color: #9E2A2B;
+  color: #9E2A2B;
+}
+
+.portfolio-page .reference-video-placeholder {
+  background: #FFF3B0;
+  color: #29201D;
+}
+
+.portfolio-page .reference-video-placeholder span {
+  color: #77665D;
+}
+
+/* =========================================
+   DARK MODE — BLACK / CHAMPAGNE / GOLD
+========================================= */
+
+html[data-theme="dark"] .portfolio-page,
+html.dark .portfolio-page,
+body.dark .portfolio-page,
+[data-theme="dark"] .portfolio-page {
+  --portfolio-bg: #111111;
+  --portfolio-card: #1A1816;
+  --portfolio-soft: #24201C;
+  --portfolio-text: #F4EBDD;
+  --portfolio-muted: #B7A99A;
+  --portfolio-border: #40352C;
+  --portfolio-line: #332A23;
+
+  background: #111111 !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-hero,
+html[data-theme="dark"] .portfolio-page .portfolio-brands,
+html[data-theme="dark"] .portfolio-page .portfolio-works,
+html.dark .portfolio-page .portfolio-hero,
+html.dark .portfolio-page .portfolio-brands,
+html.dark .portfolio-page .portfolio-works,
+body.dark .portfolio-page .portfolio-hero,
+body.dark .portfolio-page .portfolio-brands,
+body.dark .portfolio-page .portfolio-works,
+[data-theme="dark"] .portfolio-page .portfolio-hero,
+[data-theme="dark"] .portfolio-page .portfolio-brands,
+[data-theme="dark"] .portfolio-page .portfolio-works {
+  background: #111111 !important;
+  color: #F4EBDD !important;
+  border-color: #332A23 !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-hero {
+  background:
+    radial-gradient(
+      circle at 80% 45%,
+      rgba(224, 159, 62, 0.10),
+      transparent 34%
+    ),
+    #111111 !important;
+}
+
+/* Dark headings */
+html[data-theme="dark"] .portfolio-page h1,
+html[data-theme="dark"] .portfolio-page h2,
+html[data-theme="dark"] .portfolio-page h3,
+html.dark .portfolio-page h1,
+html.dark .portfolio-page h2,
+html.dark .portfolio-page h3,
+body.dark .portfolio-page h1,
+body.dark .portfolio-page h2,
+body.dark .portfolio-page h3,
+[data-theme="dark"] .portfolio-page h1,
+[data-theme="dark"] .portfolio-page h2,
+[data-theme="dark"] .portfolio-page h3 {
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-hero h1 span,
+html[data-theme="dark"] .portfolio-page .portfolio-works-heading h2 > span,
+html.dark .portfolio-page .portfolio-hero h1 span,
+html.dark .portfolio-page .portfolio-works-heading h2 > span,
+body.dark .portfolio-page .portfolio-hero h1 span,
+body.dark .portfolio-page .portfolio-works-heading h2 > span,
+[data-theme="dark"] .portfolio-page .portfolio-hero h1 span,
+[data-theme="dark"] .portfolio-page .portfolio-works-heading h2 > span {
+  color: #E09F3E !important;
+}
+
+/* Dark descriptions */
+html[data-theme="dark"] .portfolio-page p,
+html[data-theme="dark"] .portfolio-page .portfolio-hero-stats span,
+html[data-theme="dark"] .portfolio-page .hero-floating-label small,
+html.dark .portfolio-page p,
+body.dark .portfolio-page p,
+[data-theme="dark"] .portfolio-page p {
+  color: #B7A99A !important;
+}
+
+/* Dark accents */
+html[data-theme="dark"] .portfolio-page .portfolio-eyebrow,
+html[data-theme="dark"] .portfolio-page .portfolio-section-kicker,
+html[data-theme="dark"] .portfolio-page .portfolio-work-category,
+html.dark .portfolio-page .portfolio-eyebrow,
+html.dark .portfolio-page .portfolio-section-kicker,
+html.dark .portfolio-page .portfolio-work-category,
+body.dark .portfolio-page .portfolio-eyebrow,
+body.dark .portfolio-page .portfolio-section-kicker,
+body.dark .portfolio-page .portfolio-work-category,
+[data-theme="dark"] .portfolio-page .portfolio-eyebrow,
+[data-theme="dark"] .portfolio-page .portfolio-section-kicker,
+[data-theme="dark"] .portfolio-page .portfolio-work-category {
+  color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-primary-btn,
+html.dark .portfolio-page .portfolio-primary-btn,
+body.dark .portfolio-page .portfolio-primary-btn,
+[data-theme="dark"] .portfolio-page .portfolio-primary-btn {
+  background: #9E2A2B;
+  border-color: #9E2A2B;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-primary-btn:hover,
+html.dark .portfolio-page .portfolio-primary-btn:hover,
+body.dark .portfolio-page .portfolio-primary-btn:hover,
+[data-theme="dark"] .portfolio-page .portfolio-primary-btn:hover {
+  background: #7F2022;
+  border-color: #7F2022;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-hero-stats strong,
+html.dark .portfolio-page .portfolio-hero-stats strong,
+body.dark .portfolio-page .portfolio-hero-stats strong,
+[data-theme="dark"] .portfolio-page .portfolio-hero-stats strong {
+  color: #E09F3E !important;
+}
+
+/* Dark cards */
+html[data-theme="dark"] .portfolio-page .brand-item,
+html[data-theme="dark"] .portfolio-page .portfolio-work-card,
+html[data-theme="dark"] .portfolio-page .portfolio-work-info,
+html.dark .portfolio-page .brand-item,
+html.dark .portfolio-page .portfolio-work-card,
+html.dark .portfolio-page .portfolio-work-info,
+body.dark .portfolio-page .brand-item,
+body.dark .portfolio-page .portfolio-work-card,
+body.dark .portfolio-page .portfolio-work-info,
+[data-theme="dark"] .portfolio-page .brand-item,
+[data-theme="dark"] .portfolio-page .portfolio-work-card,
+[data-theme="dark"] .portfolio-page .portfolio-work-info {
+  background: #1A1816 !important;
+  border-color: #40352C !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-work-info h3,
+html.dark .portfolio-page .portfolio-work-info h3,
+body.dark .portfolio-page .portfolio-work-info h3,
+[data-theme="dark"] .portfolio-page .portfolio-work-info h3 {
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-tabs,
+html.dark .portfolio-page .portfolio-tabs,
+body.dark .portfolio-page .portfolio-tabs,
+[data-theme="dark"] .portfolio-page .portfolio-tabs {
+  background: #1A1816 !important;
+  border-color: #40352C !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-tabs button {
+  color: #B7A99A;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-tabs button.active,
+html.dark .portfolio-page .portfolio-tabs button.active,
+body.dark .portfolio-page .portfolio-tabs button.active,
+[data-theme="dark"] .portfolio-page .portfolio-tabs button.active {
+  background: #30251D !important;
+  border-color: #E09F3E !important;
+  color: #E09F3E !important;
+}
+
+/* Dark floating cards */
+html[data-theme="dark"] .portfolio-page .hero-floating-label,
+html.dark .portfolio-page .hero-floating-label,
+body.dark .portfolio-page .hero-floating-label,
+[data-theme="dark"] .portfolio-page .hero-floating-label {
+  background: #1A1816 !important;
+  border-color: #40352C !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .hero-label-icon,
+html[data-theme="dark"] .portfolio-page .hero-label-check,
+html.dark .portfolio-page .hero-label-icon,
+html.dark .portfolio-page .hero-label-check,
+body.dark .portfolio-page .hero-label-icon,
+body.dark .portfolio-page .hero-label-check,
+[data-theme="dark"] .portfolio-page .hero-label-icon,
+[data-theme="dark"] .portfolio-page .hero-label-check {
+  background: #30251D !important;
+  color: #E09F3E !important;
+}
+
+/* Dark video controls */
+html[data-theme="dark"] .portfolio-page .video-card-number,
+html[data-theme="dark"] .portfolio-page .video-card-open,
+html.dark .portfolio-page .video-card-number,
+html.dark .portfolio-page .video-card-open,
+body.dark .portfolio-page .video-card-number,
+body.dark .portfolio-page .video-card-open,
+[data-theme="dark"] .portfolio-page .video-card-number,
+[data-theme="dark"] .portfolio-page .video-card-open {
+  background: #30251D !important;
+  border-color: #59432D !important;
+  color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .video-card-play {
+  background: #F4EBDD;
+  color: #9E2A2B;
+  border-color: #E09F3E;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-work-card:hover .video-card-play {
+  background: #9E2A2B;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .portfolio-page .work-info-arrow {
+  border-color: #40352C;
+  color: #E09F3E;
+}
+
+/* Dark reference cards */
+html[data-theme="dark"] .portfolio-page .reference-works,
+html.dark .portfolio-page .reference-works,
+body.dark .portfolio-page .reference-works,
+[data-theme="dark"] .portfolio-page .reference-works {
+  --reference-bg: #111111;
+  --reference-card: #1A1816;
+  --reference-border: #40352C;
+  --reference-white: #F4EBDD;
+  --reference-muted: #B7A99A;
+
+  background: #111111 !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-project-card,
+html.dark .portfolio-page .reference-project-card,
+body.dark .portfolio-page .reference-project-card,
+[data-theme="dark"] .portfolio-page .reference-project-card {
+  background: #1A1816 !important;
+  border-color: #40352C !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-project-card:hover {
+  background: #24201C !important;
+  border-color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-card-number {
+  background: #30251D !important;
+  color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-card-category {
+  color: #B7A99A !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-editologia-logo,
+html[data-theme="dark"] .portfolio-page .reference-production-logo,
+html.dark .portfolio-page .reference-editologia-logo,
+html.dark .portfolio-page .reference-production-logo,
+body.dark .portfolio-page .reference-editologia-logo,
+body.dark .portfolio-page .reference-production-logo,
+[data-theme="dark"] .portfolio-page .reference-editologia-logo,
+[data-theme="dark"] .portfolio-page .reference-production-logo {
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-cc-logo {
+  color: #E09F3E !important;
+  border-color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-card-play {
+  background: #30251D !important;
+  border-color: #59432D !important;
+  color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-filters button {
+  border-color: #40352C;
+  color: #B7A99A;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-filters button.active {
+  background: #9E2A2B !important;
+  border-color: #9E2A2B !important;
+  color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-video-placeholder {
+  background: #1A1816 !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .reference-video-placeholder span {
+  color: #B7A99A !important;
+}
+
+/* Dark modal */
+html[data-theme="dark"] .portfolio-page .portfolio-modal-content {
+  background: #171411 !important;
+  border-color: #59432D !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-modal-header {
+  background: #171411 !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-modal-header h3 {
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-modal-header > div > span {
+  color: #E09F3E !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-modal-close {
+  background: #30251D !important;
+  border-color: #59432D !important;
+  color: #F4EBDD !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-modal-close:hover {
+  background: #9E2A2B !important;
+  border-color: #9E2A2B !important;
+}
+
+/* Focus */
+.portfolio-page .reference-project-card:focus-visible,
+.portfolio-page .reference-filters button:focus-visible {
+  outline-color: #E09F3E;
+}/* LIGHT MODE — PURE WHITE BACKGROUND */
+
+.portfolio-page {
+  --portfolio-bg: #FFFFFF;
+  --portfolio-card: #FFFFFF;
+  --portfolio-soft: #FFF9EF;
+  background: #FFFFFF !important;
+}
+
+.portfolio-page .portfolio-hero,
+.portfolio-page .portfolio-brands,
+.portfolio-page .portfolio-works {
+  background: #FFFFFF !important;
+}
+
+/* Reference section */
+.portfolio-page .reference-works {
+  --reference-bg: #FFFFFF;
+  --reference-card: #FFFFFF;
+  background: #FFFFFF !important;
+}
+
+.portfolio-page .reference-project-card {
+  background: #FFFFFF !important;
+}
+
+/* Dark Mode არ იცვლება */
+html[data-theme="dark"] .portfolio-page,
+html.dark .portfolio-page,
+body.dark .portfolio-page,
+[data-theme="dark"] .portfolio-page {
+  background: #111111 !important;
+}
+
+html[data-theme="dark"] .portfolio-page .portfolio-hero,
+html[data-theme="dark"] .portfolio-page .portfolio-brands,
+html[data-theme="dark"] .portfolio-page .portfolio-works,
+html[data-theme="dark"] .portfolio-page .reference-works {
+  background: #111111 !important;
+}
+/* CC LOGO — SAME COLOR IN LIGHT AND DARK MODE */
+
+.portfolio-page .reference-logo-3 .reference-cc-logo,
+html[data-theme="dark"] .portfolio-page .reference-logo-3 .reference-cc-logo,
+html.dark .portfolio-page .reference-logo-3 .reference-cc-logo,
+body.dark .portfolio-page .reference-logo-3 .reference-cc-logo,
+[data-theme="dark"] .portfolio-page .reference-logo-3 .reference-cc-logo {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 7px solid #FFFFFF !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}/* LIGHT MODE — BURGUNDY */
+.portfolio-page .reference-logo-3 .reference-cc-logo {
+  color: #9E2A2B !important;
+  -webkit-text-fill-color: #9E2A2B !important;
+  border: 7px solid #9E2A2B !important;
+}
+
+/* DARK MODE — WHITE */
+html[data-theme="dark"] .portfolio-page .reference-logo-3 .reference-cc-logo,
+html.dark .portfolio-page .reference-logo-3 .reference-cc-logo,
+body.dark .portfolio-page .reference-logo-3 .reference-cc-logo,
+[data-theme="dark"] .portfolio-page .reference-logo-3 .reference-cc-logo {
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  border: 7px solid #FFFFFF !important;
+}/* =====================================================
+   EDITOLOGIA PORTFOLIO — BLACK / WHITE THEME
+===================================================== */
+
+/* LIGHT MODE */
+html[data-theme="light"] .portfolio-page {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --card-bg: #ffffff;
+  --text: #171717;
+  --text-soft: #444444;
+  --text-muted: #777777;
+  --border: rgba(0, 0, 0, 0.12);
+
+  background: #ffffff !important;
+  color: #171717;
+}
+
+/* DARK MODE — PURE BLACK */
+html[data-theme="dark"] .portfolio-page {
+  --bg: #000000;
+  --surface: #000000;
+  --card-bg: #000000;
+  --text: #ffffff;
+  --text-soft: #e5e5e5;
+  --text-muted: #aaaaaa;
+  --border: rgba(255, 255, 255, 0.13);
+
+  background: #000000 !important;
+  color: #ffffff;
+}
+
+/* ALL PORTFOLIO SECTIONS */
+html[data-theme="dark"] .portfolio-page section,
+html[data-theme="dark"] .portfolio-page .portfolio-hero,
+html[data-theme="dark"] .portfolio-page .portfolio-section,
+html[data-theme="dark"] .portfolio-page .portfolio-brands,
+html[data-theme="dark"] .portfolio-page .portfolio-works {
+  background-color: #000000 !important;
+}
+
+/* CARDS */
+html[data-theme="dark"] .portfolio-page .portfolio-card,
+html[data-theme="dark"] .portfolio-page .work-card,
+html[data-theme="dark"] .portfolio-page .student-card,
+html[data-theme="dark"] .portfolio-page .mentor-card,
+html[data-theme="dark"] .portfolio-page .brand-card {
+  background-color: #000000 !important;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+/* TEXT */
+html[data-theme="dark"] .portfolio-page h1,
+html[data-theme="dark"] .portfolio-page h2,
+html[data-theme="dark"] .portfolio-page h3,
+html[data-theme="dark"] .portfolio-page h4,
+html[data-theme="dark"] .portfolio-page p {
+  color: #ffffff;
+}
+
+/* MODALS */
+html[data-theme="dark"] .portfolio-page .portfolio-modal,
+html[data-theme="dark"] .portfolio-page .video-modal {
+  background-color: #000000 !important;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+/* BURGUNDY ACCENTS */
+html[data-theme="dark"] .portfolio-page .portfolio-accent,
+html[data-theme="dark"] .portfolio-page .portfolio-eyebrow {
+  color: #c45a5b;
 }

@@ -256,4 +256,89 @@ body {
   .login-card h1 {
     font-size: 24px;
   }
+}/* =====================================================
+   EDITOLOGIA LOGIN — BLACK / WHITE / BURGUNDY
+   COLOR OVERRIDES ONLY
+===================================================== */
+
+/* LIGHT THEME */
+:root {
+  --primary: #9E2A2B;
+  --primary-hover: #741F25;
+
+  --background: #ffffff;
+  --card: #ffffff;
+  --text: #171717;
+  --text-secondary: #666666;
+  --border: #e2e2e2;
+  --input: #fafafa;
+}
+
+/* DARK THEME */
+html[data-theme="dark"] {
+  --primary: #c45a5b;
+  --primary-hover: #df7778;
+
+  --background: #111111;
+  --card: #1b1b1b;
+  --text: #ffffff;
+  --text-secondary: #b5b5b5;
+  --border: #383838;
+  --input: #151515;
+}
+
+/* INPUT FOCUS */
+.input-box:focus-within {
+  border-color: var(--primary);
+}
+
+/* INPUT ICONS */
+.input-box:focus-within svg {
+  color: var(--primary);
+}
+
+/* FORGOT PASSWORD */
+.forgot-password a {
+  color: var(--primary);
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  background: #9E2A2B;
+  color: #ffffff;
+}
+
+.login-btn:hover {
+  background: #741F25;
+}
+
+/* SOCIAL BUTTON */
+.social-btn:hover {
+  border-color: var(--primary);
+  background: var(--primary-light, #f8eeee);
+}
+
+/* REGISTER LINK */
+.register-link a {
+  color: var(--primary);
+}
+
+/* INPUT PLACEHOLDER */
+.input-box input::placeholder {
+  color: var(--placeholder, #999999);
+}
+
+/* DARK MODE BUTTON COLORS */
+html[data-theme="dark"] .login-btn {
+  background: #9E2A2B;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .login-btn:hover {
+  background: #741F25;
+}
+
+html[data-theme="dark"] .social-btn:hover {
+  background: #382020;
+  border-color: #c45a5b;
 }

@@ -1,21 +1,33 @@
+
 /* =========================================================
-   EDIT ACADEMY — ABOUT PAGE
-   PREMIUM INTERACTIVE DESIGN
+   EDITOLOGIA — ABOUT PAGE
+   LUXURY EDITORIAL DESIGN
+   LIGHT: PURE WHITE
+   DARK: DEEP BLACK
 ========================================================= */
 
 .about-page {
-  --purple: #8035d6;
-  --purple-light: #a56be8;
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-soft: #FAF8F4;
+  --text: #29231F;
+  --text-secondary: #777067;
+  --border: #EAE5DC;
+
+  --burgundy: #76272A;
+  --gold: #B88A4B;
+  --gold-light: #D9B77E;
 
   width: 100%;
   min-height: 100vh;
-
   overflow: hidden;
-
   background: var(--bg);
   color: var(--text);
-
   scroll-behavior: smooth;
+
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 .about-page *,
@@ -33,57 +45,44 @@
   font-family: inherit;
 }
 
-
 /* =========================================================
    HERO
 ========================================================= */
 
 .about-hero {
   width: min(1220px, calc(100% - 56px));
-
   min-height: 100vh;
-
   margin: 0 auto;
-
   padding: 30px 0 35px;
-
   display: flex;
   flex-direction: column;
 }
 
 .about-hero-top {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
-
   padding-bottom: 22px;
-
   border-bottom: 1px solid var(--border);
 }
 
 .about-mini-logo {
   font-size: 12px;
-
-  font-weight: 700;
-
+  font-weight: 800;
   letter-spacing: -0.05em;
+  color: var(--text);
 }
 
 .about-mini-logo span {
   margin-left: 5px;
-
-  color: var(--purple);
+  color: var(--gold);
 }
 
 .about-hero-tag {
   color: var(--text-secondary);
-
   font-size: 8px;
-
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
 }
-
 
 /* =========================================================
    HERO CONTENT
@@ -91,15 +90,10 @@
 
 .about-hero-content {
   flex: 1;
-
   display: grid;
-
   grid-template-columns: 0.88fr 1.12fr;
-
   gap: 75px;
-
   align-items: center;
-
   padding: 55px 0;
 }
 
@@ -110,46 +104,33 @@
 .about-small-label,
 .section-label {
   display: block;
-
   margin-bottom: 22px;
-
-  color: var(--purple);
-
+  color: var(--gold);
   font-size: 9px;
-
-  font-weight: 600;
-
-  letter-spacing: 0.15em;
+  font-weight: 700;
+  letter-spacing: 0.17em;
 }
 
 .about-hero-text h1 {
   margin: 0;
-
   font-size: clamp(62px, 7vw, 92px);
-
-  line-height: 0.85;
-
+  line-height: 1.04;
   font-weight: 700;
-
-  letter-spacing: -0.08em;
+  letter-spacing: -0.065em;
+  color: var(--text);
 }
 
 .about-hero-text h1 span {
-  color: var(--purple);
+  color: var(--burgundy);
 }
 
 .about-hero-text p {
   max-width: 410px;
-
   margin: 32px 0;
-
   color: var(--text-secondary);
-
   font-size: 12px;
-
-  line-height: 1.9;
+  line-height: 2;
 }
-
 
 /* =========================================================
    HERO BUTTONS
@@ -157,110 +138,75 @@
 
 .about-hero-actions {
   display: flex;
-
   flex-wrap: wrap;
-
   align-items: center;
-
   gap: 11px;
 }
 
 .about-main-button {
   min-height: 48px;
-
   padding: 0 7px 0 18px;
-
   display: flex;
-
   align-items: center;
-
   gap: 18px;
-
-  border-radius: 10px;
-
-  background: var(--purple);
-
-  color: white;
-
+  border-radius: 8px;
+  background: var(--burgundy);
+  color: #FFFFFF;
   font-size: 10px;
-
+  font-weight: 600;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
 .about-main-button i {
   width: 34px;
   height: 34px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
-  border-radius: 8px;
-
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.15);
-
   font-style: normal;
 }
 
 .about-main-button svg {
   font-size: 8px;
-
   transition: transform 0.3s ease;
 }
 
 .about-main-button:hover {
   transform: translateY(-3px);
-
-  box-shadow:
-    0 14px 35px rgba(128, 53, 214, 0.25);
+  box-shadow: 0 12px 30px rgba(118, 39, 42, 0.18);
 }
 
 .about-main-button:hover svg {
   transform: translateX(4px);
 }
 
-
 .about-faq-button {
   min-height: 48px;
-
   padding: 0 17px;
-
   display: flex;
-
   align-items: center;
-
   gap: 15px;
-
   border: 1px solid var(--border);
-
-  border-radius: 10px;
-
+  border-radius: 8px;
   color: var(--text-secondary);
-
   font-size: 10px;
-
-  transition:
-    border-color 0.3s ease,
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .about-faq-button span {
-  color: var(--purple);
-
+  color: var(--gold);
   font-size: 14px;
-
   transition: transform 0.3s ease;
 }
 
 .about-faq-button:hover {
-  border-color: var(--purple);
-
-  background: var(--surface);
-
+  border-color: var(--gold);
+  background: var(--surface-soft);
   color: var(--text);
 }
 
@@ -268,98 +214,72 @@
   transform: translateY(3px);
 }
 
-
 /* =========================================================
    HERO VIDEO
 ========================================================= */
 
 .about-hero-media {
   display: flex;
-
   justify-content: flex-end;
 }
 
 .about-video {
   position: relative;
-
   width: 100%;
   max-width: 560px;
-
   height: 610px;
-
   overflow: hidden;
-
-  border-radius: 26px;
-
-  background: #111;
+  border-radius: 20px;
+  background: #111111;
+  box-shadow: 0 25px 65px rgba(41, 35, 31, 0.12);
 }
 
 .about-video video {
   width: 100%;
   height: 100%;
-
   display: block;
-
   object-fit: cover;
 }
 
 .about-video-overlay {
   position: absolute;
-
   inset: 0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.1),
-      transparent 40%,
-      rgba(0, 0, 0, 0.85)
-    );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.08),
+    transparent 40%,
+    rgba(0, 0, 0, 0.82)
+  );
 }
 
 .about-video-top {
   position: absolute;
-
   top: 22px;
   left: 24px;
   right: 24px;
-
   display: flex;
-
   justify-content: space-between;
-
-  color: rgba(255, 255, 255, 0.7);
-
+  color: rgba(255, 255, 255, 0.75);
   font-size: 8px;
-
-  letter-spacing: 0.13em;
+  letter-spacing: 0.14em;
 }
 
 .about-video-bottom {
   position: absolute;
-
   left: 25px;
   bottom: 25px;
-
   display: flex;
-
   flex-direction: column;
-
-  color: white;
-
+  color: #FFFFFF;
   font-size: 31px;
-
-  line-height: 0.85;
-
+  line-height: 0.9;
   letter-spacing: -0.055em;
 }
 
 .about-video-bottom strong {
-  color: #b88bea;
-
+  color: #E8C995;
   font-weight: 600;
 }
-
 
 /* =========================================================
    WHY SECTION
@@ -367,52 +287,39 @@
 
 .why-section {
   width: min(1220px, calc(100% - 56px));
-
   margin: 0 auto;
-
   padding: 140px 0;
 }
 
 .why-heading {
   display: grid;
-
   grid-template-columns: 1fr 0.55fr;
-
   gap: 70px;
-
   align-items: end;
-
   margin-bottom: 70px;
 }
 
 .why-heading h2,
 .faq-heading h2 {
   margin: 0;
-
   font-size: clamp(50px, 5.8vw, 76px);
-
-  line-height: 0.86;
-
+  line-height: 0.94;
   letter-spacing: -0.075em;
+  color: var(--text);
 }
 
 .why-heading h2 span,
 .faq-heading h2 span {
-  color: var(--text-secondary);
+  color: var(--gold);
 }
 
 .why-heading > p {
   max-width: 320px;
-
   margin: 0;
-
   color: var(--text-secondary);
-
   font-size: 11px;
-
-  line-height: 1.9;
+  line-height: 2;
 }
-
 
 /* =========================================================
    INTERACTIVE CARD STACK
@@ -420,51 +327,37 @@
 
 .why-card-area {
   position: relative;
-
   min-height: 570px;
 }
 
 .why-card-stack {
   position: relative;
-
   width: 100%;
   height: 540px;
 }
 
-
-/* CARD */
-
 .why-card {
   position: absolute;
-
   left: 50%;
-
   width: min(690px, 82%);
-
   height: 500px;
-
   padding: 27px;
-
   overflow: hidden;
 
   border: 1px solid var(--border);
-
-  border-radius: 28px;
+  border-radius: 24px;
 
   background:
     radial-gradient(
       circle at 80% 10%,
-      rgba(128, 53, 214, 0.14),
-      transparent 35%
+      rgba(184, 138, 75, 0.09),
+      transparent 38%
     ),
     var(--surface);
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
-
   cursor: pointer;
 
   transition:
@@ -474,59 +367,34 @@
     box-shadow 0.5s ease;
 }
 
-
 /* ACTIVE */
 
 .why-card-0 {
   z-index: 3;
-
-  transform:
-    translateX(-50%)
-    translateY(0)
-    rotate(0deg)
-    scale(1);
-
+  transform: translateX(-50%) translateY(0) rotate(0deg) scale(1);
   opacity: 1;
-
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 65px rgba(41, 35, 31, 0.07);
 }
-
 
 /* SECOND */
 
 .why-card-1 {
   z-index: 2;
-
-  transform:
-    translateX(-44%)
-    translateY(23px)
-    rotate(4deg)
-    scale(0.96);
-
+  transform: translateX(-44%) translateY(23px) rotate(4deg) scale(0.96);
   opacity: 0.8;
 }
-
 
 /* THIRD */
 
 .why-card-2 {
   z-index: 1;
-
-  transform:
-    translateX(-56%)
-    translateY(45px)
-    rotate(-4deg)
-    scale(0.92);
-
+  transform: translateX(-56%) translateY(45px) rotate(-4deg) scale(0.92);
   opacity: 0.55;
 }
 
 .why-card:hover {
-  box-shadow:
-    0 35px 90px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 30px 75px rgba(41, 35, 31, 0.11);
 }
-
 
 /* =========================================================
    WHY CARD TOP
@@ -534,20 +402,15 @@
 
 .why-card-top {
   display: flex;
-
   justify-content: space-between;
-
   color: var(--text-secondary);
-
   font-size: 8px;
-
-  letter-spacing: 0.14em;
+  letter-spacing: 0.15em;
 }
 
 .why-card-top > span:first-child {
-  color: var(--purple);
+  color: var(--gold);
 }
-
 
 /* =========================================================
    WHY CARD MAIN
@@ -555,67 +418,44 @@
 
 .why-card-main {
   flex: 1;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
-
   align-items: flex-start;
 }
 
 .why-card-icon {
   width: 54px;
   height: 54px;
-
   margin-bottom: 25px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
-
-  background: var(--purple);
-
-  color: white;
-
+  background: var(--burgundy);
+  color: #FFFFFF;
   font-size: 11px;
-
   transform: rotate(-45deg);
-
   transition: transform 0.4s ease;
 }
 
 .why-card:hover .why-card-icon {
-  transform:
-    rotate(-45deg)
-    scale(1.08);
+  transform: rotate(-45deg) scale(1.08);
 }
 
 .why-card-main h3 {
   margin: 0;
-
   font-size: clamp(58px, 7vw, 88px);
-
-  line-height: 0.8;
-
-  letter-spacing: -0.085em;
-}
-
-/* დაშორება WHY CARD-ის სათაურის სიტყვებს შორის */
-.why-card-main h3 {
-  word-spacing: 0.16em !important;
-  letter-spacing: -0.04em;
   line-height: 0.95;
+  letter-spacing: -0.045em;
+  word-spacing: 0.16em !important;
+  color: var(--text);
 }
 
 .why-card-main h3 span {
   display: inline-block;
   margin-top: 8px;
-  color: var(--purple);
+  color: var(--burgundy);
 }
 
 /* =========================================================
@@ -624,60 +464,41 @@
 
 .why-card-bottom {
   display: grid;
-
   grid-template-columns: 0.8fr 1fr;
-
   gap: 35px;
-
   align-items: end;
 }
 
 .why-card-bottom p {
   max-width: 280px;
-
   margin: 0;
-
   color: var(--text-secondary);
-
   font-size: 10px;
-
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 .why-card-points {
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: flex-end;
-
   gap: 7px;
 }
 
 .why-card-points span {
   padding: 7px 10px;
-
   display: inline-flex;
-
   align-items: center;
-
   gap: 6px;
-
   border: 1px solid var(--border);
-
   border-radius: 100px;
-
   color: var(--text-secondary);
-
   font-size: 8px;
 }
 
 .why-card-points svg {
-  color: var(--purple);
-
+  color: var(--gold);
   font-size: 7px;
 }
-
 
 /* =========================================================
    WHY NAVIGATION
@@ -685,61 +506,40 @@
 
 .why-card-navigation {
   display: flex;
-
   justify-content: center;
-
   gap: 8px;
-
   margin-top: 10px;
 }
 
 .why-card-navigation button {
   min-height: 38px;
-
   padding: 0 13px;
-
   display: flex;
-
   align-items: center;
-
   gap: 9px;
-
   border: 1px solid var(--border);
-
   border-radius: 100px;
-
   background: transparent;
-
   color: var(--text-secondary);
-
   font-size: 8px;
-
   letter-spacing: 0.08em;
-
   cursor: pointer;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .why-card-navigation button span {
-  color: var(--purple);
+  color: var(--gold);
 }
 
 .why-card-navigation button.active {
-  border-color: var(--purple);
-
-  background: var(--purple);
-
-  color: white;
+  border-color: var(--burgundy);
+  background: var(--burgundy);
+  color: #FFFFFF;
 }
 
 .why-card-navigation button.active span {
-  color: white;
+  color: #FFFFFF;
 }
-
 
 /* =========================================================
    FAQ
@@ -747,68 +547,49 @@
 
 .faq-section {
   width: min(1220px, calc(100% - 56px));
-
   margin: 0 auto;
-
   padding: 110px 0 150px;
 }
 
 .faq-heading {
   display: flex;
-
   align-items: flex-end;
-
   justify-content: space-between;
-
   gap: 60px;
-
   margin-bottom: 65px;
 }
 
 .faq-heading-badge {
   width: 120px;
   height: 120px;
-
   padding: 17px;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
-
   border: 1px solid var(--border);
-
   border-radius: 50%;
 
   background:
     radial-gradient(
       circle,
-      rgba(128, 53, 214, 0.12),
+      rgba(184, 138, 75, 0.12),
       transparent 70%
     );
 }
 
 .faq-heading-badge span {
-  color: var(--purple);
-
+  color: var(--gold);
   font-size: 9px;
-
   font-weight: 700;
-
   letter-spacing: 0.13em;
 }
 
 .faq-heading-badge small {
   max-width: 70px;
-
   color: var(--text-secondary);
-
   font-size: 7px;
-
-  line-height: 1.4;
+  line-height: 1.5;
 }
-
 
 /* =========================================================
    FAQ CARDS
@@ -816,19 +597,14 @@
 
 .faq-cards {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 13px;
 }
 
 .faq-card {
   overflow: hidden;
-
   border: 1px solid var(--border);
-
-  border-radius: 20px;
-
+  border-radius: 16px;
   background: var(--surface);
 
   transition:
@@ -839,119 +615,80 @@
 
 .faq-card:hover {
   transform: translateY(-3px);
-
-  border-color: rgba(128, 53, 214, 0.35);
-
-  box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.06);
+  border-color: rgba(184, 138, 75, 0.5);
+  box-shadow: 0 15px 40px rgba(41, 35, 31, 0.055);
 }
 
 .faq-card-open {
-  border-color: rgba(128, 53, 214, 0.55);
+  border-color: rgba(184, 138, 75, 0.65);
 
   background:
     radial-gradient(
       circle at 90% 0%,
-      rgba(128, 53, 214, 0.11),
-      transparent 40%
+      rgba(184, 138, 75, 0.07),
+      transparent 42%
     ),
     var(--surface);
 }
-
 
 /* QUESTION */
 
 .faq-card-question {
   width: 100%;
-
   min-height: 105px;
-
   padding: 18px 19px;
-
   display: grid;
-
   grid-template-columns: 35px 1fr 42px;
-
   align-items: center;
-
   gap: 15px;
-
   border: 0;
-
   background: transparent;
-
   color: var(--text);
-
   text-align: left;
-
   cursor: pointer;
 }
 
 .faq-card-number {
-  color: var(--purple);
-
+  color: var(--gold);
   font-size: 8px;
-
-  font-weight: 600;
-
+  font-weight: 700;
   letter-spacing: 0.1em;
 }
 
 .faq-card-title {
+  color: var(--text);
   font-size: 13px;
-
-  line-height: 1.45;
-
+  line-height: 1.5;
   font-weight: 500;
-
   letter-spacing: -0.025em;
 }
 
 .faq-card-plus {
   width: 38px;
   height: 38px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border: 1px solid var(--border);
-
   border-radius: 50%;
-
-  color: var(--text-secondary);
-
+  color: var(--burgundy);
   font-size: 8px;
-
-  transition:
-    transform 0.4s ease,
-    background 0.35s ease,
-    border-color 0.35s ease,
-    color 0.35s ease;
+  transition: all 0.4s ease;
 }
 
 .faq-card-open .faq-card-plus {
   transform: rotate(45deg);
-
-  background: var(--purple);
-
-  border-color: var(--purple);
-
-  color: white;
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: #FFFFFF;
 }
-
 
 /* ANSWER */
 
 .faq-card-answer {
   display: grid;
-
   grid-template-rows: 0fr;
-
-  transition:
-    grid-template-rows 0.45s
-    cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .faq-card-open .faq-card-answer {
@@ -960,13 +697,9 @@
 
 .faq-answer-inner {
   overflow: hidden;
-
   padding: 0 19px;
-
   display: grid;
-
   grid-template-columns: 35px 1fr;
-
   gap: 15px;
 }
 
@@ -976,28 +709,19 @@
 
 .faq-answer-line {
   width: 1px;
-
   min-height: 100%;
-
   margin-left: 17px;
-
-  background: var(--purple);
-
-  opacity: 0.4;
+  background: var(--gold);
+  opacity: 0.65;
 }
 
 .faq-answer-inner p {
   max-width: 480px;
-
   margin: 0;
-
   color: var(--text-secondary);
-
   font-size: 10px;
-
-  line-height: 1.85;
+  line-height: 1.9;
 }
-
 
 /* =========================================================
    CONTACT
@@ -1005,80 +729,58 @@
 
 .contact-section {
   width: min(1220px, calc(100% - 56px));
-
   margin: 0 auto;
-
   padding: 30px 0 110px;
 }
 
 .contact-card {
   position: relative;
-
   min-height: 470px;
-
   padding: 65px 70px;
-
   display: grid;
-
   grid-template-columns: 0.85fr 1.15fr;
-
   gap: 100px;
-
   overflow: hidden;
-
   border: 1px solid var(--border);
-
-  border-radius: 30px;
+  border-radius: 25px;
 
   background:
     radial-gradient(
       circle at 10% 100%,
-      rgba(128, 53, 214, 0.20),
+      rgba(184, 138, 75, 0.10),
       transparent 34%
     ),
     radial-gradient(
       circle at 100% 0%,
-      rgba(128, 53, 214, 0.10),
+      rgba(118, 39, 42, 0.035),
       transparent 35%
     ),
     var(--surface);
-}
 
+  box-shadow: 0 20px 65px rgba(41, 35, 31, 0.045);
+}
 
 /* DECORATION */
 
 .contact-card::before {
   content: "";
-
   position: absolute;
-
   width: 280px;
   height: 280px;
-
   top: -150px;
   right: -80px;
-
   border-radius: 50%;
-
-  background: rgba(128, 53, 214, 0.08);
-
-  filter: blur(5px);
-
+  background: rgba(184, 138, 75, 0.07);
   pointer-events: none;
 }
-
 
 /* CONTACT LEFT */
 
 .contact-left {
   position: relative;
-
   z-index: 2;
-
   display: flex;
-
   flex-direction: column;
-
   justify-content: space-between;
 }
 
@@ -1088,67 +790,48 @@
 
 .contact-left h2 {
   margin: auto 0 18px;
-
   font-size: clamp(58px, 6.5vw, 82px);
-
-  line-height: 0.83;
-
+  line-height: 0.88;
   letter-spacing: -0.08em;
+  color: var(--text);
 }
 
 .contact-left h2 span {
-  color: var(--purple);
+  color: var(--burgundy);
 }
 
 .contact-left p {
   max-width: 270px;
-
   margin: 0;
-
   color: var(--text-secondary);
-
   font-size: 11px;
-
-  line-height: 1.8;
+  line-height: 1.9;
 }
-
 
 /* CONTACT RIGHT */
 
 .contact-right {
   position: relative;
-
   z-index: 2;
-
   display: flex;
-
   align-items: center;
 }
 
 .contact-links {
   width: 100%;
-
   border-top: 1px solid var(--border);
 }
-
 
 /* CONTACT LINK */
 
 .contact-links a {
   min-height: 82px;
-
   padding: 0 5px;
-
   display: grid;
-
   grid-template-columns: 45px 1fr 42px;
-
   align-items: center;
-
   gap: 18px;
-
   border-bottom: 1px solid var(--border);
-
   transition:
     padding 0.35s ease,
     background 0.35s ease;
@@ -1156,127 +839,117 @@
 
 .contact-links a:hover {
   padding-left: 14px;
-
-  background: rgba(128, 53, 214, 0.045);
+  background: rgba(184, 138, 75, 0.055);
 }
-
 
 /* CONTACT ICON */
 
 .contact-link-icon {
   width: 38px;
   height: 38px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border: 1px solid var(--border);
-
-  border-radius: 11px;
-
-  color: var(--purple);
-
+  border-radius: 10px;
+  color: var(--gold);
   font-size: 13px;
-
   font-weight: 600;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .contact-links a:hover .contact-link-icon {
-  background: var(--purple);
-
-  border-color: var(--purple);
-
-  color: white;
-
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: #FFFFFF;
   transform: rotate(-5deg);
 }
-
 
 /* CONTACT TEXT */
 
 .contact-link-content {
   display: flex;
-
   flex-direction: column;
-
   gap: 6px;
 }
 
 .contact-link-content span {
   color: var(--text-secondary);
-
   font-size: 7px;
-
   letter-spacing: 0.15em;
 }
 
 .contact-link-content strong {
   color: var(--text);
-
   font-size: 12px;
-
   font-weight: 500;
-
   letter-spacing: -0.015em;
 }
-
 
 /* CONTACT ARROW */
 
 .contact-links a > b {
   width: 35px;
   height: 35px;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   border: 1px solid var(--border);
-
   border-radius: 50%;
-
-  color: var(--text-secondary);
-
+  color: var(--gold);
   font-size: 10px;
-
   font-weight: 400;
-
-  transition:
-    background 0.3s ease,
-    color 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .contact-links a:hover > b {
-  background: var(--purple);
-
-  border-color: var(--purple);
-
-  color: white;
-
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: #FFFFFF;
   transform: translate(2px, -2px);
 }
 
+/* =========================================================
+   CONTACT DECORATIVE DETAILS
+========================================================= */
+
+.contact-left {
+  position: relative;
+}
+
+.contact-left::after {
+  content: "EDITOLOGIA  /  LET’S CONNECT";
+  display: block;
+  margin-top: 28px;
+  color: var(--text-secondary);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  opacity: 0.8;
+}
+
+.contact-left::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 3px;
+  margin-bottom: 24px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    var(--burgundy),
+    var(--gold),
+    transparent
+  );
+}
 
 /* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 950px) {
-
   .about-hero-content {
     grid-template-columns: 1fr;
-
     gap: 50px;
   }
 
@@ -1290,14 +963,11 @@
 
   .about-video {
     max-width: 650px;
-
     height: 500px;
   }
 
-
   .why-heading {
     grid-template-columns: 1fr;
-
     gap: 25px;
   }
 
@@ -1305,19 +975,14 @@
     width: 88%;
   }
 
-
   .faq-cards {
     grid-template-columns: 1fr;
   }
 
-
   .contact-card {
     grid-template-columns: 1fr;
-
     gap: 55px;
-
     min-height: auto;
-
     padding: 55px;
   }
 
@@ -1330,13 +995,11 @@
   }
 }
 
-
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
-
   .about-hero,
   .why-section,
   .faq-section,
@@ -1344,18 +1007,13 @@
     width: calc(100% - 30px);
   }
 
-
-  /* HERO */
-
   .about-hero {
     min-height: auto;
-
     padding-top: 25px;
   }
 
   .about-hero-content {
     padding: 60px 0 45px;
-
     gap: 40px;
   }
 
@@ -1369,7 +1027,6 @@
 
   .about-hero-actions {
     flex-direction: column;
-
     align-items: stretch;
   }
 
@@ -1380,10 +1037,8 @@
 
   .about-video {
     height: 430px;
-
-    border-radius: 18px;
+    border-radius: 16px;
   }
-
 
   /* WHY */
 
@@ -1406,51 +1061,35 @@
 
   .why-card {
     width: 96%;
-
     height: 425px;
-
     padding: 21px;
-
-    border-radius: 21px;
+    border-radius: 19px;
   }
 
   .why-card-1 {
-    transform:
-      translateX(-43%)
-      translateY(18px)
-      rotate(3deg)
-      scale(0.95);
+    transform: translateX(-43%) translateY(18px) rotate(3deg) scale(0.95);
   }
 
   .why-card-2 {
-    transform:
-      translateX(-57%)
-      translateY(35px)
-      rotate(-3deg)
-      scale(0.91);
+    transform: translateX(-57%) translateY(35px) rotate(-3deg) scale(0.91);
   }
-.why-card-main h3 {
-  margin: 0;
 
-  font-size: clamp(58px, 7vw, 88px);
-
-  line-height: 0.95;
-
-  letter-spacing: -0.045em;
-
-  word-spacing: 0.08em;
-}
+  .why-card-main h3 {
+    margin: 0;
+    font-size: clamp(58px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    word-spacing: 0.08em;
+  }
 
   .why-card-icon {
     width: 45px;
     height: 45px;
-
     margin-bottom: 18px;
   }
 
   .why-card-bottom {
     grid-template-columns: 1fr;
-
     gap: 18px;
   }
 
@@ -1462,7 +1101,6 @@
     flex-wrap: wrap;
   }
 
-
   /* FAQ */
 
   .faq-section {
@@ -1471,16 +1109,13 @@
 
   .faq-heading {
     flex-direction: column;
-
     align-items: flex-start;
-
     gap: 30px;
   }
 
   .faq-heading-badge {
     width: 85px;
     height: 85px;
-
     padding: 12px;
   }
 
@@ -1493,16 +1128,13 @@
   }
 
   .faq-card {
-    border-radius: 16px;
+    border-radius: 14px;
   }
 
   .faq-card-question {
     min-height: 92px;
-
     grid-template-columns: 27px 1fr 35px;
-
     gap: 10px;
-
     padding: 14px;
   }
 
@@ -1517,9 +1149,7 @@
 
   .faq-answer-inner {
     grid-template-columns: 27px 1fr;
-
     gap: 10px;
-
     padding-left: 14px;
     padding-right: 14px;
   }
@@ -1532,7 +1162,6 @@
     font-size: 9px;
   }
 
-
   /* CONTACT */
 
   .contact-section {
@@ -1541,15 +1170,12 @@
 
   .contact-card {
     padding: 38px 22px;
-
     gap: 42px;
-
-    border-radius: 20px;
+    border-radius: 18px;
   }
 
   .contact-left h2 {
     margin-top: 55px;
-
     font-size: 51px;
   }
 
@@ -1559,18 +1185,14 @@
 
   .contact-links a {
     min-height: 72px;
-
     grid-template-columns: 38px 1fr 35px;
-
     gap: 12px;
   }
 
   .contact-link-icon {
     width: 34px;
     height: 34px;
-
     border-radius: 9px;
-
     font-size: 11px;
   }
 
@@ -1585,18 +1207,15 @@
   .contact-links a > b {
     width: 31px;
     height: 31px;
-
     font-size: 8px;
   }
 }
-
 
 /* =========================================================
    SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 430px) {
-
   .about-hero-text h1 {
     font-size: 47px;
   }
@@ -1632,7 +1251,6 @@
 
   .contact-links a {
     grid-template-columns: 34px 1fr 30px;
-
     gap: 9px;
   }
 
@@ -1649,259 +1267,484 @@
     width: 28px;
     height: 28px;
   }
-}/* CONTACT — დეკორატიული დეტალი სათაურის ზემოთ */
-
-.contact-left {
-  position: relative;
 }
 
-.contact-left::before {
-  content: "";
-  display: block;
+/* =========================================================
+   LIGHT MODE — CLEAN WHITE LUXURY
+========================================================= */
 
-  width: 54px;
-  height: 4px;
+html[data-theme="light"] .about-page {
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-soft: #FAF8F4;
+  --text: #29231F;
+  --text-secondary: #777067;
+  --border: #EAE5DC;
 
-  margin-bottom: 24px;
+  --burgundy: #76272A;
+  --gold: #B88A4B;
+  --gold-light: #D9B77E;
 
-  border-radius: 10px;
-
-  background: linear-gradient(
-    90deg,
-    var(--purple) 0%,
-    var(--purple-light) 65%,
-    transparent 100%
-  );
+  background: #FFFFFF;
+  color: #29231F;
 }
 
-.contact-left::after {
-  content: "EDITOLOGIA  /  LET’S CONNECT";
-
-  display: block;
-
-  margin-top: 28px;
-
-  color: var(--text-secondary);
-
-  font-size: 9px;
-  letter-spacing: 0.14em;
-
-  opacity: 0.7;
-}
-/* CONTACT — დეკორატიული დეტალი ორივე თემისთვის */
-
-.contact-left::before {
-  content: "";
-  display: block;
-
-  width: 54px;
-  height: 4px;
-
-  margin-bottom: 24px;
-
-  border-radius: 10px;
-
-  background: linear-gradient(
-    90deg,
-    #8035d6,
-    #a56be8,
-    transparent
-  );
+html[data-theme="light"] .about-page .about-hero-text h1,
+html[data-theme="light"] .about-page .why-heading h2,
+html[data-theme="light"] .about-page .faq-heading h2,
+html[data-theme="light"] .about-page .why-card-main h3,
+html[data-theme="light"] .about-page .contact-left h2 {
+  color: #29231F;
 }
 
-.contact-left::after {
-  content: "EDITOLOGIA  /  LET’S CONNECT";
-
-  display: block;
-
-  margin-top: 28px;
-
-  color: var(--text);
-
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-
-  opacity: 0.8;
-}
-
-/* თეთრი რეჟიმი */
-html[data-theme="light"] .contact-left::after,
-html:not([data-theme="dark"]) .contact-left::after {
-  color: #55505e;
-}
-
-/* მუქი რეჟიმი */
-html[data-theme="dark"] .contact-left::after {
-  color: #c8c0d3;
-}
-/* =====================================================
-   FAQ — ტექსტის ხილვადობა თეთრ და მუქ რეჟიმში
-===================================================== */
-
-/* თეთრი რეჟიმი */
-html[data-theme="light"] .about-page .faq-card-title,
-html[data-theme="light"] .about-page .faq-answer-inner p,
-html[data-theme="light"] .about-page .faq-heading-badge small,
-html[data-theme="light"] .about-page .faq-card-number {
-  color: #514b5b;
-}
-
-html[data-theme="light"] .about-page .faq-card {
-  background-color: #ffffff;
-  border-color: #e8e2ef;
-}
-
-html[data-theme="light"] .about-page .faq-card-open {
-  background-color: #faf7ff;
-  border-color: #d5b9f5;
-}
-
-html[data-theme="light"] .about-page .faq-card-plus {
-  color: #8035d6;
-  border-color: #e1d5ef;
-}
-
-/* მუქი რეჟიმი */
-html[data-theme="dark"] .about-page .faq-card-title,
-html[data-theme="dark"] .about-page .faq-answer-inner p {
-  color: #e5deed;
-}
-
-html[data-theme="dark"] .about-page .faq-card {
-  background-color: var(--surface);
-}
-
-html[data-theme="dark"] .about-page .faq-card-plus {
-  color: #c8a5f2;
-}/* =====================================================
-   WHY CARDS — WHITE MODE TEXT FIX
-===================================================== */
-
-html[data-theme="light"] .about-page .why-card-top,
-html[data-theme="light"] .about-page .why-card-bottom p,
-html[data-theme="light"] .about-page .why-card-points span,
-html[data-theme="light"] .about-page .why-card-navigation button {
-  color: #514b5b;
-}
-
-html[data-theme="light"] .about-page .why-card-main h3 {
-  color: #211a2b;
-}
-
+html[data-theme="light"] .about-page .about-hero-text h1 span,
 html[data-theme="light"] .about-page .why-card-main h3 span,
-html[data-theme="light"] .about-page .why-card-top > span:first-child,
-html[data-theme="light"] .about-page .why-card-points svg {
-  color: #8035d6;
+html[data-theme="light"] .about-page .contact-left h2 span {
+  color: #76272A;
+}
+
+html[data-theme="light"] .about-page .why-heading h2 span,
+html[data-theme="light"] .about-page .faq-heading h2 span {
+  color: #B88A4B;
+}
+
+html[data-theme="light"] .about-page .about-small-label,
+html[data-theme="light"] .about-page .about-mini-logo span,
+html[data-theme="light"] .about-page .section-label {
+  color: #B88A4B;
+}
+
+html[data-theme="light"] .about-page .about-mini-logo {
+  color: #29231F;
+}
+
+html[data-theme="light"] .about-page .about-hero-tag,
+html[data-theme="light"] .about-page .about-hero-text p,
+html[data-theme="light"] .about-page .why-heading > p,
+html[data-theme="light"] .about-page .why-card-bottom p,
+html[data-theme="light"] .about-page .contact-left p {
+  color: #777067;
+}
+
+html[data-theme="light"] .about-page .about-hero-top {
+  border-bottom-color: #EAE5DC;
+}
+
+html[data-theme="light"] .about-page .about-main-button {
+  background: #76272A;
+  color: #FFFFFF;
+}
+
+html[data-theme="light"] .about-page .about-faq-button {
+  color: #51483F;
+  border-color: #EAE5DC;
+}
+
+html[data-theme="light"] .about-page .about-faq-button:hover {
+  background: #FAF8F4;
+  border-color: #B88A4B;
 }
 
 html[data-theme="light"] .about-page .why-card {
   background:
     radial-gradient(
       circle at 80% 10%,
-      rgba(128, 53, 214, 0.09),
-      transparent 35%
+      rgba(184, 138, 75, 0.09),
+      transparent 38%
     ),
-    #ffffff;
-
-  border-color: #e8e2ef;
+    #FFFFFF;
+  border-color: #EAE5DC;
 }
 
-html[data-theme="light"] .about-page .why-card-points span,
+html[data-theme="light"] .about-page .why-card-top,
+html[data-theme="light"] .about-page .why-card-points span {
+  color: #62594F;
+}
+
+html[data-theme="light"] .about-page .why-card-top > span:first-child,
+html[data-theme="light"] .about-page .why-card-points svg {
+  color: #B88A4B;
+}
+
+html[data-theme="light"] .about-page .why-card-points span {
+  border-color: #EAE5DC;
+  background: #FFFFFF;
+}
+
 html[data-theme="light"] .about-page .why-card-navigation button {
-  border-color: #e5dced;
+  color: #62594F;
+  border-color: #EAE5DC;
 }
 
 html[data-theme="light"] .about-page .why-card-navigation button.active {
-  background: #8035d6;
-  border-color: #8035d6;
-  color: #ffffff;
+  background: #76272A;
+  border-color: #76272A;
+  color: #FFFFFF;
 }
 
-html[data-theme="light"] .about-page .why-card-navigation button.active span {
-  color: #ffffff;
-}/* =====================================================
-   ABOUT HERO — LIGHT MODE
-===================================================== */
-
-html[data-theme="light"] .about-page .about-small-label {
-  color: #8035d6;
+html[data-theme="light"] .about-page .faq-heading-badge {
+  border-color: #EAE5DC;
+  background: radial-gradient(
+    circle,
+    rgba(184, 138, 75, 0.10),
+    transparent 70%
+  );
 }
 
-html[data-theme="light"] .about-page .about-hero-text h1 {
-  color: #211a2b;
+html[data-theme="light"] .about-page .faq-heading-badge span,
+html[data-theme="light"] .about-page .faq-card-number {
+  color: #B88A4B;
 }
 
-html[data-theme="light"] .about-page .about-hero-text p {
-  color: #625b6c;
+html[data-theme="light"] .about-page .faq-heading-badge small {
+  color: #777067;
 }
 
-html[data-theme="light"] .about-page .about-mini-logo {
-  color: #211a2b;
+html[data-theme="light"] .about-page .faq-card {
+  background: #FFFFFF;
+  border-color: #EAE5DC;
 }
 
-html[data-theme="light"] .about-page .about-mini-logo span {
-  color: #8035d6;
+html[data-theme="light"] .about-page .faq-card-open {
+  background: #FAF8F4;
+  border-color: #D8BB8D;
 }
 
-html[data-theme="light"] .about-page .about-hero-tag {
-  color: #625b6c;
+html[data-theme="light"] .about-page .faq-card-title {
+  color: #29231F;
 }
 
-html[data-theme="light"] .about-page .about-hero-top {
-  border-bottom-color: #e8e2ef;
+html[data-theme="light"] .about-page .faq-answer-inner p {
+  color: #777067;
 }
 
-/* კურსების ნახვა */
-html[data-theme="light"] .about-page .about-main-button {
-  background: #8035d6;
-  color: #ffffff;
+html[data-theme="light"] .about-page .faq-card-plus {
+  color: #76272A;
+  border-color: #EAE5DC;
+  background: #FFFFFF;
 }
 
-/* ხშირად დასმული კითხვები */
-html[data-theme="light"] .about-page .about-faq-button {
-  color: #514b5b;
-  border-color: #e0d8e9;
-  background: transparent;
+html[data-theme="light"] .about-page .faq-card-open .faq-card-plus {
+  background: #76272A;
+  border-color: #76272A;
+  color: #FFFFFF;
 }
 
-html[data-theme="light"] .about-page .about-faq-button span {
-  color: #8035d6;
+html[data-theme="light"] .about-page .contact-card {
+  background:
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(184, 138, 75, 0.10),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(118, 39, 42, 0.035),
+      transparent 35%
+    ),
+    #FFFFFF;
+  border-color: #EAE5DC;
 }
 
-/* =====================================================
-   ABOUT HERO — DARK MODE
-===================================================== */
-
-html[data-theme="dark"] .about-page .about-hero-text h1 {
-  color: #f5f1fa;
+html[data-theme="light"] .about-page .contact-left::after {
+  color: #777067;
 }
 
-html[data-theme="dark"] .about-page .about-hero-text p {
-  color: #c0b8cc;
+html[data-theme="light"] .about-page .contact-link-icon {
+  color: #B88A4B;
+  border-color: #EAE5DC;
 }
 
-html[data-theme="dark"] .about-page .about-mini-logo,
-html[data-theme="dark"] .about-page .about-hero-tag {
-  color: #c0b8cc;
+html[data-theme="light"] .about-page .contact-link-content span {
+  color: #777067;
+}
+
+html[data-theme="light"] .about-page .contact-link-content strong {
+  color: #29231F;
+}
+
+html[data-theme="light"] .about-page .contact-links a > b {
+  color: #B88A4B;
+  border-color: #EAE5DC;
+}
+
+/* =========================================================
+   DARK MODE — LUXURY BLACK
+========================================================= */
+
+html[data-theme="dark"] .about-page {
+  --bg: #050505;
+  --surface: #101010;
+  --surface-soft: #151515;
+  --text: #F5F1E9;
+  --text-secondary: #A7A19A;
+  --border: #29251F;
+
+  --burgundy: #9E2A2B;
+  --gold: #D6AD70;
+  --gold-light: #F0D5A2;
+
+  background: #050505;
+  color: #F5F1E9;
+}
+
+html[data-theme="dark"] .about-page .about-hero-text h1,
+html[data-theme="dark"] .about-page .why-heading h2,
+html[data-theme="dark"] .about-page .faq-heading h2,
+html[data-theme="dark"] .about-page .why-card-main h3,
+html[data-theme="dark"] .about-page .contact-left h2 {
+  color: #F5F1E9;
+}
+
+html[data-theme="dark"] .about-page .about-hero-text h1 span,
+html[data-theme="dark"] .about-page .why-heading h2 span,
+html[data-theme="dark"] .about-page .faq-heading h2 span,
+html[data-theme="dark"] .about-page .why-card-main h3 span,
+html[data-theme="dark"] .about-page .contact-left h2 span {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .about-small-label,
+html[data-theme="dark"] .about-page .about-mini-logo span,
+html[data-theme="dark"] .about-page .section-label {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .about-mini-logo {
+  color: #F5F1E9;
+}
+
+html[data-theme="dark"] .about-page .about-hero-tag,
+html[data-theme="dark"] .about-page .about-hero-text p,
+html[data-theme="dark"] .about-page .why-heading > p,
+html[data-theme="dark"] .about-page .why-card-bottom p,
+html[data-theme="dark"] .about-page .contact-left p {
+  color: #A7A19A;
+}
+
+html[data-theme="dark"] .about-page .about-hero-top {
+  border-bottom-color: #29251F;
+}
+
+html[data-theme="dark"] .about-page .about-main-button {
+  background: linear-gradient(135deg, #9E2A2B, #702023);
+  color: #FFFFFF;
+  box-shadow: 0 8px 25px rgba(158, 42, 43, 0.13);
 }
 
 html[data-theme="dark"] .about-page .about-faq-button {
-  color: #e5deed;
-  border-color: #39313f;
+  color: #E8DED1;
+  border-color: #393127;
 }
 
 html[data-theme="dark"] .about-page .about-faq-button:hover {
-  background: var(--surface);
-  border-color: #8035d6;
-}
-.about-page .about-hero-text h1 {
-  line-height: 1.05;
-  letter-spacing: -0.06em;
-}.about-page .about-hero-text h1 {
-  color: var(--text-primary, #ffffff);
+  background: #151515;
+  border-color: #D6AD70;
 }
 
-.about-page .about-hero-text h1 span {
-  color: #8035d6;
+html[data-theme="dark"] .about-page .about-faq-button span {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .about-video {
+  border: 1px solid #29251F;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] .about-page .about-video-bottom strong {
+  color: #F0D5A2;
+}
+
+html[data-theme="dark"] .about-page .why-card {
+  background:
+    radial-gradient(
+      circle at 85% 8%,
+      rgba(214, 173, 112, 0.08),
+      transparent 35%
+    ),
+    linear-gradient(145deg, #151515, #0B0B0B);
+  border-color: #30291F;
+}
+
+html[data-theme="dark"] .about-page .why-card-0 {
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(214, 173, 112, 0.035);
+}
+
+html[data-theme="dark"] .about-page .why-card-top {
+  color: #A7A19A;
+}
+
+html[data-theme="dark"] .about-page .why-card-top > span:first-child,
+html[data-theme="dark"] .about-page .why-card-points svg {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .why-card-icon {
+  background: linear-gradient(135deg, #A33A36, #702023);
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .about-page .why-card-points span {
+  color: #C4BBAF;
+  border-color: #393127;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+html[data-theme="dark"] .about-page .why-card-navigation button {
+  color: #B7ADA1;
+  border-color: #393127;
+}
+
+html[data-theme="dark"] .about-page .why-card-navigation button span {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .why-card-navigation button.active {
+  background: linear-gradient(135deg, #9E2A2B, #702023);
+  border-color: #9E2A2B;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .about-page .why-card-navigation button.active span {
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .about-page .faq-heading-badge {
+  background: radial-gradient(
+    circle,
+    rgba(214, 173, 112, 0.12),
+    transparent 70%
+  );
+  border-color: #393127;
+}
+
+html[data-theme="dark"] .about-page .faq-heading-badge span,
+html[data-theme="dark"] .about-page .faq-card-number {
+  color: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .faq-heading-badge small {
+  color: #A7A19A;
+}
+
+html[data-theme="dark"] .about-page .faq-card {
+  background: linear-gradient(145deg, #141414, #0C0C0C);
+  border-color: #29251F;
+}
+
+html[data-theme="dark"] .about-page .faq-card:hover {
+  border-color: rgba(214, 173, 112, 0.45);
+}
+
+html[data-theme="dark"] .about-page .faq-card-open {
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(214, 173, 112, 0.09),
+      transparent 42%
+    ),
+    #121212;
+  border-color: #9C7849;
+}
+
+html[data-theme="dark"] .about-page .faq-card-title,
+html[data-theme="dark"] .about-page .faq-answer-inner p {
+  color: #E5DED3;
+}
+
+html[data-theme="dark"] .about-page .faq-card-plus {
+  color: #D6AD70;
+  border-color: #393127;
+  background: #151515;
+}
+
+html[data-theme="dark"] .about-page .faq-card-open .faq-card-plus {
+  background: #9E2A2B;
+  border-color: #9E2A2B;
+  color: #FFFFFF;
+}
+
+html[data-theme="dark"] .about-page .faq-answer-line {
+  background: #D6AD70;
+}
+
+html[data-theme="dark"] .about-page .contact-card {
+  background:
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(214, 173, 112, 0.10),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(158, 42, 43, 0.07),
+      transparent 36%
+    ),
+    linear-gradient(145deg, #141414, #090909);
+
+  border-color: #30291F;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .about-page .contact-card::before {
+  background: rgba(214, 173, 112, 0.06);
+}
+
+html[data-theme="dark"] .about-page .contact-left::after {
+  color: #A7A19A;
+}
+
+html[data-theme="dark"] .about-page .contact-left::before {
+  background: linear-gradient(
+    90deg,
+    #9E2A2B,
+    #D6AD70,
+    transparent
+  );
+}
+
+html[data-theme="dark"] .about-page .contact-links {
+  border-top-color: #30291F;
+}
+
+html[data-theme="dark"] .about-page .contact-links a {
+  border-bottom-color: #30291F;
+}
+
+html[data-theme="dark"] .about-page .contact-links a:hover {
+  background: rgba(214, 173, 112, 0.045);
+}
+
+html[data-theme="dark"] .about-page .contact-link-icon {
+  color: #D6AD70;
+  border-color: #393127;
+}
+
+html[data-theme="dark"] .about-page .contact-link-content span {
+  color: #A7A19A;
+}
+
+html[data-theme="dark"] .about-page .contact-link-content strong {
+  color: #F5F1E9;
+}
+
+html[data-theme="dark"] .about-page .contact-links a > b {
+  color: #D6AD70;
+  border-color: #393127;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-page *,
+  .about-page *::before,
+  .about-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

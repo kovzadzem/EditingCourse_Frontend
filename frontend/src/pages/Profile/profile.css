@@ -1356,3 +1356,282 @@ body.dark .profile-course-status--paused {
     scroll-behavior: auto !important;
   }
 }
+/* =====================================================
+   EDITOLOGIA PROFILE
+   BLACK / WHITE / BURGUNDY
+   COLOR OVERRIDES ONLY
+===================================================== */
+
+/* LIGHT THEME */
+.profile-page {
+  --profile-bg: #ffffff;
+  --profile-card: #ffffff;
+  --profile-card-alt: #f7f7f7;
+  --profile-text: #171717;
+  --profile-muted: #666666;
+  --profile-border: #e2e2e2;
+  --profile-input: #fafafa;
+
+  --profile-purple: #9E2A2B;
+  --profile-purple-hover: #741F25;
+  --profile-purple-soft: #f8eeee;
+  --profile-accent: #c45a5b;
+
+  --profile-shadow: 0 16px 45px rgba(0, 0, 0, 0.055);
+
+  background: #ffffff;
+  color: #171717;
+}
+
+/* DARK THEME */
+html[data-theme="dark"] .profile-page,
+html.dark .profile-page,
+body.dark .profile-page {
+  --profile-bg: #111111;
+  --profile-card: #1b1b1b;
+  --profile-card-alt: #222222;
+  --profile-text: #ffffff;
+  --profile-muted: #b5b5b5;
+  --profile-border: #383838;
+  --profile-input: #151515;
+
+  --profile-purple: #c45a5b;
+  --profile-purple-hover: #df7778;
+  --profile-purple-soft: #382020;
+  --profile-accent: #9E2A2B;
+
+  --profile-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+
+  background: #111111;
+  color: #ffffff;
+}
+
+/* PROFILE HEADER */
+.profile-eyebrow {
+  color: var(--profile-purple);
+}
+
+/* PRIMARY BUTTONS */
+.profile-primary-btn,
+.profile-edit-left-btn {
+  border-color: #9E2A2B;
+  background: #9E2A2B;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(158, 42, 43, 0.15);
+}
+
+.profile-primary-btn:hover:not(:disabled),
+.profile-edit-left-btn:hover:not(:disabled) {
+  border-color: #741F25;
+  background: #741F25;
+  box-shadow: 0 10px 24px rgba(158, 42, 43, 0.22);
+}
+
+/* SECONDARY BUTTONS */
+.profile-logout-btn:hover,
+.profile-secondary-btn:hover:not(:disabled),
+.profile-refresh-btn:hover:not(:disabled) {
+  border-color: var(--profile-purple);
+  color: var(--profile-purple);
+}
+
+/* ADMIN LINK */
+.profile-admin-link {
+  color: var(--profile-purple);
+  background: var(--profile-purple-soft);
+}
+
+/* PROFILE AVATAR */
+.profile-avatar,
+.profile-avatar-image {
+  outline-color: rgba(158, 42, 43, 0.25);
+  color: var(--profile-purple);
+  background: var(--profile-purple-soft);
+}
+
+.profile-avatar-camera {
+  background: #9E2A2B;
+}
+
+.profile-avatar-camera:hover:not(:disabled) {
+  background: #741F25;
+}
+
+/* PROFILE SUMMARY HEADER */
+.profile-summary::before {
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255, 255, 255, 0.2),
+      transparent 32%
+    ),
+    linear-gradient(
+      120deg,
+      #4f171b 0%,
+      #9E2A2B 52%,
+      #bd5557 100%
+    );
+}
+
+html[data-theme="dark"] .profile-summary::before,
+html.dark .profile-summary::before,
+body.dark .profile-summary::before {
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255, 255, 255, 0.12),
+      transparent 32%
+    ),
+    linear-gradient(120deg, #351719, #741F25 55%, #9E2A2B);
+}
+
+/* PROFILE ROLE */
+.profile-role,
+.profile-editing-label {
+  color: var(--profile-purple);
+  background: var(--profile-purple-soft);
+}
+
+/* INPUTS */
+.profile-input-wrap:focus-within {
+  border-color: var(--profile-purple);
+  box-shadow: 0 0 0 4px rgba(158, 42, 43, 0.09);
+}
+
+.profile-input-wrap > svg {
+  color: var(--profile-purple);
+}
+
+/* SECURITY NOTE */
+.profile-security-note > svg {
+  color: var(--profile-purple);
+}
+
+/* COURSE CARDS */
+.profile-course-card:hover {
+  border-color: rgba(158, 42, 43, 0.35);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+}
+
+.profile-course-icon,
+.profile-locked-course-icon {
+  border-color: rgba(158, 42, 43, 0.1);
+  color: var(--profile-purple);
+  background: var(--profile-purple-soft);
+}
+
+.profile-course-status {
+  color: var(--profile-purple);
+  background: var(--profile-purple-soft);
+}
+
+/* COURSE PROGRESS */
+.profile-progress-heading svg {
+  color: var(--profile-purple);
+}
+
+.profile-progress-heading strong {
+  color: var(--profile-purple);
+}
+
+.profile-progress-fill {
+  background: linear-gradient(90deg, #741F25, #c45a5b);
+}
+
+/* EMPTY STATES */
+.profile-course-empty > svg {
+  color: var(--profile-purple);
+}
+
+/* NEWS */
+.profile-news-image-wrap {
+  background: var(--profile-purple-soft);
+}
+
+.profile-news-date svg {
+  color: var(--profile-purple);
+}
+
+/* LOADING */
+.profile-spinner {
+  border-top-color: var(--profile-purple);
+}
+
+/* ACCESSIBILITY */
+.profile-page button:focus-visible {
+  outline-color: rgba(158, 42, 43, 0.4);
+}
+
+/* DARK MODE COURSE DETAILS */
+html[data-theme="dark"] .profile-course-card,
+html.dark .profile-course-card,
+body.dark .profile-course-card {
+  background: #1b1b1b;
+}
+
+html[data-theme="dark"] .profile-course-status--completed,
+html.dark .profile-course-status--completed,
+body.dark .profile-course-status--completed {
+  border-color: #285943;
+  color: #a7ebc7;
+  background: #172d23;
+}
+
+html[data-theme="dark"] .profile-course-status--paused,
+html.dark .profile-course-status--paused,
+body.dark .profile-course-status--paused {
+  border-color: #63512b;
+  color: #f0d48c;
+  background: #2b2518;
+}/* =====================================================
+   PROFILE — PURE BLACK / WHITE THEME
+===================================================== */
+
+/* LIGHT MODE */
+html[data-theme="light"] .profile-page {
+  background: #ffffff !important;
+  color: #171717;
+}
+
+/* DARK MODE */
+html[data-theme="dark"] .profile-page {
+  background: #000000 !important;
+  color: #ffffff;
+  --bg: #000000;
+  --surface: #000000;
+  --card-bg: #000000;
+  --text: #ffffff;
+  --text-soft: #e5e5e5;
+  --text-muted: #aaaaaa;
+  --border: rgba(255, 255, 255, 0.13);
+}
+
+html[data-theme="dark"] .profile-page section,
+html[data-theme="dark"] .profile-page main,
+html[data-theme="dark"] .profile-page header,
+html[data-theme="dark"] .profile-page .profile-card,
+html[data-theme="dark"] .profile-page .profile-content,
+html[data-theme="dark"] .profile-page .profile-panel,
+html[data-theme="dark"] .profile-page .profile-info,
+html[data-theme="dark"] .profile-page .profile-sidebar {
+  background-color: #000000 !important;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+html[data-theme="dark"] .profile-page h1,
+html[data-theme="dark"] .profile-page h2,
+html[data-theme="dark"] .profile-page h3,
+html[data-theme="dark"] .profile-page p,
+html[data-theme="dark"] .profile-page label,
+html[data-theme="dark"] .profile-page span {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .profile-page input,
+html[data-theme="dark"] .profile-page textarea,
+html[data-theme="dark"] .profile-page select {
+  background: #111111;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}

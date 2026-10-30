@@ -74,7 +74,9 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  /* AUTH */
+  /* =====================================================
+     AUTH — SUPABASE
+  ===================================================== */
 
   useEffect(() => {
     let mounted = true;
@@ -95,6 +97,7 @@ const Header = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setIsLoggedIn(!!session);
+      setMenuOpen(false);
     });
 
     return () => {
@@ -103,7 +106,9 @@ const Header = () => {
     };
   }, []);
 
-  /* THEME */
+  /* =====================================================
+     THEME
+  ===================================================== */
 
   useEffect(() => {
     const theme = darkMode ? "dark" : "light";
@@ -112,7 +117,9 @@ const Header = () => {
     localStorage.setItem("theme", theme);
   }, [darkMode]);
 
-  /* SYSTEM THEME */
+  /* =====================================================
+     SYSTEM THEME
+  ===================================================== */
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
@@ -134,7 +141,9 @@ const Header = () => {
     };
   }, []);
 
-  /* SCROLL */
+  /* =====================================================
+     SCROLL
+  ===================================================== */
 
   useEffect(() => {
     const handleScroll = () => {
@@ -149,7 +158,9 @@ const Header = () => {
     };
   }, []);
 
-  /* RESIZE */
+  /* =====================================================
+     RESIZE
+  ===================================================== */
 
   useEffect(() => {
     const handleResize = () => {
@@ -165,7 +176,9 @@ const Header = () => {
     };
   }, []);
 
-  /* ESCAPE */
+  /* =====================================================
+     ESCAPE
+  ===================================================== */
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -181,7 +194,9 @@ const Header = () => {
     };
   }, []);
 
-  /* HELPERS */
+  /* =====================================================
+     HELPERS
+  ===================================================== */
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -194,7 +209,8 @@ const Header = () => {
         className={`home-header ${scrolled ? "scrolled" : ""}`}
       >
         <div className="home-header-wrapper">
-          {/* LOGO — LEFT */}
+
+          {/* LOGO */}
 
           <NavLink
             to="/"
@@ -252,9 +268,12 @@ const Header = () => {
             </NavLink>
           </nav>
 
-          {/* RIGHT SIDE — THEME + AUTH + BURGER */}
+          {/* RIGHT SIDE */}
 
           <div className="home-header-right">
+
+            {/* THEME BUTTON */}
+
             <button
               type="button"
               className="home-theme-btn"
@@ -264,11 +283,7 @@ const Header = () => {
                   ? "Switch to light theme"
                   : "Switch to dark theme"
               }
-              title={
-                darkMode
-                  ? "Light mode"
-                  : "Dark mode"
-              }
+              title={darkMode ? "Light mode" : "Dark mode"}
             >
               <span className="theme-icon">
                 {darkMode ? (
@@ -279,6 +294,8 @@ const Header = () => {
               </span>
             </button>
 
+            {/* AUTH BUTTONS */}
+
             {isLoggedIn ? (
               <NavLink
                 to="/profile"
@@ -288,14 +305,26 @@ const Header = () => {
                 პროფილი
               </NavLink>
             ) : (
-              <NavLink
-                to="/register"
-                className="home-register-btn"
-                onClick={closeMenu}
-              >
-                რეგისტრაცია
-              </NavLink>
+              <div className="home-auth-buttons">
+                <NavLink
+                  to="/register"
+                  className="home-register-btn"
+                  onClick={closeMenu}
+                >
+                  რეგისტრაცია
+                </NavLink>
+
+                <NavLink
+                  to="/login"
+                  className="home-login-btn"
+                  onClick={closeMenu}
+                >
+                  შესვლა
+                </NavLink>
+              </div>
             )}
+
+            {/* BURGER */}
 
             <button
               type="button"
@@ -313,7 +342,9 @@ const Header = () => {
         </div>
       </header>
 
-      {/* MOBILE MENU */}
+      {/* =================================================
+          MOBILE MENU
+      ================================================= */}
 
       <nav
         id="mobile-navigation"
@@ -363,14 +394,32 @@ const Header = () => {
 
         <div className="mobile-menu-divider" />
 
+        {/* MOBILE AUTH */}
+
         {isLoggedIn ? (
-          <NavLink to="/profile" onClick={closeMenu}>
+          <NavLink
+            to="/profile"
+            className="home-profile-btn"
+            onClick={closeMenu}
+          >
             პროფილი
           </NavLink>
         ) : (
-          <NavLink to="/register" onClick={closeMenu}>
-            რეგისტრაცია
-          </NavLink>
+          <>
+            <NavLink
+              to="/register"
+              onClick={closeMenu}
+            >
+              რეგისტრაცია
+            </NavLink>
+
+            <NavLink
+              to="/login"
+              onClick={closeMenu}
+            >
+              შესვლა
+            </NavLink>
+          </>
         )}
       </nav>
 
