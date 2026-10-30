@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   FaArrowDown,
@@ -8,15 +7,6 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import "./VideoEditing.css";
-
-/*
-  ვიდეოების მისამართები:
-  ლოკალური ვიდეო: /Videos/lesson-01.mp4
-  YouTube: https://www.youtube.com/watch?v=VIDEO_ID
-
-  თუ videoUrl ცარიელია, გაკვეთილის ფანჯარაში
-  გამოჩნდება ვიდეოს დამატების შეტყობინება.
-*/
 
 const curriculumData = [
   {
@@ -31,7 +21,6 @@ const curriculumData = [
       "ფაილების ორგანიზება",
       "სწორი workflow",
     ],
-    videoUrl: "",
   },
   {
     number: "02",
@@ -39,8 +28,12 @@ const curriculumData = [
     title: "მონტაჟის პროგრამა",
     description:
       "პროგრამის ინტერფეისის და ძირითადი ინსტრუმენტების სრულად გაცნობა.",
-    topics: ["Interface", "Timeline", "Tools", "Project Settings"],
-    videoUrl: "",
+    topics: [
+      "Interface",
+      "Timeline",
+      "Tools",
+      "Project Settings",
+    ],
   },
   {
     number: "03",
@@ -48,8 +41,12 @@ const curriculumData = [
     title: "Cut & Edit",
     description:
       "კადრების სწორად დაჭრა, აწყობა და ვიდეოს ისტორიის შექმნა.",
-    topics: ["Cutting", "Trim", "Transitions", "Timeline Editing"],
-    videoUrl: "",
+    topics: [
+      "Cutting",
+      "Trim",
+      "Transitions",
+      "Timeline Editing",
+    ],
   },
   {
     number: "04",
@@ -57,8 +54,12 @@ const curriculumData = [
     title: "კადრის რიტმი",
     description:
       "როგორ შევქმნათ დინამიკური და საინტერესო ვიდეო მხოლოდ მონტაჟის საშუალებით.",
-    topics: ["Pacing", "Rhythm", "Storytelling", "Dynamic Editing"],
-    videoUrl: "",
+    topics: [
+      "Pacing",
+      "Rhythm",
+      "Storytelling",
+      "Dynamic Editing",
+    ],
   },
   {
     number: "05",
@@ -66,8 +67,12 @@ const curriculumData = [
     title: "აუდიო & Sound Design",
     description:
       "ხმის დამუშავება და Sound Design-ის გამოყენება ვიდეოს გასაძლიერებლად.",
-    topics: ["Audio Editing", "Sound Effects", "Music", "Mixing"],
-    videoUrl: "",
+    topics: [
+      "Audio Editing",
+      "Sound Effects",
+      "Music",
+      "Mixing",
+    ],
   },
   {
     number: "06",
@@ -75,8 +80,12 @@ const curriculumData = [
     title: "Color Correction",
     description:
       "ვიდეოს ფერის კორექციისა და ტექნიკურად სწორი გამოსახულების შექმნა.",
-    topics: ["Color Correction", "Exposure", "White Balance", "Skin Tones"],
-    videoUrl: "",
+    topics: [
+      "Color Correction",
+      "Exposure",
+      "White Balance",
+      "Skin Tones",
+    ],
   },
   {
     number: "07",
@@ -84,8 +93,12 @@ const curriculumData = [
     title: "Color Grading",
     description:
       "საბაზისო კორექციიდან საკუთარი ვიზუალური სტილის შექმნამდე.",
-    topics: ["Look Development", "Creative Grade", "Contrast", "Color Style"],
-    videoUrl: "",
+    topics: [
+      "Look Development",
+      "Creative Grade",
+      "Contrast",
+      "Color Style",
+    ],
   },
   {
     number: "08",
@@ -93,8 +106,12 @@ const curriculumData = [
     title: "Motion & Effects",
     description:
       "მოძრავი ელემენტების, ტექსტისა და ვიზუალური ეფექტების გამოყენება.",
-    topics: ["Keyframes", "Motion", "Text Animation", "Visual Effects"],
-    videoUrl: "",
+    topics: [
+      "Keyframes",
+      "Motion",
+      "Text Animation",
+      "Visual Effects",
+    ],
   },
   {
     number: "09",
@@ -108,7 +125,6 @@ const curriculumData = [
       "Efficiency",
       "Professional Setup",
     ],
-    videoUrl: "",
   },
   {
     number: "10",
@@ -116,8 +132,12 @@ const curriculumData = [
     title: "რეალური პროექტი",
     description:
       "ყველა ნასწავლი ტექნიკის გამოყენება ერთ რეალურ პროექტში.",
-    topics: ["Project Planning", "Editing", "Sound", "Color"],
-    videoUrl: "",
+    topics: [
+      "Project Planning",
+      "Editing",
+      "Sound",
+      "Color",
+    ],
   },
   {
     number: "11",
@@ -125,8 +145,12 @@ const curriculumData = [
     title: "პორტფოლიო",
     description:
       "პროფესიონალური ნამუშევრის შექმნა და მისი სწორად წარმოდგენა.",
-    topics: ["Portfolio Piece", "Presentation", "Export", "Final Polish"],
-    videoUrl: "",
+    topics: [
+      "Portfolio Piece",
+      "Presentation",
+      "Export",
+      "Final Polish",
+    ],
   },
   {
     number: "12",
@@ -134,89 +158,14 @@ const curriculumData = [
     title: "Final Project",
     description:
       "კურსის საბოლოო პროექტი — ყველაფერი, რაც ვისწავლეთ, ერთ ნამუშევარში.",
-    topics: ["Final Edit", "Professional Review", "Export", "Portfolio Ready"],
-    videoUrl: "",
+    topics: [
+      "Final Edit",
+      "Professional Review",
+      "Export",
+      "Portfolio Ready",
+    ],
   },
 ];
-
-function getYouTubeEmbedUrl(url) {
-  if (!url) return null;
-
-  try {
-    const parsed = new URL(url);
-    const host = parsed.hostname.replace(/^www\./, "");
-    let videoId = null;
-
-    if (host === "youtu.be") {
-      videoId = parsed.pathname.split("/").filter(Boolean)[0];
-    } else if (
-      host === "youtube.com" ||
-      host === "m.youtube.com" ||
-      host === "youtube-nocookie.com"
-    ) {
-      if (parsed.pathname === "/watch") {
-        videoId = parsed.searchParams.get("v");
-      } else {
-        const match = parsed.pathname.match(/^\/(?:embed|shorts)\/([^/]+)/);
-        videoId = match?.[1] || null;
-      }
-    }
-
-    return videoId
-      ? `https://www.youtube-nocookie.com/embed/${videoId}`
-      : null;
-  } catch {
-    return null;
-  }
-}
-
-function isLocalVideo(url) {
-  return /\.(mp4|webm|ogg|mov)(?:$|[?#])/i.test(url || "");
-}
-
-function LessonVideo({ lesson }) {
-  const videoUrl = lesson.videoUrl?.trim() || "";
-  const youtubeUrl = getYouTubeEmbedUrl(videoUrl);
-  const localVideo = isLocalVideo(videoUrl);
-
-  if (youtubeUrl) {
-    return (
-      <iframe
-        src={youtubeUrl}
-        title={lesson.title}
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      />
-    );
-  }
-
-  if (localVideo) {
-    return (
-      <video
-        src={videoUrl}
-        controls
-        playsInline
-        preload="metadata"
-      >
-        შენი ბრაუზერი ვიდეოს დაკვრას ვერ ახერხებს.
-      </video>
-    );
-  }
-
-  return (
-    <div className="ve-video-placeholder">
-      <div className="ve-video-placeholder-icon">
-        <FaPlay />
-      </div>
-      <strong>ვიდეო მალე დაემატება</strong>
-      <p>
-        ამ გაკვეთილის ვიდეოს საჩვენებლად დაამატე YouTube-ის ბმული
-        ან MP4 ფაილის მისამართი.
-      </p>
-    </div>
-  );
-}
 
 export default function VideoEditing() {
   const [activeLesson, setActiveLesson] = useState(null);
@@ -234,8 +183,7 @@ export default function VideoEditing() {
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === "Escape") {
-        setActiveLesson(null);
-        document.body.classList.remove("ve-modal-open");
+        closeLesson();
       }
     };
 
@@ -247,15 +195,15 @@ export default function VideoEditing() {
     };
   }, []);
 
-  const lesson = activeLesson !== null
-    ? curriculumData[activeLesson]
-    : null;
-
   return (
     <main className="ve-page">
-      {/* HERO */}
+
+      {/* =====================================================
+          HERO
+      ===================================================== */}
 
       <section className="ve-hero">
+
         <div className="ve-hero-noise" />
         <div className="ve-hero-glow ve-glow-one" />
         <div className="ve-hero-glow ve-glow-two" />
@@ -268,25 +216,40 @@ export default function VideoEditing() {
         </div>
 
         <div className="ve-container">
+
           <div className="ve-hero-top">
+
             <span>LIVE COURSE</span>
-            <span className="ve-hero-top-center">VIDEO EDITING</span>
+
+            <span className="ve-hero-top-center">
+              VIDEO EDITING
+            </span>
+
             <span>2026</span>
+
           </div>
 
           <div className="ve-hero-main">
-            {/* LEFT SIDE */}
+
+            {/* LEFT */}
 
             <div className="ve-hero-left">
+
               <div className="ve-eyebrow">
                 <span />
                 PROFESSIONAL VIDEO EDITING
               </div>
 
               <h1>
-                <span>EDIT</span>
-                <span className="ve-outline">CREATE</span>
-                <span className="ve-purple">INSPIRE</span>
+                <span>EDIT.</span>
+
+                <span className="ve-outline">
+                  CREATE.
+                </span>
+
+                <span className="ve-purple">
+                  INSPIRE.
+                </span>
               </h1>
 
               <p className="ve-hero-description">
@@ -296,14 +259,20 @@ export default function VideoEditing() {
               </p>
 
               <div className="ve-hero-actions">
-                <a href="#ve-curriculum" className="ve-primary-button">
+
+                <a
+                  href="#ve-curriculum"
+                  className="ve-primary-button"
+                >
                   <span>კურსის პროგრამა</span>
+
                   <i>
                     <FaArrowDown />
                   </i>
                 </a>
 
                 <div className="ve-hero-stats">
+
                   <div>
                     <strong>12</strong>
                     <span>MODULES</span>
@@ -322,108 +291,226 @@ export default function VideoEditing() {
                     <strong>PRO</strong>
                     <span>LEVEL</span>
                   </div>
+
                 </div>
+
               </div>
+
             </div>
 
-            {/* RIGHT SIDE — REAL VIDEO */}
+            {/* RIGHT VISUAL */}
 
-            <div className="ve-hero-visual ve-hero-video-visual">
-              <div className="ve-visual-number">01</div>
+            <div className="ve-hero-visual">
 
-              <div className="ve-hero-video-frame">
-                <div className="ve-hero-video-top">
-                  <span>EDIT ACADEMY</span>
+              <div className="ve-visual-number">
+                01
+              </div>
 
-                  <div className="ve-video-status">
-                    <span />
-                    VIDEO PREVIEW
+              <div className="ve-editor-window">
+
+                <div className="ve-window-top">
+
+                  <span>
+                    EDIT ACADEMY
+                  </span>
+
+                  <div>
+                    <i />
+                    <i />
+                    <i />
                   </div>
+
                 </div>
 
-                <div className="ve-hero-video-player">
-                  <video
-                    src="../public/videos/mentor-1.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    controls
-                    preload="metadata"
-                    aria-label="ვიდეო მონტაჟის კურსის პრეზენტაცია"
-                  >
-                    შენი ბრაუზერი ვიდეოს დაკვრას ვერ ახერხებს.
-                  </video>
+                <div className="ve-window-content">
+
+                  <div className="ve-preview-screen">
+
+                    <div className="ve-preview-grid" />
+
+                    <div className="ve-preview-center">
+
+                      <span>PLAY</span>
+
+                      <div className="ve-play-circle">
+                        <FaPlay />
+                      </div>
+
+                    </div>
+
+                    <div className="ve-preview-rec">
+                      <i />
+                      REC
+                    </div>
+
+                    <div className="ve-preview-time">
+                      00:24:18
+                    </div>
+
+                  </div>
+
+                  <div className="ve-timeline">
+
+                    <div className="ve-timeline-ruler">
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                    </div>
+
+                    <div className="ve-track">
+                      <div className="ve-clip ve-clip-one">
+                        VIDEO
+                      </div>
+
+                      <div className="ve-clip ve-clip-two">
+                        B-ROLL
+                      </div>
+
+                    </div>
+
+                    <div className="ve-track ve-track-second">
+                      <div className="ve-clip ve-audio">
+                        AUDIO
+                      </div>
+                    </div>
+
+                    <div className="ve-playhead" />
+
+                  </div>
+
                 </div>
 
-                <div className="ve-hero-video-bottom">
-                  <span>VIDEO EDITING</span>
-                  <span>4K · 24 FPS</span>
+                <div className="ve-window-bottom">
+
+                  <span>4K</span>
+                  <span>24 FPS</span>
+                  <span>01:24:08</span>
+
                 </div>
+
               </div>
 
               <div className="ve-floating-card ve-floating-one">
+
                 <span>EDITING</span>
-                <strong>MASTER</strong>
+
+                <strong>
+                  MASTER
+                </strong>
+
               </div>
 
               <div className="ve-floating-card ve-floating-two">
-                <span>YOUR FUTURE</span>
-                <strong>CREATE</strong>
+
+                <span>PROJECT</span>
+
+                <strong>
+                  CREATE
+                </strong>
+
               </div>
+
             </div>
+
           </div>
 
           <div className="ve-hero-bottom">
-            <span>LEARN BY DOING</span>
+
+            <span>
+              SCROLL TO EXPLORE
+            </span>
+
             <div className="ve-scroll-line">
               <span />
             </div>
-            <span>SCROLL TO EXPLORE</span>
+
+            <span>
+              01 / 12
+            </span>
+
           </div>
+
         </div>
+
       </section>
 
-      {/* CURRICULUM */}
 
-      <section className="ve-curriculum" id="ve-curriculum">
+      {/* =====================================================
+          CURRICULUM
+      ===================================================== */}
+
+      <section
+        className="ve-curriculum"
+        id="ve-curriculum"
+      >
+
         <div className="ve-container">
+
           <div className="ve-curriculum-header">
+
             <div>
-              <span className="ve-section-number">01 / CURRICULUM</span>
+
+              <span className="ve-section-number">
+                01 / CURRICULUM
+              </span>
+
               <h2>
                 LEARN
-                <span>TO EDIT</span>
+                <span>TO EDIT.</span>
               </h2>
+
             </div>
 
             <div className="ve-curriculum-description">
+
               <span>12 MODULES</span>
+
               <p>
                 კურსი აერთიანებს მონტაჟის ტექნიკას,
                 storytelling-ს, sound design-ს,
                 color-სა და რეალურ პროექტებზე მუშაობას.
               </p>
+
             </div>
+
           </div>
 
+
+          {/* CARDS */}
+
           <div className="ve-card-grid">
-            {curriculumData.map((item, index) => (
+
+            {curriculumData.map((lesson, index) => (
+
               <button
                 type="button"
                 className="ve-course-card"
-                key={item.number}
+                key={lesson.number}
                 onClick={() => openLesson(index)}
-                aria-label={`${item.title} — გაკვეთილის გახსნა`}
               >
-                <div className="ve-card-bg-number">{item.number}</div>
+
+                <div className="ve-card-bg-number">
+                  {lesson.number}
+                </div>
 
                 <div className="ve-card-top">
-                  <span className="ve-card-number">{item.number}</span>
-                  <span className="ve-card-category">{item.category}</span>
+
+                  <span className="ve-card-number">
+                    {lesson.number}
+                  </span>
+
+                  <span className="ve-card-category">
+                    {lesson.category}
+                  </span>
+
                   <span className="ve-card-arrow">
                     <FaArrowRight />
                   </span>
+
                 </div>
 
                 <div className="ve-card-icon">
@@ -431,123 +518,192 @@ export default function VideoEditing() {
                 </div>
 
                 <div className="ve-card-body">
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+
+                  <h3>
+                    {lesson.title}
+                  </h3>
+
+                  <p>
+                    {lesson.description}
+                  </p>
+
                 </div>
 
                 <div className="ve-card-bottom">
-                  <span>VIEW MODULE</span>
+
+                  <span>
+                    VIEW MODULE
+                  </span>
+
                   <div className="ve-card-line">
                     <span />
                   </div>
+
                 </div>
+
               </button>
+
             ))}
+
           </div>
 
+
           <div className="ve-curriculum-footer">
+
             <div className="ve-footer-line">
               <span />
             </div>
 
             <div className="ve-footer-info">
-              <span>12 MODULES</span>
-              <strong>FROM RAW FOOTAGE TO FINAL CUT.</strong>
+
+              <span>
+                12 MODULES
+              </span>
+
+              <strong>
+                FROM RAW FOOTAGE TO FINAL CUT.
+              </strong>
+
             </div>
 
             <div className="ve-footer-arrow">
               <FaArrowRight />
             </div>
+
           </div>
+
         </div>
+
       </section>
 
-      {/* LESSON MODAL — INFO LEFT, VIDEO RIGHT */}
 
-      {lesson && (
+      {/* =====================================================
+          CARD FORWARD MODAL
+      ===================================================== */}
+
+      {activeLesson !== null && (
+
         <div
           className="ve-card-overlay"
           onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
+
+            if (
+              event.target === event.currentTarget
+            ) {
               closeLesson();
             }
+
           }}
         >
+
           <div
             className="ve-active-card"
             role="dialog"
             aria-modal="true"
-            aria-label={lesson.title}
           >
+
             <button
               type="button"
               className="ve-close-button"
               onClick={closeLesson}
-              aria-label="დახურვა"
+              aria-label="Close"
             >
               <FaTimes />
             </button>
 
             <div className="ve-active-glow" />
-            <div className="ve-active-number">{lesson.number}</div>
+
+            <div className="ve-active-number">
+              {curriculumData[activeLesson].number}
+            </div>
 
             <div className="ve-active-top">
-              <span>{lesson.category}</span>
+
+              <span>
+                {curriculumData[activeLesson].category}
+              </span>
+
               <div className="ve-active-icon">
                 <FaPlay />
               </div>
+
             </div>
 
-            <div className="ve-active-layout">
-              <div className="ve-active-info">
-                <div className="ve-active-content">
-                  <h3>{lesson.title}</h3>
-                  <p>{lesson.description}</p>
-                </div>
+            <div className="ve-active-content">
 
-                <div className="ve-active-divider" />
+              <h3>
+                {curriculumData[activeLesson].title}
+              </h3>
 
-                <div className="ve-active-learning">
-                  <span>WHAT YOU WILL LEARN</span>
+              <p>
+                {curriculumData[activeLesson].description}
+              </p>
 
-                  <div className="ve-active-topics">
-                    {lesson.topics.map((topic, index) => (
-                      <div className="ve-active-topic" key={topic}>
-                        <span>
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <strong>{topic}</strong>
-                        <FaCheck />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="ve-active-footer">
-                  <div>
-                    <span>PRACTICAL EXPERIENCE</span>
-                    <strong>რეალურ პროექტზე მუშაობა</strong>
-                  </div>
-                  <FaArrowRight />
-                </div>
-              </div>
-
-              <div className="ve-active-video-column">
-                <div className="ve-video-heading">
-                  <span>LESSON PREVIEW</span>
-                  <span>{lesson.number} / 12</span>
-                </div>
-
-                <div className="ve-active-video">
-                  <LessonVideo lesson={lesson} />
-                </div>
-
-                <p className="ve-video-caption">{lesson.title}</p>
-              </div>
             </div>
+
+            <div className="ve-active-divider" />
+
+            <div className="ve-active-learning">
+
+              <span>
+                WHAT YOU WILL LEARN
+              </span>
+
+              <div className="ve-active-topics">
+
+                {curriculumData[
+                  activeLesson
+                ].topics.map((topic, topicIndex) => (
+
+                  <div
+                    className="ve-active-topic"
+                    key={topic}
+                  >
+
+                    <span>
+                      {String(
+                        topicIndex + 1
+                      ).padStart(2, "0")}
+                    </span>
+
+                    <strong>
+                      {topic}
+                    </strong>
+
+                    <FaCheck />
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+            <div className="ve-active-footer">
+
+              <div>
+
+                <span>
+                  PRACTICAL EXPERIENCE
+                </span>
+
+                <strong>
+                  რეალურ პროექტზე მუშაობა
+                </strong>
+
+              </div>
+
+              <FaArrowRight />
+
+            </div>
+
           </div>
+
         </div>
+
       )}
+
     </main>
   );
 }

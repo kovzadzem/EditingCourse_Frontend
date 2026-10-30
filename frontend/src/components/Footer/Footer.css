@@ -1,50 +1,48 @@
 
 /* =====================================================
-   EDITOLOGIA FOOTER — VANILLA & BURGUNDY
+   EDITOLOGIA FOOTER — THEME VARIABLES
 ===================================================== */
 
 .footer {
-  --footer-bg: #FFFDF5;
-  --footer-surface: #F7F1E5;
-  --footer-text: #29231F;
-  --footer-muted: #746B61;
-  --footer-line: rgba(41, 35, 31, 0.12);
-  --footer-purple: #9E2A2B;
-  --footer-purple-hover: #7F2021;
-  --footer-link-hover: #9E2A2B;
+  --footer-bg: #ffffff;
+  --footer-surface: #f8f6fb;
+  --footer-text: #19151f;
+  --footer-muted: #77717f;
+  --footer-line: rgba(30, 20, 45, 0.12);
+  --footer-purple: #8035d6;
+  --footer-purple-hover: #6d28d9;
+  --footer-link-hover: #8035d6;
 
   position: relative;
   width: 100%;
   color: var(--footer-text);
   background: var(--footer-bg);
   font-family: inherit;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
-
-/* DARK MODE */
 
 html[data-theme="dark"] .footer {
-  --footer-bg: #09090D;
-  --footer-surface: #141318;
-  --footer-text: #FFF3D0;
-  --footer-muted: #C8BEAD;
-  --footer-line: rgba(255, 243, 208, 0.13);
-  --footer-purple: #A93637;
-  --footer-purple-hover: #C04748;
-  --footer-link-hover: #FFF3D0;
+  --footer-bg: #0b0b0e;
+  --footer-surface: #121016;
+  --footer-text: #f5f3f8;
+  --footer-muted: #a09ca9;
+  --footer-line: rgba(255, 255, 255, 0.11);
+  --footer-purple: #a66af0;
+  --footer-purple-hover: #bc8bff;
+  --footer-link-hover: #c49aff;
 }
 
-/* LIGHT MODE */
-
 html[data-theme="light"] .footer {
-  --footer-bg: #FFFDF5;
-  --footer-surface: #F7F1E5;
-  --footer-text: #29231F;
-  --footer-muted: #746B61;
-  --footer-line: rgba(41, 35, 31, 0.12);
-  --footer-purple: #9E2A2B;
-  --footer-purple-hover: #7F2021;
-  --footer-link-hover: #9E2A2B;
+  --footer-bg: #ffffff;
+  --footer-surface: #f8f6fb;
+  --footer-text: #19151f;
+  --footer-muted: #77717f;
+  --footer-line: rgba(30, 20, 45, 0.12);
+  --footer-purple: #8035d6;
+  --footer-purple-hover: #6d28d9;
+  --footer-link-hover: #8035d6;
 }
 
 .footer *,
@@ -128,7 +126,7 @@ html[data-theme="light"] .footer {
 }
 
 .footer-socials a:hover {
-  color: #FFFDF5;
+  color: #fff;
   background: var(--footer-purple);
   border-color: var(--footer-purple);
   transform: translateY(-3px);
@@ -260,25 +258,24 @@ html[data-theme="light"] .footer {
 }
 
 .footer-back-to-top:hover {
-  color: #FFFDF5;
+  color: #fff;
   background: var(--footer-purple);
   border-color: var(--footer-purple);
   transform: translateY(-3px);
 }
 
 /* =====================================================
-   POLICY MODALS — VANILLA & BURGUNDY
-   გამოიყენება სამივე პოლიტიკის ფანჯრისთვის
+   POLICY MODAL — THEME VARIABLES
 ===================================================== */
 
 .footer-policy-overlay {
-  --policy-bg: #FFFDF5;
-  --policy-surface: #F7F1E5;
-  --policy-text: #29231F;
-  --policy-muted: #62594F;
-  --policy-line: rgba(41, 35, 31, 0.12);
-  --policy-heading: #9E2A2B;
-  --policy-overlay-bg: rgba(20, 14, 12, 0.62);
+  --policy-bg: #ffffff;
+  --policy-surface: #f8f6fb;
+  --policy-text: #201a29;
+  --policy-muted: #686171;
+  --policy-line: rgba(35, 20, 50, 0.1);
+  --policy-heading: #7130bf;
+  --policy-overlay-bg: rgba(20, 12, 29, 0.6);
 
   position: fixed;
   inset: 0;
@@ -293,33 +290,25 @@ html[data-theme="light"] .footer {
   animation: footerOverlayIn 0.22s ease both;
 }
 
-/* POLICY MODALS — DARK MODE */
-
 html[data-theme="dark"] .footer-policy-overlay {
-  --policy-bg: #111116;
-  --policy-surface: #19191F;
-  --policy-text: #FFF3D0;
-  --policy-muted: #C8BEAD;
-  --policy-line: rgba(255, 243, 208, 0.13);
-  --policy-heading: #E0B36B;
-  --policy-overlay-bg: rgba(4, 3, 7, 0.84);
+  --policy-bg: #111015;
+  --policy-surface: #17141d;
+  --policy-text: #f5f2fa;
+  --policy-muted: #c0bac9;
+  --policy-line: rgba(255, 255, 255, 0.09);
+  --policy-heading: #c9a5fa;
+  --policy-overlay-bg: rgba(4, 3, 7, 0.8);
 }
-
-/* POLICY MODALS — LIGHT MODE */
 
 html[data-theme="light"] .footer-policy-overlay {
-  --policy-bg: #FFFDF5;
-  --policy-surface: #F7F1E5;
-  --policy-text: #29231F;
-  --policy-muted: #62594F;
-  --policy-line: rgba(41, 35, 31, 0.12);
-  --policy-heading: #9E2A2B;
-  --policy-overlay-bg: rgba(20, 14, 12, 0.62);
+  --policy-bg: #ffffff;
+  --policy-surface: #f8f6fb;
+  --policy-text: #201a29;
+  --policy-muted: #686171;
+  --policy-line: rgba(35, 20, 50, 0.1);
+  --policy-heading: #7130bf;
+  --policy-overlay-bg: rgba(20, 12, 29, 0.6);
 }
-
-/* =====================================================
-   POLICY MODAL CONTAINER
-===================================================== */
 
 .footer-policy-modal {
   display: flex;
@@ -331,9 +320,13 @@ html[data-theme="light"] .footer-policy-overlay {
   background: var(--policy-bg);
   border: 1px solid var(--policy-line);
   border-radius: 20px;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.24);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.24),
+    0 0 45px rgba(128, 53, 214, 0.08);
   animation: footerModalIn 0.28s cubic-bezier(0.2, 0.75, 0.25, 1) both;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
 
 /* =====================================================
@@ -394,7 +387,7 @@ html[data-theme="light"] .footer-policy-overlay {
 }
 
 .footer-policy-close:hover {
-  color: #FFFDF5;
+  color: #fff;
   background: var(--footer-purple);
   border-color: var(--footer-purple);
   transform: rotate(90deg);
@@ -452,20 +445,6 @@ html[data-theme="light"] .footer-policy-overlay {
   overflow-wrap: anywhere;
 }
 
-/* თუ პოლიტიკის ტექსტში ბმულებია */
-
-.footer-policy-section a {
-  color: var(--policy-heading);
-  text-decoration-color: currentColor;
-  text-underline-offset: 3px;
-  overflow-wrap: anywhere;
-  transition: color 0.2s ease;
-}
-
-.footer-policy-section a:hover {
-  color: var(--footer-purple-hover);
-}
-
 /* =====================================================
    POLICY FOOTER
 ===================================================== */
@@ -490,10 +469,10 @@ html[data-theme="light"] .footer-policy-overlay {
 
 .footer-policy-done {
   padding: 9px 17px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(128, 53, 214, 0.35);
   border-radius: 7px;
-  background: var(--footer-purple);
-  color: #FFFDF5;
+  background: rgba(128, 53, 214, 0.08);
+  color: var(--policy-heading);
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
@@ -505,9 +484,9 @@ html[data-theme="light"] .footer-policy-overlay {
 }
 
 .footer-policy-done:hover {
-  color: #FFFDF5;
-  background: var(--footer-purple-hover);
-  border-color: var(--footer-purple-hover);
+  color: #fff;
+  background: var(--footer-purple);
+  border-color: var(--footer-purple);
 }
 
 /* =====================================================

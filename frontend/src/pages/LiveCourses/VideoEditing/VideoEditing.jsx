@@ -16,7 +16,7 @@ import "./VideoEditing.css";
 // =====================================================
 
 const mentor = {
-  name: "ნიკა ამაშუკელი",
+  name: "ნიკოლოზ ამაშუკელი",
   role: "ლექტორი • Video Editing",
   experience: "5+ წელი გამოცდილება",
   students: "100+ სტუდენტი",
@@ -44,14 +44,14 @@ const groups = [
   },
   {
     id: 2,
-    title: "პერსონალური",
+    title: "ონლაინ",
     mode: "online",
     students: 0,
     maxStudents: 15,
     duration: "6 კვირა",
     lectures: "12 ლექცია",
     experience: "0 გამოცდილება",
-    price: 900,
+    price: 400,
     payment: "ერთჯერადი გადახდა",
     status: "რეგისტრაცია ღიაა",
     featured: false,
@@ -156,11 +156,11 @@ function VideoEditing() {
 
           <h1>
             ისწავლე ვიდეო მონტაჟი
-            <span>პროფესიონალურ დონეზე </span>
+            <span>პრაქტიკულად</span>
           </h1>
 
           <p className="hero-description">
-            რეალურ სამუშაო პროცესში მუშაობ - არა შაბლონურ ფაილებზე,
+            რეალურ სამუშაო პროცესში მუშაობ — არა შაბლონურ ფაილებზე,
             არამედ რეალურ ვიდეომასალასთან, რეალურ პროექტებსა და
             პროფესიონალურ workflow-ზე.
           </p>
